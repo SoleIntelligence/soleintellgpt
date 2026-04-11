@@ -1,0 +1,1320 @@
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap');
+
+  /* ── DARK MODE (DEFAULT) ── */
+  :root {
+    /* Structure */
+    --bg-page:       #0a1628;
+    --bg-card:       #152d4a;
+    --bg-card-alt:   #102038;
+    --bg-card-teal:  rgba(18,149,170,0.10);
+    --bg-card-amber: rgba(212,146,14,0.08);
+    --bg-era-band:   #122540;
+
+    /* Text */
+    --text-heading:  #ffffff;
+    --text-body:     #d8e4ef;
+    --text-muted:    #a8bccf;
+    --text-subtle:   #7a94aa;
+
+    /* Accents */
+    --teal:          #1295aa;
+    --teal-lt:       #2ec4dd;
+    --amber:         #d4920e;
+    --amber-lt:      #f7ce50;
+
+    /* Borders */
+    --border:        rgba(255,255,255,0.13);
+    --border-card:   rgba(255,255,255,0.13);
+    --border-subtle: rgba(255,255,255,0.08);
+
+    /* Typography */
+    --serif: 'Playfair Display', Georgia, serif;
+    --mono:  'Space Mono', monospace;
+    --sans:  'Source Sans 3', sans-serif;
+  }
+
+  /* ── LIGHT MODE ── */
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg-page:       #f0f4f8;
+      --bg-card:       #ffffff;
+      --bg-card-alt:   #e8eef5;
+      --bg-card-teal:  rgba(12,120,138,0.07);
+      --bg-card-amber: rgba(180,110,8,0.06);
+      --bg-era-band:   #dce5ef;
+
+      --text-heading:  #0f1e30;
+      --text-body:     #253648;
+      --text-muted:    #4a6070;
+      --text-subtle:   #6a7f90;
+
+      --teal:          #0c7888;
+      --teal-lt:       #0a6070;
+      --amber:         #b06a08;
+      --amber-lt:      #8a5005;
+
+      --border:        rgba(0,0,0,0.12);
+      --border-card:   rgba(0,0,0,0.12);
+      --border-subtle: rgba(0,0,0,0.07);
+    }
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg-page);
+    color: var(--text-body);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  /* ── MASTHEAD ── */
+  .masthead {
+    border-bottom: 1px solid var(--border);
+    padding: 22px 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .masthead-brand {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--teal-lt);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .masthead-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.12em;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 56px 0 44px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -80px;
+    width: 420px; height: 420px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(26,176,199,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -100px; left: -60px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(200,136,10,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-kicker {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--amber-lt);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+  .hero-title {
+    font-family: var(--serif);
+    font-size: clamp(40px, 6vw, 72px);
+    font-weight: 900;
+    line-height: 1.0;
+    color: var(--text-heading);
+    margin-bottom: 20px;
+  }
+  .hero-title em { font-style: italic; color: var(--teal-lt); }
+  .hero-sub {
+    font-size: 17px;
+    color: var(--text-body);
+    max-width: 560px;
+    line-height: 1.6;
+    margin-bottom: 32px;
+  }
+  .hero-meta {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .hero-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+  }
+  .hero-meta-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--teal-lt);
+    flex-shrink: 0;
+  }
+  .hero-meta-dot.amber { background: var(--amber-lt); }
+
+  /* ── SECTION HEADER ── */
+  .section-header {
+    margin: 52px 0 28px;
+    position: relative;
+    padding-left: 20px;
+  }
+  .section-header::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 4px;
+    width: 4px;
+    height: calc(100% - 4px);
+    background: var(--teal);
+    border-radius: 2px;
+  }
+  .section-header.amber-accent::before { background: var(--amber); }
+  .section-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--teal-lt);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .section-label.amber { color: var(--amber-lt); }
+  .section-title {
+    font-family: var(--serif);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text-heading);
+    line-height: 1.15;
+  }
+
+  /* ── CHAPTER DIVIDER ── */
+  .chapter-divider {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 56px 0 0;
+  }
+  .chapter-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--teal);
+    letter-spacing: 0.15em;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .chapter-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+  .chapter-era {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.12em;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* ── TIMELINE ── */
+  .timeline {
+    position: relative;
+    padding-left: 52px;
+    display: flex;
+    flex-direction: column;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 16px;
+    top: 12px; bottom: 20px;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--teal), transparent);
+  }
+  .tl-item {
+    position: relative;
+    margin-bottom: 28px;
+  }
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -42px; top: 6px;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--teal);
+    border: 2px solid var(--bg-page);
+    box-shadow: 0 0 0 3px rgba(18,149,170,0.25);
+  }
+  .tl-item.amber-node::before {
+    background: var(--amber);
+    box-shadow: 0 0 0 3px rgba(212,146,14,0.25);
+  }
+  .tl-item.milestone::before {
+    width: 16px; height: 16px;
+    left: -44px; top: 4px;
+    background: var(--amber-lt);
+    border: 2px solid var(--bg-page);
+    box-shadow: 0 0 0 4px rgba(247,206,80,0.3);
+  }
+  .tl-year {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--amber-lt);
+    letter-spacing: 0.1em;
+    margin-bottom: 4px;
+  }
+  .tl-title {
+    font-family: var(--serif);
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text-heading);
+    margin-bottom: 6px;
+    line-height: 1.2;
+  }
+  .tl-body {
+    font-size: 14px;
+    color: var(--text-body);
+    line-height: 1.6;
+    max-width: 640px;
+  }
+  .tl-body em { font-style: italic; color: var(--teal-lt); }
+
+  /* ── STAT CARDS ── */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 14px;
+    margin: 24px 0;
+  }
+  .stat-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-card);
+    border-top: 3px solid var(--teal);
+    padding: 20px 18px 16px;
+    border-radius: 2px;
+  }
+  .stat-card.amber-top { border-top-color: var(--amber); }
+  .stat-num {
+    font-family: var(--serif);
+    font-size: 42px;
+    font-weight: 900;
+    color: var(--text-heading);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-num span { font-size: 22px; color: var(--teal-lt); }
+  .stat-card.amber-top .stat-num span { color: var(--amber-lt); }
+  .stat-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    line-height: 1.45;
+  }
+
+  /* ── CALLOUT BOX ── */
+  .callout {
+    background: var(--bg-card);
+    border: 1px solid var(--border-card);
+    border-left: 4px solid var(--teal);
+    padding: 20px 22px;
+    margin: 20px 0;
+    border-radius: 0 2px 2px 0;
+  }
+  .callout.amber { border-left-color: var(--amber); }
+  .callout.wide-left { border-left-width: 6px; }
+  .callout-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--teal-lt);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .callout.amber .callout-label { color: var(--amber-lt); }
+  .callout-title {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-heading);
+    margin-bottom: 8px;
+  }
+  .callout-body {
+    font-size: 14px;
+    color: var(--text-body);
+    line-height: 1.65;
+  }
+  .callout-body strong { color: var(--text-heading); font-weight: 600; }
+
+  /* ── COMPARE GRID ── */
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 20px 0;
+  }
+  @media (max-width: 560px) { .compare-grid { grid-template-columns: 1fr; } }
+  .compare-col {
+    background: var(--bg-card);
+    border: 1px solid var(--border-card);
+    padding: 18px;
+    border-radius: 2px;
+  }
+  .compare-col-head {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .compare-col-head.teal  { color: var(--teal-lt); }
+  .compare-col-head.amber { color: var(--amber-lt); }
+  .compare-col ul { list-style: none; }
+  .compare-col ul li {
+    font-size: 13px;
+    color: var(--text-body);
+    padding: 5px 0 5px 16px;
+    position: relative;
+    border-bottom: 1px solid var(--border-subtle);
+    line-height: 1.5;
+  }
+  .compare-col ul li:last-child { border-bottom: none; }
+  .compare-col ul li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--teal);
+    font-size: 11px;
+  }
+  .compare-col.amber-col ul li::before { color: var(--amber); }
+
+  /* ── FIGURE CARDS ── */
+  .figure-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+    margin: 20px 0;
+  }
+  .figure-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-card);
+    padding: 18px;
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+  }
+  .figure-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--teal), transparent);
+  }
+  .figure-card.amber::after { background: linear-gradient(90deg, var(--amber), transparent); }
+  .figure-card-era {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--teal-lt);
+    letter-spacing: 0.15em;
+    margin-bottom: 8px;
+  }
+  .figure-card.amber .figure-card-era { color: var(--amber-lt); }
+  .figure-card-name {
+    font-family: var(--serif);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-heading);
+    margin-bottom: 6px;
+  }
+  .figure-card-role {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    font-style: italic;
+  }
+  .figure-card-body {
+    font-size: 13px;
+    color: var(--text-body);
+    line-height: 1.55;
+  }
+
+  /* ── FLOW CHAIN ── */
+  .flow-chain {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0;
+    margin: 22px 0;
+  }
+  .flow-node {
+    background: var(--bg-card);
+    border: 1px solid var(--border-card);
+    padding: 12px 16px;
+    font-size: 13px;
+    font-family: var(--mono);
+    color: var(--text-body);
+    line-height: 1.3;
+    flex: 1;
+    min-width: 110px;
+    text-align: center;
+  }
+  .flow-node.active {
+    border-color: var(--teal);
+    color: var(--teal-lt);
+    background: var(--bg-card-teal);
+  }
+  .flow-arrow {
+    font-family: var(--mono);
+    color: var(--teal);
+    font-size: 16px;
+    padding: 0 2px;
+    flex-shrink: 0;
+  }
+
+  /* ── HIGHLIGHT ROW ── */
+  .highlight-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-card);
+    padding: 16px 18px;
+    margin: 10px 0;
+    border-radius: 2px;
+  }
+  .highlight-icon { font-size: 22px; flex-shrink: 0; margin-top: 1px; }
+  .highlight-title {
+    font-family: var(--serif);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-heading);
+    margin-bottom: 4px;
+  }
+  .highlight-body {
+    font-size: 14px;
+    color: var(--text-body);
+    line-height: 1.55;
+  }
+  .highlight-body strong { color: var(--text-heading); }
+
+  /* ── PILLS ── */
+  .pill-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 14px 0;
+  }
+  .pill {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    padding: 5px 12px;
+    border-radius: 100px;
+    border: 1px solid;
+    text-transform: uppercase;
+  }
+  .pill.teal  { color: var(--teal-lt);  border-color: rgba(18,149,170,0.4);  background: rgba(18,149,170,0.08); }
+  .pill.amber { color: var(--amber-lt); border-color: rgba(212,146,14,0.4);  background: rgba(212,146,14,0.08); }
+  .pill.gray  { color: var(--text-muted); border-color: var(--border); background: transparent; }
+
+  /* ── PROSE ── */
+  .prose {
+    font-size: 15px;
+    color: var(--text-body);
+    line-height: 1.75;
+    max-width: 720px;
+    margin: 16px 0;
+  }
+  .prose strong { color: var(--text-heading); font-weight: 600; }
+  .prose em     { color: var(--teal-lt); font-style: italic; }
+
+  hr.section-rule { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+  /* ── CONTROVERSY BOX ── */
+  .controversy {
+    background: var(--bg-card-amber);
+    border: 1px solid rgba(212,146,14,0.3);
+    border-left: 5px solid var(--amber);
+    padding: 18px 20px;
+    margin: 20px 0;
+    border-radius: 0 2px 2px 0;
+  }
+  .controversy-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--amber-lt);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .controversy-title {
+    font-family: var(--serif);
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text-heading);
+    margin-bottom: 8px;
+  }
+  .controversy-body {
+    font-size: 14px;
+    color: var(--text-body);
+    line-height: 1.65;
+  }
+  .controversy-body strong { color: var(--text-heading); }
+
+  /* ── PULL QUOTE ── */
+  .pull-quote {
+    padding: 32px 0;
+    margin: 32px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    text-align: center;
+  }
+  .pull-quote-text {
+    font-family: var(--serif);
+    font-size: clamp(20px, 3vw, 28px);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--teal-lt);
+    line-height: 1.4;
+    max-width: 640px;
+    margin: 0 auto 12px;
+  }
+  .pull-quote-attr {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  /* ── ERA BAND ── */
+  .era-band {
+    background: var(--bg-era-band);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 22px 24px;
+    margin: 48px -24px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .era-band-title {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--text-heading);
+  }
+  .era-band-title em { font-style: italic; color: var(--amber-lt); }
+  .era-band-years {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--teal-lt);
+    letter-spacing: 0.15em;
+  }
+
+  /* ── SOURCES ── */
+  .sources-block {
+    margin-top: 52px;
+    padding-top: 28px;
+    border-top: 1px solid var(--border);
+  }
+  .sources-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-subtle);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .sources-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .sources-list li {
+    font-size: 12px;
+    color: var(--text-muted);
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .sources-list li::before { content: '—'; position: absolute; left: 0; color: var(--teal); }
+
+  /* ── DISCLAIMER ── */
+  .disclaimer {
+    margin-top: 28px;
+    padding: 14px 18px;
+    background: var(--bg-card-teal);
+    border: 1px solid var(--border-card);
+    border-radius: 2px;
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .footer-brand { font-family: var(--mono); font-size: 11px; color: var(--teal-lt); letter-spacing: 0.15em; }
+  .footer-url   { font-family: var(--mono); font-size: 10px; color: var(--text-muted); letter-spacing: 0.1em; }
+
+  /* ── INTRO CARD ── */
+  .intro-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-card);
+    border-top: 3px solid var(--teal);
+    padding: 24px 26px;
+    margin: 32px 0;
+  }
+  .intro-card-title {
+    font-family: var(--serif);
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--text-heading);
+    margin-bottom: 10px;
+  }
+  .intro-card-body {
+    font-size: 14px;
+    color: var(--text-body);
+    line-height: 1.7;
+  }
+  .intro-card-body strong { color: var(--text-heading); }
+
+  /* ── STRUCTURED LIST ── */
+  .structured-list { margin: 16px 0; }
+  .sl-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .sl-item:last-child { border-bottom: none; }
+  .sl-marker {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--teal-lt);
+    background: var(--bg-card-teal);
+    border: 1px solid rgba(18,149,170,0.3);
+    padding: 3px 8px;
+    flex-shrink: 0;
+    margin-top: 1px;
+    letter-spacing: 0.05em;
+    min-width: 70px;
+    text-align: center;
+  }
+  .sl-marker.amber {
+    color: var(--amber-lt);
+    background: var(--bg-card-amber);
+    border-color: rgba(212,146,14,0.3);
+  }
+  .sl-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-heading);
+    margin-bottom: 3px;
+  }
+  .sl-body {
+    font-size: 14px;
+    color: var(--text-body);
+    line-height: 1.55;
+  }
+  .sl-body strong { color: var(--text-heading); }
+
+  /* ── BOARD SPLIT ── */
+  .board-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    margin: 20px 0;
+    border: 1px solid var(--border-card);
+    overflow: hidden;
+  }
+  @media(max-width:520px){ .board-split { grid-template-columns: 1fr; } }
+  .board-col { padding: 18px; }
+  .board-col:first-child {
+    border-right: 1px solid var(--border);
+    background: var(--bg-card-teal);
+  }
+  .board-col:last-child { background: var(--bg-card-amber); }
+  .board-col-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .board-col:first-child .board-col-label { color: var(--teal-lt); }
+  .board-col:last-child  .board-col-label { color: var(--amber-lt); }
+  .board-col ul { list-style: none; }
+  .board-col ul li {
+    font-size: 13px;
+    color: var(--text-body);
+    padding: 5px 0 5px 14px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .board-col ul li::before { content: '·'; position: absolute; left: 0; font-size: 16px; line-height: 1.2; }
+  .board-col:first-child ul li::before { color: var(--teal-lt); }
+  .board-col:last-child  ul li::before { color: var(--amber-lt); }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- MASTHEAD -->
+  <div class="masthead">
+    <div class="masthead-brand">THE GUIDEWIRE &mdash; Sole Intelligence</div>
+    <div class="masthead-tag">EDUCATIONAL BRIEF &nbsp;·&nbsp; PROFESSION HISTORY</div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-kicker">From Sandals to Scalpels</div>
+    <h1 class="hero-title">The History of<br><em>Podiatry</em></h1>
+    <p class="hero-sub">A complete arc — from ancient Egyptian foot healers to modern foot &amp; ankle surgeons — tracing how a craft became a clinical science, a licensure battle became a profession, and a DPM became a doctor.</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item"><div class="hero-meta-dot"></div> 3000 BC → Present</div>
+      <div class="hero-meta-item"><div class="hero-meta-dot amber"></div> 10 Historical Eras</div>
+      <div class="hero-meta-item"><div class="hero-meta-dot"></div> Peter Sorensen, DPM</div>
+    </div>
+  </div>
+
+  <!-- INTRO CARD -->
+  <div class="intro-card">
+    <div class="intro-card-title">Why This History Matters</div>
+    <div class="intro-card-body">
+      Podiatry is one of the few healthcare professions that can trace an <strong>unbroken line from ancient civilization</strong> to modern doctoral training and surgical subspecialization. Understanding that arc isn't trivia — it's professional identity. The scope battles, certification disputes, and legislative fights of today are <strong>the same story, different century</strong>. The DPMs who know their history can read the present more clearly.
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════ ERA 1 ════════════════════════════════ -->
+  <div class="era-band">
+    <div class="era-band-title">Chapter 1 — <em>Ancient Origins</em></div>
+    <div class="era-band-years">3000 BC → 500 AD</div>
+  </div>
+
+  <div class="section-header">
+    <div class="section-label">The Ancient World</div>
+    <div class="section-title">Foot Healers Before the Profession</div>
+  </div>
+
+  <p class="prose">Foot problems are as old as bipedal locomotion. Long before there was a word for podiatrist — or chiropodist, or corn-cutter — there were people whose purpose was to keep other people walking. The earliest documented evidence of this exists in <strong>stone.</strong></p>
+
+  <div class="timeline">
+    <div class="tl-item milestone">
+      <div class="tl-year">≈ 2400 BC</div>
+      <div class="tl-title">The Tomb of Ankhmabor, Saqqara, Egypt</div>
+      <div class="tl-body">Among the most remarkable artifacts in the history of medicine: a wall relief in the tomb of a high Egyptian official depicts two practitioners treating the hands and feet of seated patients. The hieroglyphs are interpreted as the patient saying, <em>"Do not hurt me"</em> and the practitioner responding, <em>"I shall act so you praise me."</em> This is the oldest known depiction of medical foot care in recorded history.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">≈ 400 BC</div>
+      <div class="tl-title">Hippocrates Describes Corns &amp; Calluses</div>
+      <div class="tl-body">The Father of Medicine was among the first to formally document pathological foot conditions in clinical terms. He described corn and callus formation, attributed them to mechanical friction, and developed a manual scraping tool to remove hyperkeratotic tissue — <strong>the world's first documented podiatric instrument.</strong> His writings on foot conditions appear in the Hippocratic Corpus.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1st–4th Century AD</div>
+      <div class="tl-title">Roman Medicine &amp; the Military Foot</div>
+      <div class="tl-body">Roman military medicine was sophisticated and practical — a standing army with foot problems was a strategic liability. Roman physicians developed rudimentary orthopedic footwear, and treatments for calluses, ulcers, and nail conditions were documented by physicians including Celsus and Galen.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">Medieval Period</div>
+      <div class="tl-title">Barber-Surgeons &amp; Corn-Cutters</div>
+      <div class="tl-body">In the absence of formal medical structures, foot care in medieval Europe fell primarily to <strong>barber-surgeons</strong> — the general practitioners of their era — and an informal class of itinerant "corn-cutters" who traveled town to town treating common foot ailments. This work was considered manual trade, not medicine, a distinction that would take centuries to reverse.</div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════ ERA 2 ════════════════════════════════ -->
+  <div class="era-band">
+    <div class="era-band-title">Chapter 2 — <em>The Chiropodist Era</em></div>
+    <div class="era-band-years">1700s → 1910s</div>
+  </div>
+
+  <div class="section-header amber-accent">
+    <div class="section-label amber">Professionalization Begins</div>
+    <div class="section-title">From Craft to Chiropodist</div>
+  </div>
+
+  <p class="prose">The word <em>chiropodist</em> — from Greek <em>cheir</em> (hand) and <em>pous</em> (foot) — entered the English language in the 18th century. This era marks the first serious attempt to define foot care as a distinct discipline with its own body of knowledge, practitioners, and eventually, educational standards.</p>
+
+  <div class="timeline">
+    <div class="tl-item milestone">
+      <div class="tl-year">1785</div>
+      <div class="tl-title">An Early English Chiropody Text: Chiropodologia</div>
+      <div class="tl-body">David Low, a London practitioner, published <em>Chiropodologia: A Scientific Enquiry into the Causes of Corns, Warts, Bunions, and other Painful or Offensive Cutaneous Excrescences</em> — an early formal text attempting to codify foot care as a discipline with anatomical and clinical basis. The attribution of Chiropodologia to David Low and its precise place in the lineage of English chiropody literature is debated among historians; the text is best understood as representative of a period in which foot care practitioners were beginning to assert a distinct professional identity in print.</div>
+    </div>
+    <div class="tl-item amber-node">
+      <div class="tl-year">Early 1800s</div>
+      <div class="tl-title">Royal Patronage Legitimizes the Field</div>
+      <div class="tl-body">European royal courts became unlikely validators of chiropodists' professional status. <strong>Nikolas Heaton</strong> served King George III; <strong>Victor Saux</strong> served Napoleon Bonaparte — treating the Emperor's notorious foot pain throughout the Napoleonic campaigns. Patronage by heads of state provided chiropodists with a social legitimacy that formal credentialing had not yet conferred.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1840s</div>
+      <div class="tl-title">Isaachar Zacharie — Lincoln's Chiropodist</div>
+      <div class="tl-body">Dr. Isaachar Zacharie served as chiropodist to <strong>President Abraham Lincoln</strong> during the Civil War. Lincoln reportedly praised him effusively — and notably used him as an informal diplomatic envoy to the Confederacy. Zacharie published early texts on foot disorders and is considered one of the first American chiropodists to argue for formal training requirements.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1895–1905</div>
+      <div class="tl-title">First Chiropody Schools Open in the U.S.</div>
+      <div class="tl-body">The first American chiropody schools opened in New York City, offering short-course training programs for foot care practitioners. Early programs were inconsistent in length, content, and rigor — a problem that would drive calls for standardization and eventually state-level licensure. The <strong>New York School of Chiropody</strong> (est. 1895) is among the earliest documented.</div>
+    </div>
+  </div>
+
+  <div class="callout amber">
+    <div class="callout-label">Historical Context</div>
+    <div class="callout-title">Why "Chiropodist" Fell Out of Use</div>
+    <div class="callout-body">The transition from "chiropodist" to "podiatrist" was a deliberate rebranding effort in the 20th century. The profession sought to:<br><br>
+      <strong>(1)</strong> Shed associations with itinerant corn-cutters and barbers<br>
+      <strong>(2)</strong> Align nomenclature with other recognized medical specialties (the <em>-iatrist</em> suffix mirrors psychiatrist, pediatrician)<br>
+      <strong>(3)</strong> Strengthen the case for doctoral-level education and expanded scope of practice<br><br>
+      The shift was gradual and contested — many practitioners preferred the original term well into the mid-20th century.
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════ ERA 3 ════════════════════════════════ -->
+  <div class="era-band">
+    <div class="era-band-title">Chapter 3 — <em>The American Profession Formalizes</em></div>
+    <div class="era-band-years">1912 → Present</div>
+  </div>
+
+  <div class="section-header">
+    <div class="section-label">Organized Advocacy Begins</div>
+    <div class="section-title">The APMA, Licensure &amp; the DPM Degree</div>
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="stat-num">1912</div>
+      <div class="stat-label">APMA Founded<br>(as NAC)</div>
+    </div>
+    <div class="stat-card amber-top">
+      <div class="stat-num">1915</div>
+      <div class="stat-label">First State<br>Licensure Law<br>(New York)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">1941<span>*</span></div>
+      <div class="stat-label">DPM Degree<br>Formally<br>Established</div>
+    </div>
+
+  </div>
+
+  <div class="timeline">
+    <div class="tl-item milestone">
+      <div class="tl-year">1912 — New York City</div>
+      <div class="tl-title">National Association of Chiropodists Founded</div>
+      <div class="tl-body">A group of practitioners gathered in New York to form the <strong>National Association of Chiropodists (NAC)</strong> — the organizational predecessor to today's APMA. The founding mission was immediate and practical: advocate for uniform licensing laws, establish educational standards, and distinguish trained chiropodists from untrained itinerant practitioners. This single act marks the birth of American organized podiatry.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1915</div>
+      <div class="tl-title">First State Licensure: New York Leads</div>
+      <div class="tl-body">New York became the first state to enact formal licensure requirements for chiropodists, establishing legal recognition that practitioners must meet defined educational and examination standards. State-by-state campaigns followed over subsequent decades — a fragmented process that created lasting variation in scope-of-practice laws that persists in modified form today.</div>
+    </div>
+    <div class="tl-item amber-node">
+      <div class="tl-year">1941</div>
+      <div class="tl-title">The DPM Degree Established</div>
+      <div class="tl-body">The <strong>Doctor of Podiatric Medicine (DPM)</strong> degree emerged from this era, representing a watershed shift away from diploma-mill certificates toward a recognized doctoral credential. The transition required alignment of curriculum, clinical training hours, and examination standards — signaling that foot care had reached the threshold of a recognized medical specialty. <em>Note: The exact date of formal DPM degree establishment is cited variably in the literature; 1941 represents a commonly cited transitional milestone but should be verified against primary institutional records before publication.</em></div>
+    </div>
+
+  </div>
+
+  <!-- ════════════════════════════════ ERA 4 ════════════════════════════════ -->
+  <div class="era-band">
+    <div class="era-band-title">Chapter 4 — <em>War Elevates the Profession</em></div>
+    <div class="era-band-years">1917 → 1975</div>
+  </div>
+
+  <div class="section-header amber-accent">
+    <div class="section-label amber">Military Medicine</div>
+    <div class="section-title">How Warfare Shaped Podiatric Medicine</div>
+  </div>
+
+  <p class="prose">Each major American military conflict of the 20th century advanced the professional standing of podiatry — not because of politics, but because <strong>war is hard on feet.</strong> The tactical cost of foot disease forced military planners to take podiatry seriously, and that recognition translated into expanded scope and institutional legitimacy.</p>
+
+  <div class="structured-list">
+    <div class="sl-item">
+      <div class="sl-marker">WWI · 1917</div>
+      <div class="sl-content">
+        <div class="sl-title">Trench Foot — The First Mass Podiatric Emergency</div>
+        <div class="sl-body"><strong>Trench foot</strong> — a non-freezing cold injury caused by prolonged exposure to cold, wet conditions — incapacitated hundreds of thousands of Allied soldiers. The British Army alone documented over 20,000 cases. The crisis demonstrated with undeniable clarity that foot disease could decide battles. Military medicine began formally incorporating podiatric practitioners into treatment protocols.</div>
+      </div>
+    </div>
+    <div class="sl-item">
+      <div class="sl-marker amber">WWII · 1941</div>
+      <div class="sl-content">
+        <div class="sl-title">Podiatrists Commissioned as Military Officers</div>
+        <div class="sl-body">WWII saw podiatric physicians serving in military medical roles, with foot readiness recognized as a command priority. Soldiers with untreated foot conditions had measurably reduced combat effectiveness. The institutional elevation of foot care within military medicine during this period is well documented, though the precise commissioning structures and deployment scope of podiatric personnel varied and deserve verification against military medical records.</div>
+      </div>
+    </div>
+    <div class="sl-item">
+      <div class="sl-marker">Korea/Vietnam</div>
+      <div class="sl-content">
+        <div class="sl-title">Surgical Scope Expansion Under Combat Conditions</div>
+        <div class="sl-body">The complex traumatic foot and ankle injuries sustained in Korea and Vietnam demanded more than routine foot care. Post-war, veterans with service-connected foot injuries drove significant demand for podiatric surgical care — and provided a practical justification for the expansion of civilian surgical training programs that accelerated through the 1960s and 1970s.</div>
+      </div>
+    </div>
+    <div class="sl-item">
+      <div class="sl-marker amber">Post-WWII</div>
+      <div class="sl-content">
+        <div class="sl-title">The VA System Expands Podiatric Access</div>
+        <div class="sl-body">The Veterans Administration healthcare system became a major institutional home for podiatric practice in the postwar decades. VA hospitals provided DPMs with access to <strong>hospital infrastructure, surgical facilities, and complex patient populations</strong> — accelerating clinical training and legitimizing inpatient podiatric care long before many private hospitals granted comparable privileges.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════ ERA 5 ════════════════════════════════ -->
+  <div class="era-band">
+    <div class="era-band-title">Chapter 5 — <em>The Surgical Revolution</em></div>
+    <div class="era-band-years">1960s → 1990s</div>
+  </div>
+
+  <div class="section-header">
+    <div class="section-label">Entering the OR</div>
+    <div class="section-title">How Podiatry Became a Surgical Specialty</div>
+  </div>
+
+  <p class="prose">The transformation of podiatry from a primarily office-based, nonsurgical specialty into a <strong>recognized surgical discipline</strong> is one of the most significant — and most contested — chapters in the profession's history. It unfolded over three decades of policy fights, hospital privilege battles, residency program development, and eventually, board certification.</p>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-year">Early 1960s</div>
+      <div class="tl-title">Hospital Privileges: The First Fights</div>
+      <div class="tl-body">The early 1960s saw the first systematic efforts by podiatric surgeons to gain operating room privileges at U.S. hospitals. Resistance was intense — from hospital medical staffs, MD surgeons, and insurance carriers. Victories were institution-by-institution, often requiring years of negotiation, credentialing documentation, and political capital. Privilege denials were common. Many DPMs performed surgeries in outpatient surgical suites or office settings outside hospital systems entirely.</div>
+    </div>
+    <div class="tl-item milestone">
+      <div class="tl-year">1975</div>
+      <div class="tl-title">American Board of Podiatric Surgery Founded</div>
+      <div class="tl-body">The <strong>American Board of Podiatric Surgery (ABPS)</strong> — now the American Board of Foot and Ankle Surgery (ABFAS) — was established to create a formal board certification pathway for podiatric surgeons. This was a critical legitimizing step: it established that podiatric surgical training could be assessed, verified, and certified by an independent examining body using defined competency standards.</div>
+    </div>
+    <div class="tl-item amber-node">
+      <div class="tl-year">1970s</div>
+      <div class="tl-title">Structured Surgical Residency Programs Established</div>
+      <div class="tl-body">The 1970s saw the widespread development of structured podiatric surgical residency programs — post-doctoral training placements in hospital settings that provided supervised operative experience. This was transformational: <strong>before residency, surgical training was largely self-directed or apprenticeship-based.</strong> Standardized post-doctoral training is what makes a profession, and the residency model was the necessary infrastructure for the surgical era.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1970s–80s</div>
+      <div class="tl-title">The Scope Battles: Ankle &amp; Leg Inclusion</div>
+      <div class="tl-body">As surgical competency grew, so did the profession's ambitions — and the legislative resistance. State-by-state scope-of-practice battles were fought over whether DPMs could legally operate on the <strong>ankle, distal leg, and associated structures.</strong> These fights were not purely clinical — they were economic and political turf wars with orthopedics and general surgery. State statutes remain non-uniform to this day as a direct result.</div>
+    </div>
+    <div class="tl-item milestone">
+      <div class="tl-year">1980s–90s</div>
+      <div class="tl-title">Complex Reconstruction: Total Ankle, Arthroscopy, Flatfoot</div>
+      <div class="tl-body">By the late 1980s and through the 1990s, podiatric surgeons were performing and advancing techniques in <strong>total ankle arthroplasty, ankle arthroscopy, Achilles tendon reconstruction, and complex flatfoot correction</strong> — procedures once exclusively within orthopedic territory. The surgical complexity of podiatric practice was no longer theoretical; it was documented in peer-reviewed literature and surgical outcome data.</div>
+    </div>
+  </div>
+
+  <div class="pull-quote">
+    <div class="pull-quote-text">"Podiatric surgical scope was not legislated into existence — it was demonstrated into existence. Hospital by hospital, outcome by outcome, the data made the argument that credentials alone could not."</div>
+    <div class="pull-quote-attr">— Sole Intelligence editorial</div>
+  </div>
+
+  <!-- ════════════════════════════════ ERA 6 ════════════════════════════════ -->
+  <div class="era-band">
+    <div class="era-band-title">Chapter 6 — <em>Education &amp; Academic Infrastructure</em></div>
+    <div class="era-band-years">1900s → Present</div>
+  </div>
+
+  <div class="section-header amber-accent">
+    <div class="section-label amber">Academic Foundation</div>
+    <div class="section-title">Building the Educational Architecture</div>
+  </div>
+
+  <div class="flow-chain">
+    <div class="flow-node">Diploma Programs<br><span style="font-size:10px;color:var(--gray)">pre-1940s</span></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-node">DPM Degree<br><span style="font-size:10px;color:var(--gray)">~1940s</span></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-node">CPME Established<br><span style="font-size:10px;color:var(--gray)">1918 / accrediting 1922</span></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-node">Surgical Residency<br><span style="font-size:10px;color:var(--gray)">1970s</span></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-node active">3-Year Mandate<br><span style="font-size:10px;color:var(--teal)">2011→Present</span></div>
+  </div>
+
+  <div class="figure-grid">
+    <div class="figure-card">
+      <div class="figure-card-era">Est. 1918</div>
+      <div class="figure-card-name">CPME</div>
+      <div class="figure-card-role">Council on Podiatric Medical Education</div>
+      <div class="figure-card-body">The CPME was established in 1918 as the Council on Education and began accrediting colleges of podiatric medicine in 1922 — making it one of the oldest specialty accrediting bodies in U.S. healthcare. Currently accredits 11 DPM programs, including newer additions LECOM and UT Rio Grande Valley. CPME's 2011 implementation of the single three-year residency requirement was a landmark shift in post-doctoral training rigor.</div>
+    </div>
+    <div class="figure-card amber">
+      <div class="figure-card-era">Est. 1912 / Renamed 1984</div>
+      <div class="figure-card-name">APMA</div>
+      <div class="figure-card-role">American Podiatric Medical Association</div>
+      <div class="figure-card-body">The primary professional organization and legislative advocate for podiatric medicine. Founded as the National Association of Chiropodists in 1912, renamed the American Podiatry Association in 1957, and given its current name in 1984. The APMA's House of Delegates is the governing legislative body of organized podiatry.</div>
+    </div>
+    <div class="figure-card">
+      <div class="figure-card-era">Est. 1975 / Renamed ABFAS 2014</div>
+      <div class="figure-card-name">ABFAS</div>
+      <div class="figure-card-role">American Board of Foot &amp; Ankle Surgery</div>
+      <div class="figure-card-body">The surgical board certifying body for podiatric physicians. Offers board qualification (ABFAS-Q) and board certification (ABFAS-C) in rearfoot/ankle surgery and forefoot/soft tissue surgery. Board certification is not required for licensure but carries significant weight in hospital credentialing and practice reputation.</div>
+    </div>
+    <div class="figure-card amber">
+      <div class="figure-card-era">Est. 1978</div>
+      <div class="figure-card-name">ABPM</div>
+      <div class="figure-card-role">American Board of Podiatric Medicine</div>
+      <div class="figure-card-body">The second certifying board, focused on podiatric medicine and primary care rather than surgery. The existence of two certifying boards — ABFAS and ABPM — reflects a longstanding internal debate about whether podiatry is primarily a surgical specialty, a primary care specialty, or both. This tension is alive in current "One Board" discussions.</div>
+    </div>
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="stat-num">11</div>
+      <div class="stat-label">CPME-Accredited<br>Podiatric Medical<br>Schools (U.S.)</div>
+    </div>
+    <div class="stat-card amber-top">
+      <div class="stat-num">4<span>yr</span></div>
+      <div class="stat-label">DPM Curriculum<br>(post-bachelor's)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">3<span>yr</span></div>
+      <div class="stat-label">Surgical Residency<br>Minimum (CPME<br>2011 mandate)</div>
+    </div>
+    <div class="stat-card amber-top">
+      <div class="stat-num">18<span>K+</span></div>
+      <div class="stat-label">Active DPMs<br>Practicing in<br>the United States</div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════ ERA 7 ════════════════════════════════ -->
+  <div class="era-band">
+    <div class="era-band-title">Chapter 7 — <em>Organized Podiatry &amp; the APMA</em></div>
+    <div class="era-band-years">1912 → Present</div>
+  </div>
+
+  <div class="section-header">
+    <div class="section-label">Institutional History</div>
+    <div class="section-title">The APMA: 100 Years of Organized Advocacy</div>
+  </div>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-year">1912</div>
+      <div class="tl-title">National Association of Chiropodists — New York City</div>
+      <div class="tl-body">Founded in New York by practitioners seeking unified advocacy, uniform licensing standards, and professional separation from unlicensed corn-cutters. First formal governance structure for American foot care practitioners.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1957</div>
+      <div class="tl-title">Renamed: American Podiatry Association</div>
+      <div class="tl-body">The name change from "chiropodist" to "podiatrist" reflected the profession's alignment with doctoral-level training and its aspiration toward parity with other recognized medical specialties. The 1957 rename followed a major NAC reorganization in 1956 with a new constitution and governance structure.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1984</div>
+      <div class="tl-title">Renamed: American Podiatric Medical Association</div>
+      <div class="tl-body">Addition of "Medical" to the name was a deliberate positioning choice — emphasizing the full clinical scope of podiatric practice beyond surgery or manual care. The APMA's House of Delegates became the primary legislative body, meeting annually to vote on policy resolutions affecting the profession.</div>
+    </div>
+    <div class="tl-item amber-node">
+      <div class="tl-year">2012</div>
+      <div class="tl-title">Centennial Year: 100 Years of Organized Podiatry</div>
+      <div class="tl-body">The APMA's 100th anniversary marked a century of organized professional advocacy — from a group of New York chiropodists fighting licensure battles to a national organization representing 18,000+ DPMs navigating scope legislation, Medicare policy, and graduate medical education reform.</div>
+    </div>
+    <div class="tl-item milestone">
+      <div class="tl-year">2026 — Washington, D.C.</div>
+      <div class="tl-title">100th APMA President Inaugurated: Dr. Patrick DeHeer, DPM</div>
+      <div class="tl-body">At the 2026 APMA House of Delegates, <strong>Dr. Patrick DeHeer, DPM</strong> was inaugurated as the 100th President of the APMA — a milestone presidency in a milestone year. Dr. DeHeer is an Indianapolis-based surgeon and nationally recognized figure in podiatric surgery, education, and advocacy.</div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════ ERA 8 ════════════════════════════════ -->
+  <div class="era-band">
+    <div class="era-band-title">Chapter 8 — <em>The Certification Wars</em></div>
+    <div class="era-band-years">1975 → Present</div>
+  </div>
+
+  <div class="section-header amber-accent">
+    <div class="section-label amber">Internal Power Structures</div>
+    <div class="section-title">ABFAS vs. ABPM: The Two-Board Tension</div>
+  </div>
+
+  <p class="prose">One of the most consequential and <strong>least publicly understood</strong> fault lines in podiatric medicine is the existence of two separate certifying boards with different philosophies, different exam structures, and different visions for what a fully trained DPM should be.</p>
+
+  <div class="board-split">
+    <div class="board-col">
+      <div class="board-col-label">ABFAS — Surgical Track</div>
+      <ul>
+        <li>Est. 1975 (as ABPS; renamed ABFAS 2014)</li>
+        <li>Certifies in Rearfoot/Ankle and Forefoot/Soft Tissue Surgery</li>
+        <li>Requires documented surgical case logs for board qualification</li>
+        <li>Requires residency completion prior to candidacy</li>
+        <li>Weighted toward surgical case volume and complexity</li>
+        <li>Historically associated with the surgical identity of the profession</li>
+      </ul>
+    </div>
+    <div class="board-col">
+      <div class="board-col-label">ABPM — Medicine Track</div>
+      <ul>
+        <li>Est. 1978</li>
+        <li>Certifies in Podiatric Medicine (non-surgical primary care)</li>
+        <li>Emphasizes medical management, biomechanics, and wound care</li>
+        <li>Pathway more accessible to non-surgical practitioners</li>
+        <li>Associated with primary care identity and internal medicine alignment</li>
+        <li>Some advocate this model for ACGME transition compatibility</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="controversy">
+    <div class="controversy-label">Active Debate</div>
+    <div class="controversy-title">The "One Board" Resolution</div>
+    <div class="controversy-body">Advocates for a unified certification structure argue that two boards create <strong>confusion among hospital credentialing committees, insurance carriers, and the public</strong> about what a board-certified DPM actually means. The "One Board" proposal — periodically surfacing in APMA House of Delegates resolutions — would merge ABFAS and ABPM into a single certifying body with a unified examination. Opponents argue this would either dilute surgical standards or exclude non-surgical practitioners. The debate remains unresolved and politically charged.</div>
+  </div>
+
+  <!-- ════════════════════════════════ ERA 9 ════════════════════════════════ -->
+  <div class="era-band">
+    <div class="era-band-title">Chapter 9 — <em>The ACGME Question</em></div>
+    <div class="era-band-years">2000s → Present</div>
+  </div>
+
+  <div class="section-header">
+    <div class="section-label">Graduate Medical Education</div>
+    <div class="section-title">The Most Important Structural Fight of the Modern Era</div>
+  </div>
+
+  <p class="prose">The question of whether podiatric residency programs should transition from <strong>CPME accreditation</strong> to <strong>ACGME accreditation</strong> is the defining institutional battle of contemporary podiatric medicine. The stakes are enormous — and the outcome will shape the profession's identity for generations.</p>
+
+  <div class="compare-grid">
+    <div class="compare-col">
+      <div class="compare-col-head teal">Arguments FOR ACGME Transition</div>
+      <ul>
+        <li>Aligns DPM training with MD/DO GME infrastructure</li>
+        <li>Improves parity in hospital credentialing and privileges</li>
+        <li>Potential Medicare GME funding access for ACGME programs</li>
+        <li>Strengthens scope-of-practice arguments in state legislatures</li>
+        <li>Perceived competitive advantage in hiring and hospital affiliation</li>
+        <li>Signals commitment to mainstream medical education standards</li>
+      </ul>
+    </div>
+    <div class="compare-col amber-col">
+      <div class="compare-col-head amber">Arguments AGAINST ACGME Transition</div>
+      <ul>
+        <li>ACGME may not accommodate podiatric-specific surgical training needs</li>
+        <li>Risk of losing CPME autonomy and podiatric identity in training</li>
+        <li>Potential reduction in surgical case volume under ACGME structures</li>
+        <li>CPME programs can be restructured without full ACGME transition</li>
+        <li>No clear evidence ACGME programs produce better DPM surgeons</li>
+        <li>Transition costs and accreditation process are resource-intensive</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout wide-left">
+    <div class="callout-label">What's Actually Happening</div>
+    <div class="callout-title">A Hybrid Model Is Emerging</div>
+    <div class="callout-body">Rather than a wholesale transition, the profession is navigating a <strong>hybrid landscape</strong> where national organizations debate dual accreditation pathways and some institutions explore ACGME alignment — but no programs are currently operating under full dual CPME/ACGME accreditation. The APMA HOD has passed resolutions exploring the question. The practical outcome for graduating residents in the near term: <strong>CPME-accredited programs remain fully recognized</strong> for licensure and board eligibility in all 50 states.</div>
+  </div>
+
+  <!-- ════════════════════════════════ ERA 10 ════════════════════════════════ -->
+  <div class="era-band">
+    <div class="era-band-title">Chapter 10 — <em>The Modern Era</em></div>
+    <div class="era-band-years">2000s → Present</div>
+  </div>
+
+  <div class="section-header amber-accent">
+    <div class="section-label amber">Technology · Scope · AI</div>
+    <div class="section-title">Where Podiatry Stands Today</div>
+  </div>
+
+  <div class="highlight-row">
+    <div class="highlight-icon">🖨️</div>
+    <div class="highlight-content">
+      <div class="highlight-title">3D Printing &amp; Custom Orthotics</div>
+      <div class="highlight-body">CAD/CAM and additive manufacturing have transformed orthotic fabrication — <strong>custom foot orthoses now designed digitally and printed in hours</strong>, replacing manual casting and weeks-long lab turnaround. Gait analysis integration with pressure mapping produces data-driven prescriptions impossible a decade ago.</div>
+    </div>
+  </div>
+  <div class="highlight-row">
+    <div class="highlight-icon">🔬</div>
+    <div class="highlight-content">
+      <div class="highlight-title">Minimally Invasive Surgery (MIS)</div>
+      <div class="highlight-body">Percutaneous and keyhole techniques have redefined recovery expectations for bunion, hammertoe, and flatfoot correction. <strong>MIS is rapidly becoming a core competency expectation</strong> in modern podiatric surgical training — its adoption is accelerating, though standardization across programs remains uneven.</div>
+    </div>
+  </div>
+  <div class="highlight-row">
+    <div class="highlight-icon">🧬</div>
+    <div class="highlight-content">
+      <div class="highlight-title">Biologics &amp; Regenerative Medicine</div>
+      <div class="highlight-body">Platelet-rich plasma, amniotic allografts, stem cell applications, and bioengineered wound matrices have expanded the podiatric toolkit for <strong>diabetic foot ulcer management, tendon repair, and post-surgical healing</strong> — areas where DPMs are often the primary specialist.</div>
+    </div>
+  </div>
+  <div class="highlight-row">
+    <div class="highlight-icon">🤖</div>
+    <div class="highlight-content">
+      <div class="highlight-title">AI &amp; Clinical Decision Support</div>
+      <div class="highlight-body">Artificial intelligence is entering podiatric practice — from <strong>LLM-assisted billing and coding</strong> to diabetic foot ulcer imaging analysis, gait classification, and AI-augmented surgical planning. This is the most disruptive technological shift since the introduction of fluoroscopy and remains largely unstandardized in podiatric education.</div>
+    </div>
+  </div>
+  <div class="highlight-row">
+    <div class="highlight-icon">⚖️</div>
+    <div class="highlight-content">
+      <div class="highlight-title">Scope of Practice: Still Unfinished Business</div>
+      <div class="highlight-body">Despite a century of legislative progress, <strong>DPM scope of practice remains non-uniform across states.</strong> The inclusion of the ankle and distal leg in surgical scope, independent prescriptive authority, and hospital medical staff membership rights continue to be fought in state legislatures — the same fundamental battles, different political terrain.</div>
+    </div>
+  </div>
+
+  <div class="pill-row">
+    <span class="pill teal">Total Ankle Arthroplasty</span>
+    <span class="pill teal">Limb Salvage</span>
+    <span class="pill teal">Charcot Reconstruction</span>
+    <span class="pill amber">Diabetic Wound Care</span>
+    <span class="pill amber">Podiatric Oncology</span>
+    <span class="pill teal">MIS Bunion</span>
+    <span class="pill amber">Sports Medicine</span>
+    <span class="pill gray">AI-Assisted Coding</span>
+    <span class="pill gray">Gait Analysis</span>
+    <span class="pill teal">Pediatric Flatfoot</span>
+  </div>
+
+  <!-- SOURCES -->
+  <div class="sources-block">
+    <div class="sources-label">Selected Sources &amp; References</div>
+    <ul class="sources-list">
+      <li>Yosipovitch G, Hodak E. "History of Podiatry." <em>Clinics in Dermatology</em>, 2008. Historical overview of foot care from antiquity.</li>
+      <li>American Podiatric Medical Association. APMA Official History and Centennial Report. apma.org, 2012.</li>
+      <li>DiGiovanni CW, Greisberg J. <em>Core Knowledge in Orthopaedics: Foot and Ankle</em>. Elsevier, 2007. Surgical scope historical context.</li>
+      <li>Council on Podiatric Medical Education. CPME 320: Requirements for Approval of Podiatric Medicine and Surgery Residency Programs. 2022 edition.</li>
+      <li>Kaplan EG, Kaplan GS. "A History of Podiatric Medicine in America." <em>Journal of the American Podiatric Medical Association</em>, 1993.</li>
+      <li>ABFAS. American Board of Foot and Ankle Surgery: Historical Overview. abfas.org.</li>
+    </ul>
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div class="disclaimer">
+    <strong>Educational Content Only.</strong> This infographic was produced by Sole Intelligence / The Guidewire and generated with AI assistance. Content is intended for educational purposes for podiatric students, residents, and practitioners. It does not constitute clinical, legal, or billing advice. Historical interpretations represent the author's synthesis of available sources. Verify specific dates, policy details, and organizational histories against primary sources before citing.
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-brand">THE GUIDEWIRE &mdash; Sole Intelligence</div>
+    <div class="footer-url">soleintell.com &nbsp;·&nbsp; Peter Sorensen, DPM</div>
+  </div>
+
+</div>
+</body>
+</html>
