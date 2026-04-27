@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Feet on Film — The Guidewire</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Tokens from the creative skill */
+    --primary: #3B82F6;
+    --primary-deep: #1D4ED8;
+    --secondary: #8B5CF6;
+    --secondary-deep: #6D28D9;
+    --success: #16A34A;
+    --warning: #D97706;
+    --danger: #DC2626;
+    --surface: #FFFFFF;
+    --text: #111827;
+    --text-soft: #4B5563;
+    --text-muted: #6B7280;
+
+    /* Playful extensions */
+    --bg: #FFFBF5;
+    --bg-tile: #FEF3C7;
+    --ink: #111827;
+    --halftone: #FCA5A5;
+
+    /* Type scale: 12/14/16/20/24/32 */
+    --t-12: 12px;
+    --t-14: 14px;
+    --t-16: 16px;
+    --t-20: 20px;
+    --t-24: 24px;
+    --t-32: 32px;
+
+    /* Spacing scale: 4/8/12/16/24/32 */
+    --s-4: 4px;
+    --s-8: 8px;
+    --s-12: 12px;
+    --s-16: 16px;
+    --s-24: 24px;
+    --s-32: 32px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Halftone dot pattern background */
+  body {
+    background-image:
+      radial-gradient(circle, rgba(59,130,246,0.08) 1px, transparent 1px),
+      radial-gradient(circle, rgba(139,92,246,0.06) 1px, transparent 1px);
+    background-size: 24px 24px, 32px 32px;
+    background-position: 0 0, 12px 12px;
+  }
+
+  .sheet {
+    max-width: 920px;
+    margin: 0 auto;
+    background: var(--surface);
+    padding: 0;
+    box-shadow: 0 8px 0 0 var(--ink), 0 8px 60px rgba(0,0,0,0.12);
+    border: 4px solid var(--ink);
+    margin: var(--s-24) auto;
+    overflow: hidden;
+  }
+
+  /* ============ MASTHEAD ============ */
+  .masthead {
+    background: var(--ink);
+    color: var(--bg);
+    padding: var(--s-24) var(--s-32);
+    border-bottom: 4px solid var(--ink);
+    position: relative;
+  }
+  .masthead-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: var(--t-12);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: var(--s-16);
+    color: var(--bg-tile);
+  }
+  .masthead-top .badge {
+    background: var(--warning);
+    color: var(--ink);
+    padding: 4px 10px;
+    border-radius: 4px;
+  }
+  .masthead h1 {
+    font-family: 'Bangers', sans-serif;
+    font-weight: 400;
+    font-size: clamp(72px, 13vw, 140px);
+    line-height: 0.85;
+    letter-spacing: 0.02em;
+    text-align: center;
+    color: var(--bg);
+    margin: var(--s-16) 0 var(--s-8);
+    text-shadow:
+      4px 4px 0 var(--primary),
+      8px 8px 0 var(--secondary);
+    transform: rotate(-1deg);
+  }
+  .masthead h1 .amp {
+    color: var(--warning);
+    text-shadow:
+      4px 4px 0 var(--danger),
+      8px 8px 0 var(--ink);
+  }
+  .masthead-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: var(--t-12);
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--bg-tile);
+    margin-top: var(--s-16);
+    padding-top: var(--s-16);
+    border-top: 2px dashed rgba(255,251,245,0.3);
+  }
+  .masthead-bottom .pill {
+    background: var(--secondary);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 999px;
+  }
+
+  /* ============ HEADLINE BLOCK ============ */
+  .headline-block {
+    padding: var(--s-32);
+    text-align: center;
+    background: linear-gradient(180deg, var(--bg-tile) 0%, var(--surface) 100%);
+    border-bottom: 4px solid var(--ink);
+    position: relative;
+  }
+  .headline-block::before {
+    content: "";
+    position: absolute;
+    top: var(--s-16);
+    left: var(--s-32);
+    width: 60px;
+    height: 60px;
+    background: var(--primary);
+    border-radius: 50%;
+    opacity: 0.4;
+  }
+  .headline-block::after {
+    content: "";
+    position: absolute;
+    bottom: var(--s-32);
+    right: var(--s-32);
+    width: 80px;
+    height: 80px;
+    background: var(--secondary);
+    border-radius: 50%;
+    opacity: 0.3;
+  }
+  .kicker {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 700;
+    font-size: var(--t-12);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    background: var(--ink);
+    color: var(--warning);
+    padding: 6px 14px;
+    margin-bottom: var(--s-24);
+    transform: rotate(-2deg);
+  }
+  .headline {
+    font-family: 'Bangers', sans-serif;
+    font-weight: 400;
+    font-size: clamp(48px, 7.5vw, 80px);
+    line-height: 0.95;
+    letter-spacing: 0.015em;
+    margin-bottom: var(--s-16);
+    color: var(--ink);
+    position: relative;
+    z-index: 2;
+  }
+  .headline .pop-1 { color: var(--primary); display: inline-block; transform: rotate(-2deg); }
+  .headline .pop-2 { color: var(--secondary); display: inline-block; transform: rotate(1deg); }
+  .headline .pop-3 { color: var(--danger); display: inline-block; transform: rotate(-1deg); }
+  .deck {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: var(--t-20);
+    color: var(--text-soft);
+    max-width: 640px;
+    margin: 0 auto var(--s-24);
+    line-height: 1.4;
+    position: relative;
+    z-index: 2;
+  }
+  .deck strong { color: var(--ink); font-weight: 700; }
+  .byline {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: var(--t-12);
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-soft);
+    position: relative;
+    z-index: 2;
+  }
+  .byline .author {
+    background: var(--primary);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 4px;
+  }
+
+  /* ============ SECTION HEADERS ============ */
+  .section {
+    padding: var(--s-32);
+    border-bottom: 4px solid var(--ink);
+  }
+  .section:last-of-type { border-bottom: none; }
+  .section-head {
+    display: flex;
+    align-items: center;
+    gap: var(--s-16);
+    margin-bottom: var(--s-32);
+    padding-bottom: var(--s-16);
+    border-bottom: 3px dashed var(--ink);
+  }
+  .section-num {
+    font-family: 'Bangers', sans-serif;
+    font-size: 64px;
+    line-height: 0.8;
+    color: var(--primary);
+    background: var(--ink);
+    padding: 8px 18px 4px;
+    border-radius: 8px;
+    transform: rotate(-3deg);
+    box-shadow: 4px 4px 0 var(--secondary);
+  }
+  .section-title {
+    font-family: 'Bangers', sans-serif;
+    font-weight: 400;
+    font-size: var(--t-32);
+    letter-spacing: 0.04em;
+    flex: 1;
+    color: var(--ink);
+  }
+  .section-sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-style: normal;
+    font-size: var(--t-12);
+    font-weight: 500;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-align: right;
+  }
+
+  /* ============ INTRO GRID ============ */
+  .intro-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--s-16);
+    margin-bottom: var(--s-32);
+  }
+  .intro-cell {
+    padding: var(--s-24);
+    border: 3px solid var(--ink);
+    border-radius: 12px;
+    background: var(--surface);
+    box-shadow: 4px 4px 0 0 var(--ink);
+  }
+  .intro-cell.primary { background: #DBEAFE; }
+  .intro-cell.secondary { background: #EDE9FE; }
+  .intro-cell h4 {
+    font-family: 'Bangers', sans-serif;
+    font-weight: 400;
+    font-size: var(--t-24);
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    margin-bottom: var(--s-12);
+  }
+  .intro-cell.primary h4 { color: var(--primary-deep); }
+  .intro-cell.secondary h4 { color: var(--secondary-deep); }
+  .intro-cell p {
+    font-size: var(--t-16);
+    line-height: 1.5;
+    color: var(--text-soft);
+  }
+  .intro-cell p strong { color: var(--ink); font-weight: 700; }
+
+  /* ============ TIMELINE ============ */
+  .timeline {
+    position: relative;
+    padding-left: var(--s-32);
+  }
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 8px;
+    top: 12px;
+    bottom: 12px;
+    width: 4px;
+    background: repeating-linear-gradient(180deg, var(--ink) 0 8px, transparent 8px 14px);
+  }
+  .entry {
+    position: relative;
+    margin-bottom: var(--s-32);
+    padding: var(--s-24);
+    background: var(--surface);
+    border: 3px solid var(--ink);
+    border-radius: 12px;
+    box-shadow: 5px 5px 0 0 var(--ink);
+  }
+  .entry::before {
+    content: "";
+    position: absolute;
+    left: -38px;
+    top: var(--s-24);
+    width: 22px;
+    height: 22px;
+    background: var(--surface);
+    border: 3px solid var(--ink);
+    border-radius: 50%;
+  }
+  .entry.major::before {
+    background: var(--warning);
+    width: 26px;
+    height: 26px;
+    left: -40px;
+    box-shadow: 0 0 0 4px var(--bg);
+  }
+  .entry-head {
+    display: flex;
+    align-items: baseline;
+    gap: var(--s-16);
+    margin-bottom: var(--s-12);
+    flex-wrap: wrap;
+  }
+  .entry-year {
+    font-family: 'Bangers', sans-serif;
+    font-weight: 400;
+    font-size: var(--t-32);
+    color: var(--primary);
+    letter-spacing: 0.03em;
+    line-height: 1;
+  }
+  .entry.major .entry-year { color: var(--danger); }
+  .entry-title {
+    font-family: 'Bangers', sans-serif;
+    font-weight: 400;
+    font-size: var(--t-24);
+    line-height: 1.05;
+    letter-spacing: 0.02em;
+    flex: 1;
+    min-width: 200px;
+    color: var(--ink);
+  }
+  .entry-title em {
+    font-style: italic;
+    color: var(--secondary);
+  }
+  .entry-meta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: var(--t-12);
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .entry-body {
+    font-size: var(--t-16);
+    line-height: 1.6;
+    color: var(--text-soft);
+  }
+  .entry-body em {
+    font-style: italic;
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .pull {
+    display: block;
+    margin: var(--s-16) 0;
+    padding: var(--s-16) var(--s-24);
+    background: var(--bg-tile);
+    border-left: 6px solid var(--warning);
+    border-radius: 0 8px 8px 0;
+    font-family: 'Inter', sans-serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: var(--t-16);
+    color: var(--ink);
+  }
+  .pull .attr {
+    display: block;
+    font-style: normal;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: var(--t-12);
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: var(--s-8);
+  }
+  .entry-verdict {
+    display: inline-block;
+    margin-top: var(--s-16);
+    padding: 6px 14px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: var(--t-12);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--ink);
+    color: white;
+    border-radius: 999px;
+  }
+  .entry-verdict.good { background: var(--success); }
+  .entry-verdict.mixed { background: var(--warning); color: var(--ink); }
+  .entry-verdict.bad { background: var(--danger); }
+
+  /* ============ ARCHETYPES ============ */
+  .archetypes {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--s-16);
+  }
+  .archetype {
+    position: relative;
+    padding: var(--s-24);
+    border: 3px solid var(--ink);
+    border-radius: 12px;
+    background: var(--surface);
+    box-shadow: 5px 5px 0 0 var(--ink);
+    overflow: hidden;
+  }
+  .archetype:nth-child(1) { background: #DBEAFE; }
+  .archetype:nth-child(2) { background: #EDE9FE; }
+  .archetype:nth-child(3) { background: #FEF3C7; }
+  .archetype:nth-child(4) { background: #DCFCE7; }
+  .archetype-num {
+    font-family: 'Bangers', sans-serif;
+    font-size: 100px;
+    line-height: 0.8;
+    color: var(--ink);
+    position: absolute;
+    top: 8px;
+    right: 16px;
+    opacity: 0.12;
+  }
+  .archetype-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 600;
+    font-size: var(--t-12);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: var(--s-8);
+  }
+  .archetype-name {
+    font-family: 'Bangers', sans-serif;
+    font-weight: 400;
+    font-size: var(--t-24);
+    line-height: 1.05;
+    letter-spacing: 0.03em;
+    margin-bottom: var(--s-12);
+    padding-right: 60px;
+    color: var(--ink);
+  }
+  .archetype-name em { font-style: italic; color: var(--primary); }
+  .archetype:nth-child(2) .archetype-name em { color: var(--secondary); }
+  .archetype:nth-child(3) .archetype-name em { color: var(--warning); }
+  .archetype:nth-child(4) .archetype-name em { color: var(--success); }
+  .archetype-body {
+    font-size: var(--t-14);
+    line-height: 1.55;
+    color: var(--text-soft);
+    position: relative;
+    z-index: 2;
+  }
+  .archetype-examples {
+    margin-top: var(--s-12);
+    padding-top: var(--s-12);
+    border-top: 2px dashed var(--ink);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: var(--t-12);
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+
+  /* ============ CONCEPTS ============ */
+  .concepts {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--s-16);
+  }
+  .concept {
+    padding: var(--s-16);
+    border: 3px solid var(--ink);
+    border-radius: 8px;
+    background: var(--surface);
+    box-shadow: 3px 3px 0 0 var(--ink);
+  }
+  .concept-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 700;
+    font-size: var(--t-12);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin-bottom: var(--s-8);
+  }
+  .concept h5 {
+    font-family: 'Bangers', sans-serif;
+    font-weight: 400;
+    font-size: var(--t-20);
+    line-height: 1.1;
+    letter-spacing: 0.03em;
+    margin-bottom: var(--s-8);
+    color: var(--ink);
+  }
+  .concept p {
+    font-size: var(--t-14);
+    line-height: 1.5;
+    color: var(--text-soft);
+  }
+  .concept p em { color: var(--ink); font-weight: 500; font-style: italic; }
+
+  /* ============ PITFALLS / PEARLS ============ */
+  .duo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--s-16);
+  }
+  .duo-col {
+    padding: var(--s-24);
+    border: 3px solid var(--ink);
+    border-radius: 12px;
+    box-shadow: 5px 5px 0 0 var(--ink);
+  }
+  .duo-col.left { background: #FEE2E2; }
+  .duo-col.right { background: #DCFCE7; }
+  .duo-label {
+    font-family: 'Bangers', sans-serif;
+    font-weight: 400;
+    font-size: var(--t-32);
+    letter-spacing: 0.04em;
+    margin-bottom: var(--s-16);
+    padding-bottom: var(--s-12);
+    border-bottom: 3px dashed var(--ink);
+  }
+  .duo-col.left .duo-label { color: var(--danger); }
+  .duo-col.right .duo-label { color: var(--success); }
+  .duo-col ul { list-style: none; }
+  .duo-col li {
+    font-size: var(--t-14);
+    line-height: 1.55;
+    padding: var(--s-12) 0 var(--s-12) var(--s-32);
+    position: relative;
+    border-bottom: 1px dashed rgba(17,24,39,0.2);
+    color: var(--text-soft);
+  }
+  .duo-col li:last-child { border-bottom: none; }
+  .duo-col.left li::before {
+    content: "✕";
+    position: absolute;
+    left: 0;
+    top: var(--s-12);
+    color: var(--danger);
+    font-weight: 700;
+    font-size: var(--t-20);
+    line-height: 1.2;
+  }
+  .duo-col.right li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    top: var(--s-12);
+    color: var(--success);
+    font-weight: 700;
+    font-size: var(--t-20);
+    line-height: 1.2;
+  }
+  .duo-col li strong {
+    display: block;
+    color: var(--ink);
+    font-weight: 700;
+    margin-bottom: 2px;
+    font-family: 'Inter', sans-serif;
+    font-size: var(--t-16);
+  }
+
+  /* ============ TWO-COL PROSE ============ */
+  .two-col {
+    column-count: 2;
+    column-gap: var(--s-24);
+    column-rule: 2px dashed var(--ink);
+    font-size: var(--t-16);
+    line-height: 1.6;
+    color: var(--text-soft);
+  }
+  .two-col p { margin-bottom: var(--s-12); }
+  .two-col p em { color: var(--ink); font-style: italic; font-weight: 500; }
+  .two-col p:first-child::first-letter {
+    font-family: 'Bangers', sans-serif;
+    font-weight: 400;
+    font-size: 80px;
+    line-height: 0.85;
+    float: left;
+    padding: 6px 12px 0 0;
+    color: var(--primary);
+  }
+
+  /* ============ CONFIDENCE ============ */
+  .confidence {
+    margin-top: var(--s-32);
+    padding: var(--s-24);
+    background: var(--ink);
+    color: var(--bg);
+    border-radius: 12px;
+    box-shadow: 5px 5px 0 0 var(--secondary);
+  }
+  .confidence-label {
+    font-family: 'Bangers', sans-serif;
+    font-weight: 400;
+    font-size: var(--t-24);
+    letter-spacing: 0.04em;
+    color: var(--warning);
+    margin-bottom: var(--s-12);
+  }
+  .confidence-bar {
+    display: flex;
+    gap: 4px;
+    margin-bottom: var(--s-12);
+  }
+  .confidence-bar span {
+    flex: 1;
+    height: 16px;
+    background: rgba(255,251,245,0.15);
+    border-radius: 4px;
+  }
+  .confidence-bar span.filled { background: var(--warning); }
+  .confidence-bar span.filled-accent { background: var(--primary); }
+  .confidence-caption {
+    font-size: var(--t-14);
+    line-height: 1.55;
+    font-family: 'Inter', sans-serif;
+    color: rgba(255,251,245,0.85);
+  }
+  .confidence-caption strong { color: white; font-weight: 700; }
+
+  /* ============ SOURCES ============ */
+  .sources {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: var(--t-12);
+    line-height: 1.7;
+    color: var(--text-soft);
+  }
+  .sources ol { padding-left: var(--s-24); }
+  .sources li { margin-bottom: var(--s-4); }
+  .sources strong {
+    font-weight: 700;
+    color: var(--ink);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* ============ DISCLAIMER ============ */
+  .disclaimer {
+    margin: var(--s-32);
+    padding: var(--s-16);
+    background: var(--bg-tile);
+    border: 3px solid var(--ink);
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: var(--t-14);
+    line-height: 1.5;
+    color: var(--text-soft);
+  }
+  .disclaimer strong {
+    display: block;
+    font-family: 'Bangers', sans-serif;
+    font-weight: 400;
+    font-size: var(--t-20);
+    letter-spacing: 0.03em;
+    color: var(--ink);
+    margin-bottom: var(--s-4);
+  }
+
+  /* ============ COLOPHON ============ */
+  .colophon {
+    padding: var(--s-24) var(--s-32);
+    background: var(--surface);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: var(--t-12);
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    border-top: 3px dashed var(--ink);
+    flex-wrap: wrap;
+    gap: var(--s-12);
+  }
+  .colophon .byline-credit { color: var(--ink); font-weight: 700; }
+  .colophon .copyright {
+    text-transform: none;
+    letter-spacing: 0.02em;
+    opacity: 0.7;
+  }
+
+  /* ============ SOCIAL CARD ============ */
+  .social {
+    margin: 0;
+    padding: var(--s-32);
+    background: var(--secondary);
+    color: white;
+    position: relative;
+    border-top: 4px solid var(--ink);
+  }
+  .social::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.12) 1px, transparent 1px);
+    background-size: 16px 16px;
+    pointer-events: none;
+  }
+  .social > * { position: relative; z-index: 2; }
+  .social-label {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 700;
+    font-size: var(--t-12);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    background: var(--warning);
+    color: var(--ink);
+    padding: 4px 12px;
+    border-radius: 4px;
+    margin-bottom: var(--s-16);
+    transform: rotate(-2deg);
+  }
+  .social h3 {
+    font-family: 'Bangers', sans-serif;
+    font-weight: 400;
+    font-size: clamp(28px, 4vw, 40px);
+    line-height: 1.05;
+    letter-spacing: 0.025em;
+    margin-bottom: var(--s-16);
+    text-shadow: 3px 3px 0 var(--ink);
+  }
+  .social ul {
+    list-style: none;
+    margin-bottom: var(--s-16);
+  }
+  .social li {
+    font-size: var(--t-16);
+    font-weight: 500;
+    padding: 6px 0 6px 28px;
+    position: relative;
+    color: rgba(255,255,255,0.95);
+  }
+  .social li::before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: var(--warning);
+    font-size: var(--t-20);
+    line-height: 1.2;
+  }
+  .social li em { color: var(--bg-tile); font-style: italic; font-weight: 600; }
+  .social .cta {
+    margin-top: var(--s-16);
+    padding-top: var(--s-16);
+    border-top: 2px dashed rgba(255,255,255,0.3);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: var(--t-14);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .social .cta a {
+    color: var(--warning);
+    text-decoration: none;
+    border-bottom: 2px solid var(--warning);
+  }
+
+  /* Focus states (accessibility) */
+  a:focus-visible, button:focus-visible {
+    outline: 3px solid var(--primary);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  /* Responsive */
+  @media (max-width: 720px) {
+    .sheet { margin: var(--s-12); border-width: 3px; }
+    .masthead, .headline-block, .section, .colophon, .social { padding: var(--s-16); }
+    .intro-grid, .archetypes, .duo { grid-template-columns: 1fr; }
+    .concepts { grid-template-columns: 1fr; }
+    .two-col { column-count: 1; }
+    .timeline { padding-left: var(--s-24); }
+    .entry::before { left: -32px; }
+    .entry.major::before { left: -34px; }
+    .section-num { font-size: 44px; }
+  }
+</style>
+</head>
+<body>
+
+<article class="sheet">
+
+  <!-- =================== MASTHEAD =================== -->
+  <header class="masthead">
+    <div class="masthead-top">
+      <span>The Guidewire · Saturday Edition</span>
+      <span class="badge">Vol. I · No. 14</span>
+    </div>
+    <h1>FEET <span class="amp">&amp;</span> FICTION</h1>
+    <div class="masthead-bottom">
+      <span>Culture &amp; Profession</span>
+      <span class="pill">A Cultural Dossier</span>
+      <span>soleintell.com</span>
+    </div>
+  </header>
+
+  <!-- =================== HEADLINE =================== -->
+  <section class="headline-block">
+    <div class="kicker">⚡ The Long View</div>
+    <h1 class="headline">How Pop Media Learned to Love the <span class="pop-1">Foot</span> <span class="pop-2">Doctor</span>.</h1>
+    <p class="deck">A century of depictions — from <strong>vaudeville joke</strong> to <strong>TLC surgeon</strong>, from Seinfeld's punching bag to TikTok's 8-million-follower foot surgeon — and what each era reveals about how the public sees our profession.</p>
+    <div class="byline">By <span class="author">Peter Sorensen, DPM</span> · For The Guidewire</div>
+  </section>
+
+  <!-- =================== INTRO GRID =================== -->
+  <section class="section" style="padding-bottom: var(--s-32);">
+    <div class="intro-grid">
+      <div class="intro-cell primary">
+        <h4>What This Is</h4>
+        <p>A comprehensive survey of how <strong>podiatrists have been portrayed in film, television, literature, and digital media</strong> — and why those portrayals shifted.</p>
+      </div>
+      <div class="intro-cell secondary">
+        <h4>Why It Matters</h4>
+        <p>Cultural depictions shape <strong>referral patterns, student interest, patient expectations, and professional identity</strong>. Every pop-culture joke is a recruiting obstacle or an opportunity.</p>
+      </div>
+    </div>
+
+    <div class="section-head" style="margin-top: var(--s-32);">
+      <span class="section-num">01</span>
+      <span class="section-title">The Timeline</span>
+      <span class="section-sub">Podiatrists on screen<br>1900s–2020s</span>
+    </div>
+
+    <div class="timeline">
+
+      <article class="entry major">
+        <div class="entry-head">
+          <span class="entry-year">1904–1968</span>
+          <h3 class="entry-title">The Dr. Scholl Era</h3>
+          <span class="entry-meta">Commerce / Advertising</span>
+        </div>
+        <p class="entry-body">
+          Before podiatrists appeared as characters, they appeared as <em>brands</em>. William M. Scholl — Chicago chiropodist, Illinois College of Chiropody founder (1912), and master of direct marketing — dressed in winged collars and tailcoats and toured shoe stores with a foot skeleton in his pocket. His "When your feet hurt, you hurt all over" slogan and annual Foot Comfort Week made the chiropodist-as-authority figure a household image for half a century. Scholl never reached the public as a doctor in dramatic fiction. He reached them as a logo.
+        </p>
+        <span class="pull">
+          "The man who made the world foot-conscious."
+          <span class="attr">— Time magazine, on Scholl's death in 1968</span>
+        </span>
+        <span class="entry-verdict mixed">Brand recognition, credential ambiguity</span>
+      </article>
+
+      <article class="entry">
+        <div class="entry-head">
+          <span class="entry-year">1970s</span>
+          <h3 class="entry-title">The Borscht Belt Years</h3>
+          <span class="entry-meta">Stand-up / Sitcom</span>
+        </div>
+        <p class="entry-body">
+          Through the 1970s the podiatrist existed almost exclusively as a setup: shorthand for a <em>minor doctor</em>, the specialty you could joke about without controversy. Bunions, corns, and in-grown nails were reliable punchlines on variety shows and early sitcoms. No named, recurring podiatrist character of cultural significance emerges from the decade. This isn't neutral absence — it's the era in which the frame ("not a real doctor") was being culturally laid down, quietly, before any fictional podiatrist ever had to carry it.
+        </p>
+        <span class="entry-verdict bad">The punchline infrastructure</span>
+      </article>
+
+      <article class="entry major">
+        <div class="entry-head">
+          <span class="entry-year">1993</span>
+          <h3 class="entry-title">Seinfeld, <em>"The Conversion"</em> (S5, E11)</h3>
+          <span class="entry-meta">NBC / Sitcom</span>
+        </div>
+        <p class="entry-body">
+          The most consequential three-line exchange in podiatry's cultural history. Elaine is dating a podiatrist. Jerry is unimpressed.
+        </p>
+        <span class="pull">
+          ELAINE: "Jerry, the man is a doctor."<br>
+          JERRY: "Doctor? He's a podiatrist."<br>
+          ELAINE: "It's the same thing."<br>
+          JERRY: "Anyone can get into podiatry school. George got into podiatry school."
+          <span class="attr">— Bruce Kirschbaum, Seinfeld, Dec. 16, 1993</span>
+        </span>
+        <p class="entry-body">
+          The episode's podiatrist character is flat and forgettable; the joke, however, entered the bloodstream. Three decades later, podiatry students and residents still get asked "are you a <em>real</em> doctor?" and the question traces, in a straight line, to this scene. Notably: Jerry Seinfeld himself later donated twice to the New York College of Podiatric Medicine, funding a gait lab and a symposium. The profession's relationship to the joke is complicated.
+        </p>
+        <span class="entry-verdict bad">The line that will not die</span>
+      </article>
+
+      <article class="entry">
+        <div class="entry-head">
+          <span class="entry-year">2005</span>
+          <h3 class="entry-title">Curb Your Enthusiasm, <em>"The Christ Nail"</em></h3>
+          <span class="entry-meta">HBO / Sitcom</span>
+        </div>
+        <p class="entry-body">
+          Larry David — Seinfeld's co-creator — returns to the well. A podiatrist (played by Carlos Jacott) appears briefly, mostly as a plot mechanic. The character is less insulted than indifferently used, which is arguably worse: the specialty is now background furniture, a profession that exists to make a story happen and then leave the scene. The comedic frame is identical to Seinfeld's; only the intensity has faded.
+        </p>
+        <span class="entry-verdict mixed">From insult to irrelevance</span>
+      </article>
+
+      <article class="entry">
+        <div class="entry-head">
+          <span class="entry-year">2010s</span>
+          <h3 class="entry-title">The Background-Character Years</h3>
+          <span class="entry-meta">Scripted TV, various</span>
+        </div>
+        <p class="entry-body">
+          Across prestige cable and streaming drama, podiatrists appear almost exclusively as <em>connective tissue</em>: the character whose office someone visits, whose specialty is mentioned in dialogue, whose presence allows a plot to move. Not heroes, not villains, not even really satirized — just present. In an era when dermatologists got Emmy-bait storylines (<em>Nip/Tuck</em>) and orthopedic surgeons anchored hospital dramas (<em>Grey's Anatomy</em>), podiatry remained dramatically invisible. The absence itself is the data.
+        </p>
+        <span class="entry-verdict mixed">Dramatic invisibility</span>
+      </article>
+
+      <article class="entry major">
+        <div class="entry-head">
+          <span class="entry-year">2019–2020</span>
+          <h3 class="entry-title">The TLC Reset</h3>
+          <span class="entry-meta">Reality TV</span>
+        </div>
+        <p class="entry-body">
+          The pivotal shift. Riding the success of <em>Dr. Pimple Popper</em>, TLC commissions a slate of foot-doctor reality series. <em>The Toe Bro</em> (A&amp;E, 2019) features Toronto chiropodist Jonathan Tomines. <em>Dr. Foot Fixer</em> (TLC, 2019) centers podiatrist Yolanda Ragland. <em>My Feet Are Killing Me</em> (TLC, January 2020) pairs Drs. Brad Schaeffer and Ebonie Vincent, later adding Dr. Sarah Haller — the first sustained portrayal of podiatric surgeons as <em>protagonists</em> in American television. For the first time, mass audiences watched podiatrists perform reconstructive surgery, limb salvage, and diabetic wound care. The frame shifts from "not a real doctor" to "these people are saving lives with power tools."
+        </p>
+        <span class="pull">
+          "It was clear, following the debut of Dr. Pimple Popper, that our audience was craving even more powerful and heartwarming stories of medical transformation."
+          <span class="attr">— Howard Lee, then-GM of TLC, 2019</span>
+        </span>
+        <p class="entry-body">
+          Sometimes the shows lean toward the <em>grotesque</em> — extreme fungus, overgrown nails, gruesome wounds — maybe rebranding podiatry as the gross-out specialty. But the surgical footage is real, the outcomes are real, and for millions of viewers this is the first time they see what podiatric surgery actually looks like.
+        </p>
+        <span class="entry-verdict good">Protagonist status achieved</span>
+      </article>
+
+      <article class="entry major">
+        <div class="entry-head">
+          <span class="entry-year">2019–Now</span>
+          <h3 class="entry-title">The FootDocDana Phenomenon</h3>
+          <span class="entry-meta">TikTok / YouTube / Instagram</span>
+        </div>
+        <p class="entry-body">
+          Dr. Dana Figura (DPM, @footdocdana) begins posting on TikTok in November 2019 as a podiatric resident in Los Angeles. By 2024 her combined following across TikTok, YouTube, and Instagram exceeds 8 million. Her "Doctor Reacts: Shaving HUGE Foot Callus" video has drawn over 54 million views. She is, by audience size, the most visible podiatrist who has ever lived. She is not alone: dozens of DPMs now run substantial educational accounts. The podiatrist-as-influencer is no longer an oddity; it is a career path.
+        </p>
+        <span class="entry-verdict good">Podiatry, finally, at scale</span>
+      </article>
+
+      <article class="entry">
+        <div class="entry-head">
+          <span class="entry-year">2024</span>
+          <h3 class="entry-title">The Bad Foot Clinic (UK)</h3>
+          <span class="entry-meta">Channel 5 / Reality</span>
+        </div>
+        <p class="entry-body">
+          British podiatrist Marion Yau and GP husband Dr. Kenny anchor a UK analog to the TLC model — the format has now become <em>international template</em>. The reality foot-doctor show is no longer a novelty; it's a genre with predictable beats: anxious patient, dramatic reveal, graphic procedure, emotional resolution. Whatever its aesthetic problems, the genre's existence certifies that podiatric content reliably draws audience.
+        </p>
+        <span class="entry-verdict good">Genre maturity</span>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- =================== ARCHETYPES =================== -->
+  <section class="section">
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <span class="section-title">The Four Archetypes</span>
+      <span class="section-sub">Every pop-culture<br>podiatrist is one of these</span>
+    </div>
+
+    <div class="archetypes">
+      <div class="archetype">
+        <span class="archetype-num">I.</span>
+        <div class="archetype-label">The Lesser Doctor</div>
+        <h3 class="archetype-name">The <em>Punchline</em></h3>
+        <p class="archetype-body">
+          The podiatrist as shorthand for a watered-down physician. Their medical status is the joke. Usually nameless, rarely seen treating patients. Exists to let a "real" doctor look credentialed by contrast.
+        </p>
+        <div class="archetype-examples">
+          ex. Seinfeld S5E11 · stand-up · sitcom asides
+        </div>
+      </div>
+
+      <div class="archetype">
+        <span class="archetype-num">II.</span>
+        <div class="archetype-label">Connective Tissue</div>
+        <h3 class="archetype-name">The <em>Plot Device</em></h3>
+        <p class="archetype-body">
+          A podiatrist appears because a story needs a reason for characters to be somewhere or to learn something. The specialty is incidental. Not insulted — just used and dismissed.
+        </p>
+        <div class="archetype-examples">
+          ex. Curb "The Christ Nail" · procedurals
+        </div>
+      </div>
+
+      <div class="archetype">
+        <span class="archetype-num">III.</span>
+        <div class="archetype-label">The Shock-Effect TV Protagonist</div>
+        <h3 class="archetype-name">The <em>Reality Surgeon</em></h3>
+        <p class="archetype-body">
+          Real DPMs centered as show leads. Frame: "extraordinary problems, heroic intervention." Surgical work is real.
+        </p>
+        <div class="archetype-examples">
+          ex. My Feet Are Killing Me · The Toe Bro
+        </div>
+      </div>
+
+      <div class="archetype">
+        <span class="archetype-num">IV.</span>
+        <div class="archetype-label">The Native Media Era</div>
+        <h3 class="archetype-name">The <em>Creator-Educator</em></h3>
+        <p class="archetype-body">
+          Podiatrists who built their own audience platforms and route around traditional media gatekeepers. Controls tone, frame, and message directly. The first archetype where the profession speaks for itself.
+        </p>
+        <div class="archetype-examples">
+          ex. FootDocDana · (The Guidewire)
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== KEY CONCEPTS =================== -->
+  <section class="section">
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <span class="section-title">Key Concepts</span>
+      <span class="section-sub">How to read<br>a depiction</span>
+    </div>
+
+    <div class="concepts">
+      <div class="concept">
+        <div class="concept-label">Concept 01</div>
+        <h5>Legitimacy Framing</h5>
+        <p>Does the depiction treat the podiatrist <em>as</em> a physician, or position them adjacent to medicine? This is the single most consequential variable — it shapes referral behavior and patient trust.</p>
+      </div>
+      <div class="concept">
+        <div class="concept-label">Concept 02</div>
+        <h5>Scope Visibility</h5>
+        <p>What does the depiction show the podiatrist <em>doing</em>? Nail care and orthotics read as technician-level work although these are important aspects of holistic patient care. Surgical reconstruction, limb salvage, and trauma read as specialist medicine.</p>
+      </div>
+      <div class="concept">
+        <div class="concept-label">Concept 03</div>
+        <h5>Authorial Control</h5>
+        <p>Who is shaping the frame — an outside writer, a reality producer, or the podiatrist themselves? Owned-channel content (TikTok, Substack) is the first medium where the profession isn't a supporting character.</p>
+      </div>
+      <div class="concept">
+        <div class="concept-label">Concept 04</div>
+        <h5>Genre Conventions</h5>
+        <p>Sitcom needs a punchline. Prestige drama needs an antagonist or sage. Reality TV needs a transformation. Each genre pre-shapes what a podiatrist character can be before a writer types a single word.</p>
+      </div>
+      <div class="concept">
+        <div class="concept-label">Concept 05</div>
+        <h5>The Scholl Shadow</h5>
+        <p>A century of OTC foot-care advertising trained the public to associate foot health with consumer products — not with physicians. Podiatry has always competed with the drugstore aisle for mindshare.</p>
+      </div>
+      <div class="concept">
+        <div class="concept-label">Concept 06</div>
+        <h5>Absence as Signal</h5>
+        <p>Podiatry is nearly invisible in prestige medical drama. That absence is not benign — it shapes which specialties pre-med students imagine as aspirational.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== PITFALLS / PEARLS =================== -->
+  <section class="section">
+    <div class="section-head">
+      <span class="section-num">04</span>
+      <span class="section-title">Pitfalls &amp; Pearls</span>
+      <span class="section-sub">For clinicians<br>reading the culture</span>
+    </div>
+
+    <div class="duo">
+      <div class="duo-col left">
+        <div class="duo-label">Pitfalls</div>
+        <ul>
+          <li>
+            <strong>Dismissing pop culture as frivolous.</strong>
+            The "not a real doctor" question has demonstrable downstream effects on scope battles, hospital privileges, and medical-student recruiting.
+          </li>
+          <li>
+            <strong>Treating reality TV uncritically.</strong>
+            The gross-out frame is not neutral. It trades on disgust to hold attention, and that framing follows the profession off-screen.
+          </li>
+          <li>
+            <strong>Waiting for Hollywood to get it right.</strong>
+            Thirty years of evidence say the industry isn't coming to rescue us. The frame won't change until someone else controls the camera.
+          </li>
+          <li>
+            <strong>Ignoring the creator economy.</strong>
+            A single DPM with 8M followers now out-reaches every fictional podiatrist character in TV history, combined.
+          </li>
+        </ul>
+      </div>
+      <div class="duo-col right">
+        <div class="duo-label">Pearls</div>
+        <ul>
+          <li>
+            <strong>The protagonist era has already begun.</strong>
+            Since 2019, there have been more substantive podiatric depictions than in the preceding 50 years combined.
+          </li>
+          <li>
+            <strong>Authorial control is the asset.</strong>
+            Substack, YouTube, TikTok, and Instagram allow DPMs to show surgical scope, academic rigor, and clinical outcomes without a producer deciding what's interesting.
+          </li>
+          <li>
+            <strong>Show the surgery.</strong>
+            Public misunderstanding of podiatric scope is near-total. Footage of real cases — reconstructive, trauma, limb salvage — reframes the specialty faster than any op-ed.
+          </li>
+          <li>
+            <strong>The Seinfeld joke is retireable.</strong>
+            It survived because no competing cultural frame existed. One is now being built, in real time, by podiatrists themselves.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== WHERE THIS IS GOING =================== -->
+  <section class="section">
+    <div class="section-head">
+      <span class="section-num">05</span>
+      <span class="section-title">Where This Is Going</span>
+      <span class="section-sub">The next decade</span>
+    </div>
+
+    <div class="two-col">
+      <p>Every specialty has a story the public tells about it. Cardiology's story is urgency. Neurosurgery's is genius. Dermatology's, post-<em>Nip/Tuck</em> and post-<em>Dr. Pimple Popper</em>, is transformation. Podiatry's public story has been, for most of a century, absence punctuated by minor ridicule.</p>
+      <p>That is changing — not because Hollywood learned to take us seriously, but because the distribution of storytelling has changed. The same technological shift that let a Los Angeles podiatric resident become a household name on TikTok has opened space for dozens of DPMs to teach, educate, and frame the profession on their own terms.</p>
+      <p>The pop-culture podiatrist of the 1990s was a stranger's joke. The pop-culture podiatrist of the 2020s is increasingly an actual podiatrist, talking about actual work, to an audience the profession built itself. The next generation of residents and students will enter a field whose public story is being written, for the first time, by its own practitioners.</p>
+      <p>That is the opportunity — and for those of us working at the intersection of podiatry and public communication, it is also the obligation.</p>
+    </div>
+
+    <div class="confidence">
+      <div class="confidence-label">⚡ Confidence Level: 7/10</div>
+      <div class="confidence-bar">
+        <span class="filled-accent"></span>
+        <span class="filled-accent"></span>
+        <span class="filled-accent"></span>
+        <span class="filled-accent"></span>
+        <span class="filled-accent"></span>
+        <span class="filled-accent"></span>
+        <span class="filled-accent"></span>
+        <span class="filled"></span>
+        <span></span>
+        <span></span>
+      </div>
+      <p class="confidence-caption"><strong>High on the major depictions, moderate on the interpretation.</strong> The Seinfeld, TLC, and creator-economy beats are well-documented and verifiable. The framing arguments (absence as signal, Scholl shadow, authorial control as asset) are informed interpretation — reasonable, but not settled history.</p>
+    </div>
+  </section>
+
+  <!-- =================== SOURCES =================== -->
+  <section class="section">
+    <div class="section-head">
+      <span class="section-num">06</span>
+      <span class="section-title">Sources</span>
+      <span class="section-sub">Where this is<br>drawn from</span>
+    </div>
+    <div class="sources">
+      <ol>
+        <li><strong>Seinfeld:</strong> "The Conversion" (S5 E11), aired Dec. 16, 1993. Written by Bruce Kirschbaum. NBC.</li>
+        <li><strong>Podiapaedia:</strong> "Seinfeld on Podiatry." Documents Jerry Seinfeld's subsequent donations to NYCPM.</li>
+        <li><strong>Curb Your Enthusiasm:</strong> "The Christ Nail" (S5 E3), 2005. HBO. IMDB full cast listing (Carlos Jacott as Podiatrist).</li>
+        <li><strong>TLC / Warner Bros. Discovery:</strong> <em>My Feet Are Killing Me</em> series pages; Howard Lee network statement, 2019.</li>
+        <li><strong>Podiatry.com / PRESENT Podiatry:</strong> "The TV Reality Show Podiatry Wanted," 2019 interviews with Drs. Vincent and Schaeffer.</li>
+        <li><strong>Apple TV / Channel 5:</strong> <em>The Bad Foot Clinic</em> (2024), series materials.</li>
+        <li><strong>Podiatry Management:</strong> Linne, "Meet Dana Brems, DPM, TikTok Star," April 2021.</li>
+        <li><strong>FootDocDana platforms:</strong> Follower counts and "Doctor Reacts: Shaving HUGE Foot Callus" view data as of 2024.</li>
+        <li><strong>Wikipedia / Time magazine / Chicago Reader (McClory, 1994):</strong> William M. Scholl biographical and credentialing history.</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- =================== DISCLAIMER =================== -->
+  <div class="disclaimer">
+    <strong>Editorial Note &amp; AI Disclosure</strong>
+    This piece is an educational cultural analysis, not a clinical, legal, or career-advice document. It draws on publicly available media sources and professional commentary, and is AI-assisted in its drafting. Interpretive claims are labeled as such. Not intended for billing, coding, licensure, or clinical decision-making. Readers are responsible for verifying source materials through original publishers.
+  </div>
+
+  <!-- =================== COLOPHON =================== -->
+  <div class="colophon">
+    <span class="byline-credit">Peter Sorensen, DPM</span>
+    <span>The Guidewire</span>
+    <span class="copyright">© 2026 Peter Sorensen, DPM</span>
+  </div>
+</article>
+
+</body>
+</html>
