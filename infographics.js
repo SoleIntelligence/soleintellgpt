@@ -61,6 +61,6 @@ window.INFOGRAPHICS = [
     category: "student-resident",
     url: "posterolateral_ocd.html",
     date: "2025-05-16",
-    thumbnail: "Sole Intelligence Images/posterlateral_ocd.png"
+    thumbnail: "Sole Intelligence Images/posterolateral_ocd.png"
   }
 ]
