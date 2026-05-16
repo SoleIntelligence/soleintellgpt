@@ -1,0 +1,57 @@
+// Infographics index for The GuideWire
+//
+// To add a new infographic:
+//   1. Drop a self-contained HTML file (or folder with index.html) anywhere
+//      under /Desktop/soleintellwebsitev4/, e.g. "my_new_infographic/index.html".
+//   2. Add a new entry to the array below. The card will appear automatically
+//      under the matching category on the home page.
+//
+// Required fields: title, description, category, url
+// Optional fields: kicker, date (YYYY-MM-DD), thumbnail (path to image)
+//
+// Category IDs must match the section IDs in index.html:
+//   "ai-tutorials"      -> AI Tutorials
+//   "politics-culture"  -> Podiatry Politics & Culture
+//   "student-resident"  -> Student/Resident Education
+//
+// Paths should be RELATIVE (no leading "/") so they work when opening
+// index.html directly (file://) and when hosted.
+
+window.INFOGRAPHICS = [
+  {
+    title: "History of Podiatry",
+    description: "A visual walk through where the profession came from and how it grew into what it is today.",
+    kicker: "Timeline",
+    category: "student-resident",
+    url: "history_index.html",
+    date: "2025-04-13",
+    thumbnail: "Sole Intelligence Images/history.png"
+  },
+  {
+    title: "Feet & Film",
+    description: "Podiatry on screen — a cultural look at how feet have shown up in film and what that tells us about the profession's image.",
+    kicker: "Culture",
+    category: "politics-culture",
+    url: "podiatry_in_media_index.html",
+    date: "2025-04-27",
+    thumbnail: "Sole Intelligence Images/popmedia.png"
+  },
+  {
+    title: "The DPM Comeback",
+    description: "A bento-style overview of where podiatry sits today and the case for what's next.",
+    kicker: "Profession",
+    category: "politics-culture",
+    url: "ao_index.html",
+    date: "2025-05-04",
+    thumbnail: "Sole Intelligence Images/ao.png"
+  },
+  {
+    title: "Handwritten Notes to AI Infographic",
+    description: "Start building your digital brain by converting all those paper notes into something actually useful.",
+    kicker: "AI How To",
+    category: "ai-tutorials",
+    url: "how_to_infographics.html",
+    date: "2025-05-11",
+    thumbnail: "Sole Intelligence Images/infographics.png"
+  }
+];

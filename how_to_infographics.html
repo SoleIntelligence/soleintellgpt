@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Handwritten Notes to AI Infographic: How To — The Guidewire</title>
+<meta name="description" content="How To AI for noobs, not dummies. Y'all are smart. By Peter Sorensen, DPM." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Patrick+Hand&family=Special+Elite&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Kalam:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --paper: #f5efde;
+    --paper-shade: #ebe3cb;
+    --ink: #1f2a4a;
+    --ink-soft: #3b466b;
+    --red: #b73a3a;
+    --red-soft: #c97373;
+    --highlight: #ffe96b;
+    --highlight-soft: #fff3a0;
+    --pencil: #6b6b6b;
+    --rule: #c8a4a4;
+    --tape: rgba(255, 220, 120, 0.65);
+    --tape-blue: rgba(140, 200, 220, 0.55);
+    --line: rgba(120, 140, 180, 0.20);
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #2a2520;
+    color: var(--ink);
+    font-family: 'Lora', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.65;
+  }
+
+  /* Paper background with subtle lined-notebook texture */
+  body {
+    background:
+      radial-gradient(ellipse at top left, rgba(0,0,0,0.25), transparent 60%),
+      radial-gradient(ellipse at bottom right, rgba(0,0,0,0.35), transparent 70%),
+      #1d1813;
+    min-height: 100vh;
+    padding: 40px 20px 80px;
+  }
+
+  .page {
+    position: relative;
+    max-width: 820px;
+    margin: 0 auto;
+    background:
+      /* horizontal rule lines */
+      repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 31px,
+        var(--line) 31px,
+        var(--line) 32px
+      ),
+      /* slight paper grain */
+      radial-gradient(ellipse at 15% 20%, rgba(200,160,90,0.10), transparent 50%),
+      radial-gradient(ellipse at 85% 80%, rgba(180,140,60,0.08), transparent 50%),
+      var(--paper);
+    padding: 70px 60px 70px 100px;
+    box-shadow:
+      0 1px 0 rgba(0,0,0,0.05),
+      0 30px 60px -20px rgba(0,0,0,0.7),
+      0 0 0 1px rgba(0,0,0,0.1);
+    border-radius: 2px;
+  }
+
+  /* red margin line, like a composition book */
+  .page::before {
+    content: "";
+    position: absolute;
+    top: 0; bottom: 0;
+    left: 75px;
+    width: 2px;
+    background: var(--rule);
+    opacity: 0.7;
+  }
+
+  /* corner coffee stain for character */
+  .page::after {
+    content: "";
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(150, 90, 40, 0.10) 30%, rgba(150,90,40,0.18) 50%, transparent 75%);
+    pointer-events: none;
+  }
+
+  /* ============ MASTHEAD ============ */
+  .masthead {
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 14px;
+    margin-bottom: 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .masthead-title {
+    font-family: 'Special Elite', monospace;
+    font-size: 38px;
+    letter-spacing: 4px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1;
+  }
+
+  .masthead-meta {
+    font-family: 'Special Elite', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--pencil);
+    text-align: right;
+    text-transform: uppercase;
+    line-height: 1.6;
+  }
+
+  .section-label {
+    display: inline-block;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 3px 8px;
+    font-family: 'Special Elite', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    margin-bottom: 18px;
+  }
+
+  /* ============ TITLE BLOCK ============ */
+  .title-block {
+    margin: 24px 0 36px;
+    transform: rotate(-0.4deg);
+  }
+
+  h1.title {
+    font-family: 'Caveat', cursive;
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 1;
+    margin: 0 0 10px;
+    color: var(--ink);
+  }
+
+  .dek {
+    font-family: 'Patrick Hand', cursive;
+    font-size: 22px;
+    color: var(--red);
+    margin: 0 0 14px;
+    transform: rotate(0.3deg);
+  }
+
+  .byline {
+    font-family: 'Special Elite', monospace;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--pencil);
+  }
+  .byline strong { color: var(--ink); font-weight: 700; }
+
+  /* ============ BODY ============ */
+  p {
+    margin: 0 0 18px;
+    color: var(--ink-soft);
+  }
+
+  em {
+    color: var(--red);
+    font-style: italic;
+  }
+
+  strong { color: var(--ink); }
+
+  .opener {
+    font-family: 'Caveat', cursive;
+    font-size: 22px;
+    color: var(--red);
+    line-height: 1.4;
+    margin: 0 0 28px;
+    padding: 14px 20px;
+    border-left: 4px solid var(--red);
+    background: rgba(255, 220, 120, 0.15);
+    transform: rotate(-0.2deg);
+  }
+  .opener span { display: block; }
+
+  /* highlighter behind key phrases */
+  .hl {
+    background: linear-gradient(180deg, transparent 55%, var(--highlight) 55%, var(--highlight) 92%, transparent 92%);
+    padding: 0 2px;
+  }
+
+  /* ============ CALLOUT (the prompt teaser block) ============ */
+  .callout {
+    position: relative;
+    background: #fffcf0;
+    border: 1px solid var(--ink);
+    padding: 24px 28px;
+    margin: 32px 0 36px;
+    transform: rotate(-0.5deg);
+    box-shadow: 4px 6px 0 rgba(31, 42, 74, 0.15);
+  }
+  .callout::before {
+    content: "";
+    position: absolute;
+    top: -14px;
+    left: 30px;
+    width: 80px;
+    height: 22px;
+    background: var(--tape);
+    transform: rotate(-3deg);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+  }
+  .callout-title {
+    font-family: 'Kalam', cursive;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--ink);
+    margin: 0 0 8px;
+  }
+  .callout em { font-style: italic; color: var(--pencil); font-size: 16px; }
+  .callout p { margin: 8px 0; }
+
+  /* ============ IMAGES — POLAROID STYLE ============ */
+  figure {
+    margin: 40px auto;
+    max-width: 480px;
+    background: #fffdf6;
+    padding: 14px 14px 50px;
+    box-shadow:
+      0 1px 1px rgba(0,0,0,0.1),
+      0 8px 20px rgba(0,0,0,0.18);
+    position: relative;
+  }
+  figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    background: #ddd;
+  }
+  figure figcaption {
+    position: absolute;
+    bottom: 12px;
+    left: 14px;
+    right: 14px;
+    font-family: 'Caveat', cursive;
+    font-size: 18px;
+    color: var(--pencil);
+    line-height: 1.2;
+    text-align: center;
+  }
+  figure.tilt-l { transform: rotate(-1.6deg); }
+  figure.tilt-r { transform: rotate(1.4deg); }
+  figure.tilt-s { transform: rotate(-0.6deg); }
+  figure::before {
+    content: "";
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    width: 100px;
+    height: 26px;
+    background: var(--tape-blue);
+    transform: translateX(-50%) rotate(-2deg);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+  }
+  figure.tilt-r::before {
+    background: var(--tape);
+    transform: translateX(-50%) rotate(2deg);
+  }
+
+  /* ============ SECTION HEADS ============ */
+  h2.section {
+    font-family: 'Kalam', cursive;
+    font-weight: 700;
+    font-size: 32px;
+    color: var(--ink);
+    margin: 48px 0 6px;
+    position: relative;
+    display: inline-block;
+  }
+  h2.section::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 8px;
+    background:
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 8'><path d='M2 5 Q 25 1, 50 5 T 100 5 T 150 5 T 198 5' fill='none' stroke='%23b73a3a' stroke-width='2' stroke-linecap='round'/></svg>") no-repeat center / 100% 100%;
+    margin-top: 2px;
+  }
+
+  h3.subsection {
+    font-family: 'Kalam', cursive;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--ink);
+    margin: 32px 0 12px;
+  }
+
+  /* ============ THE PROMPT (highlighted) ============ */
+  .prompt {
+    font-family: 'Special Elite', monospace;
+    font-size: 16px;
+    line-height: 1.55;
+    background: var(--highlight-soft);
+    padding: 18px 22px;
+    border-left: 5px solid var(--ink);
+    margin: 18px 0 22px;
+    color: var(--ink);
+    position: relative;
+    transform: rotate(-0.2deg);
+  }
+  .prompt::before {
+    content: "PROMPT";
+    position: absolute;
+    top: -10px;
+    left: 16px;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 2px 8px;
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
+
+  /* ============ LISTS ============ */
+  ol.numbered, ul.dashed {
+    list-style: none;
+    padding: 0;
+    margin: 16px 0 24px;
+  }
+  ol.numbered li {
+    counter-increment: step;
+    position: relative;
+    padding: 12px 16px 12px 56px;
+    margin-bottom: 10px;
+    background: rgba(255, 253, 240, 0.6);
+    border-left: 3px solid var(--ink);
+  }
+  ol.numbered li::before {
+    content: counter(step);
+    position: absolute;
+    left: 14px;
+    top: 10px;
+    font-family: 'Caveat', cursive;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--red);
+    line-height: 1;
+  }
+  ol.numbered { counter-reset: step; }
+
+  ul.dashed li {
+    position: relative;
+    padding: 4px 0 4px 32px;
+    margin-bottom: 8px;
+  }
+  ul.dashed li::before {
+    content: "✓";
+    position: absolute;
+    left: 6px;
+    top: 4px;
+    font-family: 'Caveat', cursive;
+    font-size: 22px;
+    color: var(--red);
+    font-weight: 700;
+  }
+
+  code {
+    font-family: 'Special Elite', monospace;
+    background: rgba(31, 42, 74, 0.08);
+    padding: 1px 6px;
+    border-radius: 2px;
+    font-size: 0.92em;
+    color: var(--ink);
+  }
+
+  /* Warning banner */
+  .warning {
+    font-family: 'Kalam', cursive;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--red);
+    text-align: center;
+    margin: 28px 0;
+    padding: 14px;
+    border-top: 2px dashed var(--red);
+    border-bottom: 2px dashed var(--red);
+    transform: rotate(-0.3deg);
+  }
+
+  /* margin doodle */
+  .margin-note {
+    position: relative;
+  }
+  .margin-note::before {
+    content: attr(data-note);
+    position: absolute;
+    left: -120px;
+    top: 6px;
+    width: 100px;
+    font-family: 'Caveat', cursive;
+    font-size: 16px;
+    color: var(--red);
+    line-height: 1.2;
+    transform: rotate(-4deg);
+    text-align: right;
+  }
+
+  /* ============ FOOTER ============ */
+  .colophon {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid var(--ink);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .colophon-brand {
+    font-family: 'Special Elite', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--pencil);
+  }
+  .colophon-brand b {
+    display: block;
+    font-size: 18px;
+    color: var(--ink);
+    letter-spacing: 4px;
+    margin-bottom: 2px;
+  }
+  .colophon-fineprint {
+    font-family: 'Special Elite', monospace;
+    font-size: 9px;
+    letter-spacing: 1px;
+    color: var(--pencil);
+    opacity: 0.6;
+    text-align: right;
+  }
+
+  .signoff {
+    font-family: 'Caveat', cursive;
+    font-size: 32px;
+    color: var(--red);
+    text-align: right;
+    margin: 36px 0 8px;
+    transform: rotate(-2deg);
+  }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 720px) {
+    body { padding: 16px 8px 60px; }
+    .page { padding: 40px 24px 50px 56px; }
+    .page::before { left: 38px; }
+    .masthead { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .masthead-title { font-size: 28px; letter-spacing: 2px; }
+    .masthead-meta { text-align: left; }
+    h1.title { font-size: 44px; }
+    .dek { font-size: 18px; }
+    h2.section { font-size: 26px; }
+    figure { max-width: 100%; }
+    .margin-note::before { display: none; }
+    .colophon { flex-direction: column; align-items: flex-start; }
+    .colophon-fineprint { text-align: left; }
+  }
+</style>
+</head>
+<body>
+  <article class="page">
+
+    <header class="masthead">
+      <div class="masthead-title">THE GUIDEWIRE</div>
+      <div class="masthead-meta">
+        Field Notes &nbsp;·&nbsp; Tutorial<br />
+        May 12, 2026 &nbsp;·&nbsp; soleintell.com
+      </div>
+    </header>
+
+    <span class="section-label">AI · BEGINNER SKILL</span>
+
+    <div class="title-block">
+      <h1 class="title">Handwritten Notes to AI Infographic: How To</h1>
+      <p class="dek">How To AI for noobs, not dummies. Y'all are smart. &lt;3</p>
+      <div class="byline">By <strong>Peter Sorensen, DPM</strong></div>
+    </div>
+
+    <div class="opener">
+      <span>My thoughts in the first few paragraphs on Digital Brains and long-term memory retention.</span>
+      <span style="margin-top: 8px;">Scroll down a bit for the step by step. Cheers.</span>
+    </div>
+
+    <p>Most of what we learn in residency is written down once, in a hurry, on whatever paper is closest. AO course notepads. Hotel stationery. The back of a printed schedule. A blank page in the iPad app you swore you'd organize.</p>
+
+    <p>Then it sits there.</p>
+
+    <p>The gap between <em>I wrote this down</em> and <em>I can teach this back</em> is where most of the value gets lost. I have a dozen small notebooks that I held onto with pearls I learned through my fourth year of pod school rotating through different programs. My intent was to write those things all down, review intermittently until they became long-term memory. In fact, I even went through them all and turned every pearl into an Anki card — and studied them till I was sick. Yes, the studying paid off — but the <span class="hl">creation of the resource did a lot in and of itself</span>. MAKING something — that's active learning. Reading, even traditional methods of flashcarding, are passive.</p>
+
+    <p>Active recall while flashcarding helped me remember a lot of the pearls, but once residency started… oh boy. The time for Anki dwindled. I still did it in between clinic patients or in academics. But honestly — the med school Anki grind is unsustainable. I can't do Anki forever. Maybe Adrian Rosu can, but not me. And despite the best spaced repetition settings on your Pod AnKing Master Deck — that knowledge is gonna fade too.</p>
+
+    <p>Now before I say any more, an important caveat. You should memorize all you can as a student, even as a resident. Learn all you can, read all you can. Unfortunately those who memorize better get better residencies. Fight me if you don't believe it. But now that I'm just over a year from graduating residency, my approach to learning needs to change. My hand skills and procedural knowledge are a major focus now. In a year and three months, my patients will need the bulk of my time and mental effort.</p>
+
+    <p>So how do those pearls not get lost forevermore?</p>
+
+    <p>The answer is a <span class="hl"><strong>digital brain</strong></span>.</p>
+
+    <p>I'll write more about digital brains later — the current goal is to teach how to make infographics, so I digress.</p>
+
+    <p>One of the elements of a digital brain is encoding your pearls. This is my fave way to not only build my digital brain, but to actively study new things I'm learning. And make things that are valuable to others. And to have fun doing it. ;)</p>
+
+    <div class="callout">
+      <p class="callout-title">How to make an AI Infographic for noobs <span style="font-weight:400; font-size:16px; color:var(--pencil);">(this is a beginner AI skill)</span></p>
+      <p><em>This is most useful IRL for handwritten notes from conferences, clinic, etc.</em></p>
+      <p>I'll use a real example: the first page of notes I took at an AO Basic course 2 wks ago. Soft tissue handling, Perren's strain theory, fracture blisters, a quote from one of the faculty. By the end of the workflow it was a clean editorial infographic I could re-read on the plane home and add to my digital brain.</p>
+    </div>
+
+    <figure class="tilt-l">
+      <img src="https://substackcdn.com/image/fetch/$s_!NeuX!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ff85182de-78fc-476c-8a75-10fe7f115dd9_1072x1586.png" alt="ChatGPT-generated infographic from handwritten AO course notes" />
+      <figcaption>chatGPT output from hand-written notes, prompted to make infographic "word for word" — it did add the one cringy line at the bottom that I hate, but w/e.</figcaption>
+    </figure>
+
+    <h2 class="section">What you need</h2>
+
+    <ol class="numbered">
+      <li><strong>A clear photo of the page of notes.</strong> Daylight, no glare, the whole sheet in frame. If you have margin abbreviations — <code>fx = fracture</code>, <code>s.t. = soft tissue</code> — capture those too. If you stick with one LLM, you'll only have to specify an abbreviation once as long as you tell it to remember. Handwriting doesn't even need to be that good (it worked for my half print / half cursive writing, so…).</li>
+      <li><strong>ChatGPT app on your phone.</strong> Free to download — you can do like 3 images a day on the free version. They do trial months generously for Pro, and you can make a ton of images with it. It's like $20/mo if you want it always. As of May 2026, <em>it must be chatGPT</em>. Everything else doesn't do text gen well. They'll probs catch up, but openAI's Image 2.0 is the only name in this game rn.</li>
+    </ol>
+
+    <div class="prompt">
+      Make an infographic-style image of this page of hand-written notes word for word. Ask me about any abbreviations you don't recognize before you start.
+    </div>
+
+    <p>That's it. You can add things like <em>"Flag any words you can't make out and any abbreviations you're guessing at. Don't fill in gaps you're not sure about."</em> But I don't. I've found it does a great job without that. Typically you only need to tell it abbreviations once — just prompt it to remember and it'll go into stored memory.</p>
+
+    <p>Make sure you add the picture from your Photo Roll — or pro hack: just take the image in-app. Do make sure <strong>"Create image"</strong> is chosen from the drop-down menu. You also don't have to do word for word if you don't want, but this will keep <em>YOUR</em> notes — it won't risk AI interpreting your notes and hallucinating as it interprets them.</p>
+
+    <figure class="tilt-r">
+      <img src="https://substackcdn.com/image/fetch/$s_!-9Ec!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F50cd42fc-8b31-470b-8b3d-d10bbfc018b9_1584x1192.png" alt="Claude-generated educational infographic example" />
+      <figcaption>This is an example of a Claude output — classic "Claude look."</figcaption>
+    </figure>
+
+    <h2 class="section">Now read it.</h2>
+    <p>If there are text errors, just tell it to fix them. This is the game-changer with chatGPT Image 2.0. <span class="hl">Nitty-gritty edits actually <em>work</em>.</span> Finally.</p>
+
+    <p>You can get fancy telling it all sorts of fonts and color palettes you want — I don't bother. I said give me a tropical theme cuz' I'm in Tampa. If you don't like the style, tell it to change the style — just know if you're on free, you've got three images a day.</p>
+
+    <h3 class="subsection">Do make sure you check for quality.</h3>
+
+    <div class="warning">⚠ You need to use AI responsibly. ⚠</div>
+
+    <figure class="tilt-s">
+      <img src="https://substackcdn.com/image/fetch/$s_!KVuP!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F92cdeedf-c5b6-4fe6-a4d2-9758cfeddda5_1048x968.png" alt="ChatGPT edit example showing corrected infographic" />
+      <figcaption>chatGPT</figcaption>
+    </figure>
+
+    <ul class="dashed">
+      <li><strong>Numbers.</strong> Strain percentages, dosages, time windows, cm or mm. One of my notes said "2–8%". It decided to just say "2%". So I told it to STAHP IT and fix it to be word for word. XD</li>
+      <li><strong>Negations.</strong> <em>Won't, never, do not</em> — easy to flip in transcription. Check those contractions.</li>
+      <li><strong>Attributions.</strong> If you wrote <em>Perren</em>, the graphic should say Perren, not "researchers."</li>
+      <li>If you're doing a summary of your notes instead of word for word, and the graphic adds a fact you didn't write down, ask where that fact came from. If the model can't tell you, cut it.</li>
+    </ul>
+
+    <figure class="tilt-l">
+      <img src="https://substackcdn.com/image/fetch/$s_!Elqc!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F9b99593f-22ef-4ba5-886c-83539a67fb4a_1324x1566.png" alt="Claude-generated HTML infographic example" />
+      <figcaption>Another classic "Claude" look — html file. This one intentionally summarized; did NOT ask to go word for word. It will make assertive claims — great for expanding reach of your notes and learning, but opens to hallucinations.</figcaption>
+    </figure>
+
+    <h2 class="section">Last Pearls</h2>
+
+    <ul class="dashed">
+      <li><strong>Reuse a design system.</strong> Once you have a graphic you like, save the prompt that produced it. Have a Notes page with your fave prompts. Pro-level is to turn that design palette into a Skill — more on that someday. Personally I like to experiment with new styles. Even though I realize that's not good for someone trying to brand themselves. Idgaf tbh — just do you.</li>
+      <li><strong>Long-term pro-AI-user hack:</strong> Infographics are fun, but the long-term Digital Brain strategy — also have your LLM export a "self-contained HTML file" of the information, then tuck that away in a folder somewhere for later. You'll thank me. More to come.</li>
+    </ul>
+
+    <div class="signoff">— Peter</div>
+
+    <footer class="colophon">
+      <div class="colophon-brand">
+        <b>SOLE INTELLIGENCE</b>
+        soleintell.com
+      </div>
+      <div class="colophon-fineprint">
+        © 2026 Peter Sorensen, DPM<br />
+        All rights reserved.
+      </div>
+    </footer>
+
+  </article>
+</body>
+</html>
