@@ -54,13 +54,4 @@ window.INFOGRAPHICS = [
     date: "2025-05-11",
     thumbnail: "Sole Intelligence Images/infographics.png"
   }
-  {
-    title: "Posterolateral Talus OCDs",
-    description: "The atypical corner of the talar dome — what does the literature actually say?",
-    kicker: "Education",
-    category: "student-resident",
-    url: "posterolateral_ocd.html",
-    date: "2025-05-16",
-    thumbnail: "Sole Intelligence Images/posterolateral_ocd.png"
-  }
 ]
