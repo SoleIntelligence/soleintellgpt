@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Posterolateral Talus OCDs — The Guidewire</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Caveat:wght@400;500;700&family=Kalam:wght@300;400;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f6efd8;
+    --paper-shadow: #e8dfc2;
+    --rule-blue: #a8c5e0;
+    --margin-red: #d04a4a;
+    --ink: #1c1a17;
+    --ink-soft: #2c2a24;
+    --pen-blue: #1a3a6e;
+    --pen-red: #b03030;
+    --highlight-yellow: rgba(255, 230, 100, 0.55);
+    --highlight-pink: rgba(255, 140, 165, 0.45);
+    --sticky-yellow: #fff59d;
+    --sticky-blue: #b3e5fc;
+    --polaroid: #fdfaf0;
+    --tape: rgba(220, 200, 130, 0.7);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    padding: 24px 0 60px;
+    background: #2a2520;
+    background-image:
+      radial-gradient(ellipse at top, #3a3228 0%, #1f1c18 100%);
+    font-family: 'Lora', Georgia, serif;
+    color: var(--ink);
+    line-height: 1.55;
+    min-height: 100vh;
+  }
+
+  .notebook {
+    max-width: 760px;
+    margin: 0 auto;
+    background: var(--paper);
+    background-image:
+      /* horizontal ruled lines */
+      repeating-linear-gradient(
+        to bottom,
+        transparent 0,
+        transparent 31px,
+        var(--rule-blue) 31px,
+        var(--rule-blue) 32px
+      ),
+      /* subtle paper grain */
+      radial-gradient(circle at 20% 30%, rgba(180,150,80,0.04) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(120,90,40,0.05) 0%, transparent 50%);
+    box-shadow:
+      0 2px 0 rgba(0,0,0,0.15),
+      0 25px 60px rgba(0,0,0,0.5),
+      0 8px 20px rgba(0,0,0,0.3);
+    position: relative;
+    padding: 56px 40px 56px 96px;
+    overflow: hidden;
+  }
+
+  /* Red margin line */
+  .notebook::before {
+    content: '';
+    position: absolute;
+    left: 72px;
+    top: 0;
+    bottom: 0;
+    width: 1.5px;
+    background: var(--margin-red);
+    opacity: 0.75;
+    z-index: 1;
+  }
+
+  /* Three-hole punches */
+  .notebook::after {
+    content: '';
+    position: absolute;
+    left: 24px;
+    top: 0;
+    bottom: 0;
+    width: 16px;
+    background-image:
+      radial-gradient(circle at center, #2a2520 0 7px, transparent 7px),
+      radial-gradient(circle at center, #2a2520 0 7px, transparent 7px),
+      radial-gradient(circle at center, #2a2520 0 7px, transparent 7px);
+    background-position: center 80px, center 50%, center calc(100% - 80px);
+    background-size: 16px 16px;
+    background-repeat: no-repeat;
+    z-index: 2;
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05);
+  }
+
+  .content { position: relative; z-index: 3; }
+
+  /* Masthead */
+  .masthead {
+    font-family: 'Special Elite', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    border-bottom: 1.5px solid var(--ink);
+    padding-bottom: 8px;
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .masthead .pub { font-weight: 700; font-size: 13px; letter-spacing: 0.22em; }
+  .masthead .section { font-style: italic; opacity: 0.75; }
+
+  /* Title block */
+  .title-block { margin: 8px 0 36px; position: relative; }
+
+  h1 {
+    font-family: 'Caveat', cursive;
+    font-size: 58px;
+    line-height: 0.95;
+    margin: 0 0 6px;
+    color: var(--pen-blue);
+    font-weight: 700;
+    transform: rotate(-0.4deg);
+  }
+  h1 .strike {
+    text-decoration: line-through;
+    text-decoration-color: var(--pen-red);
+    text-decoration-thickness: 2px;
+    opacity: 0.55;
+  }
+  .subtitle {
+    font-family: 'Kalam', cursive;
+    font-size: 22px;
+    color: var(--ink-soft);
+    margin: 4px 0 2px;
+    transform: rotate(-0.2deg);
+  }
+  .byline {
+    font-family: 'Special Elite', monospace;
+    font-size: 12px;
+    color: var(--ink-soft);
+    letter-spacing: 0.05em;
+    margin-top: 14px;
+  }
+
+  /* Section headers — feel like notebook section dividers */
+  h2 {
+    font-family: 'Caveat', cursive;
+    font-size: 34px;
+    color: var(--pen-blue);
+    margin: 38px 0 12px;
+    font-weight: 700;
+    line-height: 1.1;
+    position: relative;
+    display: inline-block;
+  }
+  h2 .num {
+    font-family: 'Special Elite', monospace;
+    font-size: 16px;
+    color: var(--pen-red);
+    margin-right: 10px;
+    vertical-align: middle;
+    background: var(--paper);
+    padding: 2px 6px;
+    border: 1.5px solid var(--pen-red);
+    border-radius: 50%;
+  }
+
+  h3 {
+    font-family: 'Kalam', cursive;
+    font-size: 19px;
+    color: var(--ink);
+    margin: 18px 0 6px;
+    font-weight: 700;
+  }
+
+  p, li { font-size: 16px; color: var(--ink); }
+  p { margin: 0 0 12px; }
+
+  .pen { color: var(--pen-blue); }
+  .red-pen { color: var(--pen-red); }
+
+  /* Highlighter */
+  .hl-yellow {
+    background: linear-gradient(180deg, transparent 5%, var(--highlight-yellow) 5%, var(--highlight-yellow) 92%, transparent 92%);
+    padding: 0 2px;
+  }
+  .hl-pink {
+    background: linear-gradient(180deg, transparent 5%, var(--highlight-pink) 5%, var(--highlight-pink) 92%, transparent 92%);
+    padding: 0 2px;
+  }
+
+  /* Mnemonic box */
+  .mnemonic-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin: 14px 0 22px;
+  }
+  .mnemonic-card {
+    background: var(--paper);
+    border: 2.5px solid var(--ink);
+    padding: 16px 18px;
+    position: relative;
+    box-shadow: 4px 4px 0 rgba(0,0,0,0.12);
+  }
+  .mnemonic-card .acro {
+    font-family: 'Special Elite', monospace;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+    color: var(--pen-blue);
+  }
+  .mnemonic-card.dial .acro { color: var(--pen-blue); }
+  .mnemonic-card.pimp .acro { color: var(--pen-red); }
+  .mnemonic-card ul { list-style: none; padding: 0; margin: 0; }
+  .mnemonic-card li {
+    font-family: 'Kalam', cursive;
+    font-size: 14px;
+    margin: 3px 0;
+    padding-left: 0;
+  }
+  .mnemonic-card li b { font-family: 'Special Elite', monospace; font-size: 15px; margin-right: 6px; }
+  .mnemonic-card .corner-tape {
+    position: absolute;
+    top: -10px;
+    right: 18px;
+    width: 60px;
+    height: 18px;
+    background: var(--tape);
+    transform: rotate(4deg);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+  }
+
+  /* Sticky note */
+  .sticky {
+    background: var(--sticky-yellow);
+    padding: 14px 16px;
+    font-family: 'Kalam', cursive;
+    font-size: 16px;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.18);
+    transform: rotate(-1.2deg);
+    margin: 18px 0;
+    position: relative;
+    border-radius: 1px 1px 8px 1px;
+    background-image:
+      linear-gradient(135deg, transparent 92%, rgba(0,0,0,0.08) 92%);
+  }
+  .sticky.blue { background: var(--sticky-blue); transform: rotate(0.8deg); }
+  .sticky .label {
+    font-family: 'Special Elite', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    display: block;
+    margin-bottom: 4px;
+    color: var(--pen-red);
+  }
+
+  /* Polaroid for the grid diagram */
+  .polaroid {
+    background: var(--polaroid);
+    padding: 14px 14px 50px;
+    box-shadow:
+      0 8px 20px rgba(0,0,0,0.25),
+      0 2px 4px rgba(0,0,0,0.15);
+    transform: rotate(-1.5deg);
+    max-width: 380px;
+    margin: 24px auto;
+    position: relative;
+  }
+  .polaroid::before {
+    content: '';
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-2deg);
+    width: 90px;
+    height: 22px;
+    background: var(--tape);
+    opacity: 0.85;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  }
+  .polaroid svg { width: 100%; height: auto; display: block; }
+  .polaroid .caption {
+    font-family: 'Caveat', cursive;
+    font-size: 18px;
+    color: var(--ink);
+    text-align: center;
+    margin-top: 10px;
+    line-height: 1.1;
+  }
+
+  /* Frequency table — notebook scribble feel */
+  .freq-table {
+    margin: 18px 0;
+    font-family: 'Kalam', cursive;
+    border: 2px solid var(--ink);
+    background: rgba(255,255,255,0.4);
+  }
+  .freq-table .row {
+    display: grid;
+    grid-template-columns: 60px 1fr 80px;
+    padding: 8px 14px;
+    border-bottom: 1px dashed rgba(0,0,0,0.2);
+    align-items: center;
+    font-size: 15px;
+  }
+  .freq-table .row:last-child { border-bottom: none; }
+  .freq-table .row.header {
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'Special Elite', monospace;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .freq-table .zone { font-weight: 700; color: var(--pen-blue); }
+  .freq-table .pct { text-align: right; font-weight: 700; }
+  .freq-table .row.highlight { background: var(--highlight-yellow); }
+  .freq-table .row.zone9 { background: rgba(208, 74, 74, 0.12); }
+  .freq-table .row.zone9 .zone { color: var(--pen-red); }
+
+  /* Approach ladder */
+  .approach-list {
+    list-style: none;
+    padding: 0;
+    margin: 16px 0;
+  }
+  .approach-list li {
+    background: rgba(255,255,255,0.3);
+    border-left: 4px solid var(--pen-blue);
+    padding: 10px 14px;
+    margin-bottom: 8px;
+    font-family: 'Kalam', cursive;
+    font-size: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+  .approach-list li .access {
+    font-family: 'Special Elite', monospace;
+    font-size: 13px;
+    color: var(--pen-red);
+    white-space: nowrap;
+    font-weight: 700;
+  }
+  .approach-list li.gold { border-left-color: #c89e3a; background: rgba(200, 158, 58, 0.12); }
+
+  /* Pearls / Pitfalls / Controversies cards */
+  .three-col {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin: 16px 0 8px;
+  }
+  .info-card {
+    background: rgba(255,255,255,0.4);
+    border: 1.5px solid var(--ink);
+    padding: 14px 16px;
+    position: relative;
+  }
+  .info-card .header {
+    font-family: 'Special Elite', monospace;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .info-card.pearls { border-color: #2e7d32; }
+  .info-card.pearls .header { color: #2e7d32; }
+  .info-card.pitfalls { border-color: var(--pen-red); }
+  .info-card.pitfalls .header { color: var(--pen-red); }
+  .info-card.debate { border-color: #6a4caf; }
+  .info-card.debate .header { color: #6a4caf; }
+  .info-card ul { padding-left: 18px; margin: 0; }
+  .info-card li {
+    font-family: 'Kalam', cursive;
+    font-size: 15px;
+    margin-bottom: 6px;
+  }
+
+  /* Confidence bar */
+  .confidence {
+    margin: 24px 0 10px;
+    padding: 14px 16px;
+    background: rgba(255,255,255,0.4);
+    border: 1.5px dashed var(--ink);
+  }
+  .confidence .label {
+    font-family: 'Special Elite', monospace;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 6px;
+  }
+  .conf-bar {
+    height: 14px;
+    background: rgba(0,0,0,0.08);
+    border: 1.5px solid var(--ink);
+    display: flex;
+    overflow: hidden;
+  }
+  .conf-bar .seg { flex: 1; border-right: 1.5px solid var(--ink); }
+  .conf-bar .seg:last-child { border-right: none; }
+  .conf-bar .seg.filled { background: #6fb86f; }
+  .conf-bar .seg.medium { background: #f4d35e; }
+  .conf-bar .conf-note {
+    font-family: 'Kalam', cursive;
+    font-size: 14px;
+    margin-top: 6px;
+    display: block;
+  }
+
+  /* Decision lens — flowy */
+  .decision-lens {
+    background: rgba(168, 197, 224, 0.18);
+    border: 2px solid var(--pen-blue);
+    padding: 16px 18px;
+    margin: 16px 0;
+    font-family: 'Kalam', cursive;
+  }
+  .decision-lens .q {
+    font-size: 16px;
+    margin: 8px 0;
+    padding-left: 24px;
+    position: relative;
+  }
+  .decision-lens .q::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--pen-red);
+    font-weight: 700;
+    font-family: 'Special Elite', monospace;
+  }
+  .decision-lens .title {
+    font-family: 'Caveat', cursive;
+    font-size: 24px;
+    color: var(--pen-blue);
+    margin-bottom: 6px;
+    font-weight: 700;
+  }
+
+  /* Sources */
+  .sources {
+    margin-top: 28px;
+    padding-top: 16px;
+    border-top: 2px solid var(--ink);
+  }
+  .sources h2 { font-size: 26px; margin-top: 0; }
+  .sources ol {
+    font-family: 'Special Elite', monospace;
+    font-size: 12px;
+    color: var(--ink);
+    line-height: 1.55;
+    padding-left: 20px;
+  }
+  .sources li { margin-bottom: 8px; }
+  .sources a {
+    color: var(--pen-blue);
+    text-decoration: underline;
+    word-break: break-word;
+  }
+
+  /* Disclaimer */
+  .disclaimer {
+    margin-top: 22px;
+    padding: 12px 14px;
+    background: rgba(0,0,0,0.04);
+    border-left: 3px solid var(--ink);
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+
+  /* Social copy */
+  .social-block {
+    margin-top: 24px;
+    padding: 16px 18px;
+    background: var(--sticky-yellow);
+    transform: rotate(-0.6deg);
+    box-shadow: 2px 4px 8px rgba(0,0,0,0.18);
+    font-family: 'Kalam', cursive;
+  }
+  .social-block .tag {
+    font-family: 'Special Elite', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--pen-red);
+    margin-bottom: 6px;
+    display: block;
+  }
+  .social-block .hook {
+    font-family: 'Caveat', cursive;
+    font-size: 24px;
+    color: var(--pen-blue);
+    margin-bottom: 8px;
+    font-weight: 700;
+    line-height: 1.1;
+  }
+  .social-block ul { padding-left: 18px; margin: 6px 0; }
+  .social-block li { font-size: 15px; margin-bottom: 4px; }
+  .social-block .cta {
+    font-family: 'Special Elite', monospace;
+    font-size: 12px;
+    margin-top: 8px;
+    color: var(--ink);
+  }
+
+  /* Copyright */
+  .copyright {
+    text-align: center;
+    font-family: 'Special Elite', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    color: var(--ink-soft);
+    opacity: 0.6;
+    margin-top: 28px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(0,0,0,0.15);
+  }
+
+  /* Doodle arrow */
+  .doodle-arrow {
+    display: block;
+    margin: 6px auto;
+    color: var(--pen-red);
+  }
+
+  /* Side margin notes */
+  .margin-note {
+    font-family: 'Caveat', cursive;
+    color: var(--pen-red);
+    font-size: 18px;
+    transform: rotate(-2deg);
+    margin: 8px 0;
+    display: inline-block;
+  }
+
+  /* Big stat */
+  .big-stat {
+    font-family: 'Caveat', cursive;
+    font-size: 48px;
+    color: var(--pen-red);
+    line-height: 0.9;
+    font-weight: 700;
+  }
+  .big-stat .unit {
+    font-size: 22px;
+    color: var(--ink);
+  }
+
+  @media (max-width: 600px) {
+    body { padding: 12px 0 40px; }
+    .notebook { padding: 32px 18px 32px 52px; }
+    .notebook::before { left: 38px; }
+    .notebook::after {
+      left: 8px;
+      width: 12px;
+      background-size: 12px 12px;
+    }
+    h1 { font-size: 42px; }
+    h2 { font-size: 28px; }
+    .mnemonic-grid { grid-template-columns: 1fr; }
+    .masthead { font-size: 9px; }
+    .masthead .pub { font-size: 11px; }
+    .freq-table .row { grid-template-columns: 50px 1fr 70px; padding: 6px 10px; font-size: 13px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="notebook">
+  <div class="content">
+
+    <!-- MASTHEAD -->
+    <div class="masthead">
+      <span class="pub">THE GUIDEWIRE</span>
+      <span class="section">Resident Surgical Education</span>
+      <span>soleintell.com</span>
+    </div>
+
+    <!-- TITLE -->
+    <div class="title-block">
+      <h1>Posterolateral<br>Talus OCDs</h1>
+      <p class="subtitle">The atypical corner of the talar dome — what does the literature actually say?</p>
+      <p class="byline">By Peter Sorensen, DPM</p>
+    </div>
+
+    <!-- SECTION 1 — The Classic Teaching -->
+    <h2><span class="num">1</span>The classic teaching</h2>
+    <p>Every resident gets force-fed the <span class="hl-yellow"><b>DIAL a PIMP</b></span> mnemonic — Berndt &amp; Harty (1959) framework for talar OCD mechanism.</p>
+
+    <div class="mnemonic-grid">
+      <div class="mnemonic-card dial">
+        <span class="corner-tape"></span>
+        <div class="acro">DIAL</div>
+        <ul>
+          <li><b>D</b> Dorsiflexion</li>
+          <li><b>I</b> Inversion</li>
+          <li><b>A</b> Anterolateral</li>
+          <li><b>L</b> (Lateral lesion)</li>
+        </ul>
+      </div>
+      <div class="mnemonic-card pimp">
+        <span class="corner-tape"></span>
+        <div class="acro">PIMP</div>
+        <ul>
+          <li><b>P</b> Plantarflexion</li>
+          <li><b>I</b> Inversion</li>
+          <li><b>M</b> (Medial side)</li>
+          <li><b>P</b> Posteromedial</li>
+        </ul>
+      </div>
+    </div>
+
+    <p>So the dogma: lateral OCDs sit <span class="hl-pink">anterolateral</span>, medial OCDs sit <span class="hl-pink">posteromedial</span>. Two corners. Clean. Memorable.</p>
+
+    <div class="sticky">
+      <span class="label">⚠ But wait...</span>
+      The mnemonic predates MRI. It comes from a cadaver study using ankle position to <em>simulate</em> impaction injury. It tells you a plausible <b>mechanism</b> — not the actual <b>distribution</b> seen in real patients.
+    </div>
+
+    <!-- SECTION 2 — Modern Data -->
+    <h2><span class="num">2</span>What MRI actually shows</h2>
+    <p>Raikin, Elias et al. (2007) reviewed <b>428 talar OCDs</b> on MRI and built the <span class="hl-yellow">nine-zone grid</span> that's now standard for talking about lesion location.</p>
+
+    <!-- 9-zone diagram in polaroid -->
+    <div class="polaroid">
+      <svg viewBox="0 0 360 280" xmlns="http://www.w3.org/2000/svg">
+        <!-- Hand-drawn talar dome outline -->
+        <defs>
+          <filter id="rough">
+            <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="3"/>
+            <feDisplacementMap in="SourceGraphic" scale="1.2"/>
+          </filter>
+        </defs>
+
+        <!-- Title -->
+        <text x="180" y="22" text-anchor="middle" font-family="Caveat" font-size="20" fill="#1c1a17" font-weight="700">Talar Dome — Top View</text>
+
+        <!-- Compass labels -->
+        <text x="180" y="48" text-anchor="middle" font-family="Special Elite" font-size="11" fill="#b03030">ANTERIOR</text>
+        <text x="180" y="270" text-anchor="middle" font-family="Special Elite" font-size="11" fill="#b03030">POSTERIOR</text>
+        <text x="38" y="160" text-anchor="middle" font-family="Special Elite" font-size="11" fill="#b03030" transform="rotate(-90 38 160)">MEDIAL</text>
+        <text x="322" y="160" text-anchor="middle" font-family="Special Elite" font-size="11" fill="#b03030" transform="rotate(90 322 160)">LATERAL</text>
+
+        <!-- Dome outline (rounded rect with slight wobble) -->
+        <path d="M 80,60 Q 80,52 90,52 L 270,52 Q 282,52 282,62 L 282,250 Q 282,260 270,260 L 90,260 Q 80,260 80,250 Z"
+          fill="rgba(255,255,255,0.35)" stroke="#1c1a17" stroke-width="2.2" stroke-linejoin="round" filter="url(#rough)"/>
+
+        <!-- 3x3 Grid lines -->
+        <line x1="80" y1="120" x2="282" y2="120" stroke="#1c1a17" stroke-width="1.5" filter="url(#rough)"/>
+        <line x1="80" y1="190" x2="282" y2="190" stroke="#1c1a17" stroke-width="1.5" filter="url(#rough)"/>
+        <line x1="148" y1="52" x2="148" y2="260" stroke="#1c1a17" stroke-width="1.5" filter="url(#rough)"/>
+        <line x1="214" y1="52" x2="214" y2="260" stroke="#1c1a17" stroke-width="1.5" filter="url(#rough)"/>
+
+        <!-- Zone 4 (medial mid) — highlight -->
+        <rect x="82" y="121" width="65" height="68" fill="rgba(255,230,100,0.55)"/>
+        <text x="114" y="160" text-anchor="middle" font-family="Special Elite" font-size="14" fill="#1c1a17" font-weight="700">4</text>
+        <text x="114" y="178" text-anchor="middle" font-family="Caveat" font-size="14" fill="#b03030" font-weight="700">53%</text>
+
+        <!-- Zone 6 (lateral mid) — secondary highlight -->
+        <rect x="215" y="121" width="66" height="68" fill="rgba(255,140,165,0.40)"/>
+        <text x="248" y="160" text-anchor="middle" font-family="Special Elite" font-size="14" fill="#1c1a17" font-weight="700">6</text>
+        <text x="248" y="178" text-anchor="middle" font-family="Caveat" font-size="14" fill="#b03030" font-weight="700">26%</text>
+
+        <!-- Zone 9 (posterolateral) — the star of the show -->
+        <rect x="215" y="191" width="66" height="68" fill="rgba(208,74,74,0.18)"/>
+        <text x="248" y="227" text-anchor="middle" font-family="Special Elite" font-size="16" fill="#b03030" font-weight="700">9</text>
+        <circle cx="248" cy="225" r="22" fill="none" stroke="#b03030" stroke-width="2" stroke-dasharray="3,3"/>
+
+        <!-- Other zone numbers -->
+        <text x="114" y="92" text-anchor="middle" font-family="Special Elite" font-size="13" fill="#666">1</text>
+        <text x="181" y="92" text-anchor="middle" font-family="Special Elite" font-size="13" fill="#666">2</text>
+        <text x="248" y="92" text-anchor="middle" font-family="Special Elite" font-size="13" fill="#666">3</text>
+        <text x="181" y="160" text-anchor="middle" font-family="Special Elite" font-size="13" fill="#666">5</text>
+        <text x="114" y="227" text-anchor="middle" font-family="Special Elite" font-size="13" fill="#666">7</text>
+        <text x="181" y="227" text-anchor="middle" font-family="Special Elite" font-size="13" fill="#666">8</text>
+
+        <!-- Arrow + handwritten note pointing at zone 9 -->
+        <path d="M 322,235 Q 305,242 282,232" stroke="#b03030" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+        <text x="325" y="248" font-family="Caveat" font-size="15" fill="#b03030" font-weight="700">our</text>
+        <text x="325" y="262" font-family="Caveat" font-size="15" fill="#b03030" font-weight="700">topic</text>
+
+        <defs>
+          <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+            <polygon points="0 0, 10 3, 0 6" fill="#b03030"/>
+          </marker>
+        </defs>
+      </svg>
+      <div class="caption">Raikin/Elias 9-zone grid. Zone 9 = posterolateral.</div>
+    </div>
+
+    <h3>The actual frequencies:</h3>
+
+    <div class="freq-table">
+      <div class="row header">
+        <span>Zone</span>
+        <span>Location</span>
+        <span>Freq.</span>
+      </div>
+      <div class="row highlight">
+        <span class="zone">4</span>
+        <span>Medial · mid (equator)</span>
+        <span class="pct">53%</span>
+      </div>
+      <div class="row">
+        <span class="zone">6</span>
+        <span>Lateral · mid (equator)</span>
+        <span class="pct">26%</span>
+      </div>
+      <div class="row">
+        <span class="zone">7</span>
+        <span>Posteromedial <em>(the "P" in PIMP)</em></span>
+        <span class="pct">rare</span>
+      </div>
+      <div class="row">
+        <span class="zone">3</span>
+        <span>Anterolateral <em>(the "A" in DIAL)</em></span>
+        <span class="pct">rare</span>
+      </div>
+      <div class="row zone9">
+        <span class="zone">9</span>
+        <span>Posterolateral</span>
+        <span class="pct">rare</span>
+      </div>
+    </div>
+
+    <div class="sticky blue">
+      <span class="label">★ The plot twist</span>
+      Raikin found posteromedial AND anterolateral lesions were <b>rare</b> — most OCDs sit at the <span class="hl-yellow">equator</span>, not the corners. The DIAL/PIMP mnemonic captures the mechanism, not the modern epidemiology.
+    </div>
+
+    <!-- SECTION 3 — Zone 9 specifically -->
+    <h2><span class="num">3</span>Zone 9 — the forgotten corner</h2>
+    <p>If anterolateral and posteromedial are <em>uncommon</em>, <span class="hl-pink"><b>posterolateral is downright unusual</b></span>. Most large series lump it into "lateral other" or "posterior other."</p>
+
+    <p>How rare? In <b>January 2026</b>, Kobai et al. published a Cureus case report on a posterolateral OLT treated open via a posterolateral approach — and explicitly noted <span class="hl-yellow">no prior published reports of open posterolateral approach for these lesions</span>.</p>
+
+    <p class="margin-note">↑ a 2026 case report... means we're still learning this corner</p>
+
+    <h3>What we think we know about etiology:</h3>
+    <ul style="font-family:'Kalam',cursive; font-size:15px;">
+      <li>Likely traumatic — most lateral talar OCDs (Berndt-Harty mechanism) are linked to inversion injury &amp; chronic lateral ligamentous instability</li>
+      <li>May represent an <b>atypical impaction</b> pattern when dorsiflexion-inversion happens with the ankle in <em>more</em> plantarflexion than the classic anterolateral lesion</li>
+      <li>Some posterolateral lesions are likely missed on plain films and only show up on MRI for "post-traumatic ankle pain that won't resolve"</li>
+    </ul>
+
+    <!-- SECTION 4 — Biomechanical Paradox -->
+    <h2><span class="num">4</span>The biomechanical paradox</h2>
+    <p>Aslan et al. (2025) ran a finite element analysis on lesions across all 9 zones at 3 sizes (4.5, 6.4, 9 mm) in 3 ankle positions. Look at what they found for zone 9:</p>
+
+    <div class="sticky">
+      <span class="label">Δ ankle stiffness · 9 mm zone 9 defect</span>
+      <div style="font-family:'Special Elite',monospace; font-size:14px; line-height:1.7;">
+        Neutral: <span class="big-stat" style="font-size:28px;">−4.7%</span><br>
+        Dorsiflexion: <b>+5.4%</b> (sic — within noise)<br>
+        Plantarflexion: <b>+0.17%</b>
+      </div>
+      <p style="margin-top:8px;">Zone 9 was the <span class="hl-yellow"><b>least biomechanically critical zone</b></span> in the entire grid. Compare to zone 8 (mid-posterior) at <span class="red-pen"><b>−48.8%</b></span> stiffness with the same 9 mm defect.</p>
+    </div>
+
+    <p><b>So we have a paradox:</b></p>
+    <div class="three-col">
+      <div class="info-card debate">
+        <div class="header">⚖ The clinical tension</div>
+        <ul>
+          <li>Posterolateral defects load less of the joint → potentially <b>less symptomatic</b> per mm of cartilage lost</li>
+          <li>But when patients DO present, the lesion is <b>hardest to access</b> surgically — classically requires fibular osteotomy</li>
+          <li>Treatment threshold may be <span class="hl-pink">higher</span> than for zone 4/6, but options once you operate are <span class="hl-pink">more morbid</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- SECTION 5 — Surgical access -->
+    <h2><span class="num">5</span>Surgical access — the real problem</h2>
+    <p>This is where posterolateral becomes a teaching case. Per Garras (2008) and Mayne (2016) cadaveric work, here's how much of the lateral talar dome you can perpendicular-access from each approach:</p>
+
+    <ul class="approach-list">
+      <li>
+        <span><b>Anterolateral arthrotomy</b> alone</span>
+        <span class="access">~43%</span>
+      </li>
+      <li>
+        <span><b>+ ATFL release</b></span>
+        <span class="access">~58%</span>
+      </li>
+      <li>
+        <span><b>Anterolateral tibial osteotomy</b></span>
+        <span class="access">~68%</span>
+      </li>
+      <li class="gold">
+        <span><b>Fibular osteotomy</b> (classical gold standard)</span>
+        <span class="access">88–95%</span>
+      </li>
+    </ul>
+
+    <p class="margin-note">↑ this is why posterolateral OCDs are scary to operate on</p>
+
+    <h3>Where the field is moving:</h3>
+    <div class="three-col">
+      <div class="info-card debate">
+        <div class="header">🔄 Avoiding the osteotomy</div>
+        <ul>
+          <li><b>Youn (2019):</b> arthroscopic-assisted osteochondral allograft transfer for posterolateral lesions <em>without</em> fibular osteotomy</li>
+          <li><b>Sivasamy (2025):</b> posterior ankle arthroscopy with prone positioning + dorsiflexion + iliac crest autograft — visualizes posterolateral lesion through the back door</li>
+          <li><b>Wang (2019):</b> for retrograde drilling, the <em>posterolateral</em> approach causes less vascular damage than the anterolateral approach</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- SECTION 6 — Decision Lens -->
+    <h2><span class="num">6</span>Decision lens</h2>
+    <div class="decision-lens">
+      <div class="title">How surgeons think about zone 9:</div>
+      <div class="q">Is this really zone 9, or is it a posterior zone 6 / posterior zone 8 misread on coronal MRI?</div>
+      <div class="q">How big is the lesion? (Smaller subchondral lesions often tolerate non-perpendicular access)</div>
+      <div class="q">Is there a cyst or bone loss? (If yes, you need a graft — and a graft needs perpendicular access)</div>
+      <div class="q">Can posterior arthroscopy in prone position give you enough exposure? (Sivasamy / Takao technique)</div>
+      <div class="q">If you must do the fibular osteotomy — are you ready for the syndesmotic risk, hardware, and potential nonunion?</div>
+    </div>
+
+    <!-- Pearls / Pitfalls -->
+    <h2><span class="num">7</span>Pearls &amp; pitfalls</h2>
+
+    <div class="three-col">
+      <div class="info-card pearls">
+        <div class="header">✓ Pearls</div>
+        <ul>
+          <li>"DIAL a PIMP" teaches mechanism, not modern distribution. Both can be true.</li>
+          <li>Zone 9 is the least biomechanically loaded zone — but still symptomatic when chondral integrity breaks down.</li>
+          <li>Posterior ankle arthroscopy (prone, posteromedial &amp; posterolateral portals) is the access answer the field is converging on.</li>
+          <li>For retrograde drilling, posterolateral approach is more vascularly safe than anterolateral (Wang 2019).</li>
+        </ul>
+      </div>
+
+      <div class="info-card pitfalls">
+        <div class="header">✗ Pitfalls</div>
+        <ul>
+          <li>Calling a posterior zone-6 lesion "posterolateral" — be precise on coronal AND axial MRI before you plan an approach.</li>
+          <li>Defaulting to fibular osteotomy without first asking whether a posterior arthroscopic approach would work.</li>
+          <li>Treating a small posterolateral defect aggressively because of where it is, when biomechanically it may tolerate observation or BMS.</li>
+          <li>Forgetting that posterolateral OLT often presents in the setting of chronic lateral instability — fix the ligament too.</li>
+        </ul>
+      </div>
+
+      <div class="info-card debate">
+        <div class="header">🗣 Current debates</div>
+        <ul>
+          <li>Open vs. arthroscopic for posterolateral OLTs requiring grafting — no head-to-head trials</li>
+          <li>Allograft vs. iliac autograft for the cylindrical defect</li>
+          <li>Do we need posterolateral-specific outcome studies, or is "lateral OLT" a fair grouping for the literature?</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Confidence -->
+    <div class="confidence">
+      <span class="label">Confidence level</span>
+      <div class="conf-bar">
+        <div class="seg filled"></div>
+        <div class="seg filled"></div>
+        <div class="seg filled"></div>
+        <div class="seg filled"></div>
+        <div class="seg filled"></div>
+        <div class="seg filled"></div>
+        <div class="seg medium"></div>
+        <div class="seg"></div>
+        <div class="seg"></div>
+        <div class="seg"></div>
+      </div>
+      <span class="conf-note">
+        <b>6/10 — medium.</b> Nine-zone distribution data (Raikin/Elias) is robust. Surgical-access cadaver data is robust. <b>Specific posterolateral (zone 9) treatment outcomes are thin</b> — mostly case reports and technique papers. ⚠ Verify locally before applying.
+      </span>
+    </div>
+
+    <!-- SOURCES -->
+    <div class="sources">
+      <h2>Sources</h2>
+      <ol>
+        <li>Raikin SM, Elias I, Zoga AC, et al. <em>Osteochondral lesions of the talus: localization and morphologic data from 424 patients using a novel anatomical grid scheme.</em> Foot Ankle Int. 2007;28(2):154-61. <a href="https://doi.org/10.3113/FAI.2007.0154">doi.org/10.3113/FAI.2007.0154</a></li>
+        <li>Aslan L, Subasi O, Karaismailoglu B, et al. <em>In silico assessment of talus osteochondral lesion size and location on biomechanical load distribution using tilted talar dome planes.</em> Acta Orthop Traumatol Turc. 2025;59(6):361-367. <a href="https://doi.org/10.5152/j.aott.2025.25444">doi.org/10.5152/j.aott.2025.25444</a></li>
+        <li>Kobai Y, Sasaki T, Nakagawa Y, Yamada H. <em>Open Reduction and Internal Fixation Using a Posterolateral Approach for a Posterolateral Osteochondral Lesion of the Talus: A Case Report.</em> Cureus. 2026;18(1):e102542. <a href="https://doi.org/10.7759/cureus.102542">doi.org/10.7759/cureus.102542</a></li>
+        <li>Sivasamy P, Miura T, Jujo Y, Takao M. <em>Minimally Invasive Management of Posterolateral Osteochondral Lesions of the Talus Using Posterior Ankle Arthroscopy and Autologous Iliac Osteochondral Grafts.</em> Arthrosc Tech. 2025;14(5):103458. <a href="https://doi.org/10.1016/j.eats.2025.103458">doi.org/10.1016/j.eats.2025.103458</a></li>
+        <li>Youn GM, Rosinski A, Gwosdz J, et al. <em>Arthroscopic-Assisted Osteochondral Allograft Transplantation for Posterolateral Lesions of the Talus Without Fibular Osteotomy.</em> Arthrosc Tech. 2019;8(3):e311-e316. <a href="https://doi.org/10.1016/j.eats.2018.11.009">doi.org/10.1016/j.eats.2018.11.009</a></li>
+        <li>Garras DN, Santangelo JA, Wang DW, Easley ME. <em>A quantitative comparison of surgical approaches for posterolateral osteochondral lesions of the talus.</em> Foot Ankle Int. 2008;29(4):415-20. <a href="https://doi.org/10.3113/FAI.2008.0415">doi.org/10.3113/FAI.2008.0415</a></li>
+        <li>Mayne AIW, Lawton R, Reidy MJ, et al. <em>A comparison of surgical exposures for posterolateral osteochondral lesions of the talar dome.</em> Foot Ankle Surg. 2018;24(2):107-109. <a href="https://doi.org/10.1016/j.fas.2016.11.012">doi.org/10.1016/j.fas.2016.11.012</a></li>
+        <li>Wang D, Shen Z, Fang X, et al. <em>Vascular Compromising Effect of Drilling for Osteochondral Lesions of the Talus: A 3D Micro-CT Study.</em> Arthroscopy. 2019;35(10):2930-2937. <a href="https://doi.org/10.1016/j.arthro.2019.05.021">doi.org/10.1016/j.arthro.2019.05.021</a></li>
+        <li>Sripanich Y, Dekeyser G, Steadman J, et al. <em>Limitations of accessibility of the talar dome with different open surgical approaches.</em> Knee Surg Sports Traumatol Arthrosc. 2021;29(4):1304-1317. <a href="https://doi.org/10.1007/s00167-020-06113-2">doi.org/10.1007/s00167-020-06113-2</a></li>
+      </ol>
+      <p style="font-family:'Special Elite',monospace; font-size:10px; opacity:0.7; margin-top:8px;">Literature retrieved via PubMed.</p>
+    </div>
+
+    <!-- DISCLAIMER -->
+    <div class="disclaimer">
+      AI-assisted educational summary for podiatric residents and students. Not clinical advice, not for billing or coding, and not a substitute for institutional protocols, attending judgment, or current peer-reviewed practice guidelines. Verify all figures and recommendations against the primary literature before applying to patient care.
+    </div>
+
+    <!-- SOCIAL COPY -->
+    <div class="social-block">
+      <span class="tag">📱 Social graphic copy</span>
+      <div class="hook">"DIAL a PIMP" teaches the mechanism. It doesn't tell you what MRI actually shows.</div>
+      <ul>
+        <li>Most OCDs sit at the equator (zones 4 &amp; 6), NOT the corners</li>
+        <li>Posterolateral (zone 9) is rare — first open posterolateral-approach case report only landed in 2026</li>
+        <li>It's the <em>least</em> biomechanically critical zone — yet the <em>hardest</em> to reach surgically</li>
+      </ul>
+      <div class="cta">→ Read the full breakdown on Substack · https://soleintell.substack.com/</div>
+      <p style="font-family:'Special Elite',monospace; font-size:11px; margin-top:10px; opacity:0.7;">
+        <b>Visual direction:</b> composition-notebook aesthetic — cream paper, blue rule, red margin, handwritten title in Caveat, typewriter masthead (Special Elite), embedded SVG 9-zone diagram in Polaroid frame with washi tape. Yellow sticky-note callouts for the "plot twist" beats.
+      </p>
+    </div>
+
+    <!-- COPYRIGHT -->
+    <div class="copyright">© 2026 PETER SORENSEN, DPM · ALL RIGHTS RESERVED</div>
+
+  </div>
+</div>
+
+</body>
+</html>
