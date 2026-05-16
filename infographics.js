@@ -53,5 +53,14 @@ window.INFOGRAPHICS = [
     url: "how_to_infographics.html",
     date: "2025-05-11",
     thumbnail: "Sole Intelligence Images/infographics.png"
+  },
+  {
+    title: "Posterolateral Talus OCDs",
+    description: "Very rare - often asymptomatic. But if it's not...surgical approach is tricky.",
+    kicker: "Timeline",
+    category: "student-resident",
+    url: "posterolateral_ocd.html",
+    date: "2025-05-16",
+    thumbnail: "Sole Intelligence Images/posterlateral_ocd.png"
   }
 ]
