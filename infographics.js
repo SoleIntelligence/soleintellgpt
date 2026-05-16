@@ -63,4 +63,4 @@ window.INFOGRAPHICS = [
     date: "2025-05-16",
     thumbnail: "Sole Intelligence Images/posterolateral_ocd.png"
   }
-];
+]
