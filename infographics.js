@@ -71,5 +71,5 @@ window.INFOGRAPHICS = [
     url: "boardstudy.html",
     date: "2025-05-26",
     thumbnail: "Sole Intelligence Images/boardstudy.png"
-  }
+  },
 ]
