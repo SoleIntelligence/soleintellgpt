@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>NotebookLM for Board Exams: How To — The Guidewire</title>
+<meta name="description" content="How to use NotebookLM to study for board exams — sources, audio overviews, quizzes that remember, and the handoff to Claude. By Peter Sorensen, DPM." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Patrick+Hand&family=Special+Elite&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Kalam:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --paper: #f5efde;
+    --paper-shade: #ebe3cb;
+    --ink: #1f2a4a;
+    --ink-soft: #3b466b;
+    --red: #b73a3a;
+    --red-soft: #c97373;
+    --highlight: #ffe96b;
+    --highlight-soft: #fff3a0;
+    --pencil: #6b6b6b;
+    --rule: #c8a4a4;
+    --tape: rgba(255, 220, 120, 0.65);
+    --tape-blue: rgba(140, 200, 220, 0.55);
+    --line: rgba(120, 140, 180, 0.20);
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0; padding: 0;
+    background: #2a2520;
+    color: var(--ink);
+    font-family: 'Lora', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.65;
+  }
+
+  body {
+    background:
+      radial-gradient(ellipse at top left, rgba(0,0,0,0.25), transparent 60%),
+      radial-gradient(ellipse at bottom right, rgba(0,0,0,0.35), transparent 70%),
+      #1d1813;
+    min-height: 100vh;
+    padding: 40px 20px 80px;
+  }
+
+  .page {
+    position: relative;
+    max-width: 820px;
+    margin: 0 auto;
+    background:
+      repeating-linear-gradient(
+        to bottom,
+        transparent 0px, transparent 31px,
+        var(--line) 31px, var(--line) 32px
+      ),
+      radial-gradient(ellipse at 15% 20%, rgba(200,160,90,0.10), transparent 50%),
+      radial-gradient(ellipse at 85% 80%, rgba(180,140,60,0.08), transparent 50%),
+      var(--paper);
+    padding: 70px 60px 70px 100px;
+    box-shadow:
+      0 1px 0 rgba(0,0,0,0.05),
+      0 30px 60px -20px rgba(0,0,0,0.7),
+      0 0 0 1px rgba(0,0,0,0.1);
+    border-radius: 2px;
+  }
+
+  .page::before {
+    content: "";
+    position: absolute;
+    top: 0; bottom: 0;
+    left: 75px;
+    width: 2px;
+    background: var(--rule);
+    opacity: 0.7;
+  }
+
+  .page::after {
+    content: "";
+    position: absolute;
+    top: 30px; right: 40px;
+    width: 90px; height: 90px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(150, 90, 40, 0.10) 30%, rgba(150,90,40,0.18) 50%, transparent 75%);
+    pointer-events: none;
+  }
+
+  /* ============ MASTHEAD ============ */
+  .masthead {
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 14px;
+    margin-bottom: 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .masthead-title {
+    font-family: 'Special Elite', monospace;
+    font-size: 38px;
+    letter-spacing: 4px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1;
+  }
+
+  .masthead-meta {
+    font-family: 'Special Elite', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--pencil);
+    text-align: right;
+    text-transform: uppercase;
+    line-height: 1.6;
+  }
+
+  .section-label {
+    display: inline-block;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 3px 8px;
+    font-family: 'Special Elite', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    margin-bottom: 18px;
+  }
+
+  /* ============ TITLE BLOCK ============ */
+  .title-block {
+    margin: 24px 0 36px;
+    transform: rotate(-0.4deg);
+  }
+
+  h1.title {
+    font-family: 'Caveat', cursive;
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 1;
+    margin: 0 0 10px;
+    color: var(--ink);
+  }
+
+  .dek {
+    font-family: 'Patrick Hand', cursive;
+    font-size: 22px;
+    color: var(--red);
+    margin: 0 0 14px;
+    transform: rotate(0.3deg);
+  }
+
+  .byline {
+    font-family: 'Special Elite', monospace;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--pencil);
+  }
+  .byline strong { color: var(--ink); font-weight: 700; }
+
+  /* ============ BODY ============ */
+  p {
+    margin: 0 0 18px;
+    color: var(--ink-soft);
+  }
+
+  em { color: var(--red); font-style: italic; }
+  strong { color: var(--ink); }
+
+  .opener {
+    font-family: 'Caveat', cursive;
+    font-size: 22px;
+    color: var(--red);
+    line-height: 1.4;
+    margin: 0 0 28px;
+    padding: 14px 20px;
+    border-left: 4px solid var(--red);
+    background: rgba(255, 220, 120, 0.15);
+    transform: rotate(-0.2deg);
+  }
+  .opener span { display: block; }
+
+  .hl {
+    background: linear-gradient(180deg, transparent 55%, var(--highlight) 55%, var(--highlight) 92%, transparent 92%);
+    padding: 0 2px;
+  }
+
+  /* ============ CALLOUT ============ */
+  .callout {
+    position: relative;
+    background: #fffcf0;
+    border: 1px solid var(--ink);
+    padding: 24px 28px;
+    margin: 32px 0 36px;
+    transform: rotate(-0.5deg);
+    box-shadow: 4px 6px 0 rgba(31, 42, 74, 0.15);
+  }
+  .callout::before {
+    content: "";
+    position: absolute;
+    top: -14px; left: 30px;
+    width: 80px; height: 22px;
+    background: var(--tape);
+    transform: rotate(-3deg);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+  }
+  .callout-title {
+    font-family: 'Kalam', cursive;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--ink);
+    margin: 0 0 8px;
+  }
+  .callout em { font-style: italic; color: var(--pencil); font-size: 16px; }
+  .callout p { margin: 8px 0; }
+
+  /* ============ SVG-POLAROID FIGURES ============ */
+  figure {
+    margin: 40px auto;
+    max-width: 540px;
+    background: #fffdf6;
+    padding: 14px 14px 50px;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1), 0 8px 20px rgba(0,0,0,0.18);
+    position: relative;
+  }
+  figure .pic {
+    display: block;
+    width: 100%;
+    background: var(--paper-shade);
+    aspect-ratio: 16 / 10;
+  }
+  figure figcaption {
+    position: absolute;
+    bottom: 12px; left: 14px; right: 14px;
+    font-family: 'Caveat', cursive;
+    font-size: 18px;
+    color: var(--pencil);
+    line-height: 1.2;
+    text-align: center;
+  }
+  figure.tilt-l { transform: rotate(-1.6deg); }
+  figure.tilt-r { transform: rotate(1.4deg); }
+  figure.tilt-s { transform: rotate(-0.6deg); }
+  figure::before {
+    content: "";
+    position: absolute;
+    top: -14px; left: 50%;
+    width: 100px; height: 26px;
+    background: var(--tape-blue);
+    transform: translateX(-50%) rotate(-2deg);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+  }
+  figure.tilt-r::before {
+    background: var(--tape);
+    transform: translateX(-50%) rotate(2deg);
+  }
+
+  /* ============ SECTION HEADS ============ */
+  h2.section {
+    font-family: 'Kalam', cursive;
+    font-weight: 700;
+    font-size: 32px;
+    color: var(--ink);
+    margin: 48px 0 6px;
+    position: relative;
+    display: inline-block;
+  }
+  h2.section::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 8px;
+    background:
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 8'><path d='M2 5 Q 25 1, 50 5 T 100 5 T 150 5 T 198 5' fill='none' stroke='%23b73a3a' stroke-width='2' stroke-linecap='round'/></svg>") no-repeat center / 100% 100%;
+    margin-top: 2px;
+  }
+
+  h3.subsection {
+    font-family: 'Kalam', cursive;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--ink);
+    margin: 32px 0 12px;
+  }
+
+  /* ============ THE PROMPT ============ */
+  .prompt {
+    font-family: 'Special Elite', monospace;
+    font-size: 15px;
+    line-height: 1.55;
+    background: var(--highlight-soft);
+    padding: 22px 22px 18px;
+    border-left: 5px solid var(--ink);
+    margin: 18px 0 22px;
+    color: var(--ink);
+    position: relative;
+    transform: rotate(-0.2deg);
+  }
+  .prompt::before {
+    content: "PROMPT";
+    position: absolute;
+    top: -10px; left: 16px;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 2px 8px;
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
+
+  /* ============ LISTS ============ */
+  ol.numbered, ul.dashed {
+    list-style: none;
+    padding: 0;
+    margin: 16px 0 24px;
+  }
+  ol.numbered li {
+    counter-increment: step;
+    position: relative;
+    padding: 12px 16px 12px 56px;
+    margin-bottom: 10px;
+    background: rgba(255, 253, 240, 0.6);
+    border-left: 3px solid var(--ink);
+  }
+  ol.numbered li::before {
+    content: counter(step);
+    position: absolute;
+    left: 14px; top: 10px;
+    font-family: 'Caveat', cursive;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--red);
+    line-height: 1;
+  }
+  ol.numbered { counter-reset: step; }
+
+  ul.dashed li {
+    position: relative;
+    padding: 4px 0 4px 32px;
+    margin-bottom: 8px;
+  }
+  ul.dashed li::before {
+    content: "✓";
+    position: absolute;
+    left: 6px; top: 4px;
+    font-family: 'Caveat', cursive;
+    font-size: 22px;
+    color: var(--red);
+    font-weight: 700;
+  }
+
+  code {
+    font-family: 'Special Elite', monospace;
+    background: rgba(31, 42, 74, 0.08);
+    padding: 1px 6px;
+    border-radius: 2px;
+    font-size: 0.92em;
+    color: var(--ink);
+  }
+
+  /* Warning banner */
+  .warning {
+    font-family: 'Kalam', cursive;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--red);
+    text-align: center;
+    margin: 28px 0;
+    padding: 14px;
+    border-top: 2px dashed var(--red);
+    border-bottom: 2px dashed var(--red);
+    transform: rotate(-0.3deg);
+  }
+
+  /* ============ FOOTER ============ */
+  .colophon {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid var(--ink);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .colophon-brand {
+    font-family: 'Special Elite', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--pencil);
+  }
+  .colophon-brand b {
+    display: block;
+    font-size: 18px;
+    color: var(--ink);
+    letter-spacing: 4px;
+    margin-bottom: 2px;
+  }
+  .colophon-fineprint {
+    font-family: 'Special Elite', monospace;
+    font-size: 9px;
+    letter-spacing: 1px;
+    color: var(--pencil);
+    opacity: 0.6;
+    text-align: right;
+  }
+
+  .signoff {
+    font-family: 'Caveat', cursive;
+    font-size: 32px;
+    color: var(--red);
+    text-align: right;
+    margin: 36px 0 8px;
+    transform: rotate(-2deg);
+  }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 720px) {
+    body { padding: 16px 8px 60px; }
+    .page { padding: 40px 24px 50px 56px; }
+    .page::before { left: 38px; }
+    .masthead { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .masthead-title { font-size: 28px; letter-spacing: 2px; }
+    .masthead-meta { text-align: left; }
+    h1.title { font-size: 44px; }
+    .dek { font-size: 18px; }
+    h2.section { font-size: 26px; }
+    figure { max-width: 100%; }
+    .colophon { flex-direction: column; align-items: flex-start; }
+    .colophon-fineprint { text-align: left; }
+  }
+</style>
+</head>
+<body>
+  <article class="page">
+
+    <header class="masthead">
+      <div class="masthead-title">THE GUIDEWIRE</div>
+      <div class="masthead-meta">
+        Field Notes &nbsp;·&nbsp; Tutorial<br />
+        May 14, 2026 &nbsp;·&nbsp; soleintell.com
+      </div>
+    </header>
+
+    <span class="section-label">AI · BOARD PREP SKILL</span>
+
+    <div class="title-block">
+      <h1 class="title">NotebookLM ± Claude for Board Exams: How To</h1>
+      <p class="dek">Closed-source study, podcast on the commute, quizzes with memory.</p>
+      <div class="byline">By <strong>Peter Sorensen, DPM</strong></div>
+    </div>
+
+    <div class="opener">
+      <span>For APMLE, ABFAS qualification, ITE, ABPM — anything where you have a stack of sources and not enough time.</span>
+      <span style="margin-top: 8px;">If you've ever tried to study from 14 different PDFs at once, this one's for you.</span>
+    </div>
+
+    <p>Board study is mostly a fragmentation problem. McGlamry's in one tab. Easley's in another. Your residency lectures saved as .mp4s somewhere. Old test questions in a Word doc you swore you'd organize. The goated AdiPod deck. The lab values you wrote in your pocket notebook during clinic.</p>
+
+    <p>The problem isn't that there's nothing to study. It's that <span class="hl">no single source covers what's on the exam</span>, and you can't read all of them every time. Passive review of pre-made flashcards stops working somewhere around the second time through. Anki helps. But simulating test questions is higher yield. </p>
+
+    <p>NotebookLM is the solution. It's a research assistant from Google that <em>only knows what you upload</em>. No open-web answers. No hallucinated journal articles. Source-grounded with clickable citations back to your PDFs. And as of the 2026 Studio update, the quiz and flashcard tools actually remember your progress between sessions, which is the thing that turns it from a demo into a real study tool.</p>
+
+    <p>The catch: the things NotebookLM is bad at — clinical reasoning vignettes, long-running gap tracking, exporting your work — are exactly the things Claude (or ChatGPT) is good at. So the workflow is a handoff. More on that at the end.</p>
+
+    <div class="callout">
+      <p class="callout-title">What this tutorial covers</p>
+      <p><em>About 10 minutes to read. Maybe half an hour to set up your first board notebook.</em></p>
+      <p>(1) What NotebookLM is and why it's different from ChatGPT. (2) The three-panel layout. (3) What sources to feed it. (4) The Studio tools that actually matter for board study. (5) How to preserve memory between quiz sessions — the part most tutorials skip. (6) The handoff to Claude for vignettes and gap tracking.</p>
+    </div>
+
+    <figure class="tilt-l">
+      <svg class="pic" viewBox="0 0 480 300" xmlns="http://www.w3.org/2000/svg">
+        <rect width="480" height="300" fill="#ebe3cb"/>
+        <!-- three panels -->
+        <rect x="20" y="40" width="130" height="240" fill="#fffdf6" stroke="#1f2a4a" stroke-width="1.5"/>
+        <rect x="160" y="40" width="160" height="240" fill="#fffdf6" stroke="#1f2a4a" stroke-width="1.5"/>
+        <rect x="330" y="40" width="130" height="240" fill="#fffdf6" stroke="#1f2a4a" stroke-width="1.5"/>
+        <!-- labels -->
+        <text x="85" y="62" text-anchor="middle" font-family="Special Elite, monospace" font-size="11" fill="#1f2a4a" letter-spacing="2">SOURCES</text>
+        <text x="240" y="62" text-anchor="middle" font-family="Special Elite, monospace" font-size="11" fill="#1f2a4a" letter-spacing="2">CHAT</text>
+        <text x="395" y="62" text-anchor="middle" font-family="Special Elite, monospace" font-size="11" fill="#1f2a4a" letter-spacing="2">STUDIO</text>
+        <!-- source list items -->
+        <g font-family="Lora, serif" font-size="9" fill="#3b466b">
+          <rect x="30" y="78" width="110" height="18" fill="#fff8e1" stroke="#c8a4a4" stroke-width="0.5"/>
+          <text x="36" y="90">📄 McGlam notes.pdf</text>
+          <rect x="30" y="100" width="110" height="18" fill="#fff8e1" stroke="#c8a4a4" stroke-width="0.5"/>
+          <text x="36" y="112">🎙 ACFAS webinar.mp3</text>
+          <rect x="30" y="122" width="110" height="18" fill="#fff8e1" stroke="#c8a4a4" stroke-width="0.5"/>
+          <text x="36" y="134">📝 My lecture notes</text>
+          <rect x="30" y="144" width="110" height="18" fill="#fff8e1" stroke="#c8a4a4" stroke-width="0.5"/>
+          <text x="36" y="156">▶ YouTube lecture</text>
+          <rect x="30" y="166" width="110" height="18" fill="#fff8e1" stroke="#c8a4a4" stroke-width="0.5"/>
+          <text x="36" y="178">📄 Old test Qs</text>
+          <rect x="30" y="188" width="110" height="18" fill="#fff8e1" stroke="#c8a4a4" stroke-width="0.5"/>
+          <text x="36" y="200">📄 Weak Areas.gdoc</text>
+        </g>
+        <!-- chat bubbles -->
+        <g font-family="Lora, serif" font-size="9" fill="#3b466b">
+          <rect x="170" y="80" width="140" height="26" rx="4" fill="#f5efde"/>
+          <text x="178" y="94">Explain Lisfranc</text>
+          <text x="178" y="103" fill="#6b6b6b" font-size="7">classifications</text>
+          <rect x="170" y="120" width="140" height="38" rx="4" fill="#fff3a0"/>
+          <text x="178" y="134">Quenu &amp; Kuss: total,</text>
+          <text x="178" y="144">partial, divergent</text>
+          <text x="178" y="154" fill="#b73a3a" font-size="7">[1] [3]</text>
+        </g>
+        <!-- studio tools -->
+        <g font-family="Special Elite, monospace" font-size="8" fill="#1f2a4a">
+          <rect x="338" y="80" width="115" height="22" fill="#fff3a0"/>
+          <text x="345" y="94">🎧 AUDIO OVERVIEW</text>
+          <rect x="338" y="108" width="115" height="22" fill="#fffdf6" stroke="#1f2a4a" stroke-width="0.5"/>
+          <text x="345" y="122">🧠 MIND MAP</text>
+          <rect x="338" y="136" width="115" height="22" fill="#fffdf6" stroke="#1f2a4a" stroke-width="0.5"/>
+          <text x="345" y="150">📋 STUDY GUIDE</text>
+          <rect x="338" y="164" width="115" height="22" fill="#fff3a0"/>
+          <text x="345" y="178">🃏 FLASHCARDS</text>
+          <rect x="338" y="192" width="115" height="22" fill="#fff3a0"/>
+          <text x="345" y="206">❓ QUIZ</text>
+          <rect x="338" y="220" width="115" height="22" fill="#fffdf6" stroke="#1f2a4a" stroke-width="0.5"/>
+          <text x="345" y="234">📊 SLIDES</text>
+        </g>
+        <!-- arrow hints -->
+        <text x="240" y="270" text-anchor="middle" font-family="Caveat, cursive" font-size="14" fill="#b73a3a">left → right is the workflow</text>
+      </svg>
+      <figcaption>The three-panel layout. Sources on the left, Chat in the middle, Studio on the right. Work left to right.</figcaption>
+    </figure>
+    <h2 class="section">Why not just ChatGPT or Claude?</h2>
+
+    <p The short answer: <span class="hl"></span>ChatGPT and Claude can pull from anywhere in their training data, which is great for reasoning and writing but lousy when you need to be sure a fact came from your source and not a hallucinated paper. NotebookLM only answers from what you uploaded. Every claim has a citation that clicks back to the exact paragraph.</p>
+
+    <p>That matters for board study because the wrong answer at the wrong time is how you fail. If you're going to commit something to long-term memory, you want to know it came from McGlamry and not from a r/Poddit thread the model accidentally absorbed.</p>
+
+    <p>That said — Claude is better than NotebookLM at three things: writing exam-style vignettes, tracking your weak areas across many sessions, and exporting work to where you actually want it. So use both if you have the AI-bandwith to learn how.</p>
+
+    <h2 class="section">Step 1: Set it up</h2>
+
+    <ol class="numbered">
+      <li>Go to <code>notebooklm.google.com</code>. Sign in with a Google account. <strong>Use the same account you keep your study materials in</strong> — it integrates with Drive.</li>
+      <li>Click <strong>Create new notebook</strong>. <span class="hl">One notebook per topic, not one per exam.</span> "ABFAS Forefoot" is a notebook. "ABFAS" is a folder of notebooks. NotebookLM gets sharper answers when sources are tightly scoped — dumping all of forefoot, rearfoot, and trauma into one notebook makes the chat worse, not better.</li>
+      <li>Free tier is plenty Even I haven't hit levels I need to pay for. Yet. You get 100 notebooks, 50 sources per notebook, 500,000 words per source, 200 MB per file. </li>
+    </ol>
+
+    <h2 class="section">Step 2: Feed it sources</h2>
+
+    <p>The output is only as good as what you upload. Garbage in, garbage out — and NotebookLM will cite the garbage with a straight face. Be picky.</p>
+
+    <h3 class="subsection">What to upload</h3>
+
+    <ul class="dashed">
+      <li><strong>Your notes from textbook chapters.</strong> McGlamry, Coughlin & Mann, Easley, pick your poison. Many programs hand down study guides made by residents of lore.</li>
+      <li><strong>Legal access matters </strong> I'll publish a 'legal guide' soon - just know technically you need legal access to upload sources to AI tools. That being said, I can just educate you, not control what you do. Your own notes, or summaries of primary sources, are the safest area legally. </li>
+      <li><strong>Recorded lectures.</strong> NotebookLM accepts .mp3, .mp4, .wav. If your program records academics, upload them. The audio overview can turn an attending's lecture into active learning resources.</li>
+      <li><strong>YouTube URLs.</strong> Heads up — NotebookLM doesn't watch the video, it reads the transcript. Means it works great for lectures and talks, useless for surgical technique videos where the value is visual.</li>
+      <li><strong>Articles (that you have lawful access to obviously, c'mon son).</strong>Generally if you have insitutional access to the articles through your hospital/school, you can upload those to a closed-source tool for personal use. The legal landscape is evolving though, stay tuned.</li>
+      <li><strong>A "Weak Areas" Google Doc.</strong> Empty for now — we'll come back to this. This is the trick that makes memory work across sessions.</li>
+    </ul>
+
+    <h3 class="subsection">What NOT to upload</h3>
+
+    <ul class="dashed">
+      <li>Copyrighted exam prep content. <em>This is a license violation</em>, and depending on the source it can be a board violation. Use your own notes from prep courses, not the materials themselves. Got it? We on the same page? Great.</li>
+      <li>Random Reddit threads, SDN posts, anonymous blogs. NotebookLM will treat them with the same authority as McGlamry.</li>
+      <li>Anything with patient identifiers. Yes, the privacy policy says Google doesn't train on your data — but you don't need to be the test case for that. HIPAA is king.</li>
+    </ul>
+
+    <h2 class="section">Step 3: The Studio tools that matter</h2>
+
+    <p>The Studio panel on the right has ~10 tools. You don't need all of them. For board study, these are the ones worth your time:</p>
+
+    <h3 class="subsection">🎧 Audio Overview (lower yield cuz' it's passive learning but still useful)</h3>
+
+    <p>Two AI hosts have a podcast-style conversation about your sources. Sounds like NPR. You can listen on the commute, at the gym, while running, while walking the dog. The free version is generic; <em>customize the focus</em> by clicking the prompt button.</p>
+
+    <div class="prompt - just an example. You can tell your fave LLM to make you a prompt for this tool so you don't have to write this all out">
+      You are two podcast hosts preparing a podiatric surgery resident for the ABFAS qualification exam. Focus on the Lisfranc complex from these sources. Cover: anatomy, mechanism of injury, Quenu and Kuss classification, Myerson classification, indications for ORIF vs primary arthrodesis, and the 2-3 highest-yield pearls a resident would be tested on. Go deep on complications — that's a high-yield area. Skip introductions and history. ~15 minutes.
+    </div>
+
+    <p>The 2026 update added a <strong>Brief</strong> format (5-min summary), <strong>Critique</strong> (the hosts push back on the source), and <strong>Debate</strong> (two opposing views). Brief is great for review the day before a quiz. Critique is great if your source is a single guideline and you want to hear the other side. Use them.</p>
+
+    <p>You can also <strong>"Join the Conversation"</strong> — interrupt the hosts mid-podcast and ask a question. I'd still call this mostly PASSIVE learning though. You can get creative and make it ACTIVE learning by creating niche audio overviews or by "participating" in the podcast.I personally use this to keep up to date on literature.</p>
+
+    <h3 class="subsection">📋 Study Guide / Briefing Doc</h3>
+
+    <p>One-click structured outline. Less sexy than the podcast but more useful for actual study. Remember reading a study guide is PASSIVE still though. But this can be a good way to make new study guides on certain topics that are condensed - may be good for token maxxing in the future.</p>
+
+    <div class="prompt - the more creative and niche the prompt, the better the output.">
+      Generate a study guide for a PGY-2 podiatric surgery resident preparing for the in-training exam. Organize by: (1) anatomy, (2) classification systems with side-by-side comparison, (3) workup, (4) management algorithm, (5) complications. End with a "common pitfalls" section. Include exam-style buzzwords.
+    </div>
+
+    <h3 class="subsection">🃏 Flashcards(MEH) & Quiz (GOAT)</h3>
+
+
+    <p>Flashcards (meh): one-click stack from your sources. You sort each card into <strong>Got it</strong> / <strong>Missed it</strong> as you go. <span class="hl">As of the March 2026 Studio update, that sort now persists between sessions.</span> Close the tab, come back tomorrow, the cards you missed are still missed. Cards you got move to the back of the deck. Click <strong>Explain</strong> on any card to get a full breakdown with citations.</p>
+
+    <p>Quiz (GOATED): This is THE HIGHEST YIELD ACTIVE LEARNING ACTIVITY you can do. Multiple choice or short answer, generated from your sources, with answer key citations. Progress also persists now. Set the difficulty. Customize the prompt to focus on weak areas.</p>
+
+    <div class="prompt">
+      Generate 15 multiple-choice questions in ABFAS exam style. Cover the full forefoot — bunions, hammertoes, Morton's, sesamoid pathology, MTPJ instability. Include 3-5 questions per topic. For each question, write a 2-3 sentence rationale with citations. Difficulty: hard. Avoid trivia — test clinical decision-making and classification."
+    </div>
+    <p>so that's obviously an AI-generated prompt. That's how I started, but as the AI learns your stylistic preferences, you don't have to type it all out so specifically. Now what i do is test by topic. All I'll say is "Give me 10 questions on revision TAR. Emphasize complications post-operative management.</p>
+    <h2 class="section">Step 4: Preserve memory between sessions</h2>
+
+    <p>Here's where most tutorials wave their hands. Two layers of memory to think about:</p>
+
+    <h3 class="subsection">Within a notebook (easy — it just works now)</h3>
+
+    <p>The 2026 Studio update made quiz progress and flashcard sort persistent. <span class="hl">If you stay inside the same notebook, NotebookLM remembers what you missed.</span> Just keep coming back to the same notebook. Don't make a new one for every study session — that's the rookie mistake. One notebook per topic, used over weeks.</p>
+
+    <h3 class="subsection">Across notebooks (the hard part)</h3>
+
+    <p>NotebookLM has <em>no cross-notebook memory</em>. Your forefoot notebook doesn't know what you missed in your rearfoot notebook. The chat itself doesn't save between sessions by default (a "save chat history" feature is rolling out as of this writing, but it's not the same as cross-notebook memory).</p>
+
+    <p>The fix is a manual but very effective workflow I call the <strong>Weak Areas Doc</strong>:</p>
+
+    <ol class="numbered">
+      <li><strong>Create a single Google Doc</strong> called "Board Study — Weak Areas." Add it as a source to <em>every</em> notebook you make. Because it's a live Google Doc, when you update it, all your notebooks see the update next time they sync sources. When you first make it, NotebookLM takes aa static shot of what that document contains at that moment. So don't forget to manually 're-sync' to google drive. Takes 2 seconds, but don't forget to do it or your updates in each notebook won't come through</li>
+      <li><strong>After every quiz session</strong>, copy the questions you missed (and the citations) into the Weak Areas doc. Takes 2 minutes.</li>
+      <li><strong>At the start of the next session</strong>, prompt: <em>"Emphasize items related to entries in my Weak Areas doc."</em> Or you can manually toggle off all resources except your Weak Areas doc. Now you have cross-notebook memory by hand.</li>
+      <li><strong>Once a week, prompt:</strong> <em>"Generate an audio overview focused only on the items in my Weak Areas doc."</em> Listen on the commute. The system has now turned itself into a personalized review podcast of your weakest points Pro tip: If you've taken an ITE before, you can see what areas you struggled with in PRR and ensure you're hitting those topics. My weakest was complications, so that's often my focus.</li>
+    </ol>
+
+    <p>It's two extra minutes per session for a memory layer NotebookLM doesn't natively have. Worth it.</p>
+
+    <h2 class="section">Step 5: The Gemini/Claude handoff</h2>
+
+    <p>Before you read more: If you've easily followed all the above, keep reading about Claude. If you've never used Claude, this might be too much to start with. My suggestion is to start with integrating NotebookLM with Gemini (they're both Google apps so it's easy). Just use Gemini and prompt it for an interactive quiz, use the "+" button and link it to a specific Notebook you've created. Have to do that on desktop although most other thingns the mobile app works great for. That's easy and where you should start. Next step - experiment with making a "Custom Gem" board exam practice maker linked to your Notebooks. See how you like it. If you're good at this kind of thing, in my opinion integration with Claude is exponentially more powerful. So in this particular guide I'll proceed with the step-by-step for Claude. 
+      <p>Now I digress and explain Claude for completeness' sake. Two things NotebookLM is genuinely bad at, that Claude (or ChatGPT or Gemini) does well:</p>
+
+    <ul class="dashed">
+      <li><strong>Long-form clinical vignettes in board style.</strong> NotebookLM can generate quiz questions, but the writing is dry and the clinical reasoning feels thin. Board exams love patient vignettes — "32-year-old marathon runner, 6 weeks of medial midfoot pain, no trauma…" — and Claude writes those much better.</li>
+      <li><strong>Persistent memory across topics.</strong> Claude Projects have a memory layer that NotebookLM doesn't. One Claude Project = your whole board prep. It remembers your weak areas, your case logs, the abbreviations you use. It can track you across all your study.</li>
+      <li><strong>Export.</strong> NotebookLM has no native way to push a flashcard deck out to Anki, Quizlet, or even a printable PDF. Claude can. At the time of this writing chatGPT and Gemini are developing similar features. The whole "every AI tool becomes every other AI tool" phenomenon.</li>
+    </ul>
+
+    <h3 class="subsection">The workflow (manual workflow - see below for next-level automation)</h3>
+
+    <ol class="numbered">
+      <li><strong>Generate a Briefing Doc in NotebookLM</strong> on your topic. This is your source-grounded, hallucination-free study material. Download it.</li>
+      <li><strong>Create a Claude Project</strong> called "Board Study" (or one per exam — your call). Upload the Briefing Doc as a project file. You can see the importance of organized computer files I hope by this point.</li>
+      <li><strong>Have Claude write vignettes.</strong> Prompt: <em>"Using the attached briefing doc, write 10 ABFAS-style patient vignettes with 5 answer choices each. After each one, give a 4-sentence rationale and identify what high-yield concept it tests. .....or just say 'gimme questions on Lisfranc complications' - remember these more robust prompts are for noobs (I use that term endearingly) whose LLMs haven't already been manually trained."</em></li>
+      <li><strong>Work through the vignettes in Claude.</strong> Ones you miss → Claude adds them to its project memory automatically (tell it: <em>"remember that I struggled with X"</em>). Now you have persistent gap tracking across every study session. This is the beautiful thing - Claude will forever remember the topics you're struggling with. And will bring them back up.</li>
+      <li><strong>Loop back.</strong> Take Claude's list of your weak areas and bring it back to NotebookLM to make a focused audio overview of just those gaps. Cycle.</li>
+      <li><strong>Export to Anki.</strong> If that's your vibe. Prompt Claude: <em>"Convert these 30 facts into Anki-ready format. Tab-separated, front on left, back on right, with my tags."</em> Paste into Anki's import dialog. Done. note - usually it works best if you export as a csv file. Like any AI tool, if it doesn't work the first time, just try, try again.</li>
+    </ol>
+
+    <p>NotebookLM alone is good. Gemini alone is good. Claude alone is good. <span class="hl">Put it all together and they cover each other's blind spots</span> and you end up with a study system that's source-grounded, memory-persistent, exportable, and conversational — all at once. ACTIVE LEARNING LFG!!!</p>
+
+    <h2 class="section">Warnings &amp; Pearls</h2>
+
+    <div class="warning">⚠ Source-grounded doesn't mean source-perfect. ⚠</div>
+
+    <ul class="dashed">
+      <li><strong>Audio overviews sound more confident than they are.</strong> They're persuasive narration. If a host says something that changes your management, click back to the source citation and verify. Don't memorize wrong information just because it sounded authoritative on the treadmill.</li>
+      <li><strong>Closed source, but still imperfect...con or pro?</strong> THIS IS SUPER IMPORTANT! It will NOT be right all the time. Some may argue and say that's a danger and you might learn things wrong - well first of all, risks vs benefits, you've never studied like this in your life so stuff it, and also - that's the whole point of turning this from PASSIVE learning to ACTIVE LEARNING! You are INTERACTING with the material. If something feels off - push back! The AI will double check and look at its reasoning and sources. Closed source hallucinates less, but is NOT perfect. My argument is that that leveraging that fact actually makes you a MORE ACTIVE LEARNER. Always be dubious about ANY AI output. Keep your wits about you. This is a BETTER way to learn.</li>
+      <li><strong>The quality of your sources is the ceiling.</strong> If you upload three outdated PowerPoint decks, you'll get an audio overview of three outdated PowerPoint decks. Curate.</li>
+      <li><strong>Don't outsource the thinking.</strong> The tool helps you study. It does not replace clinical reasoning, pattern recognition built over thousands of patient encounters, or the synthesis you have to do in your own head. That's still on you. Always will be.</li>
+    </ul>
+
+    <p>One more pearl, mostly for the gunner residents and the M3/M4s reading: <span class="hl">making the resource is the active learning</span>. Same principle as the handwritten-notes-to-infographic workflow from last time. The act of writing the prompt, curating the sources, choosing what to ask the quiz to focus on — that's where the encoding happens. Don't skip to the Audio Overview without doing the prompt work first. That's just passive listening with extra steps.</p>
+
+    <p>If you found this helpful, please let me know! I'd love some feedback on what's working, what's not working. My goal is to empower the next generation of podiatrists to move the profession forward and be the leaders the field needs. LMK how I can help you troubleshoot your AI tools, send me screenshots, w/e. Here to help.
+
+      <p> One very last note: Is this workflow what I'm using? Nope. A month ago at AO I started experimenting with the best approach to board review. This outlines the best way I have found to do it consistently and reliably. But I don't like to stay static with these things, I'm always trying something new. Maybe I'll post about this someday, but I'm currently building automated flows with community outsourced git repositories that make NotebookLM work directly with Claude Cowork. It's...um, intense to say the least. It makes NotebookLM work on Claude similar to how Gemini works with it currently (May 2026). Gemini will probably catch up and the NotebookLM + Gemini combo will get what we need done efficiently. But for now, Claude knows me, I've trained it, it knows my preferences. I don't have to write long prompts anymore, it's super easy. Hence the git repo. I'll let you know how it goes.</p>
+    </p>
+
+    <div class="signoff">— Peter</div>
+
+    <footer class="colophon">
+      <div class="colophon-brand">
+        <b>SOLE INTELLIGENCE</b>
+        soleintell.com
+      </div>
+      <div class="colophon-fineprint">
+        © 2026 Peter Sorensen, DPM<br />
+        All rights reserved.
+      </div>
+    </footer>
+
+  </article>
+</body>
+</html>

@@ -63,4 +63,13 @@ window.INFOGRAPHICS = [
     date: "2025-05-16",
     thumbnail: "Sole Intelligence Images/posterolateral_ocd.png"
   }
+  {
+    title: "AI-Powered Board Study",
+    description: "How to use NotebookLM to become an ACTIVE learner - and how to use Claude if you're brave enough to try.",
+    kicker: "AI How To",
+    category: "ai-tutorials",
+    url: "boardstudy.html",
+    date: "2025-05-26",
+    thumbnail: "Sole Intelligence Images/boardstudy.png"
+  }
 ]
