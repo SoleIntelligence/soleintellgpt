@@ -8,17 +8,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Caveat:wght@500;600;700&family=Kalam:wght@300;400;700&display=swap');
 
 :root{
-  --board:#F6F7F1;
-  --board2:#EEF0E6;
-  --ink:#2A2A26;
-  --ink-soft:#55554d;
-  --red:#E5484D;
-  --blue:#2B6EF2;
-  --green:#1FA84B;
-  --orange:#F39A14;
-  --purple:#8A4FE0;
-  --hi:#FFE94D;
-  --hi2:#9BE7C4;
+  --board:#F6F7F1;--board2:#EEF0E6;--ink:#2A2A26;--ink-soft:#55554d;
+  --red:#E5484D;--blue:#2B6EF2;--green:#1FA84B;--orange:#F39A14;--purple:#8A4FE0;
+  --hi:#FFE94D;--hi2:#9BE7C4;
 }
 
 *{box-sizing:border-box;margin:0;padding:0;}
@@ -35,187 +27,87 @@ body{
   -webkit-font-smoothing:antialiased;
 }
 
-.board{
-  max-width:740px;
-  margin:0 auto;
-  padding:0 24px 90px;
-}
+.board{max-width:740px;margin:0 auto;padding:0 24px 90px;}
 
-/* ---------- top tape ---------- */
 .tape{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:22px 0 16px;
-  font-family:'Caveat',cursive;
-  font-size:20px;
-  color:var(--ink-soft);
+  display:flex;justify-content:space-between;align-items:center;
+  padding:22px 0 16px;font-family:'Caveat',cursive;font-size:20px;color:var(--ink-soft);
   border-bottom:3px dashed #cfd2c4;
 }
-.tape .brand{
-  color:var(--red);
-  font-weight:700;
-  font-size:24px;
-  transform:rotate(-1.5deg);
-}
+.tape .brand{color:var(--red);font-weight:700;font-size:24px;transform:rotate(-1.5deg);}
 
-/* ---------- masthead ---------- */
 .head{padding:46px 0 30px;}
 .kicker{
-  display:inline-block;
-  font-family:'Permanent Marker',cursive;
-  font-size:13px;
-  letter-spacing:.04em;
-  color:#fff;
-  background:var(--blue);
-  padding:6px 14px;
-  transform:rotate(-2deg);
-  box-shadow:3px 3px 0 rgba(43,110,242,.25);
-  margin-bottom:26px;
+  display:inline-block;font-family:'Permanent Marker',cursive;font-size:13px;letter-spacing:.04em;
+  color:#fff;background:var(--blue);padding:6px 14px;transform:rotate(-2deg);
+  box-shadow:3px 3px 0 rgba(43,110,242,.25);margin-bottom:26px;
 }
-h1{
-  font-family:'Permanent Marker',cursive;
-  font-weight:400;
-  font-size:clamp(32px,7.5vw,52px);
-  line-height:1.08;
-  letter-spacing:-.01em;
-}
-h1 .you{
-  color:var(--red);
-  position:relative;
-  display:inline-block;
-}
-/* hand-drawn circle around YOUR */
-h1 .you svg{
-  position:absolute;
-  top:-12px;left:-14px;
-  width:calc(100% + 28px);
-  height:calc(100% + 24px);
-  pointer-events:none;
-}
-.dek{
-  font-size:21px;
-  margin-top:26px;
-  max-width:600px;
-  color:var(--ink);
-}
-.hl{
-  background:linear-gradient(transparent 55%, var(--hi) 55%, var(--hi) 92%, transparent 92%);
-  padding:0 2px;
-}
-.byline{
-  margin-top:24px;
-  font-family:'Caveat',cursive;
-  font-size:22px;
-  color:var(--ink-soft);
-}
+h1{font-family:'Permanent Marker',cursive;font-weight:400;font-size:clamp(32px,7.5vw,52px);line-height:1.08;letter-spacing:-.01em;}
+h1 .you{color:var(--red);position:relative;display:inline-block;}
+h1 .you svg{position:absolute;top:-12px;left:-14px;width:calc(100% + 28px);height:calc(100% + 24px);pointer-events:none;}
+.dek{font-size:21px;margin-top:26px;max-width:600px;color:var(--ink);}
+.hl{background:linear-gradient(transparent 55%, var(--hi) 55%, var(--hi) 92%, transparent 92%);padding:0 2px;}
+.byline{margin-top:24px;font-family:'Caveat',cursive;font-size:22px;color:var(--ink-soft);}
 .byline b{color:var(--ink);}
 
-/* ---------- the bill box (sketchy border) ---------- */
 .billbox{
-  margin:38px 0 14px;
-  background:#fff;
-  border:3px solid var(--ink);
-  border-radius:14px 10px 16px 9px / 9px 16px 8px 14px;
-  padding:24px 26px;
-  box-shadow:6px 6px 0 rgba(42,42,38,.12);
-  transform:rotate(-.4deg);
+  margin:38px 0 14px;background:#fff;border:3px solid var(--ink);
+  border-radius:14px 10px 16px 9px / 9px 16px 8px 14px;padding:24px 26px;
+  box-shadow:6px 6px 0 rgba(42,42,38,.12);transform:rotate(-.4deg);
 }
-.billbox h2{
-  font-family:'Permanent Marker',cursive;
-  font-weight:400;
-  font-size:24px;
-  margin-bottom:6px;
-  color:var(--ink);
-}
+.billbox h2{font-family:'Permanent Marker',cursive;font-weight:400;font-size:24px;margin-bottom:6px;color:var(--ink);}
 .billbox .sub{font-family:'Caveat',cursive;font-size:21px;color:var(--orange);margin-bottom:14px;}
 .facts{display:flex;flex-wrap:wrap;gap:10px 26px;}
 .fact{font-size:17px;}
 .fact b{font-family:'Caveat',cursive;font-size:20px;color:var(--blue);display:block;line-height:1.1;}
 
-/* ---------- section label ---------- */
-.slab{
-  font-family:'Permanent Marker',cursive;
-  font-size:27px;
-  margin:54px 0 4px;
-  display:flex;align-items:center;gap:12px;
-}
+.slab{font-family:'Permanent Marker',cursive;font-size:27px;margin:54px 0 4px;display:flex;align-items:center;gap:12px;}
 .slab .arrow{width:46px;height:26px;flex:none;}
 
-/* ---------- numbered marker cards ---------- */
 .card{
-  position:relative;
-  background:#fff;
-  border:3px solid var(--ink);
+  position:relative;background:#fff;border:3px solid var(--ink);
   border-radius:12px 16px 10px 14px / 14px 9px 16px 10px;
-  padding:22px 24px 22px 70px;
-  margin-top:26px;
+  padding:22px 24px 22px 70px;margin-top:26px;
   box-shadow:5px 5px 0 rgba(42,42,38,.10);
 }
 .card:nth-child(odd){transform:rotate(.5deg);}
 .card:nth-child(even){transform:rotate(-.6deg);}
 .num{
-  position:absolute;
-  left:-20px;top:-18px;
-  width:54px;height:54px;
-  border-radius:50%;
+  position:absolute;left:-20px;top:-18px;width:54px;height:54px;border-radius:50%;
   display:flex;align-items:center;justify-content:center;
-  font-family:'Permanent Marker',cursive;
-  font-size:26px;color:#fff;
+  font-family:'Permanent Marker',cursive;font-size:26px;color:#fff;
   box-shadow:3px 3px 0 rgba(0,0,0,.15);
 }
 .c-red .num{background:var(--red);}
 .c-blue .num{background:var(--blue);}
-.c-green .num{background:var(--green);}
-.card h3{
-  font-family:'Permanent Marker',cursive;
-  font-weight:400;
-  font-size:21px;
-  margin-bottom:10px;
-}
+.card h3{font-family:'Permanent Marker',cursive;font-weight:400;font-size:21px;margin-bottom:10px;}
 .c-red h3{color:var(--red);}
 .c-blue h3{color:var(--blue);}
-.c-green h3{color:var(--green);}
 .card p{font-size:17.5px;margin-bottom:9px;}
 .card p:last-child{margin-bottom:0;}
 
-/* define term chip */
 .def{
-  font-family:'Caveat',cursive;
-  font-size:19px;
-  color:var(--ink-soft);
-  background:var(--board2);
-  border-left:4px solid var(--hi2);
-  padding:6px 12px;
-  border-radius:4px;
-  margin:4px 0 10px;
+  font-family:'Caveat',cursive;font-size:19px;color:var(--ink-soft);
+  background:var(--board2);border-left:4px solid var(--hi2);
+  padding:6px 12px;border-radius:4px;margin:4px 0 10px;
 }
 .def b{color:var(--ink);}
 
-/* honest / confidence note */
+.eff{
+  display:inline-block;font-family:'Permanent Marker',cursive;font-size:15px;
+  color:#fff;background:var(--green);padding:5px 12px;
+  transform:rotate(-1deg);box-shadow:2px 3px 0 rgba(31,168,75,.25);
+  margin:8px 0 4px;
+}
+
 .note{
-  margin-top:12px;
-  font-family:'Caveat',cursive;
-  font-size:19px;
-  color:var(--ink-soft);
-  border-top:2px dotted #d4d6c8;
-  padding-top:10px;
+  margin-top:12px;font-family:'Caveat',cursive;font-size:19px;color:var(--ink-soft);
+  border-top:2px dotted #d4d6c8;padding-top:10px;
 }
 .note b{color:var(--red);}
 
-/* confidence meter */
-.meter{display:flex;align-items:center;gap:10px;margin-top:8px;font-family:'Caveat',cursive;font-size:18px;color:var(--ink-soft);}
-.bar{width:150px;height:14px;background:#e7e9dd;border:2px solid var(--ink);border-radius:8px;overflow:hidden;}
-.bar i{display:block;height:100%;width:70%;background:repeating-linear-gradient(45deg,var(--orange),var(--orange) 6px,#f7b54a 6px,#f7b54a 12px);}
-
-/* ---------- why care (sticky cluster) ---------- */
 .why{margin-top:30px;display:flex;flex-direction:column;gap:20px;}
-.sticky{
-  padding:22px 24px;
-  border-radius:3px;
-  box-shadow:4px 6px 12px rgba(0,0,0,.10);
-  position:relative;
-}
+.sticky{padding:22px 24px;border-radius:3px;box-shadow:4px 6px 12px rgba(0,0,0,.10);position:relative;}
 .sticky:nth-child(1){background:#FFF3B0;transform:rotate(-1.2deg);}
 .sticky:nth-child(2){background:#CDE7FF;transform:rotate(.9deg);}
 .sticky:nth-child(3){background:#D6F5DE;transform:rotate(-.7deg);}
@@ -223,58 +115,38 @@ h1 .you svg{
 .sticky p{font-size:17.5px;}
 .sticky .big{font-family:'Permanent Marker',cursive;font-size:30px;color:var(--red);display:inline-block;transform:rotate(-3deg);}
 
-/* ---------- who ---------- */
 .who{
-  margin-top:50px;
-  background:#fff;
-  border:3px dashed var(--ink);
-  border-radius:14px;
-  padding:24px 26px;
-  transform:rotate(.3deg);
+  margin-top:50px;background:#fff;border:3px dashed var(--ink);
+  border-radius:14px;padding:24px 26px;transform:rotate(.3deg);
 }
 .who h4{font-family:'Permanent Marker',cursive;font-weight:400;font-size:20px;margin-bottom:12px;}
 .who p{font-size:17.5px;margin-bottom:8px;}
 .who b{color:var(--blue);}
-.who .deheer{color:var(--green);}
 
-/* ---------- recap checklist ---------- */
 .recap{margin-top:50px;}
 .recap h4{font-family:'Permanent Marker',cursive;font-weight:400;font-size:24px;margin-bottom:16px;}
 .check{display:flex;gap:14px;align-items:flex-start;margin-bottom:14px;font-size:18.5px;}
 .check svg{flex:none;width:30px;height:30px;margin-top:2px;}
 
-/* ---------- sources + disclaimer ---------- */
 .src{margin-top:50px;font-family:'Caveat',cursive;font-size:19px;color:var(--ink-soft);line-height:1.9;}
 .src b{font-family:'Permanent Marker',cursive;font-size:16px;color:var(--ink);display:block;margin-bottom:6px;}
 .src a{color:var(--blue);text-decoration:none;border-bottom:2px dotted var(--blue);}
 
 .disc{
-  margin-top:30px;
-  background:var(--board2);
-  border:2px solid #cfd2c4;
-  border-radius:10px;
-  padding:18px 20px;
-  font-size:16px;
-  color:var(--ink-soft);
+  margin-top:30px;background:var(--board2);border:2px solid #cfd2c4;
+  border-radius:10px;padding:18px 20px;font-size:16px;color:var(--ink-soft);
 }
 .disc b{color:var(--ink);}
 
 .foot{
-  margin-top:46px;padding-top:18px;
-  border-top:3px dashed #cfd2c4;
+  margin-top:46px;padding-top:18px;border-top:3px dashed #cfd2c4;
   font-family:'Caveat',cursive;font-size:20px;color:var(--ink-soft);
   display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;
 }
 .foot .brand{color:var(--red);font-weight:700;}
 
-@media print{
-  body{background:#fff;}
-  .card,.billbox,.who{box-shadow:none;}
-}
-@media (max-width:520px){
-  .facts{flex-direction:column;gap:12px;}
-  .card{padding-left:60px;}
-}
+@media print{body{background:#fff;}.card,.billbox,.who{box-shadow:none;}}
+@media (max-width:520px){.facts{flex-direction:column;gap:12px;}.card{padding-left:60px;}}
 </style>
 </head>
 <body>
@@ -287,8 +159,8 @@ h1 .you svg{
 
   <header class="head">
     <span class="kicker">Plain-English Edition</span>
-    <h1>The rules for <span class="you">YOUR<svg viewBox="0 0 120 60" fill="none"><ellipse cx="60" cy="30" rx="55" ry="25" stroke="#E5484D" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 0" transform="rotate(-4 60 30)"/></svg></span> future job are being written right now.</h1>
-    <p class="dek">There's a bill in Congress about diabetic feet. Most of it is about <span class="hl">billing and paperwork</span>. That's the stuff school barely covers. And you'll live with these rules longer than anyone.</p>
+    <h1>The rules for <span class="you">YOUR<svg viewBox="0 0 120 60" fill="none"><ellipse cx="60" cy="30" rx="55" ry="25" stroke="#E5484D" stroke-width="3" stroke-linecap="round" transform="rotate(-4 60 30)"/></svg></span> future job are being written right now.</h1>
+    <p class="dek">There's a bill in Congress about diabetic feet. <span class="hl">The whole thing is about billing and paperwork.</span> That's the stuff school barely covers. And you'll live with these rules longer than anyone.</p>
     <p class="byline">by <b>Peter Sorensen, DPM</b></p>
   </header>
 
@@ -298,7 +170,7 @@ h1 .you svg{
     <div class="facts">
       <div class="fact"><b>HR 7905 / S 4070</b>Two names, one bill. The House version and the Senate version.</div>
       <div class="fact"><b>March 12, 2026</b>The day it was introduced.</div>
-      <div class="fact"><b>Both parties</b>Republicans and Democrats wrote it together.</div>
+      <div class="fact"><b>2 sections</b>One on Medicaid. One on diabetic shoes.</div>
     </div>
   </div>
 
@@ -307,31 +179,25 @@ h1 .you svg{
     What it actually does
   </div>
 
-  <div class="card c-red">
-    <div class="num">1</div>
-    <h3>Fix the shoe paperwork</h3>
-    <div class="def"><b>Medicare:</b> the government's health plan for people 65 and older, plus some younger people with disabilities.</div>
-    <p>Medicare pays for special diabetic shoes. These shoes help stop foot sores and amputations.</p>
-    <p>Right now, the paperwork to get those shoes is slow and clunky. This part of the bill cleans that up so patients get their shoes faster.</p>
-    <div class="note"><b>Honest note:</b> We're (this is Claude talking, not Peter) not 100% sure of the exact wording here. The full bill text was locked when we checked it (Peter aside - if I wanted to dive deeper or confirm for accuracy, I could mannually fish for the text and feed it to Claude. I think this works for today's purpose). The goal is clear. The fine print is not confirmed yet.</div>
-    <div class="meter">How sure is Claude? <span class="bar"><i></i></span> about 70%</div>
-  </div>
-
   <div class="card c-blue">
     <div class="num">2</div>
-    <h3>Match the anti-fraud rules</h3>
-    <div class="def"><b>Fraud:</b> cheating the system to get paid for things that didn't happen.</div>
-    <p>The government already has standard rules to catch fraud on normal doctor services.</p>
-    <p>Right now the diabetic shoe benefit uses its own separate rules. This part makes the shoe rules match the normal doctor rules. Same guardrails, less confusion.</p>
+    <h3>Section 2: Count podiatrists as physicians under Medicaid</h3>
+    <div class="def"><b>Medicaid:</b> the government's health plan for people with low income. (Different from Medicare.)</div>
+    <p>The federal rule that tells state Medicaid programs who counts as a "physician" currently only names MDs and DOs. This section adds <b>DPMs</b> to that list.</p>
+    <p>The result: <span class="hl">state Medicaid programs have to cover podiatric services on the same terms as MD/DO services.</span> The word for equal treatment is <b>parity</b>.</p>
+    <span class="eff">Starts Jan 1, 2026</span>
+    <div class="note"><b>Honest note:</b> this idea isn't new. It's been sitting in an older bill called the <b>HELLPP Act</b> for years. This bill just folds it in.</div>
   </div>
 
-  <div class="card c-green">
+  <div class="card c-red">
     <div class="num">3</div>
-    <h3>Pay podiatrists fairly under Medicaid</h3>
-    <div class="def"><b>Medicaid:</b> the government's health plan for people with low income. (Different from Medicare.)</div>
-    <p>In some states, Medicaid pays podiatrists less than other doctors for the same work.</p>
-    <p>This part says: pay them the same. The word for equal treatment is <b>parity</b>.</p>
-    <div class="note"><b>Honest note:</b> this idea is not new. It has been sitting in an older bill called the HELLPP Act for years. The new bill just folds it in. Knowing that keeps you from thinking it's a fresh win.</div>
+    <h3>Section 3: Fix the diabetic shoe paperwork</h3>
+    <div class="def"><b>Medicare:</b> the government's health plan for people 65 and older.</div>
+    <p>Medicare pays for special diabetic shoes. These shoes help <b>prevent foot sores and amputations</b>.</p>
+    <p>To get them paid for today, the rules have always made <b>two doctors</b> sign off. That's the bottleneck. <span class="hl">This section lets one physician handle the whole attestation.</span></p>
+    <p>That one physician confirms three things: the patient has a qualifying problem (like neuropathy, deformity, or past ulcers), has diabetes and a care plan, and needs the shoes.</p>
+    <span class="eff">Starts Jan 1, 2028</span>
+    <div class="note"><b>Small print (3(b)):</b> a short add-on puts diabetic shoes on the <b>Stark Law</b> list, which limits self-referral. It adds a restriction, not a shortcut. The bill doesn't say why. Read the APMA redline for that.</div>
   </div>
 
   <div class="slab">
@@ -345,12 +211,12 @@ h1 .you svg{
       <p>An attending might practice <span class="big">10</span> more years. You'll practice <span class="big">30+</span>. These rules hit you the hardest and the longest.</p>
     </div>
     <div class="sticky">
-      <h4>2 of the 3 parts are billing and paperwork</h4>
+      <h4>The whole bill is billing and paperwork</h4>
       <p>School spends almost no time on this. Learn how billing works now and you start your career ahead of most people around you.</p>
     </div>
     <div class="sticky">
       <h4>This is how the profession really works</h4>
-      <p>A small group of people writing one bill can shape your whole career. That's why <b>APMA</b> (the American Podiatric Medical Association, the group that lobbies for podiatrists) (Peter here - and your state associations!)matters. Pay attention to who's in the room.</p>
+      <p>A small group of people writing one bill can shape your whole career. That's why <b>APMA</b> (the American Podiatric Medical Association, the group that lobbies for podiatrists) matters. Pay attention to who's in the room.</p>
     </div>
   </div>
 
@@ -358,18 +224,20 @@ h1 .you svg{
     <h4>Who's pushing it</h4>
     <p><b>Senate:</b> Sen. Young (Indiana) and Sen. Warnock (Georgia).</p>
     <p><b>House:</b> Reps. Joyce, DeGette, Rulli, Schrier, Kennedy, and Soto.</p>
+    <p>APMA is publicly behind it and has a side-by-side comparison (a "redline") on its advocacy page.</p>
   </div>
 
   <div class="recap">
     <h4>The 10-second version</h4>
-    <div class="check"><svg viewBox="0 0 30 30" fill="none"><path d="M5 16 L12 23 L25 7" stroke="#1FA84B" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>A diabetic foot bill is moving through Congress right now.</span></div>
-    <div class="check"><svg viewBox="0 0 30 30" fill="none"><path d="M5 16 L12 23 L25 7" stroke="#1FA84B" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Most of it is billing and paperwork, the stuff you'll use for 30+ years.</span></div>
-    <div class="check"><svg viewBox="0 0 30 30" fill="none"><path d="M5 16 L12 23 L25 7" stroke="#1FA84B" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Learning advocacy now is part of the job, not extra credit.</span></div>
+    <div class="check"><svg viewBox="0 0 30 30" fill="none"><path d="M5 16 L12 23 L25 7" stroke="#1FA84B" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>The bill has 2 sections. Both are about billing and paperwork.</span></div>
+    <div class="check"><svg viewBox="0 0 30 30" fill="none"><path d="M5 16 L12 23 L25 7" stroke="#1FA84B" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Section 2 makes states pay podiatrists like other doctors under Medicaid.</span></div>
+    <div class="check"><svg viewBox="0 0 30 30" fill="none"><path d="M5 16 L12 23 L25 7" stroke="#1FA84B" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Section 3 lets one physician sign off on diabetic shoes instead of two.</span></div>
+    <div class="check"><svg viewBox="0 0 30 30" fill="none"><path d="M5 16 L12 23 L25 7" stroke="#1FA84B" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>You'll work under these rules for 30+ years. That's why advocacy literacy matters now.</span></div>
   </div>
 
   <div class="src">
     <b>Where this comes from</b>
-    congress.gov — HR 7905<br>
+    congress.gov — HR 7905 (full bill text)<br>
     APMA advocacy page — Diabetes Foot Health Access and Modernization Act<br>
     Sen. Young press release (March 2026)
   </div>
