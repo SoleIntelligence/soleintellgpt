@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Diabetes Foot Bill, for Residents — The Guidewire</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800;900&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root{
+  --ink:#0c0d10;
+  --panel:#15171c;
+  --panel2:#1c1f26;
+  --line:#2c303a;
+  --paper:#ECE7DD;
+  --paper-dim:#a9a499;
+  --amber:#E8A33D;
+  --amber-deep:#c47e1c;
+  --teal:#3FB8AF;
+  --red:#D9544D;
+  --green:#5BBF7B;
+}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+
+body{
+  background:var(--ink);
+  color:var(--paper);
+  font-family:'IBM Plex Sans',sans-serif;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+
+.wrap{
+  max-width:760px;
+  margin:0 auto;
+  padding:0 22px 80px;
+}
+
+/* ---- top rail ---- */
+.rail{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 0 14px;
+  border-bottom:1px solid var(--line);
+  font-family:'IBM Plex Mono',monospace;
+  font-size:11px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--paper-dim);
+}
+.rail .brand{color:var(--amber);font-weight:600;}
+
+/* ---- masthead ---- */
+.head{padding:48px 0 38px;}
+.tag{
+  display:inline-block;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:11.5px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--ink);
+  background:var(--amber);
+  padding:5px 11px;
+  margin-bottom:26px;
+}
+h1{
+  font-family:'Archivo',sans-serif;
+  font-weight:900;
+  font-size:clamp(34px,7vw,58px);
+  line-height:1.02;
+  letter-spacing:-.02em;
+  margin-bottom:20px;
+}
+h1 .hl{color:var(--amber);}
+.dek{
+  font-size:18px;
+  color:var(--paper-dim);
+  max-width:560px;
+}
+.dek b{color:var(--paper);font-weight:600;}
+.byline{
+  margin-top:30px;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:12.5px;
+  color:var(--paper-dim);
+  letter-spacing:.04em;
+}
+.byline .name{color:var(--paper);font-weight:600;}
+
+/* ---- bill ID strip ---- */
+.idstrip{
+  display:flex;
+  flex-wrap:wrap;
+  gap:1px;
+  background:var(--line);
+  border:1px solid var(--line);
+  margin:8px 0 0;
+}
+.idstrip div{
+  background:var(--panel);
+  padding:14px 16px;
+  flex:1 1 120px;
+}
+.idstrip .k{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10.5px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--paper-dim);
+  margin-bottom:5px;
+}
+.idstrip .v{font-weight:600;font-size:15px;}
+.idstrip .v.amber{color:var(--amber);}
+
+/* ---- section scaffolding ---- */
+section{padding:46px 0 6px;}
+.sec-no{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:12px;
+  color:var(--amber);
+  letter-spacing:.1em;
+}
+h2{
+  font-family:'Archivo',sans-serif;
+  font-weight:800;
+  font-size:clamp(23px,4.6vw,31px);
+  letter-spacing:-.01em;
+  margin:6px 0 18px;
+  line-height:1.1;
+}
+p.lede{font-size:17px;margin-bottom:14px;}
+p{margin-bottom:13px;}
+strong{color:#fff;font-weight:600;}
+
+/* ---- why-it-matters callout ---- */
+.matter{
+  border-left:3px solid var(--amber);
+  background:linear-gradient(90deg,rgba(232,163,61,.08),transparent 80%);
+  padding:22px 22px 8px 24px;
+  margin:6px 0 0;
+}
+.matter .punch{
+  font-family:'Archivo',sans-serif;
+  font-weight:800;
+  font-size:21px;
+  line-height:1.25;
+  margin-bottom:14px;
+}
+.matter .punch em{color:var(--amber);font-style:normal;}
+
+/* ---- the three provisions ---- */
+.prov{
+  border:1px solid var(--line);
+  background:var(--panel);
+  padding:22px 22px 18px;
+  margin-bottom:14px;
+  position:relative;
+}
+.prov:nth-child(odd){background:var(--panel2);}
+.prov .pno{
+  font-family:'Archivo',sans-serif;
+  font-weight:900;
+  font-size:42px;
+  line-height:1;
+  color:var(--teal);
+  opacity:.85;
+}
+.prov.two .pno{color:var(--amber);}
+.prov.three .pno{color:var(--red);}
+.prov h3{
+  font-family:'Archivo',sans-serif;
+  font-weight:700;
+  font-size:19px;
+  margin:8px 0 9px;
+}
+.prov .now,.prov .after{font-size:14.5px;margin-bottom:7px;color:var(--paper-dim);}
+.prov .now b,.prov .after b{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10.5px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  display:inline-block;
+  width:54px;
+  color:var(--paper);
+}
+.prov .after{color:var(--paper);}
+.prov .flag{
+  margin-top:11px;
+  font-size:12.5px;
+  color:var(--amber);
+  font-family:'IBM Plex Mono',monospace;
+}
+
+/* ---- generic chunk list ---- */
+.chunks{display:grid;gap:11px;margin-top:4px;}
+.chunk{
+  display:flex;
+  gap:13px;
+  align-items:baseline;
+  border-bottom:1px solid var(--line);
+  padding-bottom:11px;
+}
+.chunk .ic{font-size:18px;flex-shrink:0;width:24px;}
+.chunk .ct b{color:#fff;}
+.chunk .ct{font-size:15px;}
+
+/* ---- key terms ---- */
+.terms{display:grid;gap:0;border:1px solid var(--line);}
+.term{padding:15px 18px;border-bottom:1px solid var(--line);}
+.term:last-child{border-bottom:none;}
+.term:nth-child(even){background:var(--panel);}
+.term .t{font-weight:600;color:var(--amber);font-size:15px;margin-bottom:3px;}
+.term .d{font-size:14px;color:var(--paper-dim);}
+
+/* ---- pitfalls ---- */
+.pit{
+  display:flex;gap:13px;
+  padding:14px 16px;
+  background:rgba(217,84,77,.07);
+  border:1px solid rgba(217,84,77,.3);
+  margin-bottom:10px;
+  font-size:14.5px;
+}
+.pit .x{color:var(--red);font-weight:800;flex-shrink:0;font-family:'IBM Plex Mono',monospace;}
+
+/* ---- pearls ---- */
+.pearl{
+  display:flex;gap:13px;
+  padding:14px 16px;
+  background:rgba(91,191,123,.07);
+  border:1px solid rgba(91,191,123,.28);
+  margin-bottom:10px;
+  font-size:14.5px;
+}
+.pearl .o{color:var(--green);font-weight:800;flex-shrink:0;}
+
+/* ---- confidence ---- */
+.conf{
+  border:1px solid var(--line);
+  background:var(--panel);
+  padding:22px;
+  margin-top:8px;
+}
+.conf .lab{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--paper-dim);margin-bottom:12px;
+}
+.bar{display:flex;gap:3px;margin-bottom:14px;}
+.bar span{height:16px;flex:1;background:var(--line);}
+.bar span.on{background:var(--green);}
+.bar span.mid{background:var(--amber);}
+.conf .note{font-size:13.5px;color:var(--paper-dim);}
+.conf .note b{color:var(--paper);}
+
+/* ---- sources ---- */
+.src{font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--paper-dim);line-height:1.85;}
+.src a{color:var(--teal);text-decoration:none;}
+.src a:hover{text-decoration:underline;}
+
+/* ---- disclaimer ---- */
+.disc{
+  margin-top:40px;padding:18px 20px;
+  border:1px dashed var(--line);
+  font-size:12.5px;color:var(--paper-dim);line-height:1.65;
+}
+.disc b{color:var(--paper);}
+
+/* ---- social asset ---- */
+.social{
+  margin-top:34px;
+  border:1px solid var(--amber-deep);
+  background:linear-gradient(160deg,rgba(232,163,61,.10),var(--panel));
+  padding:24px;
+}
+.social .lab{
+  font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--amber);margin-bottom:14px;
+}
+.social .hook{font-family:'Archivo',sans-serif;font-weight:800;font-size:20px;line-height:1.2;margin-bottom:14px;}
+.social ul{list-style:none;margin-bottom:16px;}
+.social li{padding-left:20px;position:relative;font-size:14.5px;margin-bottom:7px;}
+.social li:before{content:"→";position:absolute;left:0;color:var(--amber);}
+.social .cta{font-weight:600;font-size:14px;}
+.social .cta a{color:var(--teal);}
+.social .vd{margin-top:16px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--paper-dim);}
+.social .vd b{color:var(--paper);}
+
+.foot{
+  margin-top:50px;padding-top:18px;border-top:1px solid var(--line);
+  font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--paper-dim);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;
+}
+.foot .brand{color:var(--amber);}
+
+@media print{
+  body{background:#fff;color:#111;}
+  .wrap{max-width:1000px;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="rail">
+    <span class="brand">The Guidewire</span>
+    <span>Advocacy &amp; Policy</span>
+  </div>
+
+  <header class="head">
+    <span class="tag">Bill Brief · 119th Congress</span>
+    <h1>The paperwork rules behind diabetic foot care are being <span class="hl">rewritten right now.</span></h1>
+    <p class="dek">A diabetic foot bill is moving through Congress. It pairs Medicaid physician-recognition parity for DPMs with a Medicare diabetic shoe documentation rewrite, plus a Stark/self-referral conforming amendment. Here is what <b>HR 7905 / S 4070</b> actually changes, and why the people with the most career ahead of them should be paying the most attention.</p>
+    <div class="byline"><span class="name">Peter Sorensen, DPM</span> · The Guidewire · May 2026</div>
+  </header>
+
+  <div class="idstrip">
+    <div><div class="k">Bill</div><div class="v amber">HR 7905 / S 4070</div></div>
+    <div><div class="k">Name</div><div class="v">Diabetes Foot Health Access &amp; Modernization Act</div></div>
+    <div><div class="k">Introduced</div><div class="v">March 12, 2026</div></div>
+    <div><div class="k">Status</div><div class="v">Referred to committee</div></div>
+    <div><div class="k">Medicaid Effective</div><div class="v">Jan. 1, 2026*</div></div>
+    <div><div class="k">Shoe Rule Effective</div><div class="v">Jan. 1, 2028</div></div>
+  </div>
+
+  <!-- 01 -->
+  <section>
+    <div class="sec-no">01 / WHAT THIS IS</div>
+    <h2>A bipartisan bill with two main policy changes</h2>
+    <p class="lede">The Diabetes Foot Health Access and Modernization Act was introduced in both chambers on March 12, 2026. It is bicameral, bipartisan, and led by APMA.</p>
+    <p>The Senate version is led by Todd Young (R-IN) and Raphael Warnock (D-GA). The House version is led by six members, four of them physicians: John Joyce, MD (R-PA), Diana DeGette (D-CO), Mike Rulli (R-OH), Kim Schrier, MD (D-WA), Mike Kennedy, MD (R-UT), and Darren Soto (D-FL).</p>
+    <p>It has two main policy changes and one important program-integrity conforming amendment: it writes podiatric physician services into Medicaid as covered physician services, it modernizes Medicare documentation rules for diabetic therapeutic shoes, and it adds the shoe benefit to the Stark/designated-health-services framework.</p>
+  </section>
+
+  <!-- 02 -->
+  <section>
+    <div class="sec-no">02 / WHY IT MATTERS TO YOU SPECIFICALLY</div>
+    <h2>You have the longest exposure to whatever gets locked in</h2>
+    <div class="matter">
+      <div class="punch">Attendings live with these rules for a decade. <em>You live with them for thirty-plus years.</em></div>
+      <p>The reimbursement and documentation environment set in your training years is the one you bill under for an entire career. Residents and students carry the most downstream risk from policy decisions made today, and usually have the least say in them.</p>
+      <p>One of this bill's main provisions is pure billing and documentation mechanics. A second is a Stark/self-referral program-integrity change. That is the part of practice residency trains least and the part that quietly decides whether your future clinic stays solvent. The Medicaid provision is a parity fight that has run for over a decade. Reading this bill is a low-cost way to see how organized podiatry actually moves, before it is your turn to move it.</p>
+    </div>
+  </section>
+
+  <!-- 03 -->
+  <section>
+    <div class="sec-no">03 / THE FRAMEWORK</div>
+    <h2>The two policy changes, plus the Stark amendment</h2>
+
+    <div class="prov one">
+      <div class="pno">01</div>
+      <h3>Modernize the therapeutic shoe documentation rule</h3>
+      <p class="now"><b>Now</b> Medicare generally requires the clinician managing the patient's diabetes to certify need and maintain supporting documentation, while the podiatrist or other qualified practitioner may prescribe and furnish the shoes. That separate documentation chain can delay access to a covered benefit.</p>
+      <p class="after"><b>Bill</b> Replaces the current certification language with a broader physician-standard framework and separates documentation of qualifying lower-extremity risk factors from attestations about the diabetes diagnosis, comprehensive plan of care, and need for shoes.</p>
+      <p class="flag">Effective for items and services furnished on or after Jan. 1, 2028.</p>
+    </div>
+
+    <div class="prov two">
+      <div class="pno">02</div>
+      <h3>Add the shoe benefit to Stark/self-referral guardrails</h3>
+      <p class="now"><b>Now</b> Diabetic therapeutic shoes have relied heavily on a special-case certification and documentation pathway rather than being treated within the designated-health-services framework.</p>
+      <p class="after"><b>Bill</b> Adds extra-depth shoes with inserts and custom molded shoes with inserts to the designated health services list under the physician self-referral/Stark statute.</p>
+    </div>
+
+    <div class="prov three">
+      <div class="pno">03</div>
+      <h3>Medicaid parity for podiatric physicians</h3>
+      <p class="now"><b>Now</b> Podiatric physicians are not guaranteed recognition as physicians under Medicaid (Title XIX), so coverage of DPM services varies by state.</p>
+      <p class="after"><b>Bill</b> Amends Title XIX so physician services include both physicians under Medicare section 1861(r)(1) and podiatric physicians under section 1861(r)(3), establishing Medicaid coverage parity.</p>
+      <p class="flag">Effective Jan. 1, 2026, with extra time for states that require legislation.</p>
+    </div>
+  </section>
+
+  <!-- 04 -->
+  <section>
+    <div class="sec-no">04 / KEY TERMS</div>
+    <h2>Five terms worth knowing cold</h2>
+    <div class="terms">
+      <div class="term"><div class="t">Therapeutic shoe benefit</div><div class="d">Medicare coverage for diabetic extra-depth or custom molded shoes and inserts that reduce ulceration and amputation risk. Coverage exists. The friction is in the paperwork to access it.</div></div>
+      <div class="term"><div class="t">Title XVIII vs Title XIX</div><div class="d">Title XVIII is Medicare. Title XIX is Medicaid. This bill touches both: shoe documentation under Medicare, physician parity under Medicaid.</div></div>
+      <div class="term"><div class="t">Medicaid parity</div><div class="d">Recognizing DPM services as physician services under federal Medicaid rules by incorporating the Medicare podiatric physician definition, rather than leaving access dependent on state-by-state treatment of podiatry benefits.</div></div>
+      <div class="term"><div class="t">HELLPP Act</div><div class="d">The long-running Helping Ensure Life- and Limb-Saving Access to Podiatric Physicians Act. Earlier HELLPP Act efforts also centered on Medicaid recognition of podiatric physicians and diabetic shoe access. The parity fight is years old; this bill carries it forward.</div></div>
+      <div class="term"><div class="t">eAdvocacy</div><div class="d">APMA's tool for emailing your member of Congress in about two minutes. There are separate physician, student, and patient versions.</div></div>
+    </div>
+  </section>
+
+  <!-- 05 -->
+  <section>
+    <div class="sec-no">05 / DON'T GET THIS WRONG</div>
+    <h2>Three things people confuse</h2>
+    <div class="pit"><span class="x">01</span><div>This is not the same bill as the <strong>Promoting Access to Diabetic Shoes Act</strong> (HR 1616 / S 1805). That one is narrower and focuses on allowing nurse practitioners and physician assistants to satisfy the Medicare shoe documentation requirement. HR 7905 / S 4070 is broader and adds Medicaid parity plus a Stark/self-referral conforming amendment.</div></div>
+    <div class="pit"><span class="x">02</span><div>Introduced is not passed. A bill referred to committee is early-stage, and most bills die there. Treat this as a live effort, not a done deal.</div></div>
+    <div class="pit"><span class="x">03</span><div>The Medicaid parity provision is the heavy lift, and it predates this bill. Reading the headline as a simple shoe fix misses where the real structural change sits.</div></div>
+  </section>
+
+  <!-- 06 -->
+  <section>
+    <div class="sec-no">06 / PEARLS</div>
+    <h2>What to actually do with this</h2>
+    <div class="pearl"><span class="o">●</span><div>Learn to read a bill ID. "HR 7905 / S 4070, 119th Congress" tells you the chamber, the number, and the session. That literacy compounds over a career.</div></div>
+    <div class="pearl"><span class="o">●</span><div>Use the student eAdvocacy alert. It exists specifically for you, and a cosponsor ask from a future practitioner carries its own weight.</div></div>
+    <div class="pearl"><span class="o">●</span><div>Track the cosponsor count over the next few months. Watching whether a bill gains or stalls teaches more about advocacy than any lecture on it.</div></div>
+  </section>
+
+  <!-- confidence -->
+  <section>
+    <div class="sec-no">CONFIDENCE</div>
+    <h2>How sure am I of this?</h2>
+    <div class="conf">
+      <div class="lab">Overall confidence · High (~92%)</div>
+      <div class="bar">
+        <span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span>
+        <span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="mid"></span>
+      </div>
+      <p class="note"><b>High confidence:</b> bill IDs, title, introduction date, original sponsors, committee referrals, Medicaid parity language, Medicare therapeutic shoe documentation language, and the Stark/self-referral conforming amendment. These can be confirmed against the introduced bill text and official Senate materials.</p>
+      <p class="note" style="margin-top:9px;"><b>Lower confidence:</b> political trajectory, cosponsor growth, and likelihood of passage. Those can change quickly, so check the current Congress.gov record before publishing an update or advocacy call.</p>
+    </div>
+  </section>
+
+  <!-- sources -->
+  <section>
+    <div class="sec-no">SOURCES</div>
+    <h2>Where this comes from</h2>
+    <div class="src">
+      → GovInfo, introduced bill text for <a href="https://www.govinfo.gov/content/pkg/BILLS-119hr7905ih/html/BILLS-119hr7905ih.htm">HR 7905</a>, 119th Congress<br>
+      → Congress.gov, <a href="https://www.congress.gov/bill/119th-congress/house-bill/7905">HR 7905</a> and <a href="https://www.congress.gov/bill/119th-congress/senate-bill/4070">S 4070</a>, 119th Congress<br>
+      → Office of Sen. Todd Young, "Young, Warnock Introduce Bill...," March 17, 2026<br>
+      → Medicare.gov, "Therapeutic shoes &amp; inserts" coverage page<br>
+      → CMS Medicare Coverage Database, therapeutic shoe documentation policy article<br>
+      → GovInfo, introduced bill text for <a href="https://www.govinfo.gov/content/pkg/BILLS-119hr1616ih/html/BILLS-119hr1616ih.htm">HR 1616</a>, Promoting Access to Diabetic Shoes Act
+    </div>
+  </section>
+
+  <!-- disclaimer -->
+  <div class="disc">
+    <b>Educational use only.</b> *Medicaid effective date has an exception for states requiring legislation. This brief is AI-assisted and edited for accuracy. It explains pending legislation for resident and student education. It is not legal, billing, or compliance advice, and it is not a substitute for the bill text or APMA's official guidance. Verify all codes, coverage rules, and statutory details against primary sources before applying them clinically or in practice.
+  </div>
+
+  <!-- social asset -->
+  <div class="social">
+    <div class="lab">Social Graphic Copy</div>
+    <div class="hook">The diabetic foot bill in Congress is really a billing bill. Residents should care most.</div>
+    <ul>
+      <li>HR 7905 / S 4070 changes Medicaid DPM recognition, Medicare shoe documentation, and Stark/self-referral treatment</li>
+      <li>The bill is a crash course in the billing literacy residency often skips</li>
+      <li>You will practice under these rules for 30+ years. Attendings, for 10</li>
+    </ul>
+    <div class="cta">Read the full breakdown on The Guidewire → <a href="https://petersorensendpm.substack.com/">petersorensendpm.substack.com</a></div>
+    <div class="vd"><b>Visual direction:</b> Near-black background, sharp amber headline, single thin teal-to-red accent line separating the three provisions. Mono labels, heavy condensed display type. High contrast, slightly off-grid. Intelligence-briefing look, not a healthcare brochure. Square 1080x1080 for Instagram; same headline left-aligned, three provisions stacked as numbered rows.</div>
+  </div>
+
+  <div class="foot">
+    <span class="brand">The Guidewire</span>
+    <span>Peter Sorensen, DPM</span>
+    <span>HR 7905 / S 4070</span>
+  </div>
+
+</div>
+</body>
+</html>

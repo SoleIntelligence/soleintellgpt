@@ -71,5 +71,23 @@ window.INFOGRAPHICS = [
     url: "boardstudy.html",
     date: "2025-05-26",
     thumbnail: "Sole Intelligence Images/boardstudy.png"
+  },
+  {
+    title: "Diabetic Foot Bill - Student Edition",
+    description: "Why students should care about advocacy now. An infographic example of how I use AI to explain complex topics to myself.",
+    kicker: "Profession",
+    category: "politics-culture",
+    url: "diabeticfootbillstudents.html",
+    date: "2025-06-01",
+    thumbnail: "Sole Intelligence Images/diabeticfootbillstudents.png"
+  },
+  {
+    title: "Diabetic Foot Bill - Resident Edition",
+    description: "A higher register version for those who are interested. An example of how you can easily change AI output's intended audience.",
+    kicker: "Profession",
+    category: "politics-culture",
+    url: "diabeticfootbillresidents.html",
+    date: "2025-06-01",
+    thumbnail: "Sole Intelligence Images/diabeticfootbill.png"
   }
 ]
