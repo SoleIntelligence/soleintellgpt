@@ -89,5 +89,14 @@ window.INFOGRAPHICS = [
     url: "diabeticfootbillresidents.html",
     date: "2025-06-01",
     thumbnail: "Sole Intelligence Images/diabeticfootbill.png"
-  }
+  },
+  {
+    title: "Leave the Matches at Home",
+    description: "It's harder to build a bridge than to burn one.",
+    kicker: "Profession",
+    category: "politics-culture",
+    url: "leave-the-matches-at-home.html",
+    date: "2025-06-15",
+    thumbnail: "Sole Intelligence Images/leave-the-matches-at-home.png"
+  } 
 ]
