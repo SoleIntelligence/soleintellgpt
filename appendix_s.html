@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Guidewire — CPT Appendix S: AI as a Billable Service</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F4EEE0;
+    --ink:#1A1613;
+    --ink-soft:#46403A;
+    --red:#B8341A;
+    --rule:#1A1613;
+    --hair:#C9C0AC;
+    --serif:"Fraunces",Georgia,serif;
+    --mono:"JetBrains Mono",ui-monospace,monospace;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;background:#d9d2c0;}
+  body{font-family:var(--serif);color:var(--ink);-webkit-font-smoothing:antialiased;padding:32px 16px;}
+  .sheet{
+    max-width:760px;margin:0 auto;background:var(--cream);
+    padding:44px 52px 36px;
+    box-shadow:0 1px 0 rgba(0,0,0,.04),0 18px 50px rgba(0,0,0,.18);
+    position:relative;
+  }
+  .masthead{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:3px solid var(--rule);padding-bottom:8px;}
+  .pub{font-weight:900;font-size:34px;letter-spacing:-.02em;line-height:.9;}
+  .pub .the{display:block;font-size:13px;font-weight:600;letter-spacing:.04em;margin-bottom:2px;}
+  .mast-right{text-align:right;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);line-height:1.7;}
+  .section-strip{display:flex;justify-content:space-between;font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);border-bottom:1px solid var(--hair);padding:7px 0 9px;margin-bottom:26px;}
+  .kicker{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--red);font-weight:700;margin-bottom:14px;}
+  h1{font-size:48px;line-height:1.02;letter-spacing:-.02em;font-weight:600;margin:0 0 18px;max-width:14ch;}
+  .dek{font-size:17.5px;line-height:1.5;color:var(--ink-soft);font-weight:400;max-width:54ch;margin:0 0 18px;}
+  .byline{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);padding:9px 0;margin-bottom:30px;}
+  h2{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--red);margin:30px 0 10px;display:flex;align-items:baseline;gap:10px;}
+  h2 .n{color:var(--ink);font-size:11px;}
+  p{font-size:16px;line-height:1.62;margin:0 0 15px;}
+  p .lead-cap{float:left;font-size:58px;line-height:.74;font-weight:600;padding:6px 8px 0 0;color:var(--red);}
+  strong{font-weight:600;}
+  em{font-style:italic;}
+  .tiers{border-top:2px solid var(--rule);border-bottom:2px solid var(--rule);margin:8px 0 22px;}
+  .tier{display:grid;grid-template-columns:140px 1fr;gap:18px;padding:13px 0;border-bottom:1px solid var(--hair);}
+  .tier:last-child{border-bottom:none;}
+  .tier .name{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;}
+  .tier .name span{display:block;font-weight:400;font-size:10px;color:var(--ink-soft);margin-top:4px;letter-spacing:.02em;text-transform:none;}
+  .tier .desc{font-size:14.5px;line-height:1.5;color:var(--ink-soft);}
+  .pull{border-left:4px solid var(--red);padding:4px 0 4px 20px;margin:26px 0;font-size:23px;line-height:1.28;font-weight:500;letter-spacing:-.01em;max-width:30ch;}
+  .pull cite{display:block;font-family:var(--mono);font-size:10.5px;font-style:normal;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin-top:12px;}
+  .endmark{display:inline-block;width:9px;height:9px;background:var(--red);margin-left:4px;vertical-align:baseline;}
+  .foot{margin-top:34px;border-top:3px solid var(--rule);padding-top:10px;display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);}
+  .copyright{opacity:.5;}
+  @media (max-width:600px){.sheet{padding:30px 22px 26px;}h1{font-size:34px;}.tier{grid-template-columns:1fr;gap:6px;}}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <div class="masthead">
+    <div class="pub"><span class="the">THE</span>GUIDEWIRE</div>
+    <div class="mast-right">Policy Brief<br>soleintell.com</div>
+  </div>
+  <div class="section-strip">
+    <span>AI &amp; Practice</span>
+    <span>The Reimbursement File</span>
+  </div>
+
+  <div class="kicker">CPT Appendix S · May 2026 Revision</div>
+  <h1>CPT Appendix S: Rules Tighten Around AI as a Billable Service</h1>
+  <p class="dek">Medicine has carried a billing taxonomy for AI since 2022. This spring it was quietly tightened — and the revision reads less like a payment rule than a clinical thesis about judgment.</p>
+  <div class="byline">By Peter Sorensen, DPM</div>
+
+  <div class="body">
+
+    <p><span class="lead-cap">T</span>he story most people will tell about the CPT Editorial Panel's May meeting is that medicine made it easier to bill for artificial intelligence. That is not quite what happened. The Panel revised <strong>Appendix S</strong> — the code set's taxonomy for AI-enabled services — and the effect was to make the bar <em>higher</em>, not lower. Before we can read why that matters, we have to be clear about what this appendix is, because nearly every conversation about it starts by getting that wrong.</p>
+
+    <h2><span class="n">01</span> What Appendix S actually governs</h2>
+    <p>Appendix S does not classify your use of a chatbot to pick a code. It classifies <strong>AI-enabled medical services and procedures</strong> — the work a machine performs on behalf of the physician — into three tiers, each defined by how much clinical judgment the machine displaces. It exists for one reason: to give AI-powered procedures a defensible path to payment.</p>
+
+    <div class="tiers">
+      <div class="tier">
+        <div class="name">Assistive<span>You interpret &amp; report</span></div>
+        <div class="desc">The machine detects clinically relevant data. No analysis, no conclusion. The physician reads it and writes the report.</div>
+      </div>
+      <div class="tier">
+        <div class="name">Augmentative<span>You interpret &amp; report</span></div>
+        <div class="desc">The machine analyzes or quantifies the data into a clinically meaningful output. The physician still interprets and reports it.</div>
+      </div>
+      <div class="tier">
+        <div class="name">Autonomous<span>Graded by level</span></div>
+        <div class="desc">The machine draws conclusions and offers diagnosis or management on its own — graded into levels by how little human action is required. The point-of-care retinal screen that images, reads, and reports without a clinician (CPT 92229) lives here.</div>
+      </div>
+    </div>
+
+    <h2><span class="n">02</span> What changed this spring</h2>
+    <p>The Panel did not add a fourth tier. It raised the evidentiary discipline inside the three. <strong>Assistive</strong> was narrowed: outputs hedged as "risk for" or "suggestive of" may now demand clinical validation before they qualify. <strong>Augmentative</strong> was raised: an output has to be clinically meaningful and pertinent to the code descriptor — not merely statistical. <strong>Autonomous</strong> was tightened around transparency, guidelines, and demonstrated clinical utility. A loose vocabulary became an evidence standard. To claim a tier now, you have to prove the machine earned it.</p>
+
+    <h2><span class="n">03</span> The system is institutionalizing doubt</h2>
+    <p>Read structurally, this is the payment system encoding the one habit every clinician is supposed to bring to a machine's output. Two of the three tiers <em>legally require a physician to interpret and report</em> — the human is not a courtesy, it is the billable act. And the revision now forces a builder to demonstrate clinical meaning before climbing to a higher tier. The code set, in other words, refuses to take the output on faith.</p>
+
+    <div class="pull">
+      "Doubt the output — that's the reason to use AI, not avoid it." There is now a CPT appendix that agrees.
+      <cite>The Guidewire</cite>
+    </div>
+
+    <h2><span class="n">04</span> The distinction that protects you</h2>
+    <p>Here is the line worth holding, because blurring it is the most common error in this debate. Appendix S is about <strong>AI as a billable service</strong> — the machine does diagnostic work that earns a code. It says <em>nothing</em> about <strong>AI as a coding assistant</strong> — an LLM assigning your E/M level from a note. That second frontier is a different question entirely, and it is the one I study directly: whether prompt structure changes how accurately a model codes against a human gold standard. Treating the two as one story is how smart people end up confidently wrong. They are adjacent. They are not the same.</p>
+
+    <h2><span class="n">05</span> Where podiatry sits</h2>
+    <p>The taxonomy exists, the payment pathway exists, and foot-and-ankle AI is barely represented in either. That is not a deficit to mourn — it is runway. Podiatry is small enough to move deliberately and close enough to the patient to set its own evidence bar before the codes arrive, rather than inheriting someone else's after the fact.</p>
+
+    <p>For the resident or student reading this: learn this framework now. It is how the AI in your future practice will — or won't — get paid for, and it models the posture the rest of medicine is only now writing into policy. Understand what the machine is <em>allowed</em> to conclude before you trust what it does.<span class="endmark"></span></p>
+
+  </div>
+
+  <div class="foot">
+    <span>Sole Intelligence</span>
+    <span class="copyright">© 2026 Peter Sorensen, DPM</span>
+  </div>
+
+</div>
+</body>
+</html>

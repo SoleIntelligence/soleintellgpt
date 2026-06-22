@@ -89,5 +89,14 @@ window.INFOGRAPHICS = [
     url: "diabeticfootbillresidents.html",
     date: "2025-06-01",
     thumbnail: "Sole Intelligence Images/diabeticfootbill.png"
+  },
+  {
+    title: "CPT Appendix S",
+    description: "AI as a billable service",
+    kicker: "Timeline",
+    category: "student-resident",
+    url: "appendix_s.html",
+    date: "2025-06-22",
+    thumbnail: "Sole Intelligence Images/appendix_s.png"
   }
 ]
