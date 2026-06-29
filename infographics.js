@@ -376,5 +376,47 @@ window.INFOGRAPHICS = [
     url: "Sole Intelligence Images/diabetesbill.mp4",
     date: "2026-06-18",
     thumbnail: "Sole Intelligence Images/diabeticfootbill.png"
+  },
+
+  // ===== Standalone pages not previously featured =====
+
+  // ---- AI Tutorials ----
+  {
+    title: "Lawful Access",
+    description: "The AI copyright lawsuits look like chaos — but for a resident the practical rules are older and shorter than the headlines suggest.",
+    kicker: "AI & the Law",
+    category: "ai-tutorials",
+    url: "Lawful Access.html",
+    date: "2026-06-11",
+    thumbnail: "Sole Intelligence Images/Lawful_access.png"
+  },
+  {
+    title: "The Ethical Weight of AI",
+    description: "Five questions every healthcare professional should be able to answer about who owns AI, how it was built, and what it costs the planet.",
+    kicker: "Ethics & Policy",
+    category: "ai-tutorials",
+    url: "ai_ethics.html",
+    date: "2026-05-21",
+    thumbnail: "Sole Intelligence Images/ai_ethics.png"
+  },
+
+  // ---- Podiatry Politics & Culture ----
+  {
+    title: "The Clawback",
+    description: "Podiatry won a pay bump for 2026. A 1989 Medicare budget-neutrality rule is built to quietly take it back — and a bipartisan bill wants to loosen the screws.",
+    kicker: "Policy",
+    category: "politics-culture",
+    url: "clawback.html",
+    date: "2026-06-02",
+    thumbnail: "Sole Intelligence Images/clawback.png"
+  },
+  {
+    title: "The eAdvocacy Action Center",
+    description: "You don't have to wait until you're an attending to shape the profession. How residents and students can weigh in on the policy that defines their future practice.",
+    kicker: "Advocacy",
+    category: "politics-culture",
+    url: "e_advocacy.html",
+    date: "2026-05-01",
+    thumbnail: "Sole Intelligence Images/e_advocacy.png"
   }
 ]
