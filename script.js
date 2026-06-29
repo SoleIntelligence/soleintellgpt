@@ -1,24 +1,51 @@
 // The GuideWire — main page script
 // Handles: mobile nav, dynamic infographic cards (from infographics.js),
-// and the Substack feed.
+// the Substack feed, and motion choreography (scroll reveals, nav state,
+// magnetic buttons).
+
+document.documentElement.classList.add('js');
+
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 // ---------- Mobile nav --------------------------------------------------
 const menuToggle = document.querySelector('.menu-toggle');
 const nav = document.querySelector('.site-nav');
 
+function closeMenu() {
+  if (!nav) return;
+  nav.classList.remove('is-open');
+  if (menuToggle) menuToggle.setAttribute('aria-expanded', 'false');
+  document.body.style.overflow = '';
+}
+
 if (menuToggle && nav) {
   menuToggle.addEventListener('click', () => {
     const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
     menuToggle.setAttribute('aria-expanded', String(!expanded));
-    nav.classList.toggle('is-open');
+    nav.classList.toggle('is-open', !expanded);
+    document.body.style.overflow = !expanded ? 'hidden' : '';
   });
 
   nav.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', () => {
-      nav.classList.remove('is-open');
-      menuToggle.setAttribute('aria-expanded', 'false');
-    });
+    link.addEventListener('click', closeMenu);
   });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeMenu();
+  });
+}
+
+// ---------- Floating-nav scrolled state ---------------------------------
+const header = document.querySelector('.site-header');
+if (header && 'IntersectionObserver' in window) {
+  const sentinel = document.createElement('div');
+  sentinel.setAttribute('aria-hidden', 'true');
+  sentinel.style.cssText = 'position:absolute;top:0;left:0;width:1px;height:8px;pointer-events:none;';
+  document.body.prepend(sentinel);
+  new IntersectionObserver(
+    ([entry]) => header.classList.toggle('is-scrolled', !entry.isIntersecting),
+    { threshold: 0 }
+  ).observe(sentinel);
 }
 
 // ---------- Infographic cards -------------------------------------------
@@ -47,23 +74,27 @@ function renderInfographicCard(item) {
   const date = formatCardDate(item.date);
   const hasThumb = Boolean(item.thumbnail);
   const thumb = hasThumb ? `
-        <div class="cat-card-thumb">
-          <img src="${escapeHtml(item.thumbnail)}" alt="" loading="lazy" />
-        </div>` : '';
-  const cardClass = hasThumb ? 'cat-card cat-card--with-thumb' : 'cat-card';
+          <div class="cat-card-thumb">
+            <img src="${escapeHtml(item.thumbnail)}" alt="" loading="lazy" />
+          </div>` : '';
+  const cardClass = hasThumb ? 'cat-card bezel cat-card--with-thumb' : 'cat-card bezel';
 
   return `
-    <a class="${cardClass}" href="${url}">${thumb}
-      <div class="cat-card-body">
-        <p class="cat-card-kicker">${kicker}</p>
-        <h3>${title}</h3>
-        <p>${desc}</p>
-        <div class="cat-card-footer">
-          <span class="cat-card-date">${escapeHtml(date)}</span>
-          <span class="cat-card-arrow">
-            Open
-            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </span>
+    <a class="${cardClass}" href="${url}">
+      <div class="bezel-core">${thumb}
+        <div class="cat-card-body">
+          <p class="cat-card-kicker">${kicker}</p>
+          <h3>${title}</h3>
+          <p>${desc}</p>
+          <div class="cat-card-footer">
+            <span class="cat-card-date">${escapeHtml(date)}</span>
+            <span class="cat-card-arrow">
+              Open
+              <span class="cat-card-arrow-pip" aria-hidden="true">
+                <svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </span>
+          </div>
         </div>
       </div>
     </a>
@@ -108,6 +139,50 @@ function renderInfographics() {
 }
 
 renderInfographics();
+
+// ---------- Scroll reveals ----------------------------------------------
+(function setupReveals() {
+  const revealEls = document.querySelectorAll('[data-reveal]');
+  if (!revealEls.length) return;
+
+  if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+    revealEls.forEach((el) => el.classList.add('is-visible'));
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          obs.unobserve(entry.target);
+        }
+      });
+    },
+    { rootMargin: '0px 0px -8% 0px', threshold: 0.08 }
+  );
+
+  revealEls.forEach((el) => observer.observe(el));
+})();
+
+// ---------- Magnetic buttons --------------------------------------------
+(function setupMagnetic() {
+  if (prefersReducedMotion || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
+  const magnets = document.querySelectorAll('.button-primary, .nav-cta');
+  magnets.forEach((el) => {
+    const strength = 0.28;
+    el.addEventListener('pointermove', (event) => {
+      const rect = el.getBoundingClientRect();
+      const x = (event.clientX - rect.left - rect.width / 2) * strength;
+      const y = (event.clientY - rect.top - rect.height / 2) * strength;
+      el.style.transform = `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px)`;
+    });
+    el.addEventListener('pointerleave', () => {
+      el.style.transform = '';
+    });
+  });
+})();
 
 // ---------- Substack feed -----------------------------------------------
 const postsContainer = document.getElementById('substack-posts');

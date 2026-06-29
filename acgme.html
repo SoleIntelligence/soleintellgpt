@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Who Gets to Accredit Podiatry? The ACGME Debate, Explained — The Guidewire</title>
+<meta name="description" content="A neutral, both-sides explainer of the debate over whether podiatric residencies should move from CPME to ACGME accreditation — what's being asked, the case for parity, the case for autonomy, and where it stands. By Peter Sorensen, DPM." />
+<meta name="author" content="Peter Sorensen, DPM" />
+<link rel="canonical" href="https://soleintell.com/acgme.html" />
+<!-- Open Graph -->
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Sole Intelligence" />
+<meta property="og:title" content="Who Gets to Accredit Podiatry? The ACGME Debate, Explained" />
+<meta property="og:description" content="A neutral, both-sides explainer of the CPME-vs-ACGME accreditation debate for podiatry students and residents." />
+<meta property="og:url" content="https://soleintell.com/acgme.html" />
+<meta property="article:author" content="Peter Sorensen, DPM" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,500;1,9..144,600&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --paper: #f4ecd7;
+    --paper-2: #ece0c4;
+    --ink: #1c1813;
+    --ink-soft: #574c3e;
+    --red: #b8341a;
+    --red-deep: #8f2614;
+    --rule: rgba(28,24,19,0.16);
+    --rule-strong: #1c1813;
+    --measure: 42rem;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font-family: 'Fraunces', Georgia, serif; font-optical-sizing: auto;
+    line-height: 1.7; font-size: 18px;
+    background-image:
+      radial-gradient(ellipse at 8% 4%, rgba(180,140,70,0.06), transparent 45%),
+      radial-gradient(ellipse at 92% 96%, rgba(150,110,50,0.05), transparent 45%);
+  }
+  a { color: var(--red-deep); text-underline-offset: 2px; }
+
+  /* ---------- top bar / nav ---------- */
+  .topstripe { height: 4px; background: var(--red); }
+  .nav {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 1rem; flex-wrap: wrap;
+    max-width: 64rem; margin: 0 auto; padding: 1.1rem 1.5rem;
+    border-bottom: 1.5px solid var(--rule-strong);
+  }
+  .wordmark {
+    font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 0.95rem;
+    letter-spacing: 0.18em; color: var(--ink); text-transform: uppercase; text-decoration: none;
+  }
+  .wordmark .dot { color: var(--red); }
+  .nav-links { display: flex; gap: 1.3rem; flex-wrap: wrap; }
+  .nav-links a {
+    font-family: 'JetBrains Mono', monospace; font-weight: 500; font-size: 0.8rem;
+    letter-spacing: 0.14em; color: var(--ink-soft); text-transform: uppercase; text-decoration: none;
+    padding-bottom: 2px; border-bottom: 2px solid transparent;
+  }
+  .nav-links a:hover { color: var(--red); border-bottom-color: var(--red); }
+
+  /* ---------- article ---------- */
+  main { max-width: var(--measure); margin: 0 auto; padding: 3.2rem 1.5rem 1rem; }
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 0.78rem;
+    letter-spacing: 0.2em; color: var(--red); text-transform: uppercase; margin: 0 0 1.1rem;
+  }
+  h1 {
+    font-family: 'Fraunces', serif; font-weight: 900; font-size: clamp(2.1rem, 7vw, 3.4rem);
+    line-height: 1.02; letter-spacing: -0.015em; margin: 0 0 1.4rem;
+  }
+  .standfirst {
+    font-family: 'Fraunces', serif; font-style: italic; font-weight: 400;
+    font-size: clamp(1.15rem, 2.6vw, 1.4rem); line-height: 1.5; color: var(--ink-soft);
+    margin: 0 0 1.8rem;
+  }
+  .byline {
+    font-family: 'JetBrains Mono', monospace; font-weight: 500; font-size: 0.82rem;
+    letter-spacing: 0.1em; color: var(--ink); text-transform: uppercase;
+    padding: 1rem 0 1.4rem; border-top: 1.5px solid var(--rule-strong); border-bottom: 1px solid var(--rule);
+  }
+  .byline .pub { color: var(--red); }
+
+  article { margin-top: 2.2rem; }
+  article p { margin: 0 0 1.4rem; }
+  article p strong { font-weight: 600; }
+  .lede:first-letter {
+    float: left; font-weight: 900; font-size: 4.1rem; line-height: 0.78;
+    padding: 0.35rem 0.55rem 0 0; color: var(--red);
+  }
+
+  .secrule { display: block; width: 2.6rem; height: 4px; background: var(--red); margin: 2.8rem 0 1rem; }
+  h2 {
+    font-family: 'Fraunces', serif; font-weight: 700; font-size: clamp(1.5rem, 3.4vw, 1.95rem);
+    line-height: 1.12; letter-spacing: -0.01em; margin: 0 0 1.1rem;
+  }
+
+  /* ---------- glossary box ---------- */
+  .glossary {
+    background: var(--paper-2); border: 1.5px solid var(--rule-strong);
+    padding: 1.5rem 1.6rem 0.6rem; margin: 2rem 0 2.4rem;
+  }
+  .glossary .gh {
+    font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 0.74rem;
+    letter-spacing: 0.18em; color: var(--red); text-transform: uppercase; margin: 0 0 1.1rem;
+  }
+  .glossary dl { margin: 0; }
+  .glossary dt {
+    font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 0.82rem;
+    letter-spacing: 0.05em; color: var(--ink); margin-top: 0.9rem;
+  }
+  .glossary dd {
+    margin: 0.15rem 0 0; font-size: 0.96rem; line-height: 1.5; color: var(--ink-soft);
+  }
+  .glossary .pair { padding-bottom: 0.9rem; border-bottom: 1px solid var(--rule); }
+  .glossary .pair:last-child { border-bottom: none; }
+
+  /* ---------- figure ---------- */
+  figure { margin: 2.4rem 0; border: 1.5px solid var(--rule-strong); background: #fbf6e8; padding: 1.6rem 1.6rem 1.2rem; }
+  figure svg { width: 100%; height: auto; display: block; }
+  figcaption {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.74rem; letter-spacing: 0.06em;
+    color: var(--ink-soft); margin-top: 1rem; line-height: 1.5; text-transform: uppercase;
+  }
+
+  /* ---------- pull quote ---------- */
+  blockquote {
+    margin: 2.6rem 0; padding: 0.2rem 0 0.2rem 1.6rem; border-left: 5px solid var(--red);
+    font-family: 'Fraunces', serif; font-weight: 600; font-style: normal;
+    font-size: clamp(1.45rem, 3.6vw, 1.95rem); line-height: 1.22; color: var(--ink); letter-spacing: -0.01em;
+  }
+
+  .signoff {
+    font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 0.9rem;
+    letter-spacing: 0.1em; color: var(--red); text-transform: uppercase; margin: 2.4rem 0 0;
+  }
+
+  /* ---------- subscribe band ---------- */
+  .subscribe {
+    background: var(--ink); color: var(--paper); margin-top: 3.4rem;
+  }
+  .subscribe-inner { max-width: var(--measure); margin: 0 auto; padding: 2.6rem 1.5rem; }
+  .subscribe .sk {
+    font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 0.74rem;
+    letter-spacing: 0.2em; color: #e9b3a6; text-transform: uppercase; margin: 0 0 0.8rem;
+  }
+  .subscribe h3 {
+    font-family: 'Fraunces', serif; font-weight: 700; font-size: clamp(1.4rem, 3.4vw, 1.9rem);
+    line-height: 1.12; margin: 0 0 1.4rem; color: var(--paper);
+  }
+  .btn {
+    display: inline-block; font-family: 'JetBrains Mono', monospace; font-weight: 700;
+    font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none;
+    background: var(--red); color: var(--paper); padding: 0.85rem 1.4rem;
+    box-shadow: 4px 5px 0 rgba(0,0,0,0.35);
+  }
+  .btn:hover { background: var(--red-deep); }
+
+  /* ---------- footer ---------- */
+  footer { border-top: 4px solid var(--red); }
+  .foot-inner {
+    max-width: 64rem; margin: 0 auto; padding: 2.2rem 1.5rem 2.8rem;
+    display: flex; justify-content: space-between; align-items: flex-end; gap: 1.5rem; flex-wrap: wrap;
+  }
+  .colophon { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.14em; color: var(--ink); text-transform: uppercase; }
+  .colophon span { display: block; color: var(--red); font-weight: 500; font-size: 0.72rem; margin-top: 0.4rem; }
+  .foot-links { display: flex; gap: 1.1rem; flex-wrap: wrap; }
+  .foot-links a { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.12em; color: var(--ink-soft); text-transform: uppercase; text-decoration: none; }
+  .foot-links a:hover { color: var(--red); }
+  .copy { font-family: 'Fraunces', serif; font-size: 0.78rem; color: var(--ink-soft); opacity: 0.7; width: 100%; line-height: 1.5; }
+
+  @media (max-width: 520px) {
+    body { font-size: 17px; }
+    .lede:first-letter { font-size: 3.4rem; }
+    .foot-inner { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+  <div class="topstripe"></div>
+  <nav class="nav">
+    <a class="wordmark" href="/">Sole Intelligence<span class="dot">.</span></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/research">Research</a>
+      <a href="/contact">Contact</a>
+    </div>
+  </nav>
+
+  <main>
+    <p class="eyebrow">The Guidewire · Profession &amp; Policy</p>
+    <h1>Who Gets to Accredit Podiatry?</h1>
+    <p class="standfirst">For the first time in a generation, podiatry is seriously debating whether to hand its residency accreditation to the body that oversees every MD and DO program in the country. Here's the actual argument — both sides — without the slogans.</p>
+    <div class="byline">By Peter Sorensen, DPM&nbsp;&nbsp;·&nbsp;&nbsp;<span class="pub">The Guidewire</span></div>
+
+    <article>
+      <p class="lede">If you're a student or resident, you've probably heard the letters <strong>ACGME</strong> thrown around in a hallway argument — usually with strong feelings attached and not much detail. The short version: a real proposal surfaced to move podiatric residency accreditation out from under the CPME and into the ACGME, the accreditor for allopathic and osteopathic residencies. It's one of the most consequential identity questions the profession has faced in years, and right now it is unresolved. What follows is the honest-broker version: what's being asked, who wants what, and why reasonable people land on opposite sides.</p>
+
+      <span class="secrule"></span>
+      <h2>What's actually on the table</h2>
+      <p>Every residency answers to an accreditor — the body that writes the standards, evaluates programs, and certifies that your training meets the bar. Accreditation is not the same as your license. Your license comes from passing the APMLE and clearing your state board; accreditation is the seal on the <em>program</em> itself.</p>
+      <p>Today, podiatric residencies are accredited by the <strong>Council on Podiatric Medical Education (CPME)</strong>, an arm of the APMA. MD and DO residencies are accredited by the <strong>Accreditation Council for Graduate Medical Education (ACGME)</strong> — the same body that defines competencies and program requirements across nearly all of allopathic and osteopathic graduate medical education.</p>
+      <p>The question: should podiatric residency accreditation move from CPME to ACGME? The trigger was an opening — ACGME signaled it would explore accrediting podiatry as a specialty of medicine if the profession showed interest. One structural fact frames everything that follows: under APMA's bylaws, only the <strong>House of Delegates</strong> can make a change of this magnitude. No single board, committee, or organization can flip the switch alone.</p>
+
+      <div class="glossary">
+        <p class="gh">The players, in plain terms</p>
+        <dl>
+          <div class="pair"><dt>CPME</dt><dd>Council on Podiatric Medical Education. Accredits podiatric residencies and colleges; an arm of the APMA.</dd></div>
+          <div class="pair"><dt>ACGME</dt><dd>Accreditation Council for Graduate Medical Education. Accredits MD and DO residencies and fellowships nationwide.</dd></div>
+          <div class="pair"><dt>APMA</dt><dd>American Podiatric Medical Association — the profession's primary membership and advocacy body.</dd></div>
+          <div class="pair"><dt>HOD</dt><dd>House of Delegates. APMA's legislative body, and the only one that can change accreditation policy.</dd></div>
+          <div class="pair"><dt>ABPM / ABFAS</dt><dd>The two CPME-recognized certifying boards in podiatry.</dd></div>
+          <div class="pair"><dt>AACPM</dt><dd>American Association of Colleges of Podiatric Medicine — runs the residency match.</dd></div>
+        </dl>
+      </div>
+
+      <span class="secrule"></span>
+      <h2>The case for: parity</h2>
+      <p>Strip the proposal down and the argument for it is a single word: <strong>parity</strong>. Proponents argue that ACGME accreditation would formally make podiatry a specialty of medicine — training measured against the identical yardstick applied to every MD and DO program in the country.</p>
+      <p>The downstream claims follow from that. Hospitals, credentialing committees, and payers would read podiatric training as equivalent rather than "different." It could open the door to podiatric residencies inside more academic medical centers and other ACGME-accredited institutions. And it would be much harder for anyone to wave away podiatric education as a lesser pathway. The American Board of Podiatric Medicine's board has publicly backed at least <em>exploring</em> the process, framing it as a step toward parity with allopathic and osteopathic colleagues. For a profession that has spent decades fighting for recognition, "judged by the same standard as everyone else" is a powerful pitch.</p>
+
+      <blockquote>Strip the proposal down, and the argument for it is a single word: parity.</blockquote>
+
+      <span class="secrule"></span>
+      <h2>The case against: autonomy</h2>
+      <p>The opposing case is also a single word: <strong>autonomy</strong>. Critics warn that moving accreditation to ACGME would mean relinquishing podiatry's independent oversight to an organization roughly sixty-five times its size — and that a profession this small risks becoming invisible inside a system that large.</p>
+      <p>The concrete worries are specific. A constellation of profession-specific functions — CPME's accreditation work, the AACPM-run residency match, ABFAS and ABPM curricular involvement, on-site evaluations, and case logging — could be absorbed into ACGME's machinery, weakening podiatry's ability to organize training around its own needs. Several stakeholders have flagged a subtler risk: handing ACGME detailed surgical case-log and volume data could expose how podiatric scope compares to orthopedics, and that data could be used to limit privileging or argue against podiatric programs. And there is no guarantee the trade pays off — nothing in the conversations so far promised that accreditation would actually deliver parity. CPME's own position is cautious: before any engagement with ACGME, run a multi-year, data-driven feasibility study with full stakeholder input.</p>
+
+      <span class="secrule"></span>
+      <h2>The number both sides argue about</h2>
+      <figure>
+        <svg viewBox="0 0 480 170" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bar comparison: ACGME accredits 40,041 first-year residency positions; CPME accredits 609.">
+          <text x="4" y="14" font-family="'JetBrains Mono', monospace" font-size="10.5" font-weight="700" letter-spacing="1.4" fill="#1c1813">FIRST-YEAR RESIDENCY POSITIONS</text>
+          <text x="4" y="58" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="700" fill="#1c1813">ACGME</text>
+          <rect x="4" y="68" width="472" height="26" fill="#ece0c4" stroke="#1c1813" stroke-width="1.4"/>
+          <text x="468" y="86" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="800" fill="#1c1813">40,041</text>
+          <text x="4" y="126" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="700" fill="#b8341a">CPME</text>
+          <rect x="4" y="136" width="7.2" height="26" fill="#b8341a" stroke="#8f2614" stroke-width="1"/>
+          <text x="18" y="154" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="800" fill="#b8341a">609</text>
+        </svg>
+        <figcaption>ACGME: 5,866 programs · 40,041 first-year positions. CPME: 222 programs · 609. Inside ACGME, podiatry would be ~1.5% of the system.</figcaption>
+      </figure>
+      <p>The single most-cited statistic in this debate is also the most double-edged. ACGME accredits 5,866 programs with 40,041 first-year positions; CPME accredits 222 programs with 609. Inside ACGME, podiatry would represent roughly <strong>1.5%</strong> of the system.</p>
+      <p>That one fact is a Rorschach test. To a proponent, it reads as <em>finally in the big leagues</em> — a seat at the table that defines American graduate medical education. To a skeptic, it reads as <em>a rounding error</em> — a tiny constituency whose specific needs get drowned out by the other 98.5%. Same number, opposite conclusions. That gap is the whole fight.</p>
+
+      <span class="secrule"></span>
+      <h2>Where it actually stands</h2>
+      <p>Here is the part that gets distorted in hallway arguments. In <strong>September 2025</strong>, after gathering feedback from across the profession, the APMA Board of Trustees voted <em>not</em> to participate further in ACGME's exploratory process — citing widespread uncertainty and apprehension, concerns about autonomy and impact on programs and graduates, competing strategic priorities, and the absence of any guarantee that the path leads to parity. Crucially, the board's stated reasoning was that a decision this big, without clear consensus, belongs to the House of Delegates rather than the board.</p>
+      <p>In response, ACGME paused its podiatry task force, and has signaled it will not move forward without APMA's cooperation. So the accurate status is <strong>tabled, not settled</strong>: the profession has not committed to pursuing ACGME accreditation, and it has not closed the door either. The question now sits where APMA's bylaws say it must — with the House of Delegates.</p>
+
+      <span class="secrule"></span>
+      <h2>Why this should matter to you</h2>
+      <p>It is tempting to file this under "politics for the people in suits." Don't. Accreditation is the scaffolding under your training: it shapes how rigorously your program is evaluated, how hospitals and the public interpret the letters after your name, and — eventually — how you are privileged to practice. A change here would touch the daily reality of residency and the long arc of a career.</p>
+      <p>The other reason to care is about how you carry yourself professionally. This is a genuine disagreement among informed, well-intentioned people who want the same thing — a stronger profession — and disagree about how to get there. The move, as a student or resident, is not to adopt the loudest opinion in the room. It is to understand the actual arguments well enough to hold your own.</p>
+
+      <span class="secrule"></span>
+      <h2>The bottom line</h2>
+      <p>Parity is not conferred by a logo. It is earned in clinics, in operating rooms, and in legislatures — and an accreditor's stamp reflects that standing more than it grants it. Whether routing podiatric residencies through ACGME would accelerate that recognition or quietly erode the profession's control over its own training is exactly the question the House of Delegates now has to weigh. Worth following closely. Worth understanding before you form an opinion about it.</p>
+
+      <p class="signoff">— Peter</p>
+    </article>
+  </main>
+
+  <section class="subscribe">
+    <div class="subscribe-inner">
+      <p class="sk">Keep reading</p>
+      <h3>The Guidewire decodes AI, policy, and surgical education for the next generation of podiatrists.</h3>
+      <a class="btn" href="https://petersorensendpm.substack.com" target="_blank" rel="noopener">Read The Guidewire →</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="foot-inner">
+      <div class="colophon">Sole Intelligence<span>soleintell.com</span></div>
+      <div class="foot-links">
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/research">Research</a>
+        <a href="/contact">Contact</a>
+      </div>
+      <p class="copy">© 2026 Peter Sorensen, DPM. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

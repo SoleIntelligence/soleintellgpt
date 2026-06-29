@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What SDN Said — Podiatry's Decade in Review</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink:      #1a1a18;
+    --paper:    #f5f0e8;
+    --paper2:   #ede8d8;
+    --rule:     #c0b89a;
+    --rule-dark:#8a7f62;
+    --red:      #8b2020;
+    --amber:    #7a5c00;
+    --teal:     #1a5c52;
+    --red-bg:   #f7eded;
+    --amber-bg: #f7f3e8;
+    --teal-bg:  #e8f3f1;
+    --red-border: #c44a4a;
+    --amber-border: #b89030;
+    --teal-border: #3a8c7a;
+    --muted:    #5a5648;
+    --tag-ink:  #ffffff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Libre Baskerville', Georgia, serif;
+    min-height: 100vh;
+  }
+
+  /* ── NEWSPAPER TEXTURE ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: 
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 28px,
+        rgba(160,148,120,0.06) 28px,
+        rgba(160,148,120,0.06) 29px
+      );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .page {
+    position: relative;
+    z-index: 1;
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 44px 36px 64px;
+  }
+
+  /* ── MASTHEAD ── */
+  .masthead {
+    text-align: center;
+    border-top: 4px double var(--ink);
+    border-bottom: 4px double var(--ink);
+    padding: 18px 0 16px;
+    margin-bottom: 8px;
+    animation: fadeIn 0.7s ease both;
+  }
+
+  .masthead-sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  .masthead h1 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: clamp(30px, 5.5vw, 52px);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+
+  .masthead h1 em {
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  .dateline-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+  }
+
+  .dateline {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+  }
+
+  .forum-badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 3px 8px;
+    border-radius: 2px;
+  }
+
+  /* ── DECK / SUBHEAD ── */
+  .deck {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 13.5px;
+    font-style: italic;
+    color: var(--muted);
+    text-align: center;
+    padding: 12px 40px;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 28px;
+    line-height: 1.5;
+  }
+
+  /* ── THREE-COLUMN GRID ── */
+  .columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+  }
+
+  .col {
+    padding: 0 24px;
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .col:nth-child(2) { animation-delay: 0.12s; }
+  .col:nth-child(3) { animation-delay: 0.24s; }
+
+  .col:not(:last-child) {
+    border-right: 1px solid var(--rule-dark);
+  }
+
+  /* ── COLUMN HEADER ── */
+  .col-header {
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .col-kicker {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 8.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .col-past .col-kicker { color: var(--red); }
+  .col-present .col-kicker { color: var(--amber); }
+  .col-future .col-kicker { color: var(--teal); }
+
+  .col-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--ink);
+  }
+
+  .col-dek {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 11px;
+    font-style: italic;
+    color: var(--muted);
+    margin-top: 5px;
+    line-height: 1.45;
+  }
+
+  /* ── FORUM QUOTE CARD ── */
+  .fquote {
+    border-left: 3px solid transparent;
+    padding: 10px 14px;
+    margin-bottom: 12px;
+    border-radius: 0 4px 4px 0;
+    position: relative;
+    transition: transform 0.15s ease;
+  }
+
+  .fquote:hover { transform: translateX(2px); }
+
+  .col-past .fquote { border-left-color: var(--red-border); background: var(--red-bg); }
+  .col-present .fquote { border-left-color: var(--amber-border); background: var(--amber-bg); }
+  .col-future .fquote { border-left-color: var(--teal-border); background: var(--teal-bg); }
+
+  .fquote-tag {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 2px 6px;
+    border-radius: 2px;
+    margin-bottom: 5px;
+    color: var(--tag-ink);
+  }
+
+  .col-past .fquote-tag { background: var(--red); }
+  .col-present .fquote-tag { background: var(--amber); }
+  .col-future .fquote-tag { background: var(--teal); }
+
+  .fquote-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+
+  .fquote-body {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .fquote-attr {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.08em;
+    color: var(--rule-dark);
+    margin-top: 5px;
+  }
+
+  /* ── PULL QUOTE ── */
+  .pullquote {
+    border-top: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+    padding: 12px 4px;
+    margin: 16px 0 12px;
+    text-align: center;
+  }
+
+  .pullquote-text {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 13px;
+    font-style: italic;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.4;
+  }
+
+  .pullquote-attr {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-top: 6px;
+    text-transform: uppercase;
+  }
+
+  /* ── STAT STRIP ── */
+  .stat-strip {
+    display: flex;
+    gap: 0;
+    margin-bottom: 16px;
+    border: 1px solid var(--rule-dark);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .stat-item {
+    flex: 1;
+    padding: 10px 12px;
+    text-align: center;
+    border-right: 1px solid var(--rule);
+  }
+
+  .stat-item:last-child { border-right: none; }
+
+  .stat-num {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1;
+    display: block;
+  }
+
+  .col-past .stat-num { color: var(--red); }
+  .col-present .stat-num { color: var(--amber); }
+  .col-future .stat-num { color: var(--teal); }
+
+  .stat-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 7.5px;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-top: 3px;
+    line-height: 1.3;
+    text-transform: uppercase;
+  }
+
+  /* ── SECTION RULE ── */
+  .section-rule {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 14px 0 10px;
+  }
+
+  .section-rule span {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  .section-rule::before,
+  .section-rule::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  /* ── BOTTOM BANNER ── */
+  .bottom-banner {
+    margin-top: 40px;
+    border-top: 4px double var(--ink);
+    padding-top: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    animation: fadeIn 1s ease 0.5s both;
+  }
+
+  .brand-block .brand-name {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 18px;
+    font-style: italic;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .brand-block .brand-sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  .disclaimer {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 7.5px;
+    letter-spacing: 0.08em;
+    color: var(--rule-dark);
+    text-align: right;
+    max-width: 380px;
+    line-height: 1.5;
+  }
+
+  /* ── FOOTNOTE STRIP ── */
+  .footnote-strip {
+    background: var(--paper2);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 10px 14px;
+    margin-top: 12px;
+  }
+
+  .footnote-strip p {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.07em;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 820px) {
+    .columns { grid-template-columns: 1fr; }
+    .col { border-right: none !important; padding: 0; margin-bottom: 36px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- MASTHEAD -->
+  <div class="masthead">
+    <div class="masthead-sub">Student Doctor Network · Podiatry Forum · Compiled Analysis</div>
+    <h1>What <em>SDN</em> Said</h1>
+    <h1 style="font-size: clamp(16px, 2.8vw, 26px); font-weight:400; font-style:italic; margin-top:4px;">A Decade of Unfiltered Forum Truth About the Podiatry Profession</h1>
+    <div class="dateline-row">
+      <div class="dateline">Vol. 2026 &nbsp;·&nbsp; Compiled for Podiatric Surgery Residents</div>
+      <div class="forum-badge">forums.studentdoctor.net / podiatry</div>
+      <div class="dateline">All content sourced &amp; paraphrased from SDN threads</div>
+    </div>
+  </div>
+
+  <!-- DECK -->
+  <div class="deck">
+    For over a decade, anonymous attendings, residents, and pre-pods have argued, lamented, and occasionally hoped on the SDN podiatry forum.
+    This is what they said — and what you, as a resident, should actually know.
+  </div>
+
+  <!-- COLUMNS -->
+  <div class="columns">
+
+    <!-- ══ COL 1: PAST ══ -->
+    <div class="col col-past">
+      <div class="col-header">
+        <div class="col-kicker">The Last Ten Years</div>
+        <div class="col-title">What Brewed Below the Surface</div>
+        <div class="col-dek">The grievances that dominated every SDN podiatry thread from 2015 onward.</div>
+      </div>
+
+      <div class="stat-strip">
+        <div class="stat-item">
+          <span class="stat-num">600+</span>
+          <div class="stat-label">Grads per year when field needs ~200–300</div>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">5+</span>
+          <div class="stat-label">Competing "board" bodies — most not APMA-recognized</div>
+        </div>
+      </div>
+
+      <div class="fquote">
+        <span class="fquote-tag">Board Wars</span>
+        <div class="fquote-title">ABFAS vs. ABPM vs. Everyone Else</div>
+        <div class="fquote-body">SDN's most relitigated topic. Forum consensus: ABFAS is the only credential that matters for surgical privileges in major metro areas — but it has serious testing design flaws and left roughly half of practicing DPMs unable to qualify. ABPM became the de facto "people's board" precisely because it let people stay in the game. The proliferation of unrecognized boards was repeatedly called an embarrassment that doesn't exist in any other profession.</div>
+        <div class="fquote-attr">· SDN Podiatry Forum, multiple threads 2015–2024</div>
+      </div>
+
+      <div class="fquote">
+        <span class="fquote-tag">Saturation</span>
+        <div class="fquote-title">"Nail Jail" and the Job Market Trap</div>
+        <div class="fquote-body">The recurring nightmare: graduate into a saturated market, accept a low-base bait-and-switch associate job, and end up trimming toenails at a Medicaid clinic because no one will let you use your surgical training. Forum veterans were unambiguous: most metro areas are full. Geographic flexibility isn't optional — it's survival.</div>
+        <div class="fquote-attr">· SDN Podiatry Satisfaction Poll; Future of Podiatry threads</div>
+      </div>
+
+      <div class="pullquote">
+        <div class="pullquote-text">"As long as podiatry continues to graduate 600+ yearly when we only really need around 200–300, we are all judged and income-limited by our lowest common denominators."</div>
+        <div class="pullquote-attr">— SDN Attending, Podiatry Income thread, 2024</div>
+      </div>
+
+      <div class="section-rule"><span>More Issues</span></div>
+
+      <div class="fquote">
+        <span class="fquote-tag">Identity</span>
+        <div class="fquote-title">The Inferiority Complex is Real</div>
+        <div class="fquote-body">Forum users diagnosed podiatry's cultural wound: some well-trained DPMs become arrogant overcompensators, others constantly seek validation. The tell? Calling yourself "fellowship-trained foot and ankle surgeon" instead of podiatrist — because some in the field are apparently embarrassed by the word "podiatry."</div>
+        <div class="fquote-attr">· "What is the deal with podiatry?" SDN 2023</div>
+      </div>
+
+      <div class="fquote">
+        <span class="fquote-tag">Leadership</span>
+        <div class="fquote-title">Disarray at the Top</div>
+        <div class="fquote-body">SDN posters were consistent: podiatry's leadership problem isn't laziness — it's conflicts of interest. CPME accreditation committees were called out directly. The forum's diagnosis: a profession where nobody in charge is incentivized to solve the oversupply problem because the schools need tuition revenue.</div>
+        <div class="fquote-attr">· "What is the deal with podiatry?" SDN 2023</div>
+      </div>
+
+      <div class="fquote">
+        <span class="fquote-tag">Residency</span>
+        <div class="fquote-title">Program Quality: Massive Variance</div>
+        <div class="fquote-body">Unlike MD specialties where a bad match still means reasonable training, a poor podiatry residency can leave a graduate genuinely unprepared for boards and surgical practice. Many programs were called out for producing PSR-12 numbers from PM&S-36 slots — volume fraud that harms graduates and the profession's credibility.</div>
+        <div class="fquote-attr">· ABFAS ITE thread; Considering Podiatry thread, SDN 2022</div>
+      </div>
+    </div>
+
+    <!-- ══ COL 2: PRESENT ══ -->
+    <div class="col col-present">
+      <div class="col-header">
+        <div class="col-kicker">What SDN Proposed</div>
+        <div class="col-title">Forum Solutions (Consensus &amp; Contested)</div>
+        <div class="col-dek">The ideas that earned repeated upvotes — and the ones that still divide the forum.</div>
+      </div>
+
+      <div class="stat-strip">
+        <div class="stat-item">
+          <span class="stat-num">1</span>
+          <div class="stat-label">Board — the near-universal forum consensus</div>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">↓</span>
+          <div class="stat-label">Cut seats — only supply reduction fixes saturation</div>
+        </div>
+      </div>
+
+      <div class="fquote">
+        <span class="fquote-tag">Boards</span>
+        <div class="fquote-title">"Just Merge the Boards and Be Done With It"</div>
+        <div class="fquote-body">This was the closest SDN came to unanimous agreement. The exact quote — profane and blunt — captured the frustration of a decade of forum debate. The forum's proposed fix: one unified surgical board, ABMS-style oversight, and the immediate elimination of unrecognized certification mills. The negotiating table has existed since APMA Vision 2015. Nothing has happened. Forum verdict: nobody in power has incentive to give up their organization.</div>
+        <div class="fquote-attr">· ABPM 2024 thread; ABFAS/ABPM threads, multiple years</div>
+      </div>
+
+      <div class="pullquote">
+        <div class="pullquote-text">"We need to significantly cut slots in the schools. The only way the situation improves is a decade or two of seriously decreased enrollments that cause several schools to close."</div>
+        <div class="pullquote-attr">— SDN Attending, Podiatry Satisfaction Poll, 2023</div>
+      </div>
+
+      <div class="fquote">
+        <span class="fquote-tag">Supply</span>
+        <div class="fquote-title">Cut School Enrollment (Hardest Fix, Most Agreed On)</div>
+        <div class="fquote-body">SDN consensus was brutal and clear: demand for podiatrists will not outrun supply unless the schools stop producing graduates at current rates. The proposed number — around 200 to 300 genuine graduates into 200 to 300 quality residency spots — appears across dozens of threads. School closures were seen as the only credible mechanism. Nobody thinks CPME or the schools will do this voluntarily.</div>
+        <div class="fquote-attr">· Future of Podiatry; Podiatry Income threads, SDN 2022–2024</div>
+      </div>
+
+      <div class="section-rule"><span>Individual-Level Advice</span></div>
+
+      <div class="fquote">
+        <span class="fquote-tag">Career</span>
+        <div class="fquote-title">ABFAS RRA First. Geography Second. Everything Else After.</div>
+        <div class="fquote-body">The practical playbook repeated by every senior forum voice: Get ABFAS certified, preferably RRA. Be geographically open — Midwest cities beat metro saturation. Take leadership positions (APMA counts). Delay real estate and luxury purchases until you have a stable base. Have a private practice ownership mindset from day one of residency, because associate tracks often go nowhere.</div>
+        <div class="fquote-attr">· The Future of Podiatry thread; Future of Podiatry, SDN 2022</div>
+      </div>
+
+      <div class="fquote">
+        <span class="fquote-tag">Jobs</span>
+        <div class="fquote-title">Hospital and VA Employment: The Safer Track</div>
+        <div class="fquote-body">Forum veterans consistently pointed to hospital employment and VA positions as the most stable and fairly compensated jobs in the profession — and the hardest to get. Advice: stand out, use connections from residency and school, and apply early. The bait-and-switch salary structure of private practice was consistently flagged as a red flag; most base salaries advertised as "$250K" revealed themselves as $100K guarantees.</div>
+        <div class="fquote-attr">· Future of Podiatry; Is Podiatry Likely to Become More Competitive, SDN</div>
+      </div>
+
+      <div class="fquote">
+        <span class="fquote-tag">Standards</span>
+        <div class="fquote-title">What Schools Should Teach (But Don't)</div>
+        <div class="fquote-body">One forum poster compiled a list of things every DPM needs to know before entering practice that no podiatric school covers: fee schedules, commercial vs. Medicare insurance mechanics, NNN real estate, CAQH credentialing, malpractice types, MIPS, MACRA, ACO, DRG, 1995 vs. 1997 E&M, disability insurance. The response: widespread agreement that the business education gap is a structural failure of podiatric training.</div>
+        <div class="fquote-attr">· Is Podiatry Likely to Become More Competitive, SDN 2020</div>
+      </div>
+    </div>
+
+    <!-- ══ COL 3: FUTURE ══ -->
+    <div class="col col-future">
+      <div class="col-header">
+        <div class="col-kicker">The Next Ten Years</div>
+        <div class="col-title">Best Case, Worst Case, and What SDN Predicts</div>
+        <div class="col-dek">One forum user wrote a satirical vision of 2049. It's funnier — and more accurate — than any official projection.</div>
+      </div>
+
+      <div class="stat-strip">
+        <div class="stat-item">
+          <span class="stat-num">2049</span>
+          <div class="stat-label">SDN's projected year podiatry stabilizes (satirical)</div>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">~3</span>
+          <div class="stat-label">Schools remaining in the forum's ideal future scenario</div>
+        </div>
+      </div>
+
+      <div class="fquote">
+        <span class="fquote-tag">Best Case</span>
+        <div class="fquote-title">The "3 Schools, 200 Seats" Vision</div>
+        <div class="fquote-body">The forum's clearest optimistic scenario: enrollment collapses to the point where three schools survive — one East, one West, one Central — with roughly 200 seats per year. Student quality improves dramatically. Every graduate matches a quality residency. Nearly everyone passes ABFAS. Jobs become plentiful and salaries approach MD-level. One poster gave this outcome a target date of 2075. Nobody disagreed about the timeline.</div>
+        <div class="fquote-attr">· Podiatry Job Market Satisfaction, SDN 2023</div>
+      </div>
+
+      <div class="fquote">
+        <span class="fquote-tag">Worst Case</span>
+        <div class="fquote-title">Medicare Trust Fund + Saturation = Implosion</div>
+        <div class="fquote-body">Several posters flagged a specific existential threat: Medicare trust fund depletion in the coming decade. Podiatry is heavily dependent on CMS reimbursement. Combine reduced Medicare rates with a saturated private practice market, rising private equity consolidation, and continued school expansion — and the profession's financial model collapses from multiple directions simultaneously.</div>
+        <div class="fquote-attr">· The Future of Podiatry, SDN 2022</div>
+      </div>
+
+      <div class="pullquote">
+        <div class="pullquote-text">"I am not discouraging anyone from entering the profession, but if one wants a 'sure thing' as far as a career — that is not podiatry."</div>
+        <div class="pullquote-attr">— SDN Attending, Podiatry Income Across Professions, 2024</div>
+      </div>
+
+      <div class="section-rule"><span>Structural Trends</span></div>
+
+      <div class="fquote">
+        <span class="fquote-tag">Private Equity</span>
+        <div class="fquote-title">PE is Coming — But Podiatry May Be Too Small</div>
+        <div class="fquote-body">Forum users noted that private equity entering podiatry in a serious way was just beginning in 2022–2023, with early signs that podiatry's margins are too thin to be attractive compared to anesthesia and emergency medicine. The No Surprises Act was cited as a cautionary tale. Whether PE consolidation helps or harms new graduates is genuinely contested on the forum.</div>
+        <div class="fquote-attr">· The Future of Podiatry, SDN 2022</div>
+      </div>
+
+      <div class="fquote">
+        <span class="fquote-tag">Demand</span>
+        <div class="fquote-title">Aging Population: Real, But Not a Rescue</div>
+        <div class="fquote-body">The "boomers need foot care" argument is real — SDN acknowledges that demand for podiatric services will grow. The forum's counterargument: demand growth of two to three percent per year means nothing when schools are expanding faster than that and geographic saturation already prevents many DPMs from practicing at the top of their training. Demand doesn't fix supply.</div>
+        <div class="fquote-attr">· Future of Podiatry; Podiatry Career Outlook, SDN multiple threads</div>
+      </div>
+
+      <div class="fquote">
+        <span class="fquote-tag">Hope</span>
+        <div class="fquote-title">One Good Opportunity Can Change Everything</div>
+        <div class="fquote-body">Buried in the pessimism: a persistent strand of honest optimism. The same senior forum voices who called out the bad jobs and the unfair markets also said this — it only takes one good opportunity, and for many DPMs who found their niche, the career is genuinely rewarding, financially sustainable, and worth it. The profession can be great. The ceiling is real. So is the floor.</div>
+        <div class="fquote-attr">· Podiatry Income Across Professions, SDN 2024</div>
+      </div>
+    </div>
+
+  </div><!-- end .columns -->
+
+  <!-- FOOTNOTE -->
+  <div class="footnote-strip" style="margin-top:28px;">
+    <p>
+      <strong>Source note:</strong> All content above is compiled, paraphrased, and synthesized from publicly available threads on the Student Doctor Network podiatry forum (forums.studentdoctor.net), including threads titled: "What is the Deal with Podiatry?" (2023), "ABPM 2024," "ABFAS/ABPM" (2022), "The Future of Podiatry" (2022), "Future of Podiatry" (2023), "Podiatry Income Across Professions" (2024), "Podiatry Satisfaction Poll" (2023), "Is Podiatry Likely to Become More Competitive?" (2020), and others. Direct quotations are paraphrased to protect copyright. SDN is an anonymous forum; views are those of forum users, not of any organization. This infographic is for educational purposes only and represents the perspective of the forum community — not official APMA, CPME, ABFAS, or ABPM positions.
+    </p>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="bottom-banner">
+    <div class="brand-block">
+      <div class="brand-name">Sole Intelligence</div>
+      <div class="brand-sub">Peter Sorensen, DPM, MHA &nbsp;·&nbsp; PGY-3 Podiatric Surgery &nbsp;·&nbsp; Ascension St. Vincent Indianapolis</div>
+    </div>
+    <div class="disclaimer">
+      Produced for resident education. &nbsp;·&nbsp; Organized Podiatry Series · 2026<br>
+      The forum speaks. The question is whether the profession listens.
+    </div>
+  </div>
+
+</div><!-- end .page -->
+</body>
+</html>

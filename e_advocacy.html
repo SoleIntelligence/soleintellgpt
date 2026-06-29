@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>APMA eAdvocacy Action Center — For Residents & Students</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Libre+Franklin:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#13294b;
+    --blue:#2766b0;
+    --blue-soft:#e3edf7;
+    --red:#c4332a;
+    --red-dk:#9c241d;
+    --cream:#f6f2ea;
+    --paper:#fffdf8;
+    --ink:#1b2433;
+    --ink-soft:#4a5567;
+    --line:#d9d2c4;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    background:#cbd2dc;
+    font-family:'Libre Franklin',sans-serif;
+    color:var(--ink);
+    display:flex;
+    justify-content:center;
+    padding:32px 16px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .poster{
+    width:1080px;
+    max-width:100%;
+    background:var(--paper);
+    position:relative;
+    overflow:hidden;
+    box-shadow:0 24px 60px rgba(19,41,75,.28);
+  }
+
+  /* ---------- MASTHEAD ---------- */
+  .masthead{
+    background:var(--navy);
+    color:#fff;
+    padding:34px 56px 30px;
+    position:relative;
+  }
+  .masthead::after{
+    content:"";position:absolute;left:0;right:0;bottom:0;height:6px;
+    background:linear-gradient(90deg,var(--red) 0 33%,var(--blue) 33% 100%);
+  }
+  .kicker{
+    display:flex;align-items:center;gap:14px;
+    font-size:13px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;
+    color:#9fc0e8;
+  }
+  .kicker .dot{width:8px;height:8px;border-radius:50%;background:var(--red);box-shadow:0 0 0 4px rgba(196,51,42,.25);}
+  .badge{
+    margin-left:auto;background:var(--red);color:#fff;
+    font-size:12px;font-weight:800;letter-spacing:.12em;
+    padding:6px 12px;border-radius:3px;
+  }
+  .masthead h1{
+    font-family:'Newsreader',serif;
+    font-weight:500;
+    font-size:60px;
+    line-height:1.02;
+    letter-spacing:-.01em;
+    margin-top:18px;
+  }
+  .masthead h1 em{font-style:italic;color:#bcd6f2;}
+  .standfirst{
+    margin-top:18px;
+    font-size:19px;
+    line-height:1.5;
+    color:#d7e2f0;
+    max-width:760px;
+    font-weight:400;
+  }
+  .standfirst b{color:#fff;font-weight:700;}
+
+  /* ---------- BODY ---------- */
+  .body{padding:44px 56px 0;}
+
+  .section-label{
+    font-size:13px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--red);display:flex;align-items:center;gap:12px;margin-bottom:14px;
+  }
+  .section-label::after{content:"";flex:1;height:2px;background:var(--line);}
+
+  .why h2{
+    font-family:'Newsreader',serif;font-weight:600;font-size:34px;line-height:1.12;
+    color:var(--navy);margin-bottom:14px;letter-spacing:-.01em;
+  }
+  .why p{font-size:18px;line-height:1.62;color:var(--ink-soft);max-width:880px;}
+  .why p b{color:var(--ink);font-weight:700;}
+
+  .pullquote{
+    margin:30px 0 6px;
+    border-left:5px solid var(--red);
+    background:var(--cream);
+    padding:22px 28px;
+  }
+  .pullquote p{
+    font-family:'Newsreader',serif;font-style:italic;font-size:23px;line-height:1.4;
+    color:var(--navy);max-width:none;
+  }
+
+  /* ---------- CAMPAIGN CARDS ---------- */
+  .campaigns{margin-top:40px;}
+  .card-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:6px;}
+  .card{
+    border:1.5px solid var(--line);
+    border-top:5px solid var(--blue);
+    background:var(--paper);
+    padding:26px 26px 28px;
+    position:relative;
+  }
+  .card .tag{
+    display:inline-block;font-size:12px;font-weight:800;letter-spacing:.06em;
+    background:var(--blue-soft);color:var(--blue);padding:5px 10px;border-radius:3px;
+    margin-bottom:14px;
+  }
+  .card h3{
+    font-family:'Newsreader',serif;font-weight:600;font-size:24px;line-height:1.18;
+    color:var(--navy);margin-bottom:12px;
+  }
+  .card p{font-size:15.5px;line-height:1.58;color:var(--ink-soft);}
+  .card p b{color:var(--ink);font-weight:700;}
+
+  /* ---------- HOW IT WORKS ---------- */
+  .how{margin-top:42px;}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:6px;}
+  .step{text-align:center;padding:6px 8px;}
+  .step .num{
+    width:52px;height:52px;border-radius:50%;background:var(--navy);color:#fff;
+    font-family:'Newsreader',serif;font-size:26px;font-weight:600;
+    display:flex;align-items:center;justify-content:center;margin:0 auto 14px;
+  }
+  .step h4{font-size:16px;font-weight:800;color:var(--ink);margin-bottom:6px;letter-spacing:.01em;}
+  .step p{font-size:14.5px;line-height:1.5;color:var(--ink-soft);}
+
+  .myth{
+    margin-top:34px;display:flex;gap:16px;align-items:flex-start;
+    background:var(--blue-soft);border-radius:6px;padding:20px 24px;
+  }
+  .myth .x{font-size:22px;line-height:1;color:var(--red);font-weight:900;flex-shrink:0;margin-top:2px;}
+  .myth p{font-size:16px;line-height:1.55;color:var(--navy);}
+  .myth p b{font-weight:800;}
+
+  /* ---------- CTA ---------- */
+  .cta{
+    margin:46px -56px 0;
+    background:var(--navy);
+    color:#fff;
+    padding:42px 56px 44px;
+    text-align:center;
+    position:relative;
+  }
+  .cta::before{
+    content:"";position:absolute;left:0;right:0;top:0;height:6px;
+    background:linear-gradient(90deg,var(--blue) 0 67%,var(--red) 67% 100%);
+  }
+  .cta .ey{font-size:13px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:#9fc0e8;}
+  .cta h2{font-family:'Newsreader',serif;font-weight:500;font-size:38px;line-height:1.12;margin:12px 0 22px;}
+  .cta h2 em{font-style:italic;color:#bcd6f2;}
+  .url-pill{
+    display:inline-block;background:var(--red);color:#fff;
+    font-weight:800;font-size:21px;letter-spacing:.01em;
+    padding:16px 38px;border-radius:6px;
+    box-shadow:0 10px 24px rgba(196,51,42,.35);
+  }
+  .url-pill .arrow{font-weight:900;margin-left:8px;}
+  .cta .sub{margin-top:16px;font-size:14.5px;color:#aebfd4;}
+
+  /* ---------- FOOTER ---------- */
+  .foot{
+    background:#0e1d36;color:#8ea3c2;
+    padding:18px 56px;
+    display:flex;align-items:center;justify-content:space-between;
+    font-size:13px;
+  }
+  .foot .by{color:#dbe6f4;font-weight:700;}
+  .foot .by span{color:#7f95b6;font-weight:500;}
+  .foot .src{font-style:italic;}
+
+  @media(max-width:720px){
+    .masthead,.body,.cta,.foot{padding-left:26px;padding-right:26px;}
+    .cta{margin-left:-26px;margin-right:-26px;}
+    .masthead h1{font-size:42px;}
+    .card-grid,.steps{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+  <div class="poster">
+
+    <!-- MASTHEAD -->
+    <header class="masthead">
+      <div class="kicker">
+        <span class="dot"></span>
+        Advocacy &nbsp;·&nbsp; For Residents &amp; Students
+        <span class="badge">NEW · MAY 2026</span>
+      </div>
+      <h1>You don't have to wait until you're an attending<br>to <em>shape the profession.</em></h1>
+      <p class="standfirst">APMA just launched the <b>eAdvocacy Action Center</b> — a grassroots platform built for members, <b>students, and residents</b> to weigh in on the federal and state policy that will define how you practice.</p>
+    </header>
+
+    <div class="body">
+
+      <!-- WHY IT MATTERS -->
+      <section class="why">
+        <div class="section-label">Why this matters to you</div>
+        <h2>The rules you'll inherit are being written right now.</h2>
+        <p>Reimbursement, scope of practice, and Medicare coverage aren't abstract attending-level problems — they're the terms of the job you're training for. The legislation moving through Congress today decides what your future practice looks like. <b>The only people in the room are the ones who show up.</b> The Action Center is the lowest-effort way to be one of them: pre-written messages routed to your own representatives, no fundraising, no insider access required.</p>
+
+        <div class="pullquote">
+          <p>"Grassroots advocacy is the way lawmakers see the real-world impact of policy on podiatry. As a resident, your voice counts the same as anyone's — and it's free to use it."</p>
+        </div>
+      </section>
+
+      <!-- CAMPAIGNS -->
+      <section class="campaigns">
+        <div class="section-label">Two campaigns live today</div>
+        <div class="card-grid">
+          <div class="card">
+            <span class="tag">HR 7905 / S 4070</span>
+            <h3>Diabetes Foot Health Access &amp; Modernization Act</h3>
+            <p>Modernizes the <b>outdated Medicare documentation rules</b> that delay therapeutic-shoe care for diabetic patients, and establishes <b>Medicaid coverage parity</b> for podiatrists.</p>
+          </div>
+          <div class="card">
+            <span class="tag">HR 8163</span>
+            <h3>Provider Reimbursement Stability Act</h3>
+            <p>Reforms Medicare <b>budget-neutrality requirements</b> to strengthen long-term payment stability — directly tied to what your work will be worth.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- HOW IT WORKS -->
+      <section class="how">
+        <div class="section-label">How it works</div>
+        <div class="steps">
+          <div class="step">
+            <div class="num">1</div>
+            <h4>Open the Center</h4>
+            <p>Go to the Action Center and pick an active campaign.</p>
+          </div>
+          <div class="step">
+            <div class="num">2</div>
+            <h4>Add your name</h4>
+            <p>It auto-matches you to your members of Congress by address.</p>
+          </div>
+          <div class="step">
+            <div class="num">3</div>
+            <h4>Send</h4>
+            <p>Edit the pre-written message if you want, then send. Done.</p>
+          </div>
+        </div>
+
+        <div class="myth">
+          <span class="x">✕</span>
+          <p><b>"I'm just a resident — this isn't for me yet."</b> &nbsp;The platform is explicitly built for students and residents too. You don't need a PAC contribution, a title, or a practice. About two minutes is the whole ask.</p>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- CTA -->
+    <section class="cta">
+      <div class="ey">Take action today</div>
+      <h2>Join APMA's grassroots network and<br><em>make your voice heard.</em></h2>
+      <div class="url-pill">votervoice.net/APMA/home <span class="arrow">→</span></div>
+      <p class="sub">eAdvocacy Action Center · Launched May 31, 2026 · Members · Students · Residents</p>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="foot">
+      <div class="by">Peter Sorensen, DPM &nbsp;<span>· soleintell.com</span></div>
+      <div class="src">Source: APMA News Release, May 31, 2026</div>
+    </footer>
+
+  </div>
+</body>
+</html>

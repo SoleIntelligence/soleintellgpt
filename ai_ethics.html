@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Ethical Weight of AI — The Guidewire</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 16px; }
+
+  body {
+    background: #0d0f14;
+    color: #e8e4dc;
+    font-family: 'Source Serif 4', serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 2rem 5rem;
+  }
+
+  /* MASTHEAD */
+  .masthead {
+    border-top: 3px solid #e8e4dc;
+    border-bottom: 1px solid #2a2d35;
+    padding: 1.25rem 0 1rem;
+  }
+
+  .pub-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.5rem;
+  }
+
+  .pub-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #e8e4dc;
+  }
+
+  .pub-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: #666;
+    letter-spacing: 0.04em;
+  }
+
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: #4fc3a1;
+    border-top: 1px solid #2a2d35;
+    padding-top: 0.4rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .headline {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 900;
+    line-height: 1.1;
+    margin: 0 0 0.7rem;
+    color: #ffffff;
+  }
+
+  .deck {
+    font-size: 17px;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.6;
+    color: #9a9690;
+    border-left: 3px solid #4fc3a1;
+    padding-left: 0.85rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .byline-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.65rem 0;
+    border-top: 1px solid #2a2d35;
+    border-bottom: 3px solid #e8e4dc;
+    margin-bottom: 2.25rem;
+  }
+
+  .byline {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    color: #666;
+    letter-spacing: 0.04em;
+  }
+
+  .byline strong { color: #e8e4dc; font-weight: 500; }
+
+  /* LEAD */
+  .lead {
+    font-size: 17.5px;
+    line-height: 1.78;
+    color: #c8c4bc;
+    margin-bottom: 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #2a2d35;
+  }
+
+  /* PILLARS — each gets a unique accent color */
+  .pillar {
+    margin-bottom: 2.5rem;
+    padding-bottom: 2.25rem;
+    border-bottom: 1px solid #2a2d35;
+    position: relative;
+  }
+
+  .pillar::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    border-radius: 2px;
+  }
+
+  .pillar-1::before { background: #4fc3a1; }
+  .pillar-2::before { background: #6b8de3; }
+  .pillar-3::before { background: #f0a050; }
+  .pillar-4::before { background: #e06080; }
+  .pillar-5::before { background: #9b7fe8; }
+
+  .pillar-inner { padding-left: 1.25rem; }
+
+  .pillar-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.1rem;
+  }
+
+  .pillar-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 56px;
+    font-weight: 900;
+    line-height: 0.85;
+    flex-shrink: 0;
+    width: 46px;
+    text-align: right;
+  }
+
+  .pillar-1 .pillar-num { color: #1a4a3a; }
+  .pillar-2 .pillar-num { color: #1e2a5a; }
+  .pillar-3 .pillar-num { color: #5a3a10; }
+  .pillar-4 .pillar-num { color: #5a1a2a; }
+  .pillar-5 .pillar-num { color: #3a2060; }
+
+  .pillar-title-block { flex: 1; padding-top: 4px; }
+
+  .pillar-category {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .pillar-1 .pillar-category { color: #4fc3a1; }
+  .pillar-2 .pillar-category { color: #6b8de3; }
+  .pillar-3 .pillar-category { color: #f0a050; }
+  .pillar-4 .pillar-category { color: #e06080; }
+  .pillar-5 .pillar-category { color: #9b7fe8; }
+
+  .pillar-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #ffffff;
+  }
+
+  .pillar-body {
+    padding-left: calc(46px + 1rem);
+    font-size: 15.5px;
+    line-height: 1.75;
+    color: #b0aca4;
+    margin-bottom: 1.1rem;
+  }
+
+  /* FACT CARDS */
+  .fact-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+    gap: 10px;
+    margin: 1.1rem 0;
+    padding-left: calc(46px + 1rem);
+  }
+
+  .fact-card {
+    border-radius: 8px;
+    padding: 0.9rem 1rem;
+    border: 1px solid transparent;
+  }
+
+  .fc-teal   { background: #0d2a22; border-color: #1d5a46; }
+  .fc-blue   { background: #101828; border-color: #1e3566; }
+  .fc-orange { background: #2a1a08; border-color: #5a3a12; }
+  .fc-pink   { background: #2a0e18; border-color: #5a1e30; }
+  .fc-purple { background: #1a0e30; border-color: #3a1e60; }
+  .fc-amber  { background: #241500; border-color: #4a2e00; }
+  .fc-coral  { background: #2a1008; border-color: #5a2010; }
+
+  .fact-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 4px;
+    line-height: 1.1;
+  }
+
+  .fc-teal   .fact-num { color: #4fc3a1; }
+  .fc-blue   .fact-num { color: #6b8de3; }
+  .fc-orange .fact-num { color: #f0a050; }
+  .fc-pink   .fact-num { color: #e06080; }
+  .fc-purple .fact-num { color: #9b7fe8; }
+  .fc-amber  .fact-num { color: #d4940a; }
+  .fc-coral  .fact-num { color: #e06040; }
+
+  .fact-label {
+    font-size: 11px;
+    color: #666;
+    line-height: 1.45;
+  }
+
+  /* KEY POINTS */
+  .keypoints { padding-left: calc(46px + 1rem); }
+
+  .keypoint {
+    display: flex;
+    gap: 0.65rem;
+    margin-bottom: 0.65rem;
+    font-size: 14.5px;
+    line-height: 1.58;
+    color: #b0aca4;
+  }
+
+  .kp-arrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    flex-shrink: 0;
+    padding-top: 3px;
+  }
+
+  .pillar-1 .kp-arrow { color: #4fc3a1; }
+  .pillar-2 .kp-arrow { color: #6b8de3; }
+  .pillar-3 .kp-arrow { color: #f0a050; }
+  .pillar-4 .kp-arrow { color: #e06080; }
+  .pillar-5 .kp-arrow { color: #9b7fe8; }
+
+  .keypoint strong { color: #e8e4dc; font-weight: 500; }
+  .keypoint em { font-style: italic; }
+
+  /* VERDICT */
+  .verdict-box {
+    background: linear-gradient(135deg, #0d1f2d 0%, #0d1a28 50%, #10161e 100%);
+    border: 1px solid #1e3a50;
+    border-left: 4px solid #4fc3a1;
+    border-radius: 10px;
+    padding: 1.5rem 1.75rem;
+    margin: 2.25rem 0 2rem;
+  }
+
+  .verdict-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #4fc3a1;
+    margin-bottom: 0.6rem;
+  }
+
+  .verdict-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 19px;
+    font-style: italic;
+    line-height: 1.58;
+    color: #ddd8d0;
+  }
+
+  /* DIVIDER */
+  .divider-word {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 1.75rem 0 1.35rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.17em;
+    text-transform: uppercase;
+    color: #9b7fe8;
+  }
+
+  .divider-word::before,
+  .divider-word::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #2a2d35;
+  }
+
+  /* PEARLS */
+  .pearls { list-style: none; margin-bottom: 2rem; }
+
+  .pearl {
+    display: flex;
+    gap: 0.85rem;
+    margin-bottom: 0.8rem;
+    font-size: 15px;
+    line-height: 1.6;
+    align-items: flex-start;
+    color: #b0aca4;
+  }
+
+  .pearl-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 6px;
+  }
+
+  .pearl:nth-child(1) .pearl-dot { background: #4fc3a1; }
+  .pearl:nth-child(2) .pearl-dot { background: #6b8de3; }
+  .pearl:nth-child(3) .pearl-dot { background: #f0a050; }
+  .pearl:nth-child(4) .pearl-dot { background: #e06080; }
+  .pearl:nth-child(5) .pearl-dot { background: #9b7fe8; }
+
+  /* SOURCES */
+  .sources {
+    border-top: 1px solid #2a2d35;
+    padding-top: 1.1rem;
+    margin-top: 1.75rem;
+  }
+
+  .sources-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: #555;
+    margin-bottom: 0.7rem;
+  }
+
+  .source-item {
+    font-size: 12px;
+    color: #555;
+    margin-bottom: 0.35rem;
+    line-height: 1.45;
+    display: flex;
+    gap: 0.45rem;
+  }
+
+  .source-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: #444;
+    flex-shrink: 0;
+  }
+
+  /* DISCLAIMER */
+  .disclaimer {
+    border-top: 1px solid #2a2d35;
+    padding-top: 0.85rem;
+    margin-top: 1.1rem;
+    font-size: 11px;
+    color: #555;
+    line-height: 1.6;
+  }
+
+  .disclaimer strong { color: #666; }
+
+  /* COPYRIGHT */
+  .copyright {
+    font-size: 9px;
+    color: #333;
+    text-align: center;
+    margin-top: 2rem;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.07em;
+  }
+
+  @media (max-width: 600px) {
+    .page { padding: 1.5rem 1rem 4rem; }
+    .headline { font-size: 30px; }
+    .pub-line { flex-direction: column; gap: 4px; }
+    .byline-bar { flex-direction: column; gap: 4px; align-items: flex-start; }
+    .fact-row { padding-left: 0; }
+    .pillar-body { padding-left: 0; }
+    .keypoints { padding-left: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="masthead">
+    <div class="pub-line">
+      <span class="pub-name">The Guidewire</span>
+      <span class="pub-meta">soleintell.com &nbsp;|&nbsp; May 2026</span>
+    </div>
+    <div class="section-label">AI in Healthcare &nbsp;→&nbsp; Ethics &amp; Policy</div>
+    <h1 class="headline">The Ethical Weight of AI</h1>
+    <p class="deck">Five questions every healthcare professional should be able to answer about who owns AI, how it was built, and what it costs the planet.</p>
+  </div>
+
+  <div class="byline-bar">
+    <span class="byline">By <strong>Peter Sorensen, DPM</strong></span>
+    <span class="byline">Educational brief &nbsp;·&nbsp; Broad healthcare audience</span>
+  </div>
+
+  <p class="lead">
+    You use it to draft notes, summarize literature, and generate images. But do you know where the data came from? Who owns what you make? Or what it costs the planet every time you hit send? AI is no longer peripheral to healthcare — which means AI ethics is no longer someone else's problem.
+  </p>
+
+  <!-- PILLAR 1 — TEAL -->
+  <div class="pillar pillar-1">
+    <div class="pillar-inner">
+      <div class="pillar-header">
+        <div class="pillar-num">1</div>
+        <div class="pillar-title-block">
+          <div class="pillar-category">Training Data &amp; Consent</div>
+          <h2 class="pillar-title">How AI learned what it knows</h2>
+        </div>
+      </div>
+      <div class="pillar-body">
+        Every large AI model was trained on text, images, and code scraped from the internet — including works created by artists, journalists, researchers, and clinicians who were never asked for permission. The legal question of whether that constitutes fair use is still being argued in courts worldwide.
+      </div>
+      <div class="fact-row">
+        <div class="fact-card fc-coral">
+          <span class="fact-num">$1.5B</span>
+          <span class="fact-label">Anthropic's copyright settlement, Aug 2025 — largest in U.S. history</span>
+        </div>
+        <div class="fact-card fc-teal">
+          <span class="fact-num">Jan 2026</span>
+          <span class="fact-label">California mandates disclosure of AI training data sources and copyright status</span>
+        </div>
+        <div class="fact-card fc-blue">
+          <span class="fact-num">EU 2026</span>
+          <span class="fact-label">AI Act requires training data summaries and honoring creator opt-outs</span>
+        </div>
+      </div>
+      <div class="keypoints">
+        <div class="keypoint"><span class="kp-arrow">→</span><span><strong>The crux:</strong> Most internet content is automatically copyright-protected from the moment it's created. Whether scraping and training on it constitutes infringement hinges on "fair use" — a doctrine courts are still applying unevenly.</span></div>
+        <div class="keypoint"><span class="kp-arrow">→</span><span><strong>For healthcare:</strong> Patient data, clinical notes, and medical literature shared online may have entered training pipelines. HIPAA compliance for AI training data remains an active regulatory question.</span></div>
+        <div class="keypoint"><span class="kp-arrow">→</span><span><strong>Watch for:</strong> Opt-out mechanisms, licensing deals between publishers and AI companies, and mandatory training data transparency — all expanding rapidly in 2026–2027.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PILLAR 2 — BLUE -->
+  <div class="pillar pillar-2">
+    <div class="pillar-inner">
+      <div class="pillar-header">
+        <div class="pillar-num">2</div>
+        <div class="pillar-title-block">
+          <div class="pillar-category">IP &amp; Ownership</div>
+          <h2 class="pillar-title">Who owns what you make with AI?</h2>
+        </div>
+      </div>
+      <div class="pillar-body">
+        Short answer: probably nobody — at least not yet. The U.S. Copyright Office and courts have consistently held that purely AI-generated content cannot be copyrighted because copyright requires a human author.
+      </div>
+      <div class="fact-row">
+        <div class="fact-card fc-blue">
+          <span class="fact-num">Mar 2026</span>
+          <span class="fact-label">U.S. Supreme Court declined Thaler v. Perlmutter — AI cannot hold copyright</span>
+        </div>
+        <div class="fact-card fc-purple">
+          <span class="fact-num">Jan 2025</span>
+          <span class="fact-label">Copyright Office: AI prompts alone do not satisfy human authorship requirement</span>
+        </div>
+      </div>
+      <div class="keypoints">
+        <div class="keypoint"><span class="kp-arrow">→</span><span><strong>The gray zone:</strong> Heavily edited or curated AI output <em>may</em> qualify for protection if human creative input is "significant enough." Courts are still defining what that means.</span></div>
+        <div class="keypoint"><span class="kp-arrow">→</span><span><strong>What this means practically:</strong> An AI-generated clinical summary, educational image, or marketing piece you publish may not be legally yours — or anyone's. Anyone could reproduce it.</span></div>
+        <div class="keypoint"><span class="kp-arrow">→</span><span><strong>Safe practice:</strong> When IP matters, document your creative input. If you directed, edited, and transformed AI output substantially, that human layer may support copyright registration. Disclose AI use when registering.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PILLAR 3 — ORANGE -->
+  <div class="pillar pillar-3">
+    <div class="pillar-inner">
+      <div class="pillar-header">
+        <div class="pillar-num">3</div>
+        <div class="pillar-title-block">
+          <div class="pillar-category">Bias &amp; Fairness</div>
+          <h2 class="pillar-title">Garbage in, garbage out — at scale</h2>
+        </div>
+      </div>
+      <div class="pillar-body">
+        AI models learn from human-generated data — which means they inherit human biases. In healthcare, that's not an abstract problem. A model trained predominantly on data from certain demographics will underperform for others.
+      </div>
+      <div class="keypoints">
+        <div class="keypoint"><span class="kp-arrow">→</span><span><strong>Known examples in medicine:</strong> Pulse oximeters overtriaged white patients due to skin-tone bias. Dermatology AI models showed lower accuracy for darker skin types. Pain assessment tools showed race-based disparities.</span></div>
+        <div class="keypoint"><span class="kp-arrow">→</span><span><strong>In podiatry specifically:</strong> Diabetic foot and wound AI tools trained on non-diverse populations may misclassify severity in underrepresented groups — a high-stakes error.</span></div>
+        <div class="keypoint"><span class="kp-arrow">→</span><span><strong>The fix isn't simple:</strong> Bias mitigation requires diverse training data, rigorous real-world validation, and transparent reporting of model demographics. Most commercial tools don't provide this yet.</span></div>
+        <div class="keypoint"><span class="kp-arrow">→</span><span><strong>Your role:</strong> Ask vendors what populations a clinical AI tool was validated on before using it. If they can't answer, that's the answer.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PILLAR 4 — PINK -->
+  <div class="pillar pillar-4">
+    <div class="pillar-inner">
+      <div class="pillar-header">
+        <div class="pillar-num">4</div>
+        <div class="pillar-title-block">
+          <div class="pillar-category">Image Generation &amp; Artist Rights</div>
+          <h2 class="pillar-title">The artist didn't consent</h2>
+        </div>
+      </div>
+      <div class="pillar-body">
+        Image generators like Midjourney, DALL-E, and Stable Diffusion were trained on billions of images scraped from the internet — including the life's work of illustrators, photographers, and medical artists. Many were scraped without consent, compensation, or even notification.
+      </div>
+      <div class="keypoints">
+        <div class="keypoint"><span class="kp-arrow">→</span><span><strong>What's settled (legally):</strong> The output of image generators generally belongs to no one under current U.S. law. Courts have rejected AI authorship claims across the board.</span></div>
+        <div class="keypoint"><span class="kp-arrow">→</span><span><strong>What's contested:</strong> Whether training on copyrighted images constitutes infringement is still litigated. Getty Images, artists' coalitions, and record labels have all filed suit. Universal Music Group settled with AI audio generator Udio in late 2025.</span></div>
+        <div class="keypoint"><span class="kp-arrow">→</span><span><strong>Emerging norms:</strong> Opt-out systems, licensing deals (Disney × OpenAI's Sora, Getty × generative platforms), and royalty frameworks are being negotiated now — they will define this space.</span></div>
+        <div class="keypoint"><span class="kp-arrow">→</span><span><strong>Healthcare application:</strong> Medical illustration, surgical diagrams, and patient education materials created with AI exist in a legal gray zone. Attribute human input clearly when publishing.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PILLAR 5 — PURPLE -->
+  <div class="pillar pillar-5">
+    <div class="pillar-inner">
+      <div class="pillar-header">
+        <div class="pillar-num">5</div>
+        <div class="pillar-title-block">
+          <div class="pillar-category">Environmental Cost</div>
+          <h2 class="pillar-title">The hidden cost of every prompt</h2>
+        </div>
+      </div>
+      <div class="pillar-body">
+        Every AI query consumes energy and water. Data centers running AI workloads require massive cooling systems — and those systems are drawing from freshwater supplies at a scale that was barely discussed three years ago.
+      </div>
+      <div class="fact-row">
+        <div class="fact-card fc-coral">
+          <span class="fact-num">~NYC</span>
+          <span class="fact-label">AI's estimated 2025 carbon footprint — equivalent to New York City's annual emissions</span>
+        </div>
+        <div class="fact-card fc-purple">
+          <span class="fact-num">764B L</span>
+          <span class="fact-label">Upper estimate of AI's 2025 water footprint — comparable to global bottled water consumption</span>
+        </div>
+        <div class="fact-card fc-amber">
+          <span class="fact-num">+7.1%</span>
+          <span class="fact-label">U.S. residential electricity prices in 2025 — data centers a significant contributing factor</span>
+        </div>
+      </div>
+      <div class="keypoints">
+        <div class="keypoint"><span class="kp-arrow">→</span><span><strong>Scale context:</strong> By 2030, AI data centers could emit 24–44 million metric tons of CO₂ annually and drain water equivalent to the household usage of 6–10 million Americans.</span></div>
+        <div class="keypoint"><span class="kp-arrow">→</span><span><strong>The transparency gap:</strong> Tech companies rarely disclose indirect water consumption — which can be 4× higher than direct use. Regulatory pressure for environmental disclosure is growing.</span></div>
+        <div class="keypoint"><span class="kp-arrow">→</span><span><strong>Healthcare angle:</strong> Hospitals pursuing sustainability certifications must now consider AI energy use as part of their environmental footprint. This is an emerging area of institutional policy.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VERDICT -->
+  <div class="verdict-box">
+    <div class="verdict-label">The Guidewire take</div>
+    <p class="verdict-text">"AI's benefits in healthcare are real — but so are the costs. The clinicians, institutions, and systems that will use AI ethically are those who understand what it's built on, what it legally produces, who it serves well, and what it takes from the planet. Informed use is not optional. It's professional responsibility."</p>
+  </div>
+
+  <!-- PEARLS -->
+  <div class="divider-word">Clinical pearls</div>
+
+  <ul class="pearls">
+    <li class="pearl"><span class="pearl-dot"></span><span>Training data consent is the foundation of AI legitimacy — ask vendors where their data came from before using clinical AI tools.</span></li>
+    <li class="pearl"><span class="pearl-dot"></span><span>AI-generated content (text, images) has no clear copyright owner under current U.S. law. Document your human creative input if IP matters to you.</span></li>
+    <li class="pearl"><span class="pearl-dot"></span><span>Bias is baked in. Validate AI tools on populations that match your patient panel. "FDA cleared" ≠ validated for your demographic.</span></li>
+    <li class="pearl"><span class="pearl-dot"></span><span>Image generators were trained largely without artist consent. The ethics aren't resolved — use them with that awareness.</span></li>
+    <li class="pearl"><span class="pearl-dot"></span><span>Every AI query has an environmental cost. That doesn't mean don't use it — it means use it with intention, not as a default.</span></li>
+  </ul>
+
+  <!-- SOURCES -->
+  <div class="sources">
+    <div class="sources-label">Sources</div>
+    <div class="source-item"><span class="source-num">1.</span><span>AIHub.org — Top AI Ethics and Policy Issues of 2025 and What to Expect in 2026 (Mar 2026)</span></div>
+    <div class="source-item"><span class="source-num">2.</span><span>AIMúltiple — Generative AI Copyright: Law, Litigation &amp; Best Practices in 2026 (Mar 2026)</span></div>
+    <div class="source-item"><span class="source-num">3.</span><span>U.S. Copyright Office — Copyright and AI, Part 2: Copyrightability (Jan 2025)</span></div>
+    <div class="source-item"><span class="source-num">4.</span><span>Springer / Discover AI — Technical, Legal, and Ethical Challenges of Generative AI (Jul 2025)</span></div>
+    <div class="source-item"><span class="source-num">5.</span><span>ScienceDirect — Carbon and Water Footprints of Data Centers and AI (Dec 2025)</span></div>
+    <div class="source-item"><span class="source-num">6.</span><span>Cornell Chronicle — Roadmap Shows Environmental Impact of AI Data Center Boom (Nov 2025)</span></div>
+    <div class="source-item"><span class="source-num">7.</span><span>Scalevise — EU AI Act 2026: New Rules for Training Data and Copyright (Feb 2026)</span></div>
+  </div>
+
+  <div class="disclaimer">
+    <strong>Disclaimer:</strong> This brief is produced with AI assistance for educational purposes only. It does not constitute legal, clinical, or financial advice. Readers should consult qualified professionals for decisions in those domains. All editorial judgments are the author's own.
+  </div>
+
+  <div class="copyright">© 2026 Peter Sorensen, DPM &nbsp;·&nbsp; soleintell.com</div>
+
+</div>
+</body>
+</html>

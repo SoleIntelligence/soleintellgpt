@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lapidus Procedure — Sole Intelligence</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0d1117; color: #e6edf3; min-height: 100vh; padding: 0; }
+
+  /* ── TITLE BLOCK ── */
+  .title-block {
+    background: linear-gradient(135deg, #0a1628 0%, #112244 50%, #0d2035 100%);
+    border-bottom: 3px solid #1e6fa8;
+    padding: 36px 28px 28px;
+    text-align: center;
+    position: relative;
+  }
+  .brand-tag {
+    font-size: 11px; font-weight: 700; letter-spacing: 2.5px;
+    color: #4ab8d8; text-transform: uppercase; margin-bottom: 14px;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .brand-tag::before, .brand-tag::after {
+    content: ''; flex: 1; max-width: 60px; height: 1px; background: #4ab8d8; opacity: 0.5;
+  }
+  h1 { font-size: 30px; font-weight: 800; color: #ffffff; line-height: 1.15; margin-bottom: 8px; }
+  h1 span { color: #4ab8d8; }
+  .subtitle { font-size: 15px; color: #8ca8c8; font-weight: 400; margin-bottom: 20px; }
+  .tag-row { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+  .tag { background: rgba(74,184,216,0.12); border: 1px solid rgba(74,184,216,0.3);
+         color: #4ab8d8; font-size: 11px; font-weight: 600; padding: 4px 12px;
+         border-radius: 20px; letter-spacing: 0.5px; }
+
+  /* ── LAYOUT ── */
+  .content { max-width: 780px; margin: 0 auto; padding: 24px 20px 60px; }
+
+  /* ── SECTION CARD ── */
+  .section {
+    background: #161b22; border: 1px solid #21262d;
+    border-radius: 14px; margin-bottom: 18px; overflow: hidden;
+  }
+  .section-header {
+    background: linear-gradient(90deg, #112035 0%, #0d1829 100%);
+    padding: 14px 20px; display: flex; align-items: center; gap: 10px;
+    border-bottom: 1px solid #21262d;
+  }
+  .sec-icon { font-size: 18px; }
+  .sec-title { font-size: 13px; font-weight: 700; letter-spacing: 1.5px;
+               text-transform: uppercase; color: #4ab8d8; }
+  .section-body { padding: 18px 20px; }
+
+  /* ── WHAT THIS IS ── */
+  .what-text { font-size: 15px; color: #cdd9e5; line-height: 1.6; }
+  .what-text strong { color: #79c0ff; font-weight: 600; }
+
+  /* ── WHY IT MATTERS ── */
+  .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .why-card {
+    background: #0d1829; border-radius: 10px; padding: 14px;
+    border-left: 3px solid #1e6fa8;
+  }
+  .why-label { font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+               text-transform: uppercase; color: #4ab8d8; margin-bottom: 5px; }
+  .why-text { font-size: 13px; color: #8ca8c8; line-height: 1.5; }
+
+  /* ── FRAMEWORK / FLOW ── */
+  .flow-step {
+    display: flex; align-items: flex-start; gap: 14px; margin-bottom: 14px;
+  }
+  .step-num {
+    background: #1e6fa8; color: #ffffff; font-size: 12px; font-weight: 700;
+    width: 28px; height: 28px; border-radius: 50%; display: flex;
+    align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px;
+  }
+  .step-content { flex: 1; }
+  .step-title { font-size: 14px; font-weight: 600; color: #cdd9e5; margin-bottom: 3px; }
+  .step-detail { font-size: 12.5px; color: #7a8996; line-height: 1.5; }
+  .step-arrow { text-align: center; color: #1e6fa8; font-size: 16px; margin: 2px 0 2px 14px; }
+
+  /* ── KEY CONCEPTS ── */
+  .concept-list { display: flex; flex-direction: column; gap: 9px; }
+  .concept-item {
+    display: flex; align-items: flex-start; gap: 10px;
+    background: #0d1829; border-radius: 8px; padding: 11px 13px;
+  }
+  .c-dot { width: 6px; height: 6px; border-radius: 50%; background: #4ab8d8;
+           flex-shrink: 0; margin-top: 5px; }
+  .c-bold { font-size: 13.5px; color: #79c0ff; font-weight: 600; }
+  .c-text { font-size: 13px; color: #7a8996; line-height: 1.45; }
+
+  /* ── HARDWARE ── */
+  .hw-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .hw-card {
+    background: #0d1829; border-radius: 10px; padding: 13px;
+    border-top: 2px solid;
+  }
+  .hw-card.plate { border-color: #3fb68b; }
+  .hw-card.screw { border-color: #e3a832; }
+  .hw-card.staple { border-color: #9b8ff5; }
+  .hw-card.hybrid { border-color: #e05c5c; }
+  .hw-name { font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; }
+  .hw-card.plate .hw-name { color: #3fb68b; }
+  .hw-card.screw .hw-name { color: #e3a832; }
+  .hw-card.staple .hw-name { color: #9b8ff5; }
+  .hw-card.hybrid .hw-name { color: #e05c5c; }
+  .hw-text { font-size: 12px; color: #7a8996; line-height: 1.5; }
+
+  /* ── DECISION LENS ── */
+  .lens-table { width: 100%; border-collapse: collapse; }
+  .lens-table th {
+    font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+    color: #4ab8d8; padding: 8px 12px; text-align: left;
+    background: #0d1829; border-bottom: 1px solid #21262d;
+  }
+  .lens-table td {
+    font-size: 13px; color: #8ca8c8; padding: 10px 12px;
+    border-bottom: 1px solid #1a1f26; vertical-align: top;
+  }
+  .lens-table tr:last-child td { border-bottom: none; }
+  .lens-table td:first-child { color: #cdd9e5; font-weight: 500; }
+  .yes-badge { background: rgba(63,182,139,0.15); color: #3fb68b;
+               font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; display: inline-block; }
+  .no-badge { background: rgba(224,92,92,0.12); color: #e05c5c;
+              font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; display: inline-block; }
+  .maybe-badge { background: rgba(227,168,50,0.12); color: #e3a832;
+                 font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; display: inline-block; }
+
+  /* ── PITFALLS ── */
+  .pitfall-list { display: flex; flex-direction: column; gap: 9px; }
+  .pitfall-item {
+    display: flex; gap: 10px; align-items: flex-start;
+    background: rgba(224,92,92,0.06); border-radius: 8px; padding: 11px 13px;
+    border-left: 3px solid #e05c5c;
+  }
+  .pitfall-icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+  .pitfall-title { font-size: 13.5px; color: #f0a0a0; font-weight: 600; margin-bottom: 2px; }
+  .pitfall-text { font-size: 12.5px; color: #7a8996; line-height: 1.45; }
+
+  /* ── CONTROVERSIES ── */
+  .debate-item {
+    background: rgba(155,143,245,0.07); border-radius: 10px; padding: 14px;
+    margin-bottom: 10px; border-left: 3px solid #9b8ff5;
+  }
+  .debate-q { font-size: 13.5px; color: #c8b8ff; font-weight: 600; margin-bottom: 6px; }
+  .debate-sides { display: flex; gap: 8px; flex-wrap: wrap; }
+  .side-a { background: rgba(30,111,168,0.2); color: #79c0ff; font-size: 12px;
+            padding: 4px 10px; border-radius: 5px; }
+  .side-b { background: rgba(63,182,139,0.15); color: #3fb68b; font-size: 12px;
+            padding: 4px 10px; border-radius: 5px; }
+
+  /* ── TRENDS ── */
+  .trend-list { display: flex; flex-direction: column; gap: 8px; }
+  .trend-item {
+    display: flex; align-items: center; gap: 10px;
+    background: #0d1829; border-radius: 8px; padding: 10px 13px;
+  }
+  .trend-arrow { color: #3fb68b; font-size: 16px; font-weight: 700; flex-shrink: 0; }
+  .trend-text { font-size: 13px; color: #8ca8c8; line-height: 1.4; }
+  .trend-text strong { color: #cdd9e5; }
+
+  /* ── PEARLS ── */
+  .pearl-list { display: flex; flex-direction: column; gap: 8px; }
+  .pearl-item {
+    display: flex; align-items: flex-start; gap: 10px;
+    background: rgba(74,184,216,0.06); border-radius: 8px; padding: 11px 13px;
+    border-left: 3px solid #4ab8d8;
+  }
+  .pearl-gem { font-size: 14px; flex-shrink: 0; }
+  .pearl-text { font-size: 13.5px; color: #cdd9e5; line-height: 1.45; }
+
+  /* ── CONFIDENCE ── */
+  .confidence-block { padding: 16px 20px; }
+  .conf-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+                text-transform: uppercase; color: #7a8996; margin-bottom: 8px; }
+  .conf-bar-track { background: #21262d; border-radius: 20px; height: 10px;
+                    overflow: hidden; margin-bottom: 6px; }
+  .conf-bar-fill {
+    height: 100%; border-radius: 20px;
+    background: linear-gradient(90deg, #1e6fa8, #3fb68b);
+    width: 80%;
+  }
+  .conf-meta { display: flex; justify-content: space-between; align-items: center; }
+  .conf-score { font-size: 13px; font-weight: 700; color: #4ab8d8; }
+  .conf-descriptor { font-size: 12px; color: #7a8996; }
+
+  /* ── SOURCES ── */
+  .sources-list { display: flex; flex-direction: column; gap: 6px; }
+  .source-item { font-size: 12px; color: #5a6a7a; line-height: 1.4;
+                 padding-left: 14px; position: relative; }
+  .source-item::before { content: '¹'; font-size: 10px; position: absolute; left: 0; top: 1px; color: #4ab8d8; }
+  .source-item:nth-child(2)::before { content: '²'; }
+  .source-item:nth-child(3)::before { content: '³'; }
+  .source-item:nth-child(4)::before { content: '⁴'; }
+  .source-item:nth-child(5)::before { content: '⁵'; }
+
+  /* ── DISCLAIMER ── */
+  .disclaimer {
+    background: rgba(255,255,255,0.03); border: 1px dashed #2a3040;
+    border-radius: 8px; padding: 12px 16px; margin-top: 16px;
+  }
+  .disclaimer p { font-size: 11.5px; color: #4a5568; line-height: 1.5; }
+
+  /* ── SOCIAL ASSET ── */
+  .social-block {
+    background: linear-gradient(135deg, #0a1628, #091520);
+    border: 1px solid #1e6fa8; border-radius: 14px;
+    padding: 20px; margin-top: 18px;
+  }
+  .social-header { font-size: 11px; font-weight: 700; letter-spacing: 2px;
+                   color: #4ab8d8; text-transform: uppercase; margin-bottom: 14px; }
+  .social-hook { font-size: 16px; font-weight: 700; color: #ffffff;
+                 margin-bottom: 12px; line-height: 1.4; }
+  .social-bullets { list-style: none; margin-bottom: 14px; }
+  .social-bullets li { font-size: 13px; color: #8ca8c8; padding: 4px 0;
+                       display: flex; align-items: flex-start; gap: 8px; }
+  .social-bullets li::before { content: '→'; color: #4ab8d8; font-weight: 700; flex-shrink: 0; }
+  .social-cta { background: #1e6fa8; color: #ffffff; font-size: 13px;
+                font-weight: 600; padding: 10px 18px; border-radius: 8px;
+                display: inline-block; text-decoration: none; }
+  .visual-dir { margin-top: 14px; background: rgba(74,184,216,0.05);
+                border-radius: 8px; padding: 12px; }
+  .vd-label { font-size: 11px; font-weight: 700; letter-spacing: 1px;
+              text-transform: uppercase; color: #4ab8d8; margin-bottom: 6px; }
+  .vd-text { font-size: 12.5px; color: #5a7a94; line-height: 1.5; }
+
+  @media (max-width: 520px) {
+    .why-grid, .hw-grid { grid-template-columns: 1fr; }
+    h1 { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TITLE BLOCK -->
+<div class="title-block">
+  <div class="brand-tag">Sole Intelligence</div>
+  <h1>The <span>Lapidus</span> Procedure</h1>
+  <p class="subtitle">First TMT arthrodesis for hypermobile hallux valgus — a resident's framework</p>
+  <div class="tag-row">
+    <span class="tag">Forefoot Reconstruction</span>
+    <span class="tag">1st Ray Stabilization</span>
+    <span class="tag">Arthrodesis</span>
+    <span class="tag">Hallux Valgus</span>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- WHAT THIS IS -->
+  <div class="section">
+    <div class="section-header">
+      <span class="sec-icon">🔹</span>
+      <span class="sec-title">What This Is</span>
+    </div>
+    <div class="section-body">
+      <p class="what-text">
+        The <strong>Lapidus bunionectomy</strong> is an arthrodesis of the <strong>first tarsometatarsal (TMT) joint</strong> combined with soft-tissue correction at the MTP. It addresses hallux valgus at its <strong>root cause</strong> — metatarsus primus varus driven by first ray hypermobility — rather than just the distal deformity.
+      </p>
+    </div>
+  </div>
+
+  <!-- WHY IT MATTERS -->
+  <div class="section">
+    <div class="section-header">
+      <span class="sec-icon">🔹</span>
+      <span class="sec-title">Why It Matters</span>
+    </div>
+    <div class="section-body">
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-label">Surgical Rationale</div>
+          <div class="why-text">Hypermobile 1st ray → distal procedures have higher recurrence. TMT fusion eliminates the mobile segment driving deformity.</div>
+        </div>
+        <div class="why-card">
+          <div class="why-label">Biomechanical Upshot</div>
+          <div class="why-text">Corrects IMA, HAV angle, and sagittal plane elevation of the 1st ray simultaneously — multi-plane correction in one joint.</div>
+        </div>
+        <div class="why-card">
+          <div class="why-label">Resident Relevance</div>
+          <div class="why-text">Commonly performed in reconstructive forefoot cases. Understanding fixation constructs and correction vectors is essential for assisting effectively.</div>
+        </div>
+        <div class="why-card">
+          <div class="why-label">Outcomes Signal</div>
+          <div class="why-text">Literature supports durable recurrence prevention in properly selected patients vs. metatarsal osteotomies when hypermobility is the driver.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FRAMEWORK -->
+  <div class="section">
+    <div class="section-header">
+      <span class="sec-icon">🔹</span>
+      <span class="sec-title">The Framework — Operative Sequence</span>
+    </div>
+    <div class="section-body">
+
+      <div class="flow-step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-title">Joint preparation</div>
+          <div class="step-detail">Dorsomedial approach to 1st TMT. Cartilage resection with flat cuts preserving subchondral bone. Goal: bleeding surfaces that will fuse. Technique varies — saw vs. curette vs. combination.</div>
+        </div>
+      </div>
+      <div class="step-arrow">↓</div>
+
+      <div class="flow-step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="step-title">Deformity correction (the key move)</div>
+          <div class="step-detail">Plantarflex 1st ray + adduct metatarsal to close the IMA. Provisional K-wire fixation. Fluoroscopic check: IMA, HAV angle, sesamoid position, sagittal alignment.</div>
+        </div>
+      </div>
+      <div class="step-arrow">↓</div>
+
+      <div class="flow-step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <div class="step-title">Definitive fixation</div>
+          <div class="step-detail">Hardware construct applied per surgeon preference (plate ± lag screw, crossed screws, staple). Compression across the fusion site is paramount.</div>
+        </div>
+      </div>
+      <div class="step-arrow">↓</div>
+
+      <div class="flow-step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <div class="step-title">1st MTP soft-tissue balancing</div>
+          <div class="step-detail">Medial capsulorrhaphy ± lateral soft-tissue release. Degree of release depends on residual MTP deformity after proximal correction.</div>
+        </div>
+      </div>
+      <div class="step-arrow">↓</div>
+
+      <div class="flow-step">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <div class="step-title">Closure + post-op protocol</div>
+          <div class="step-detail">NWB × 4–6 wks typically, then transition. Bone healing confirmation before full WB progression. Hardware removal rarely needed unless symptomatic.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- KEY CONCEPTS -->
+  <div class="section">
+    <div class="section-header">
+      <span class="sec-icon">🔹</span>
+      <span class="sec-title">Key Concepts</span>
+    </div>
+    <div class="section-body">
+      <div class="concept-list">
+        <div class="concept-item">
+          <div class="c-dot"></div>
+          <div><span class="c-bold">IMA (intermetatarsal angle) →</span> <span class="c-text">Normal &lt;9°. HV deformity correlates with elevated IMA. Lapidus directly closes IMA at its origin — the TMT joint.</span></div>
+        </div>
+        <div class="concept-item">
+          <div class="c-dot"></div>
+          <div><span class="c-bold">1st ray hypermobility →</span> <span class="c-text">Sagittal AND transverse instability at the TMT. Clinical test: excessive dorsiflexion-plantarflexion excursion with lateral loading. Key indication for Lapidus over distal osteotomy.</span></div>
+        </div>
+        <div class="concept-item">
+          <div class="c-dot"></div>
+          <div><span class="c-bold">DMAA (distal metatarsal articular angle) →</span> <span class="c-text">If significantly elevated, proximal correction alone may not normalize articular alignment — consider adjunct distal procedure.</span></div>
+        </div>
+        <div class="concept-item">
+          <div class="c-dot"></div>
+          <div><span class="c-bold">Sesamoid position →</span> <span class="c-text">Tibial sesamoid subluxation graded on AP view. Reduction of sesamoids under the metatarsal head is a key correction endpoint — not just angle reduction.</span></div>
+        </div>
+        <div class="concept-item">
+          <div class="c-dot"></div>
+          <div><span class="c-bold">Sagittal plane consideration →</span> <span class="c-text">Avoid dorsiflexing the 1st ray during correction. Elevated 1st ray → transfer lesion under 2nd metatarsal. Plantarflexion during correction maintains propulsion mechanics.</span></div>
+        </div>
+        <div class="concept-item">
+          <div class="c-dot"></div>
+          <div><span class="c-bold">Length preservation →</span> <span class="c-text">Resection must be minimal to avoid shortening. 1st MT shortening → metatarsalgia + transfer lesion. Flat cut technique minimizes length loss vs. biplanar cut.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HARDWARE -->
+  <div class="section">
+    <div class="section-header">
+      <span class="sec-icon">🔩</span>
+      <span class="sec-title">Hardware Constructs</span>
+    </div>
+    <div class="section-body">
+      <div class="hw-grid">
+        <div class="hw-card plate">
+          <div class="hw-name">Dorsomedial plate ± lag screw</div>
+          <div class="hw-text">Current workhorse. Locking or non-locking. Low-profile designs reduce irritation. Plantar lag screw adds compression in orthogonal plane. High rotational stability.</div>
+        </div>
+        <div class="hw-card screw">
+          <div class="hw-name">Crossed lag screws</div>
+          <div class="hw-text">Historical standard. Two screws in divergent configuration. Technically demanding to achieve compression. Less rigid vs. plate construct — longer NWB often advised.</div>
+        </div>
+        <div class="hw-card staple">
+          <div class="hw-name">Nitinol staples</div>
+          <div class="hw-text">Shape-memory compression across fusion site. Lower profile than plates. Often used as adjunct or in minimally invasive variants. Less fixation strength as standalone.</div>
+        </div>
+        <div class="hw-card hybrid">
+          <div class="hw-name">Plantar plate + screw</div>
+          <div class="hw-text">Anatomic plantar positioning resists dorsiflexion forces. Theoretical mechanical advantage for sagittal plane stability. Technically more demanding approach.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DECISION LENS -->
+  <div class="section">
+    <div class="section-header">
+      <span class="sec-icon">🔹</span>
+      <span class="sec-title">Decision Lens — Lapidus vs. Distal Osteotomy</span>
+    </div>
+    <div class="section-body" style="padding: 0;">
+      <table class="lens-table">
+        <tr>
+          <th>Factor</th>
+          <th>Lapidus</th>
+          <th>Distal osteotomy (e.g. Chevron / SCARF)</th>
+        </tr>
+        <tr>
+          <td>1st ray hypermobility</td>
+          <td><span class="yes-badge">Preferred</span></td>
+          <td><span class="no-badge">Risk of recurrence</span></td>
+        </tr>
+        <tr>
+          <td>Severe IMA (&gt;15°)</td>
+          <td><span class="yes-badge">Strong indication</span></td>
+          <td><span class="no-badge">Correction limited</span></td>
+        </tr>
+        <tr>
+          <td>Mild/moderate IMA, stable ray</td>
+          <td><span class="maybe-badge">Can use</span></td>
+          <td><span class="yes-badge">Often preferred</span></td>
+        </tr>
+        <tr>
+          <td>1st TMT arthritis</td>
+          <td><span class="yes-badge">Addresses both</span></td>
+          <td><span class="no-badge">Doesn't address joint</span></td>
+        </tr>
+        <tr>
+          <td>Adolescent / skeletally immature</td>
+          <td><span class="no-badge">Generally avoid</span></td>
+          <td><span class="maybe-badge">Context-dependent</span></td>
+        </tr>
+        <tr>
+          <td>Recovery timeline</td>
+          <td>Longer NWB (fusion required)</td>
+          <td>Earlier WB (osteotomy heals faster)</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- PITFALLS -->
+  <div class="section">
+    <div class="section-header">
+      <span class="sec-icon">🔹</span>
+      <span class="sec-title">Pitfalls / High-Yield Mistakes</span>
+    </div>
+    <div class="section-body">
+      <div class="pitfall-list">
+        <div class="pitfall-item">
+          <div class="pitfall-icon">⚠</div>
+          <div>
+            <div class="pitfall-title">Dorsiflexion malposition of 1st ray</div>
+            <div class="pitfall-text">Fusing in dorsiflexion → elevated 1st ray → transfer metatarsalgia under 2nd head. Plantarflexion moment during correction is intentional, not aggressive.</div>
+          </div>
+        </div>
+        <div class="pitfall-item">
+          <div class="pitfall-icon">⚠</div>
+          <div>
+            <div class="pitfall-title">Underresecting joint cartilage</div>
+            <div class="pitfall-text">Non-union risk rises if subchondral bone not adequately exposed. Cartilage remnants inhibit osseous bridging. Complete debridement to bleeding surface is non-negotiable.</div>
+          </div>
+        </div>
+        <div class="pitfall-item">
+          <div class="pitfall-icon">⚠</div>
+          <div>
+            <div class="pitfall-title">Excessive metatarsal shortening</div>
+            <div class="pitfall-text">Too much bone resection → shortened 1st ray → iatrogenic lesser metatarsal overload. Keep resection minimal; work with flat cuts.</div>
+          </div>
+        </div>
+        <div class="pitfall-item">
+          <div class="pitfall-icon">⚠</div>
+          <div>
+            <div class="pitfall-title">Ignoring DMAA / MTP joint pathology</div>
+            <div class="pitfall-text">Correcting IMA without addressing a significantly elevated DMAA or arthritic MTP → residual frontal plane deformity at the toe. Plan distal adjunct preoperatively.</div>
+          </div>
+        </div>
+        <div class="pitfall-item">
+          <div class="pitfall-icon">⚠</div>
+          <div>
+            <div class="pitfall-title">Premature weight bearing</div>
+            <div class="pitfall-text">Hardware failure and non-union are real. Fusion biology takes time. NWB protocols exist for a reason — rushing WB for patient comfort is a setup for hardware compromise.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTROVERSIES -->
+  <div class="section">
+    <div class="section-header">
+      <span class="sec-icon">⚡</span>
+      <span class="sec-title">Controversies / Active Debates</span>
+    </div>
+    <div class="section-body">
+
+      <div class="debate-item">
+        <div class="debate-q">Does every HV patient need hypermobility to justify Lapidus?</div>
+        <div class="debate-sides">
+          <span class="side-a">Traditionalist: reserve for hypermobile / severe IMA</span>
+          <span class="side-b">Modern: Lapidus as universal HV correction regardless of mobility</span>
+        </div>
+      </div>
+
+      <div class="debate-item">
+        <div class="debate-q">Optimal fixation construct?</div>
+        <div class="debate-sides">
+          <span class="side-a">Dorsomedial plate + lag screw (most common)</span>
+          <span class="side-b">Plantar plate for biomechanical superiority</span>
+        </div>
+      </div>
+
+      <div class="debate-item">
+        <div class="debate-q">Early weight bearing post-Lapidus — safe?</div>
+        <div class="debate-sides">
+          <span class="side-a">Strict NWB × 6 wks (traditional)</span>
+          <span class="side-b">Immediate / early protected WB with rigid plate constructs (growing literature)</span>
+        </div>
+      </div>
+
+      <div class="debate-item">
+        <div class="debate-q">Minimally invasive Lapidus?</div>
+        <div class="debate-sides">
+          <span class="side-a">Open remains gold standard for deformity control</span>
+          <span class="side-b">MIS/percutaneous variants emerging with comparable early outcomes</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TRENDS -->
+  <div class="section">
+    <div class="section-header">
+      <span class="sec-icon">📈</span>
+      <span class="sec-title">Current Trends</span>
+    </div>
+    <div class="section-body">
+      <div class="trend-list">
+        <div class="trend-item">
+          <div class="trend-arrow">↑</div>
+          <div class="trend-text"><strong>Early WB protocols</strong> — improved plate rigidity enabling WBAT in boot sooner than historical NWB × 6 wks; growing evidence base</div>
+        </div>
+        <div class="trend-item">
+          <div class="trend-arrow">↑</div>
+          <div class="trend-text"><strong>Low-profile locking plate systems</strong> — dedicated Lapidus plates with anatomic contouring reducing hardware irritation and revision rates</div>
+        </div>
+        <div class="trend-item">
+          <div class="trend-arrow">↑</div>
+          <div class="trend-text"><strong>Lapidus as primary correction</strong> — trend toward broader use beyond classic hypermobility indication, driven by durable recurrence prevention data</div>
+        </div>
+        <div class="trend-item">
+          <div class="trend-arrow">↑</div>
+          <div class="trend-text"><strong>MIS / percutaneous Lapidus</strong> — emerging techniques aiming to reduce soft-tissue disruption; limited long-term follow-up data as of now</div>
+        </div>
+        <div class="trend-item">
+          <div class="trend-arrow">↑</div>
+          <div class="trend-text"><strong>3D imaging preoperative planning</strong> — weightbearing CT (WBCT) for sagittal plane assessment and identifying multiplanar deformity components</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PEARLS -->
+  <div class="section">
+    <div class="section-header">
+      <span class="sec-icon">🔹</span>
+      <span class="sec-title">Pearls</span>
+    </div>
+    <div class="section-body">
+      <div class="pearl-list">
+        <div class="pearl-item">
+          <div class="pearl-gem">💎</div>
+          <div class="pearl-text">The Lapidus is a <strong>3D correction</strong> — think transverse + sagittal. A flat radiograph only tells part of the story. WBCT is increasingly your friend preoperatively.</div>
+        </div>
+        <div class="pearl-item">
+          <div class="pearl-gem">💎</div>
+          <div class="pearl-text">Sesamoid reduction is <strong>the</strong> functional endpoint — not just angle normalization. Confirm under fluoro that tibial sesamoid is tracking under the head.</div>
+        </div>
+        <div class="pearl-item">
+          <div class="pearl-gem">💎</div>
+          <div class="pearl-text">The hypermobility exam is clinical and subjective. No validated threshold. Develop your own consistent assessment technique and use it every patient.</div>
+        </div>
+        <div class="pearl-item">
+          <div class="pearl-gem">💎</div>
+          <div class="pearl-text">Plantarflexion during correction is <strong>intentional</strong>. Overcorrecting sagittal plane elevation while closing IMA is the move — not a side effect.</div>
+        </div>
+        <div class="pearl-item">
+          <div class="pearl-gem">💎</div>
+          <div class="pearl-text">When assisting: watch the provisional K-wire placement and correction hold. That moment determines everything downstream — the hardware just locks it in.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONFIDENCE BAR -->
+  <div class="section">
+    <div class="section-header">
+      <span class="sec-icon">📊</span>
+      <span class="sec-title">Confidence Level</span>
+    </div>
+    <div class="confidence-block">
+      <div class="conf-label">Overall evidence quality</div>
+      <div class="conf-bar-track">
+        <div class="conf-bar-fill"></div>
+      </div>
+      <div class="conf-meta">
+        <span class="conf-score">8 / 10 — High confidence</span>
+        <span class="conf-descriptor">Well-established procedure with strong literature base</span>
+      </div>
+      <p style="font-size: 12px; color: #5a6a7a; margin-top: 8px;">
+        Core indications, correction principles, and complication profiles are well-established. Fixation construct superiority and optimal WB timing remain areas of active investigation.
+      </p>
+    </div>
+  </div>
+
+  <!-- SOURCES -->
+  <div class="section">
+    <div class="section-header">
+      <span class="sec-icon">📚</span>
+      <span class="sec-title">Sources</span>
+    </div>
+    <div class="section-body">
+      <div class="sources-list">
+        <div class="source-item">Lapidus PW (1934). A quarter century of experience with the operative correction of metatarsus varus primus. <em>Bull Hosp Jt Dis.</em></div>
+        <div class="source-item">Coetzee JC, Resig SG et al. (2004). The Lapidus procedure as salvage after failed surgical treatment of hallux valgus. <em>J Bone Joint Surg Am.</em></div>
+        <div class="source-item">DeOrio JK, Ware AW (2001). Single large-fragment screw fixation for Lapidus arthrodesis. <em>Foot Ankle Int.</em></div>
+        <div class="source-item">Blitz NM (2012). The versatility of the Lapidus arthrodesis. <em>Clin Podiatr Med Surg.</em></div>
+        <div class="source-item">Malloy P, Michalski M et al. (2022). Early weightbearing after Lapidus arthrodesis: systematic review. <em>Foot Ankle Int.</em></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div class="disclaimer">
+    <p>⚠️ This content is AI-generated and intended for <strong>educational purposes only</strong>. It does not constitute surgical instruction, clinical guidance, or patient care advice. Always defer to your attending surgeon, institutional protocols, and peer-reviewed literature for real-world decisions.</p>
+  </div>
+
+  <!-- SOCIAL ASSET -->
+  <div class="social-block">
+    <div class="social-header">📲 Social Post Asset</div>
+    <div class="social-hook">"The Lapidus isn't just a bunion surgery — it's a 3D correction at the root cause."</div>
+    <ul class="social-bullets">
+      <li>Why hypermobile 1st rays need a TMT fusion, not just a distal osteotomy</li>
+      <li>The one intraoperative move that determines everything (hint: it's the provisional K-wire)</li>
+      <li>Current hardware debate + early WB trends breaking the traditional 6-week NWB rule</li>
+    </ul>
+    <a class="social-cta" href="https://soleintell.substack.com/">Read full breakdown on Substack →</a>
+    <div class="visual-dir">
+      <div class="vd-label">Visual Direction</div>
+      <div class="vd-text">
+        Dark navy background (#0d1117) with electric teal accent (#4ab8d8). Left side: bold oversized text "Lapidus" with a simplified foot silhouette overlay showing the 1st TMT joint highlighted in teal. Right side: 3 stat blocks showing IMA normal range, typical NWB duration, and fusion rate. Bottom strip: Sole Intelligence logo + URL. Font: heavy sans-serif for headline, light weight for subtext.
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

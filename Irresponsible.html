@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI literacy is a clinical skill — The Guidewire</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,900&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F2EEE4;
+    --ink:#181612;
+    --ink-soft:#3a352d;
+    --brick:#A6311C;
+    --brick-deep:#7c2414;
+    --slate:#2c3a40;
+    --line:#cdc6b5;
+    --gold:#b78a2e;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;
+    font-size:19px;
+    line-height:1.62;
+    font-optical-sizing:auto;
+  }
+  .wrap{
+    max-width:760px;
+    margin:0 auto;
+    padding:46px 30px 70px;
+  }
+  /* masthead */
+  .mast{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    border-bottom:2px solid var(--ink);
+    padding-bottom:9px;
+    margin-bottom:34px;
+    flex-wrap:wrap;
+    gap:6px;
+  }
+  .brand{
+    font-family:"Fraunces",serif;
+    font-weight:900;
+    font-size:22px;
+    letter-spacing:-.02em;
+  }
+  .brand span{color:var(--brick);}
+  .kicker{
+    font-family:"IBM Plex Mono",monospace;
+    font-size:11.5px;
+    letter-spacing:.13em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+  /* headline */
+  h1{
+    font-family:"Fraunces",serif;
+    font-weight:600;
+    font-size:43px;
+    line-height:1.07;
+    letter-spacing:-.018em;
+    margin:6px 0 18px;
+    max-width:13ch;
+  }
+  h1 em{font-style:italic;color:var(--brick);}
+  .dek{
+    font-size:21px;
+    line-height:1.5;
+    color:var(--ink-soft);
+    max-width:54ch;
+    margin:0 0 22px;
+  }
+  .byline{
+    font-family:"IBM Plex Mono",monospace;
+    font-size:12.5px;
+    letter-spacing:.04em;
+    color:var(--ink-soft);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    padding:9px 0;
+    margin-bottom:34px;
+  }
+  .byline b{color:var(--ink);font-weight:500;}
+  /* body */
+  p{margin:0 0 18px;}
+  .lede:first-letter{
+    font-family:"Fraunces",serif;
+    font-weight:900;
+    float:left;
+    font-size:74px;
+    line-height:.78;
+    padding:8px 10px 0 0;
+    color:var(--brick);
+  }
+  strong{font-weight:600;}
+  .pull{
+    font-family:"Fraunces",serif;
+    font-weight:500;
+    font-style:italic;
+    font-size:25px;
+    line-height:1.3;
+    color:var(--ink);
+    border-left:4px solid var(--brick);
+    padding:4px 0 4px 20px;
+    margin:30px 0 30px -2px;
+  }
+  /* the visual taxonomy block — high contrast, dark */
+  .grid-block{
+    background:var(--ink);
+    color:var(--paper);
+    margin:42px -14px;
+    padding:34px 30px 30px;
+    border-radius:2px;
+  }
+  .grid-block .lab{
+    font-family:"IBM Plex Mono",monospace;
+    font-size:11px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:4px;
+  }
+  .grid-block h2{
+    font-family:"Fraunces",serif;
+    font-weight:600;
+    font-size:25px;
+    line-height:1.12;
+    margin:0 0 22px;
+    color:var(--paper);
+    max-width:22ch;
+  }
+  .modes{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#332f28;border:1px solid #332f28;}
+  .mode{background:var(--ink);padding:18px 17px 20px;}
+  .mode .n{
+    font-family:"Fraunces",serif;
+    font-weight:900;
+    font-size:30px;
+    color:var(--brick);
+    line-height:1;
+  }
+  .mode h3{
+    font-family:"Newsreader",serif;
+    font-weight:600;
+    font-size:17.5px;
+    margin:8px 0 5px;
+    color:var(--paper);
+  }
+  .mode p{
+    font-size:14.5px;
+    line-height:1.45;
+    color:#cfc8b8;
+    margin:0;
+    font-family:"Newsreader",serif;
+  }
+  /* offset the second row slightly for human irregularity */
+  .mode.b3{padding-top:24px;}
+  .mode.b4{padding-top:14px;}
+  /* section headers */
+  h2.sec{
+    font-family:"Fraunces",serif;
+    font-weight:600;
+    font-size:27px;
+    line-height:1.12;
+    letter-spacing:-.01em;
+    margin:40px 0 6px;
+  }
+  .sec-tag{
+    font-family:"IBM Plex Mono",monospace;
+    font-size:11px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brick);
+  }
+  .stat{
+    font-family:"Fraunces",serif;
+    font-weight:900;
+    color:var(--brick-deep);
+    font-style:normal;
+  }
+  /* confidence chip inline */
+  .conf-chip{
+    display:inline-block;
+    font-family:"IBM Plex Mono",monospace;
+    font-size:10.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    background:#e9e2d2;
+    border:1px solid var(--line);
+    color:var(--ink-soft);
+    padding:2px 8px;
+    border-radius:2px;
+    vertical-align:middle;
+    margin-left:6px;
+  }
+  .conf-chip.lo{background:#f3e3da;border-color:#e0bba9;color:var(--brick-deep);}
+  /* do-this list */
+  .do{
+    border-top:2px solid var(--ink);
+    margin-top:44px;
+    padding-top:8px;
+  }
+  .do-item{
+    display:grid;
+    grid-template-columns:34px 1fr;
+    gap:14px;
+    padding:16px 0;
+    border-bottom:1px solid var(--line);
+    align-items:start;
+  }
+  .do-item .num{
+    font-family:"Fraunces",serif;
+    font-weight:900;
+    font-size:22px;
+    color:var(--brick);
+    line-height:1.1;
+  }
+  .do-item h4{
+    font-family:"Newsreader",serif;
+    font-weight:600;
+    font-size:18px;
+    margin:0 0 3px;
+  }
+  .do-item p{font-size:16px;line-height:1.5;color:var(--ink-soft);margin:0;}
+  /* confidence + sources panel */
+  .panel{
+    background:#ece5d5;
+    border:1px solid var(--line);
+    border-radius:2px;
+    padding:22px 24px;
+    margin-top:42px;
+    font-size:15.5px;
+    line-height:1.5;
+  }
+  .panel h3{
+    font-family:"IBM Plex Mono",monospace;
+    font-size:11px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brick);
+    margin:0 0 12px;
+  }
+  .bar{display:flex;gap:3px;margin:6px 0 10px;}
+  .bar i{width:26px;height:9px;background:#d8cfbb;display:block;border-radius:1px;}
+  .bar i.on{background:var(--brick);}
+  .bar i.mid{background:#d99a82;}
+  .panel p{font-size:14.5px;color:var(--ink-soft);margin:0 0 10px;}
+  .panel p:last-child{margin-bottom:0;}
+  .src{font-family:"IBM Plex Mono",monospace;font-size:12.5px;line-height:1.7;color:var(--ink-soft);}
+  .src a{color:var(--brick-deep);}
+  .disc{
+    font-size:13px;
+    line-height:1.5;
+    color:var(--ink-soft);
+    border-top:1px solid var(--line);
+    margin-top:34px;
+    padding-top:16px;
+  }
+  .hook{
+    background:var(--brick);
+    color:var(--paper);
+    padding:22px 24px;
+    border-radius:2px;
+    margin-top:30px;
+  }
+  .hook .lab{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;opacity:.8;margin-bottom:7px;}
+  .hook p{font-family:"Fraunces",serif;font-weight:500;font-size:21px;line-height:1.32;margin:0;}
+  .foot{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:40px;
+    padding-top:16px;
+    border-top:2px solid var(--ink);
+    font-family:"IBM Plex Mono",monospace;
+    font-size:12px;
+    letter-spacing:.04em;
+    color:var(--ink-soft);
+  }
+  .foot b{color:var(--ink);font-weight:500;}
+  @media (max-width:560px){
+    body{font-size:18px;}
+    h1{font-size:33px;}
+    .dek{font-size:19px;}
+    .modes{grid-template-columns:1fr;}
+    .grid-block{margin-left:-8px;margin-right:-8px;}
+  }
+  @media print{
+    body{background:#fff;}
+    .wrap{max-width:1200px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="mast">
+    <div class="brand">The Guide<span>wire</span></div>
+    <div class="kicker">SI Briefing · AI in Practice</div>
+  </div>
+
+  <h1>AI literacy is a clinical skill. Most clinicians using AI don't have it <em>yet</em>.</h1>
+
+  <p class="dek">The risk worth watching isn't a machine taking your job. It's a trained clinician trusting an AI output they can't verify, in a tool they shouldn't be using, while their own judgment quietly erodes. All four of those are already documented.</p>
+
+  <div class="byline">By <b>Peter Sorensen, DPM</b> · The Guidewire · Reading time ~5 min</div>
+
+  <p class="lede">Here is the version of the AI story that should hold a resident's attention. A clinician, mid-clinic, pastes a note into a chatbot to summarize it, signs what comes back without reading the source, and moves on. Nothing dramatic happens that day. The error shows up later, in a record nobody can reconcile, traced to an output nobody verified. That scenario is in print now, in journals you will cite.</p>
+
+  <p>The popular debate asks whether AI replaces physicians. That question is interesting and mostly speculative. The one with evidence behind it is narrower and more uncomfortable: practicing, licensed clinicians are using these tools without the skills to use them safely. The failures cluster into four patterns. None of them require a malfunctioning model. They require a competent doctor and a missing competency.</p>
+
+  <p class="pull">Knowing when to distrust an AI output is now part of clinical judgment. That skill is teachable, and residency is when you build it.</p>
+
+  <!-- THE ONE VISUAL ELEMENT -->
+  <div class="grid-block">
+    <div class="lab">The taxonomy</div>
+    <h2>Four ways trained clinicians are already misusing AI</h2>
+    <div class="modes">
+      <div class="mode b1">
+        <div class="n">1</div>
+        <h3>Uncritical trust</h3>
+        <p>Accepting AI output as fact. Hallucinated transcripts, invented references, fabricated detail signed off without a check.</p>
+      </div>
+      <div class="mode b2">
+        <div class="n">2</div>
+        <h3>Patient data exposure</h3>
+        <p>Pasting identifiable patient information into consumer tools with no business associate agreement and no control over what's retained.</p>
+      </div>
+      <div class="mode b3">
+        <div class="n">3</div>
+        <h3>Deskilling</h3>
+        <p>Leaning on AI until the unassisted skill decays. Measured, not theoretical: detection rates drop when the tool is removed.</p>
+      </div>
+      <div class="mode b4">
+        <div class="n">4</div>
+        <h3>Unverified record</h3>
+        <p>AI-drafted notes entering the legal chart unread. You sign it, you own it, and the original input is often already gone.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-tag">Failure mode 01</div>
+  <h2 class="sec">Trusting output you can't verify</h2>
+  <p>OpenAI's Whisper model powers Nabla, an ambient scribe used across more than 100 health systems and an estimated 7 million patient visits. Researchers found it inventing text that was never spoken: nonexistent medications, invented phrases, fabricated content. One University of Michigan reviewer found hallucinations in <span class="stat">8 of 10</span> transcriptions sampled. The structural problem is worse than the error rate: Nabla deletes the original audio, so there is no ground truth left to check the transcript against.</p>
+  <p>The same trap shows up in research. When researchers asked ChatGPT (GPT-3.5) to generate medical content with references, <span class="stat">47%</span> of the citations were fabricated outright and only <span class="stat">7%</span> were both real and accurate (Bhattacharyya et al., Cureus 2023). Newer models with live retrieval fabricate far less, so treat that figure as a warning about a behavior, not a current benchmark. The behavior is the point. A model will produce a confident, well-formatted citation that does not exist, and a tired clinician will paste it into a manuscript or a patient handout.</p>
+  <p>The competency here is plain. Verify every clinically meaningful AI output against a primary source before it leaves your hands. If the tool removes your ability to verify, that is a reason to distrust it, not a convenience.</p>
+
+  <div class="sec-tag">Failure mode 02</div>
+  <h2 class="sec">Feeding patient data to the wrong tool <span class="conf-chip lo">Reasoned · ~75%</span></h2>
+  <p>Consumer chatbots are not covered entities. A free or personal-tier tool with no business associate agreement sits outside HIPAA's protections, and many consumer tiers may retain or train on what you submit. Pasting a note with a name, a date of birth, and a diagnosis into one of those tools is a disclosure of protected health information to a third party you have no agreement with.</p>
+  <p>I'm marking this one as reasoned rather than documented because the public record here is mostly enforcement guidance and vendor terms, not a single landmark podiatry breach I can point you to. The principle still holds. The fix is a habit: de-identify before you prompt, or use only tools your institution has vetted and signed a BAA for. When in doubt, assume the tool keeps what you give it.</p>
+
+  <div class="sec-tag">Failure mode 03</div>
+  <h2 class="sec">Letting the skill decay</h2>
+  <p>This is the one with the cleanest data, and it should unsettle anyone planning a 30-year career. Budzyń and colleagues tracked 19 experienced endoscopists across four centers before and after routine AI assistance entered their colonoscopies (Lancet Gastroenterology &amp; Hepatology, 2025). When the AI was switched off, their unassisted adenoma detection rate fell from <span class="stat">28.4%</span> to <span class="stat">22.4%</span>: a 6 percentage point absolute drop, a 20% relative decline, in clinicians who had each done over 2,000 procedures. The authors call it the first real-world documentation of a deskilling effect from clinical AI.</p>
+  <p>For a resident the lesson is sharper than for an attending. You are still building the baseline skill these tools assume you already have. Lean on AI before that baseline is solid and you may never form it. Read the film, the slide, the note, or the surgical plan yourself first. Then check it against the AI. The order matters.</p>
+
+  <div class="sec-tag">Failure mode 04</div>
+  <h2 class="sec">Putting unverified AI text in the legal record <span class="conf-chip lo">Reasoned · ~78%</span></h2>
+  <p>An AI-drafted note is a draft until a clinician reviews it. The moment you sign it, it becomes the legal record, and you own every word, including the ones the model invented. The Whisper case makes the danger concrete: when the source input is deleted and the output goes unread, an error can sit in a chart for years with no way to reconstruct what actually happened in the room.</p>
+  <p>Disclosure and review are the competency. Read AI-generated documentation as critically as you'd read a co-resident's note before co-signing it. Know your institution's policy on documenting AI assistance. The signature is yours, so the accountability is too.</p>
+
+  <!-- THE RESIDENT'S JOB -->
+  <div class="do">
+    <div class="sec-tag">What to actually build now</div>
+    <h2 class="sec" style="margin-top:6px;">The resident's job</h2>
+    <p style="margin-top:10px;">Four habits. Start them before they're tested by a real chart.</p>
+
+    <div class="do-item">
+      <div class="num">01</div>
+      <div>
+        <h4>Verify, then trust</h4>
+        <p>Every clinically meaningful AI output gets checked against a primary source. Every reference gets opened. No exceptions for time pressure, because time pressure is exactly when the error slips through.</p>
+      </div>
+    </div>
+    <div class="do-item">
+      <div class="num">02</div>
+      <div>
+        <h4>Never paste PHI into an unvetted tool</h4>
+        <p>De-identify before you prompt, or use only tools your institution has a BAA with. Treat any consumer chatbot as a public channel that keeps a copy.</p>
+      </div>
+    </div>
+    <div class="do-item">
+      <div class="num">03</div>
+      <div>
+        <h4>Protect the unassisted skill</h4>
+        <p>Form your own read first, then compare it to the AI. Use the tool to catch what you missed, not to replace the looking. You're defending a skill you'll need for three decades.</p>
+      </div>
+    </div>
+    <div class="do-item">
+      <div class="num">04</div>
+      <div>
+        <h4>Own what you sign</h4>
+        <p>Read AI-drafted notes as carefully as you'd read anything you co-sign. Learn your program's documentation policy. The model doesn't carry the liability. You do.</p>
+      </div>
+    </div>
+  </div>
+
+  <p style="margin-top:30px;">None of this is anti-AI. I use these tools daily and think the profession is behind on adopting them well. The point is that adoption without literacy is its own clinical risk, and the literacy is learnable. Build it now, while a mistake is a teaching moment instead of a malpractice question.</p>
+
+  <!-- HOOK FOR SUBSTACK / SOCIAL -->
+  <div class="hook">
+    <div class="lab">Pull quote / social copy</div>
+    <p>AI won't take your job. Using it without judgment can still cost a patient. That skill gap is yours to close, and residency is the time to do it.</p>
+  </div>
+
+  <!-- CONFIDENCE + SOURCES -->
+  <div class="panel">
+    <h3>How sure am I of this?</h3>
+    <div class="bar">
+      <i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i>
+      <i class="on"></i><i class="on"></i><i class="on"></i><i class="mid"></i><i></i>
+    </div>
+    <p><b>High confidence (the cited facts):</b> the Whisper/Nabla findings, the ChatGPT fabricated-reference figures, and the Budzyń deskilling numbers. All drawn from the named sources below and reported consistently across coverage.</p>
+    <p><b>Lower confidence (flagged in text):</b> failure modes 2 and 4 are reasoned from HIPAA principles and documentation norms rather than a single landmark case. The reasoning is sound; the citation trail is thinner. Verify your own institution's AI and PHI policy before acting on either.</p>
+  </div>
+
+  <div class="panel" style="margin-top:14px;">
+    <h3>Where this comes from</h3>
+    <div class="src">
+      &rarr; Budzyń K, Romańczyk M, Kitala D, et al. Endoscopist deskilling risk after exposure to AI in colonoscopy. <i>Lancet Gastroenterol Hepatol</i> 2025;10(10):896–903.<br>
+      &rarr; Burke G, Schellmann H. Researchers say an AI-powered transcription tool used in hospitals invents things no one ever said. <i>Associated Press</i>, Oct 2024.<br>
+      &rarr; Koenecke A, Choi ASG, Mei KX, Schellmann H, Sloane M. Careless Whisper: Speech-to-Text Hallucination Harms. <i>Proc. 2024 ACM Conf. on Fairness, Accountability, and Transparency (FAccT '24)</i>, Rio de Janeiro, Jun 2024. doi:10.1145/3630106.3658996. (~1% of transcriptions held wholly hallucinated phrases; 38% of those carried explicit harms.)<br>
+      &rarr; Bhattacharyya M, Miller VM, Bhattacharyya D, Miller LE. High rates of fabricated and inaccurate references in ChatGPT-generated medical content. <i>Cureus</i> 2023;15(5):e39238.
+    </div>
+  </div>
+
+  <div class="disc">
+    <b>Educational use only.</b> This briefing is AI-assisted and edited for accuracy. It is written for resident and student education on the safe use of AI in clinical practice. It is not legal, compliance, or clinical advice. Verify your institution's policies on AI tools, PHI, and documentation before applying any of this in practice. Cited figures reflect the models and time periods studied; tool behavior changes quickly.
+  </div>
+
+  <div class="foot">
+    <span class="brand" style="font-size:15px;">The Guide<span style="color:var(--brick);">wire</span></span>
+    <span><b>Peter Sorensen, DPM</b></span>
+    <span>AI in Practice · 2026</span>
+  </div>
+
+</div>
+</body>
+</html>

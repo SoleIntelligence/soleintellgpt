@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Guidewire — The False Tradeoff</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,400;1,9..144,700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+  :root {
+    --cream: #F3ECDD;
+    --cream-dark: #EBE1CB;
+    --red: #B8341A;
+    --ink: #1A1410;
+    --ink-mid: #3D2E24;
+    --ink-light: #6B5744;
+    --rule: #C8B89A;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Fraunces', Georgia, serif;
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 48px 32px 80px;
+  }
+
+  /* MASTHEAD */
+  .masthead {
+    border-top: 3px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+    padding: 14px 0 10px;
+    margin-bottom: 36px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .pub-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+
+  .masthead-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--ink-light);
+    text-align: right;
+  }
+
+  /* SECTION LABEL */
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 16px;
+  }
+
+  /* HEADLINE */
+  .headline {
+    font-size: clamp(36px, 6vw, 60px);
+    font-weight: 900;
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+
+  .headline em {
+    font-style: italic;
+    color: var(--red);
+  }
+
+  .deck {
+    font-size: 18px;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--ink-mid);
+    margin-bottom: 24px;
+    max-width: 620px;
+  }
+
+  /* BYLINE */
+  .byline-block {
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 10px 0;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .byline {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+  }
+
+  .source-url {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: var(--ink-light);
+  }
+
+  /* BODY COPY */
+  .body-text p {
+    font-size: 17px;
+    font-weight: 300;
+    line-height: 1.72;
+    color: var(--ink);
+    margin-bottom: 22px;
+  }
+
+  .body-text p strong {
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .body-text p em {
+    font-style: italic;
+  }
+
+  /* PULL QUOTE */
+  .pull-quote {
+    border-left: 4px solid var(--red);
+    margin: 40px 0;
+    padding: 4px 0 4px 28px;
+  }
+
+  .pull-quote p {
+    font-size: 24px !important;
+    font-weight: 700 !important;
+    font-style: italic;
+    line-height: 1.3 !important;
+    color: var(--ink) !important;
+    margin-bottom: 0 !important;
+  }
+
+  /* SECTION BREAK */
+  .section-break {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 44px 0 36px;
+  }
+
+  .section-break-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--red);
+    white-space: nowrap;
+  }
+
+  .section-break-rule {
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  /* FRAMEWORK BOX */
+  .framework-box {
+    background: var(--cream-dark);
+    border: 1px solid var(--rule);
+    border-left: 4px solid var(--ink);
+    padding: 28px 32px;
+    margin: 36px 0;
+  }
+
+  .framework-box .box-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 18px;
+  }
+
+  .framework-item {
+    display: grid;
+    grid-template-columns: 1fr 40px 1fr;
+    gap: 16px;
+    align-items: start;
+    margin-bottom: 20px;
+  }
+
+  .framework-item:last-child { margin-bottom: 0; }
+
+  .fi-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--red);
+    text-transform: uppercase;
+    padding-top: 2px;
+  }
+
+  .fi-arrow {
+    font-size: 20px;
+    color: var(--rule);
+    text-align: center;
+    padding-top: 0;
+  }
+
+  .fi-desc {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.5;
+    color: var(--ink-mid);
+  }
+
+  /* RED HIGHLIGHT BLOCK */
+  .red-block {
+    background: var(--red);
+    color: var(--cream);
+    padding: 28px 32px;
+    margin: 40px 0;
+  }
+
+  .red-block p {
+    font-size: 18px;
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.55;
+    margin-bottom: 0;
+    color: var(--cream) !important;
+  }
+
+  /* FOOTER */
+  .footer-rule {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 56px 0 20px;
+  }
+
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .copyright {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    color: var(--ink-light);
+  }
+
+  .disclaimer {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.05em;
+    color: var(--ink-light);
+    text-align: right;
+    max-width: 380px;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 560px) {
+    body { padding: 28px 20px 60px; }
+    .masthead { flex-direction: column; gap: 6px; }
+    .byline-block { flex-direction: column; gap: 4px; }
+    .framework-item { grid-template-columns: 1fr; }
+    .fi-arrow { display: none; }
+    .footer { flex-direction: column; gap: 10px; }
+    .disclaimer { text-align: left; max-width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- MASTHEAD -->
+  <div class="masthead">
+    <div class="pub-name">The Guidewire</div>
+    <div class="masthead-meta">
+      PROFESSION &amp; GOVERNANCE<br>
+      soleintell.com
+    </div>
+  </div>
+
+  <!-- SECTION LABEL -->
+  <div class="section-label">Essay — Professional Philosophy</div>
+
+  <!-- HEADLINE -->
+  <h1 class="headline">The <em>False</em><br>Tradeoff</h1>
+
+  <!-- DECK -->
+  <p class="deck">Podiatry's student recruitment debate is built on a flawed premise. Quality and quantity are not opposing forces — they're both downstream of the same problem we're refusing to solve.</p>
+
+  <!-- BYLINE -->
+  <div class="byline-block">
+    <div class="byline">Peter Sorensen, DPM</div>
+    <div class="source-url">soleintell.com</div>
+  </div>
+
+  <!-- BODY -->
+  <div class="body-text">
+
+    <p>Here is the argument I keep hearing in organized podiatry: <strong>we can't raise standards right now because we don't have enough applicants.</strong> Raise the bar, lose the students. Lower the bar, save the programs. Pick one.</p>
+
+    <p>I want to challenge the premise of that choice entirely — because I think it's wrong, and I think accepting it is quietly making both problems worse.</p>
+
+    <div class="pull-quote">
+      <p>"A rising tide raises all ships. But first, someone has to remove the sandbar."</p>
+    </div>
+
+    <p>The quantity problem and the quality problem are not in opposition. They are both symptoms of the same upstream failure: <strong>podiatry has not made itself legible to the people who would choose it.</strong> The barriers to entry — not academic barriers, but informational ones — are too high. The profession is opaque to outsiders, often intentionally so. And opacity doesn't just keep bad candidates out. It keeps good ones from ever looking in the first place.</p>
+
+    <div class="section-break">
+      <span class="section-break-label">The Real Problem</span>
+      <div class="section-break-rule"></div>
+    </div>
+
+    <p>When I talk about removing barriers, I am not talking about lowering academic standards or accepting less capable students. I mean something more structural: <strong>the toll booths that exist between a curious pre-med and a clear understanding of what this profession actually is.</strong></p>
+
+    <p>What does a podiatric surgeon actually do in the OR? What does the political landscape of the profession look like — and why does it matter for your career? What is the difference between ABFAS and ABPM, and which one your program director prefers, and why that preference has a twenty-year history behind it? What does a good residency program actually look like versus a merely accredited one?</p>
+
+    <p>None of this information is secret. But almost none of it is accessible. It lives in the heads of insiders, passed down through mentorship networks that are not equally distributed. The student who happens to rotate under the right attending learns the map. Everyone else navigates blind.</p>
+
+    <p><strong>That is a barrier to entry.</strong> And it doesn't select for quality. It selects for proximity to the right people.</p>
+
+    <div class="framework-box">
+      <div class="box-label">The Actual Mechanism</div>
+
+      <div class="framework-item">
+        <div class="fi-label">Opacity</div>
+        <div class="fi-arrow">→</div>
+        <div class="fi-desc">High-quality candidates opt into medicine, ortho, or nothing — because they can evaluate those paths. They can't evaluate ours.</div>
+      </div>
+
+      <div class="framework-item">
+        <div class="fi-label">Insider Maps</div>
+        <div class="fi-arrow">→</div>
+        <div class="fi-desc">Access to mentorship, political context, and career clarity is unevenly distributed — not by merit, but by geography and luck.</div>
+      </div>
+
+      <div class="framework-item">
+        <div class="fi-label">Perceived Low Ceiling</div>
+        <div class="fi-arrow">→</div>
+        <div class="fi-desc">Without visible evidence of what podiatric excellence looks like, candidates calibrate their ambition downward before they apply.</div>
+      </div>
+
+      <div class="framework-item">
+        <div class="fi-label">Declining Pool</div>
+        <div class="fi-arrow">→</div>
+        <div class="fi-desc">We diagnose this as a standards problem. The actual diagnosis is a visibility and accessibility problem.</div>
+      </div>
+    </div>
+
+    <div class="section-break">
+      <span class="section-break-label">The Paradigm Shift</span>
+      <div class="section-break-rule"></div>
+    </div>
+
+    <p>Here is what I actually believe: <strong>if you lower the informational barriers and raise the floor simultaneously, you do not have to choose between quality and quantity.</strong> You get more of both.</p>
+
+    <p>Lower the barriers means making the profession legible — publishing clear analysis of what podiatric practice looks like, what residency training actually involves, what the political and governance structures are and why they matter. It means treating prospective students as intelligent adults who will make better decisions with better information. It means not gatekeeping the synthesis.</p>
+
+    <p>Raise the floor means investing in the development of students and residents once they are inside — building genuine educational infrastructure, not just accreditation theater. Better curriculum design. More rigorous case preparation. Mentorship that is systematized rather than luck-dependent. A profession that takes its own training seriously enough to publish what good looks like.</p>
+
+    <div class="pull-quote">
+      <p>"Don't gate the map. Build better roads."</p>
+    </div>
+
+    <p>These two moves are not in tension. They are mutually reinforcing. The same content that makes the profession legible to an outsider raises the baseline for someone already inside. The same investment in resident education that raises quality signals to prospective students that this is a profession worth choosing.</p>
+
+    <div class="red-block">
+      <p>The profession has confused access with dilution. They are not the same thing. Making knowledge available does not cheapen it. Making the path visible does not lower the destination. A rising tide raises all ships — but only if someone removes the obstacles that are keeping the water out.</p>
+    </div>
+
+    <div class="section-break">
+      <span class="section-break-label">What This Actually Requires</span>
+      <div class="section-break-rule"></div>
+    </div>
+
+    <p>This is not an argument for lowering MCAT cutoffs or accepting applicants who cannot do the work. It is an argument for <strong>shifting where we focus our energy.</strong></p>
+
+    <p>Right now, a significant amount of institutional energy in podiatric medicine goes toward managing the perception of scarcity — guarding information, protecting access, maintaining the asymmetry between insiders and everyone else. That asymmetry is not serving quality. It is serving incumbency.</p>
+
+    <p>The schools, programs, and leaders who will define the next twenty years of this profession are the ones who invest in making podiatry <em>worth choosing</em> — transparently, visibly, with evidence. Not the ones who tighten the valve on an already shrinking pipe.</p>
+
+    <p>I became a podiatric surgeon because a surgeon fixed my ankle and I asked questions until I understood what he had done and why. That curiosity led me somewhere. <strong>How many people never got to ask the questions in the first place?</strong></p>
+
+    <p>That is the problem worth solving. Not the false choice between quality and quantity — but the structural opacity that makes both worse at once.</p>
+
+  </div>
+
+  <hr class="footer-rule">
+
+  <div class="footer">
+    <div class="copyright">© 2026 Peter Sorensen, DPM</div>
+    <div class="disclaimer">The Guidewire is an independent editorial publication. Content is produced with AI assistance and reflects the author's analysis and opinion. Not institutional policy. Verify all claims independently.</div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Field Notes — Plate Function</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #050617; }
+
+  .frame {
+    width: 1080px;
+    height: 1350px;
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse 900px 600px at 80% 0%, rgba(124, 92, 255, 0.22), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 10% 100%, rgba(64, 84, 200, 0.20), transparent 60%),
+      radial-gradient(ellipse 500px 400px at 50% 50%, rgba(157, 138, 255, 0.06), transparent 70%),
+      linear-gradient(180deg, #07091e 0%, #0c0e2a 35%, #110f33 70%, #0a0c24 100%);
+    font-family: 'DM Sans', system-ui, sans-serif;
+    color: #ece9df;
+  }
+
+  /* Starfield */
+  .stars {
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(1px 1px at 23px 47px, rgba(255,255,255,0.6), transparent 50%),
+      radial-gradient(1px 1px at 89px 178px, rgba(255,255,255,0.4), transparent 50%),
+      radial-gradient(1.5px 1.5px at 167px 89px, rgba(232,193,121,0.7), transparent 50%),
+      radial-gradient(1px 1px at 234px 234px, rgba(255,255,255,0.5), transparent 50%),
+      radial-gradient(1px 1px at 312px 67px, rgba(255,255,255,0.4), transparent 50%),
+      radial-gradient(1px 1px at 401px 145px, rgba(255,255,255,0.5), transparent 50%),
+      radial-gradient(1.5px 1.5px at 478px 290px, rgba(157,138,255,0.7), transparent 50%),
+      radial-gradient(1px 1px at 556px 178px, rgba(255,255,255,0.4), transparent 50%),
+      radial-gradient(1px 1px at 634px 56px, rgba(255,255,255,0.5), transparent 50%),
+      radial-gradient(1px 1px at 712px 234px, rgba(255,255,255,0.4), transparent 50%),
+      radial-gradient(1.5px 1.5px at 790px 100px, rgba(232,193,121,0.6), transparent 50%),
+      radial-gradient(1px 1px at 867px 200px, rgba(255,255,255,0.5), transparent 50%),
+      radial-gradient(1px 1px at 945px 80px, rgba(255,255,255,0.4), transparent 50%),
+      radial-gradient(1px 1px at 1023px 167px, rgba(255,255,255,0.5), transparent 50%),
+      radial-gradient(1px 1px at 67px 367px, rgba(255,255,255,0.4), transparent 50%),
+      radial-gradient(1px 1px at 145px 478px, rgba(255,255,255,0.5), transparent 50%),
+      radial-gradient(1px 1px at 223px 590px, rgba(255,255,255,0.4), transparent 50%),
+      radial-gradient(1.5px 1.5px at 312px 712px, rgba(157,138,255,0.6), transparent 50%),
+      radial-gradient(1px 1px at 401px 824px, rgba(255,255,255,0.5), transparent 50%),
+      radial-gradient(1px 1px at 478px 936px, rgba(255,255,255,0.4), transparent 50%),
+      radial-gradient(1px 1px at 556px 1048px, rgba(255,255,255,0.5), transparent 50%),
+      radial-gradient(1px 1px at 634px 1160px, rgba(255,255,255,0.4), transparent 50%),
+      radial-gradient(1px 1px at 712px 1272px, rgba(255,255,255,0.5), transparent 50%),
+      radial-gradient(1px 1px at 790px 400px, rgba(255,255,255,0.4), transparent 50%),
+      radial-gradient(1.5px 1.5px at 867px 512px, rgba(232,193,121,0.6), transparent 50%),
+      radial-gradient(1px 1px at 945px 624px, rgba(255,255,255,0.5), transparent 50%),
+      radial-gradient(1px 1px at 1023px 736px, rgba(255,255,255,0.4), transparent 50%),
+      radial-gradient(1px 1px at 100px 848px, rgba(255,255,255,0.5), transparent 50%),
+      radial-gradient(1.5px 1.5px at 200px 960px, rgba(157,138,255,0.5), transparent 50%),
+      radial-gradient(1px 1px at 350px 1072px, rgba(255,255,255,0.4), transparent 50%),
+      radial-gradient(1px 1px at 500px 1184px, rgba(255,255,255,0.5), transparent 50%),
+      radial-gradient(1px 1px at 650px 1296px, rgba(255,255,255,0.4), transparent 50%);
+    background-size: 1080px 1350px;
+    opacity: 0.85;
+  }
+
+  /* Subtle grain */
+  .grain {
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.07 0'/></filter><rect width='200' height='200' filter='url(%23n)'/></svg>");
+    mix-blend-mode: screen;
+    pointer-events: none;
+  }
+
+  .content {
+    position: absolute; inset: 0;
+    padding: 60px 64px 52px 64px;
+    display: flex; flex-direction: column;
+    gap: 0;
+  }
+
+  /* MASTHEAD */
+  .masthead {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(232, 193, 121, 0.25);
+    padding-bottom: 16px;
+  }
+  .masthead-left { display: flex; flex-direction: column; gap: 2px; }
+  .masthead-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 32px;
+    letter-spacing: 0.18em;
+    color: #f2efe4;
+    text-transform: uppercase;
+  }
+  .masthead-section {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    color: #e8c179;
+    text-transform: uppercase;
+  }
+  .masthead-right {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    color: #a8a8c0;
+    text-transform: lowercase;
+  }
+
+  /* HERO */
+  .hero {
+    margin-top: 36px;
+  }
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.42em;
+    color: #9d8aff;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+  .hero-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 58px;
+    line-height: 1.04;
+    letter-spacing: -0.018em;
+    color: #f2efe4;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: #e8c179;
+    font-weight: 400;
+  }
+  .hero-sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 17px;
+    line-height: 1.5;
+    color: #b8b8d0;
+    margin-top: 18px;
+    max-width: 880px;
+  }
+
+  /* PLATE GRID */
+  .plate-grid {
+    margin-top: 32px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .plate-card {
+    background: linear-gradient(180deg, rgba(157, 138, 255, 0.05), rgba(255, 255, 255, 0.015));
+    border: 1px solid rgba(157, 138, 255, 0.18);
+    border-radius: 4px;
+    padding: 22px 24px 24px;
+    position: relative;
+  }
+  .plate-card::before {
+    content: "";
+    position: absolute; top: 0; left: 0;
+    width: 44px; height: 1px;
+    background: #e8c179;
+  }
+  .plate-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.32em;
+    color: #e8c179;
+    text-transform: uppercase;
+  }
+  .plate-name {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 30px;
+    color: #f2efe4;
+    margin-top: 8px;
+    margin-bottom: 10px;
+    letter-spacing: -0.012em;
+  }
+  .plate-force {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    color: #5fdcff;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .plate-desc {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #c8c8dc;
+  }
+
+  /* SECONDARY ROW */
+  .secondary {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .panel {
+    border: 1px dashed rgba(157, 138, 255, 0.32);
+    border-radius: 4px;
+    padding: 20px 22px;
+  }
+  .panel-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.32em;
+    color: #9d8aff;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .panel-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 19px;
+    color: #f2efe4;
+    line-height: 1.22;
+    margin-bottom: 12px;
+  }
+  .panel-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .panel-list li {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12.5px;
+    line-height: 1.42;
+    color: #b8b8d0;
+    padding-left: 16px;
+    position: relative;
+  }
+  .panel-list li::before {
+    content: "→";
+    position: absolute; left: 0;
+    color: #e8c179;
+    font-family: 'DM Mono', monospace;
+  }
+  .panel-list strong { color: #ece9df; font-weight: 600; }
+
+  /* PEARLS */
+  .pearls {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 14px;
+  }
+  .pearl {
+    background: linear-gradient(95deg, rgba(232, 193, 121, 0.12), rgba(232, 193, 121, 0.04));
+    border-left: 3px solid #e8c179;
+    border-radius: 2px;
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .pearl-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.32em;
+    color: #e8c179;
+    text-transform: uppercase;
+  }
+  .pearl-text {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 1.32;
+    color: #f2efe4;
+  }
+  .pearl-text strong {
+    font-style: normal;
+    font-weight: 600;
+    color: #e8c179;
+    letter-spacing: 0.05em;
+  }
+
+  /* FOOTER */
+  .footer {
+    margin-top: 22px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(232, 193, 121, 0.22);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .footer-brand {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: #ece9df;
+    letter-spacing: 0.02em;
+  }
+  .footer-byline {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    color: #a8a8c0;
+    margin-top: 2px;
+  }
+  .footer-meta {
+    text-align: right;
+  }
+  .footer-disclaimer {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: #6e6e90;
+    text-transform: uppercase;
+  }
+
+  /* Small constellation accent */
+  .accent-line {
+    position: absolute;
+    width: 1px;
+    background: linear-gradient(180deg, transparent, #e8c179, transparent);
+    opacity: 0.3;
+  }
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="stars"></div>
+  <div class="grain"></div>
+
+  <div class="content">
+
+    <!-- MASTHEAD -->
+    <div class="masthead">
+      <div class="masthead-left">
+        <div class="masthead-title">The Guidewire</div>
+        <div class="masthead-section">Field Notes · Trauma</div>
+      </div>
+      <div class="masthead-right">soleintell.com</div>
+    </div>
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-eyebrow">Plate Function · Force Vectors · Lit Gaps</div>
+      <h1 class="hero-title">
+        You can't fix what you don't<br/>
+        understand. Start with the <em>deforming forces</em>.
+      </h1>
+      <p class="hero-sub">
+        The plate isn't the construct — the force it neutralizes is. Four modes, one job each. Match the failure pattern to the mechanical answer.
+      </p>
+    </div>
+
+    <!-- PLATE GRID -->
+    <div class="plate-grid">
+
+      <div class="plate-card">
+        <div class="plate-num">01 / Mode</div>
+        <div class="plate-name">Neutralization</div>
+        <div class="plate-force">↻ Rotational forces</div>
+        <div class="plate-desc">Lag screw provides compression. Plate protects it from torsion. The plate isn't loaded axially — it's resisting twist.</div>
+      </div>
+
+      <div class="plate-card">
+        <div class="plate-num">02 / Mode</div>
+        <div class="plate-name">Cerclage Compression</div>
+        <div class="plate-force">⊕ Compression (wiring)</div>
+        <div class="plate-desc">The current term. We don't call it "tension band" anymore — language has moved on, the biomechanics haven't.</div>
+      </div>
+
+      <div class="plate-card">
+        <div class="plate-num">03 / Mode</div>
+        <div class="plate-name">Antiglide</div>
+        <div class="plate-force">⇄ Shear control</div>
+        <div class="plate-desc">Plate sits as a mechanical block. Stops the fragment from migrating along an oblique fracture line under shear load.</div>
+      </div>
+
+      <div class="plate-card">
+        <div class="plate-num">04 / Mode</div>
+        <div class="plate-name">Buttress</div>
+        <div class="plate-force">↓ Axial load control</div>
+        <div class="plate-desc">For fractures unstable in compression — not rotation. Construct is load-sharing. Prevents axial collapse at the joint surface.</div>
+      </div>
+
+    </div>
+
+    <!-- SECONDARY: open questions -->
+    <div class="secondary">
+      <div class="panel">
+        <div class="panel-label">Lit Gap · Posterior Mall</div>
+        <div class="panel-title">Is the McDaniel-era data still load-bearing?</div>
+        <ul class="panel-list">
+          <li><strong>McDaniel (1970s)</strong> — &lt;10 fxs in series</li>
+          <li><strong>Verhage (2018)</strong> — modern reference point</li>
+          <li>Where does <strong>Gardner's PITFL 42%</strong> fit?</li>
+          <li>If post-mall is fixed → still need syndesmosis?</li>
+        </ul>
+      </div>
+
+      <div class="panel">
+        <div class="panel-label">Open Question · Approach</div>
+        <div class="panel-title">Sural nerve in the posterolateral approach.</div>
+        <ul class="panel-list">
+          <li>Any merit in <strong>intentional sacrifice</strong> for big trauma exposure?</li>
+          <li>What does the literature actually say about <strong>post-op sural neuritis</strong> rates?</li>
+          <li>Decision: avoid, retract, or accept?</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- PEARLS -->
+    <div class="pearls">
+      <div class="pearl">
+        <div class="pearl-tag">Soft Tissue ◐</div>
+        <div class="pearl-text">
+          Hemorrhagic bulla = a <strong>FX BLISTER</strong>. The dermis is compromised — adjust your timing.
+        </div>
+      </div>
+
+      <div class="pearl">
+        <div class="pearl-tag">Pearl ★</div>
+        <div class="pearl-text">
+          Posterior malleolar fixation — aim distal screws <strong>SUPERIOR</strong> so you don't violate the joint.
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <div>
+        <div class="footer-brand">Sole Intelligence</div>
+        <div class="footer-byline">Peter Sorensen, DPM</div>
+      </div>
+      <div class="footer-meta">
+        <div class="footer-disclaimer">Educational · Verify Locally</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

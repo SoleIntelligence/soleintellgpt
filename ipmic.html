@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Compact of Their Own — The Guidewire</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper:       #f1e9d6;
+    --paper-soft:  #ece4cf;
+    --paper-deep:  #e4dabf;
+    --ink:         #1d1812;
+    --ink-soft:    #4a4036;
+    --ink-faint:   #8a7f70;
+    --rule-strong: #2a221b;
+    --rule:        #6e6356;
+    --rule-soft:   #c4b89c;
+    --accent:      #8a2a1d;
+    --accent-soft: #b14b3b;
+
+    --serif:  'Source Serif 4', 'Source Serif Pro', Georgia, 'Times New Roman', serif;
+    --display:'Bodoni Moda', 'Bodoni 72', 'Didot', 'Source Serif 4', serif;
+    --sans:   'Source Sans 3', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { background: var(--paper); }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: 17.5px;
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "kern", "liga", "onum";
+  }
+
+  ::selection { background: var(--accent); color: var(--paper); }
+
+  /* ===== MASTHEAD ===== */
+  .masthead {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 36px 56px 0;
+  }
+  .masthead-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 13px;
+    color: var(--ink-soft);
+    padding-bottom: 12px;
+  }
+  .masthead-top .right {
+    font-variant: small-caps;
+    letter-spacing: 0.08em;
+    font-style: normal;
+    font-size: 12px;
+  }
+  .nameplate {
+    font-family: var(--display);
+    font-weight: 500;
+    font-style: italic;
+    font-size: clamp(54px, 9vw, 104px);
+    letter-spacing: -0.005em;
+    text-align: center;
+    line-height: 1;
+    margin: 8px 0 6px;
+    color: var(--ink);
+  }
+  .dateline {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    font-size: 12.5px;
+    font-variant: small-caps;
+    letter-spacing: 0.14em;
+    color: var(--ink-soft);
+    padding: 14px 0;
+    border-top: 1px solid var(--rule-strong);
+    border-bottom: 3px double var(--rule-strong);
+  }
+  .dateline .sep {
+    width: 4px; height: 4px;
+    background: var(--ink-soft);
+    border-radius: 50%;
+  }
+
+  /* ===== ARTICLE ===== */
+  article {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 56px 56px 80px;
+  }
+
+  .headline-block { text-align: center; margin-bottom: 56px; }
+  .kicker {
+    font-size: 12px;
+    font-variant: small-caps;
+    letter-spacing: 0.22em;
+    color: var(--accent);
+    margin-bottom: 24px;
+  }
+  h1.head {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: clamp(46px, 7vw, 78px);
+    line-height: 1.02;
+    letter-spacing: -0.012em;
+    margin: 0 0 24px;
+    color: var(--ink);
+  }
+  h1.head em { font-style: italic; }
+  .deck {
+    font-style: italic;
+    font-size: clamp(19px, 2vw, 22px);
+    line-height: 1.42;
+    color: var(--ink-soft);
+    font-weight: 300;
+    max-width: 560px;
+    margin: 0 auto 36px;
+  }
+  .byline-block {
+    margin-top: 28px;
+    padding-top: 18px;
+    border-top: 1px solid var(--rule-soft);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    font-size: 14px;
+    color: var(--ink-soft);
+    flex-wrap: wrap;
+  }
+  .byline-block .by, .byline-block .meta {
+    font-variant: small-caps;
+    letter-spacing: 0.14em;
+    font-size: 11.5px;
+    color: var(--ink-faint);
+  }
+  .byline-block .author { font-style: italic; color: var(--ink); }
+
+  /* DROP-CAP LEAD */
+  .lead { margin-bottom: 36px; }
+  .lead p:first-of-type::first-letter {
+    font-family: var(--display);
+    font-weight: 500;
+    float: left;
+    font-size: 76px;
+    line-height: 0.86;
+    padding: 8px 12px 0 0;
+    margin-top: 4px;
+    color: var(--ink);
+  }
+  .lead p { font-size: 18.5px; line-height: 1.6; }
+
+  /* SECTION ORNAMENT */
+  .section-rule {
+    text-align: center;
+    margin: 56px 0 36px;
+    color: var(--ink-faint);
+    font-family: var(--display);
+    font-size: 18px;
+    letter-spacing: 1em;
+  }
+
+  /* SUBHEADS */
+  .section { margin: 56px 0; }
+  h2.subhead {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: clamp(28px, 3.6vw, 36px);
+    line-height: 1.12;
+    letter-spacing: -0.005em;
+    margin: 0 0 8px;
+    color: var(--ink);
+  }
+  h2.subhead em { font-style: italic; }
+  .standfirst {
+    font-style: italic;
+    font-size: 16.5px;
+    color: var(--ink-soft);
+    margin: 0 0 28px;
+    line-height: 1.5;
+  }
+  h3 {
+    font-family: var(--display);
+    font-weight: 600;
+    font-style: italic;
+    font-size: 21px;
+    color: var(--ink);
+    margin: 32px 0 10px;
+    line-height: 1.3;
+  }
+
+  p { margin: 0 0 18px; }
+  p strong { font-weight: 600; color: var(--ink); }
+  p em { font-style: italic; }
+
+  a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    transition: color 0.2s, border-color 0.2s;
+  }
+  a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+  /* ACTORS TABLE */
+  .actors {
+    border-top: 2px solid var(--rule-strong);
+    border-bottom: 2px solid var(--rule-strong);
+    margin: 28px 0;
+  }
+  .actors .row {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 28px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--rule-soft);
+    align-items: baseline;
+  }
+  .actors .row:last-child { border-bottom: none; }
+  .actors .acronym {
+    font-family: var(--display);
+    font-weight: 600;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--ink);
+  }
+  .actors .desc {
+    font-size: 15.5px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+  }
+  .actors .desc strong { color: var(--ink); }
+  .actors .row.note .desc em { font-style: italic; color: var(--accent); }
+
+  /* MECHANISM STEPS */
+  .mechanism {
+    margin: 28px 0;
+    counter-reset: step;
+    border-left: 2px solid var(--rule-strong);
+    padding-left: 28px;
+  }
+  .mechanism .step {
+    counter-increment: step;
+    margin-bottom: 18px;
+  }
+  .mechanism .step::before {
+    content: counter(step, upper-roman) ".";
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 500;
+    color: var(--accent);
+    font-size: 16px;
+    margin-right: 10px;
+  }
+  .mechanism .step-text {
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+  .mechanism .step-text strong { font-weight: 600; }
+
+  /* STATE TABLE */
+  .table-wrap {
+    margin: 28px 0;
+    border-top: 2px solid var(--rule-strong);
+    border-bottom: 2px solid var(--rule-strong);
+  }
+  table.broadsheet {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  table.broadsheet thead th {
+    font-weight: 400;
+    font-variant: small-caps;
+    letter-spacing: 0.12em;
+    font-size: 11.5px;
+    color: var(--ink-soft);
+    text-align: left;
+    padding: 12px 14px 10px;
+    border-bottom: 1px solid var(--rule-strong);
+  }
+  table.broadsheet tbody td {
+    padding: 14px;
+    border-bottom: 1px solid var(--rule-soft);
+    font-size: 15px;
+    line-height: 1.45;
+    vertical-align: top;
+  }
+  table.broadsheet tbody tr:last-child td { border-bottom: none; }
+  table.broadsheet td.state {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 600;
+    font-size: 17px;
+    color: var(--ink);
+    width: 140px;
+  }
+  table.broadsheet td.bill {
+    font-style: italic;
+    color: var(--ink-soft);
+    width: 160px;
+    font-size: 14.5px;
+  }
+  table.broadsheet td.status { color: var(--ink); }
+  table.broadsheet td.status strong {
+    color: var(--accent);
+    font-style: italic;
+    font-weight: 600;
+  }
+
+  /* MYTHS Q&A */
+  .myth {
+    margin: 28px 0;
+    padding-bottom: 26px;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .myth:last-child { border-bottom: none; }
+  .myth .q {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 21px;
+    line-height: 1.32;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+  .myth .q::before {
+    content: "Q. ";
+    font-style: normal;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .myth .a {
+    font-size: 16px;
+    line-height: 1.58;
+    color: var(--ink);
+    padding-left: 28px;
+    position: relative;
+  }
+  .myth .a::before {
+    content: "A.";
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  /* PULL QUOTE */
+  .pullquote {
+    margin: 48px auto;
+    padding: 32px 0;
+    max-width: 540px;
+    text-align: center;
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 26px;
+    line-height: 1.32;
+    color: var(--ink);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .pullquote .attribution {
+    display: block;
+    margin-top: 18px;
+    font-style: normal;
+    font-variant: small-caps;
+    font-size: 11.5px;
+    letter-spacing: 0.16em;
+    color: var(--ink-faint);
+    font-family: var(--serif);
+  }
+
+  /* PEARLS */
+  .pearl {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 20px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--rule-soft);
+    align-items: baseline;
+  }
+  .pearl:last-child { border-bottom: none; }
+  .pearl .roman {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 22px;
+    color: var(--accent);
+    text-align: right;
+  }
+  .pearl .text {
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--ink);
+  }
+  .pearl .text strong {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  /* CONFIDENCE */
+  .confidence-bar {
+    margin: 24px 0;
+    padding: 24px 0;
+    border-top: 1px solid var(--rule-soft);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .confidence-bar .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 16px;
+  }
+  .confidence-bar .label {
+    font-variant: small-caps;
+    letter-spacing: 0.16em;
+    font-size: 11.5px;
+    color: var(--ink-faint);
+  }
+  .confidence-bar .score {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 26px;
+    color: var(--ink);
+  }
+  .confidence-bar .score .of { color: var(--ink-faint); font-size: 17px; }
+  .confidence-bar .dots {
+    font-size: 22px;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    margin-bottom: 18px;
+  }
+  .confidence-bar .dots .empty { color: var(--rule-soft); }
+  .confidence-bar .breakdown { display: grid; gap: 10px; font-size: 14.5px; line-height: 1.5; }
+  .confidence-bar .breakdown .row {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 16px;
+  }
+  .confidence-bar .breakdown .tier {
+    font-variant: small-caps;
+    letter-spacing: 0.1em;
+    font-size: 11.5px;
+    color: var(--ink-soft);
+    padding-top: 2px;
+  }
+  .verify {
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px dashed var(--rule-soft);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+
+  /* SOURCES */
+  .sources-list { font-size: 14px; line-height: 1.7; color: var(--ink-soft); }
+  .sources-list ul { list-style: none; padding: 0; margin: 0; }
+  .sources-list li {
+    padding-left: 20px;
+    text-indent: -20px;
+    margin-bottom: 6px;
+  }
+  .sources-list li::before {
+    content: "§ ";
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .sources-list strong {
+    color: var(--ink);
+    font-style: italic;
+    font-weight: 500;
+  }
+
+  /* DISCLAIMER */
+  .colophon-note {
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    font-style: italic;
+    line-height: 1.55;
+    padding: 18px 0;
+    border-top: 1px solid var(--rule-soft);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+
+  /* SOCIAL ASSET */
+  .social {
+    margin-top: 36px;
+    padding: 32px 36px;
+    background: var(--paper-deep);
+    border-top: 3px double var(--rule-strong);
+    border-bottom: 3px double var(--rule-strong);
+  }
+  .social .label {
+    font-variant: small-caps;
+    letter-spacing: 0.18em;
+    font-size: 11px;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+  .social .hook {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 22px;
+    line-height: 1.32;
+    color: var(--ink);
+    margin-bottom: 18px;
+  }
+  .social .bullets { font-size: 14.5px; color: var(--ink-soft); line-height: 1.6; }
+  .social .bullets ul { list-style: none; padding: 0; margin: 0 0 18px; }
+  .social .bullets li {
+    padding-left: 16px;
+    text-indent: -16px;
+    margin-bottom: 4px;
+  }
+  .social .bullets li::before { content: "— "; color: var(--accent); }
+  .social .cta {
+    padding-top: 14px;
+    border-top: 1px solid var(--rule-soft);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--ink);
+  }
+  .social .cta a {
+    font-style: normal;
+    color: var(--accent);
+    border-bottom-color: var(--accent-soft);
+  }
+  .social .direction {
+    margin-top: 22px;
+    padding-top: 18px;
+    border-top: 1px dotted var(--rule-soft);
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+  .social .direction-label {
+    font-variant: small-caps;
+    letter-spacing: 0.14em;
+    font-size: 11px;
+    color: var(--ink-faint);
+    display: block;
+    margin-bottom: 8px;
+  }
+  .social .direction strong {
+    color: var(--ink);
+    font-style: italic;
+    font-weight: 500;
+  }
+
+  /* FOOTER */
+  footer.colophon {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 60px 56px 80px;
+    text-align: center;
+    border-top: 3px double var(--rule-strong);
+  }
+  footer .end-mark {
+    font-family: var(--display);
+    font-size: 14px;
+    color: var(--ink-faint);
+    letter-spacing: 0.6em;
+    margin-bottom: 26px;
+  }
+  footer .masthead-mini {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 24px;
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+  footer .tagline {
+    font-style: italic;
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    margin-bottom: 18px;
+  }
+  footer .copy {
+    font-variant: small-caps;
+    letter-spacing: 0.14em;
+    font-size: 11px;
+    color: var(--ink-faint);
+  }
+
+  /* MOBILE */
+  @media (max-width: 720px) {
+    .masthead { padding: 24px 22px 0; }
+    article { padding: 36px 22px 56px; }
+    footer.colophon { padding: 44px 22px 56px; }
+    .masthead-top { font-size: 11px; }
+    .masthead-top .right { display: none; }
+    .nameplate { font-size: 48px; }
+    .dateline {
+      gap: 10px; font-size: 10.5px; letter-spacing: 0.1em;
+      flex-wrap: wrap; justify-content: center; padding: 12px 0;
+    }
+    h1.head { font-size: 38px; line-height: 1.06; }
+    .deck { font-size: 17.5px; }
+    .lead p:first-of-type::first-letter { font-size: 58px; padding-right: 8px; }
+    .actors .row { grid-template-columns: 92px 1fr; gap: 16px; }
+    table.broadsheet thead { display: none; }
+    table.broadsheet tbody tr {
+      display: block;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--rule-soft);
+    }
+    table.broadsheet tbody td {
+      display: block;
+      padding: 2px 0;
+      border-bottom: none;
+      width: auto !important;
+    }
+    table.broadsheet td.state { font-size: 19px; margin-bottom: 2px; }
+    .pullquote { font-size: 21px; padding: 26px 0; }
+    .pearl { grid-template-columns: 40px 1fr; gap: 14px; }
+    .social { padding: 24px 22px; margin-left: -22px; margin-right: -22px; }
+  }
+  @media (max-width: 420px) {
+    .nameplate { font-size: 40px; }
+    .masthead-top { flex-direction: column; gap: 6px; }
+  }
+  @media print {
+    body { background: white; color: black; }
+    article, footer.colophon { padding: 24px; }
+    .social { background: white; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-top">
+    <div class="left">Independent editorial intelligence on the podiatric profession.</div>
+    <div class="right">Governance Brief</div>
+  </div>
+  <div class="nameplate">The Guidewire</div>
+  <div class="dateline">
+    <span>Indianapolis</span>
+    <span class="sep"></span>
+    <span>14 May 2026</span>
+    <span class="sep"></span>
+    <span>soleintell.com</span>
+  </div>
+</header>
+
+<article>
+
+  <div class="headline-block">
+    <div class="kicker">Interstate Licensure</div>
+    <h1 class="head">A Compact of Their <em>Own</em></h1>
+    <p class="deck">Podiatry finally gets an interstate licensure compact. Most residents won't qualify on day one.</p>
+    <div class="byline-block">
+      <span class="by">By</span>
+      <span class="author">Peter Sorensen, DPM</span>
+      <span class="meta">·  Nine-minute read</span>
+    </div>
+  </div>
+
+  <div class="lead">
+    <p>The Interstate Podiatric Medical Licensure Compact — drafted by the Federation of Podiatric Medical Boards, modelled on the physicians' compact, and endorsed by the American Podiatric Medical Association — is real, funded, and moving through state legislatures. It is not yet operational anywhere. For the residents and students who stand to gain most from it, the compact's eligibility rules contain a quiet barrier most will not see coming.</p>
+  </div>
+
+  <div class="section-rule">·  ·  ·</div>
+
+  <div class="section">
+    <h2 class="subhead">Who should care, and why.</h2>
+    <p class="standfirst">A short answer for the impatient, before the long one for the careful.</p>
+    <p>For practicing podiatrists, the compact promises faster cross-state licensure, legitimate multistate telemedicine, and a viable locum-tenens market. For residents and students, it reshapes the second through tenth year of practice — but only for those who clear an eligibility threshold the compact's drafters set deliberately high. The structural details, set out below, are where the implications live.</p>
+  </div>
+
+  <div class="section-rule">·  ·  ·</div>
+
+  <div class="section">
+    <h2 class="subhead">The five rooms.</h2>
+    <p class="standfirst">A reader new to the alphabet soup of podiatric governance should keep these straight; they are easily confused, and the confusion is consequential.</p>
+
+    <div class="actors">
+      <div class="row">
+        <div class="acronym">FPMB</div>
+        <div class="desc">The federation of state podiatric <strong>licensing boards</strong>. Drafted the compact. Owns the model legislation.</div>
+      </div>
+      <div class="row">
+        <div class="acronym">APMA</div>
+        <div class="desc">The membership and advocacy organisation. <strong>Endorsed</strong> the compact. Lobbies the state-by-state bills.</div>
+      </div>
+      <div class="row">
+        <div class="acronym">NBPME</div>
+        <div class="desc">Writes the licensing examination (APMLE Parts I, II, and III).</div>
+      </div>
+      <div class="row">
+        <div class="acronym">CPME</div>
+        <div class="desc">Accredits podiatric schools and residency programmes.</div>
+      </div>
+      <div class="row note">
+        <div class="acronym">ABFAS &amp; ABPM</div>
+        <div class="desc">The specialty <strong>board-certification</strong> bodies. <em>The reader should remember these.</em></div>
+      </div>
+      <div class="row">
+        <div class="acronym">IMLCC</div>
+        <div class="desc">The physicians' compact commission. Lent FPMB its administrative architecture under a formal memorandum of understanding.</div>
+      </div>
+    </div>
+
+    <p>FPMB built the compact. APMA is selling it. The physicians' compact loaned the blueprint. The remaining bodies feed credentials into the eligibility filter.</p>
+  </div>
+
+  <div class="section-rule">·  ·  ·</div>
+
+  <div class="section">
+    <h2 class="subhead">Not one licence that travels. <em>Many licences, issued faster.</em></h2>
+    <p class="standfirst">A widespread misconception is that the compact resembles the Nurse Licensure Compact. It does not.</p>
+
+    <p>Under the nursing model, a single home-state licence confers privileges across all member states. Under the physicians' compact — and now the podiatric one — the applicant still ends up holding several discrete state licences. The compact simply expedites their issuance. Each licence is still issued by its own state board, governed by its own practice act, and renewed under its own fee schedule.</p>
+
+    <div class="mechanism">
+      <div class="step"><span class="step-text">The applicant begins with a full, unrestricted licence in their home state.</span></div>
+      <div class="step"><span class="step-text">They designate a <strong>State of Principal Licence</strong>, which verifies their credentials once.</span></div>
+      <div class="step"><span class="step-text">The FPMB Compact Commission transmits that attestation to each target state.</span></div>
+      <div class="step"><span class="step-text">Each target state issues its own licence under its own statute.</span></div>
+      <div class="step"><span class="step-text">The applicant now holds several separate state licences, obtained substantially faster than the traditional pathway.</span></div>
+    </div>
+
+    <p>Jurisdiction is determined by patient location: a telehealth encounter with a patient in Iowa is governed by Iowa's board regardless of where the clinician sits. This is the legal principle that gives the compact its telemedicine value.</p>
+  </div>
+
+  <div class="section-rule">·  ·  ·</div>
+
+  <div class="section">
+    <h2 class="subhead">Four facts that determine the rest.</h2>
+
+    <h3>Activation at four states.</h3>
+    <p>Most contemporary healthcare compacts — the physician assistant compact, the dentist and dental hygienist compact, the counselling compact — require seven enacting states before they activate. The podiatric compact requires only four. The lower threshold reflects podiatry's smaller licensee base and FPMB's interest in standing up the commission quickly. It does not, however, change the practical fact that meaningful national reach still demands many more adoptions.</p>
+
+    <h3>Eligibility, and the barrier residents miss.</h3>
+    <p>The model legislation requires a CPME-approved school, all parts of the APMLE passed, a CPME-approved residency completed, an unrestricted home-state licence, a clean DEA record, an FBI biometric criminal-records check, and <strong>specialty board certification from ABFAS or ABPM</strong>. That final requirement is the one that excludes most new graduates. Board <em>qualification</em> after residency is not board <em>certification</em>; the certification pathway takes years of case logging and additional examinations. Until those are complete, the compact is unavailable.</p>
+
+    <h3>Shared discipline, unshared scope.</h3>
+    <p>Member boards exchange disciplinary and investigative information through the Commission's data system — a tighter regime than the present reliance on the National Practitioner Data Bank alone. But scope of practice remains local. A compact licensee in Florida may perform ankle surgery on a Florida patient and may not perform it on a Mississippi patient.</p>
+
+    <h3>Fees that stack.</h3>
+    <p>The Commission charges its own administrative fee. Each member state continues to charge its full licensure fee on top. For a clinician seeking only one or two additional states, traditional state-by-state licensure may still be the cheaper route.</p>
+  </div>
+
+  <div class="section-rule">·  ·  ·</div>
+
+  <div class="section">
+    <h2 class="subhead">Where the bills actually are.</h2>
+    <p class="standfirst">A snapshot, accurate as of mid-May 2026 and likely to shift.</p>
+
+    <div class="table-wrap">
+      <table class="broadsheet">
+        <thead>
+          <tr><th>State</th><th>Bill</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="state">Iowa</td>
+            <td class="bill">HF 2498</td>
+            <td class="status"><strong>Passed House 89&ndash;0</strong> on 23 February. Referred to Senate State Government subcommittee three days later. Furthest along of any state.</td>
+          </tr>
+          <tr>
+            <td class="state">Florida</td>
+            <td class="bill">SB 1312 &amp; HB 1213</td>
+            <td class="status">Companion bills introduced in January, with paired public-records exemption bills attached. Carried by the Florida Podiatric Medical Association.</td>
+          </tr>
+          <tr>
+            <td class="state">Maryland</td>
+            <td class="bill">SB 333</td>
+            <td class="status">Heard before the Senate Finance Committee in early 2026. APMA submitted written testimony in support.</td>
+          </tr>
+          <tr>
+            <td class="state">Ohio</td>
+            <td class="bill">SB 354</td>
+            <td class="status">Introduced 10 February 2026. Referred to the Senate Health Committee the following day.</td>
+          </tr>
+          <tr>
+            <td class="state">Nebraska</td>
+            <td class="bill"><em>Pre-legislative</em></td>
+            <td class="status">The state podiatry board reviewed the model legislation in April 2025 without objection. No bill has yet been introduced.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>No state has fully enacted the compact. The Commission has not been seated. A reasonable projection places functional operation two to four years away, at the earliest, and only if Iowa or another early-mover crosses the finish line in 2026.</p>
+  </div>
+
+  <div class="pullquote">
+    The compact itself is licensure, not scope — but state medical and orthopaedic societies do not always distinguish.
+    <span class="attribution">The structural risk to adoption</span>
+  </div>
+
+  <div class="section">
+    <h2 class="subhead">Five misconceptions to discard.</h2>
+    <p class="standfirst">Each is common; each will cost someone time or money if held to.</p>
+
+    <div class="myth">
+      <div class="q">I will graduate from residency and use the compact.</div>
+      <div class="a">Not immediately. Compact eligibility requires board certification, not board qualification. For most new graduates, the compact remains locked behind a two- to five-year wait after residency.</div>
+    </div>
+
+    <div class="myth">
+      <div class="q">The compact harmonises scope of practice.</div>
+      <div class="a">It does not. A compact licensee in Florida may perform ankle surgery on a Florida patient and may not perform it on a Mississippi patient. Scope remains a matter of local statute, and the compact takes no position on it.</div>
+    </div>
+
+    <div class="myth">
+      <div class="q">It is essentially the nursing compact.</div>
+      <div class="a">Structurally, no. Nurses receive a single licence that confers privileges across member states. Podiatrists receive several discrete licences, issued faster. The two compacts work on different principles.</div>
+    </div>
+
+    <div class="myth">
+      <div class="q">APMA wrote it.</div>
+      <div class="a">FPMB wrote it. APMA endorsed it and now carries it politically. The two bodies have different mandates and the distinction matters when one is asked to explain how the compact was developed.</div>
+    </div>
+
+    <div class="myth">
+      <div class="q">It will be national within a year.</div>
+      <div class="a">The physicians' compact took roughly a decade to reach forty jurisdictions. The podiatric compact has moved faster in its early stages but addresses a licensee population of perhaps eighteen thousand, against more than a million physicians. Many legislatures will not prioritise it.</div>
+    </div>
+  </div>
+
+  <div class="section-rule">·  ·  ·</div>
+
+  <div class="section">
+    <h2 class="subhead">A decade behind, and why.</h2>
+    <p>Podiatric medicine lagged the physician, nursing, physical therapy, and psychology compacts for the same combination of reasons that explains most things about its smaller political footprint. The licensee base is small. State-by-state scope battles consumed advocacy capacity for two decades. FPMB only matured into a true federation recently. And no federal funding stream existed for podiatric licensure portability until the HRSA Licensure Portability Grant Programme — a $750,000 award covering ninety-one per cent of project costs — was secured in 2024. The compact is what the profession's infrastructure finally produced once those four conditions changed at once.</p>
+  </div>
+
+  <div class="section-rule">·  ·  ·</div>
+
+  <div class="section">
+    <h2 class="subhead">The political risk no one is naming.</h2>
+    <p>In Mississippi in 2024, a podiatric scope-of-practice bill that referenced CPME 320 was characterised by the state medical society as a <em>"compact-like"</em> measure that would permit a national body to set surgical scope. A coalition of medical, orthopaedic, and surgery societies defeated it. That bill was technically about scope, not licensure — but the framing illustrates the structural risk for the IPMLC. In states with active scope-of-practice disputes, the podiatric compact may be opposed on grounds that have nothing to do with licensure portability. The adoption curve will be bumpy where those disputes are unresolved.</p>
+  </div>
+
+  <div class="section-rule">·  ·  ·</div>
+
+  <div class="section">
+    <h2 class="subhead">For the resident and the student.</h2>
+    <p class="standfirst">Six things worth doing, in roughly the order one should do them.</p>
+
+    <div class="pearl"><div class="roman">i.</div><div class="text"><strong>Pursue board certification as early as possible.</strong> It is the eligibility gate, and there is no workaround.</div></div>
+    <div class="pearl"><div class="roman">ii.</div><div class="text"><strong>Follow the state podiatric medical association</strong> rather than social media. The bill, the testimony, and the political coalition are at the state level.</div></div>
+    <div class="pearl"><div class="roman">iii.</div><div class="text"><strong>Assume traditional licensure for the first one or two positions.</strong> The compact will not be functionally available in time.</div></div>
+    <div class="pearl"><div class="roman">iv.</div><div class="text"><strong>If wide-scope training leads to a narrow-scope state</strong>, the compact will accelerate licensure but not expand what may lawfully be performed. The host state's practice act should be read before any contract is signed.</div></div>
+    <div class="pearl"><div class="roman">v.</div><div class="text"><strong>Telehealth is the sleeper use case.</strong> Cross-state wound-care follow-up, diabetic-foot risk monitoring, and post-operative review are the activities most likely to be unlocked first.</div></div>
+    <div class="pearl"><div class="roman">vi.</div><div class="text"><strong>For military spouses</strong>, the compact stacks with the Veterans Auto and Education Improvement Act of 2023. PCS-driven re-licensure becomes essentially frictionless in compact states.</div></div>
+  </div>
+
+  <div class="section-rule">·  ·  ·</div>
+
+  <div class="section">
+    <h2 class="subhead">Confidence in the analysis.</h2>
+
+    <div class="confidence-bar">
+      <div class="head">
+        <div class="label">Editorial confidence</div>
+        <div class="score">seven<span class="of"> of ten</span></div>
+      </div>
+      <div class="dots">●  ●  ●  ●  ●  ●  ●  <span class="empty">○  ○  ○</span></div>
+      <div class="breakdown">
+        <div class="row">
+          <div class="tier">High</div>
+          <div>Compact structure, drafter, eligibility rules, and the bill status of each state cited above.</div>
+        </div>
+        <div class="row">
+          <div class="tier">Medium</div>
+          <div>Adoption pace, the order of next-mover states, and whether scope-of-practice fights derail compact bills.</div>
+        </div>
+        <div class="row">
+          <div class="tier">Lower</div>
+          <div>The intensity of opposition in scope-restricted states; whether the four-state activation threshold survives committee mark-up.</div>
+        </div>
+      </div>
+      <div class="verify">Bill numbers and statuses change weekly. Verify with ipmlc.org, LegiScan, and the state podiatric association before citing.</div>
+    </div>
+  </div>
+
+  <div class="section-rule">·  ·  ·</div>
+
+  <div class="section">
+    <h2 class="subhead">Sources.</h2>
+    <div class="sources-list">
+      <ul>
+        <li><strong>ipmlc.org</strong> — model legislation, support statements, organisational background (FPMB).</li>
+        <li><strong>FPMB IPMLC Briefing Document</strong>, dated 23 September 2024.</li>
+        <li><strong>APMA News</strong> — Maryland endorsement release and Iowa congratulatory release, February 2026.</li>
+        <li><strong>LegiScan</strong> — bill tracking for IA HF 2498, FL S1312 and S1314, OH SB 354.</li>
+        <li><strong>FPMA Advocacy</strong> — Florida companion bills and committee assignments.</li>
+        <li><strong>Nebraska Board of Podiatry</strong> — minutes of the 15 April 2025 meeting.</li>
+        <li><strong>IMLC, NLC, and DDH Compact</strong> primary sources — comparative compact data.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="colophon-note">
+    Editorial intelligence prepared with AI assistance and human editorial judgement. Intended for educational purposes only — not legal counsel, not licensure advice, and not a substitute for direct consultation with the relevant state board or licensed counsel. Bill numbers and statuses change rapidly; readers are encouraged to verify locally before citing or acting on any item.
+  </div>
+
+  <div class="social">
+    <div class="label">Companion social asset</div>
+    <div class="hook">Podiatry just got its first interstate licensure compact. Most residents won't qualify on day one.</div>
+    <div class="bullets">
+      <ul>
+        <li>Drafted by FPMB, modelled on the physicians' compact, activates at four states.</li>
+        <li>Eligibility requires board certification — not board qualification.</li>
+        <li>Iowa has passed the House 89&ndash;0. Florida, Maryland, and Ohio are next.</li>
+      </ul>
+    </div>
+    <div class="cta">The full analysis runs on Substack &mdash; <a href="https://soleintell.substack.com/">soleintell.substack.com</a></div>
+
+    <div class="direction">
+      <span class="direction-label">Visual direction</span>
+      <strong>Palette:</strong> Cream paper and warm ink, with a single oxblood accent used only on the headline serial and the deck rule. No dark mode. No gradients.<br><br>
+      <strong>Layout:</strong> 1080&times;1350 portrait. The headline "A Compact of Their Own" set in Bodoni Moda italic, broken across two lines with "Own" emphasised. A horizontal three-step diagram beneath. Three short editorial bullets in the lower third. Masthead and URL set as a thin footer rule.<br><br>
+      <strong>Reference points:</strong> Foreign Affairs, the Financial Times leader page, n+1. Editorial gravitas without ornament. No stethoscopes. No anatomical illustration. Geometry, typography, and rule lines only.
+    </div>
+  </div>
+
+</article>
+
+<footer class="colophon">
+  <div class="end-mark">⁂</div>
+  <div class="masthead-mini">The Guidewire</div>
+  <div class="tagline">Independent editorial intelligence on the podiatric profession.</div>
+  <div class="copy">© 2026 Peter Sorensen, DPM &nbsp;·&nbsp; soleintell.com</div>
+</footer>
+
+</body>
+</html>

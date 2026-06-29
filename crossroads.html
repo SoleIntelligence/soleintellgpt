@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Podiatry at a Crossroads</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0d1b2a;
+    --navy-mid: #142236;
+    --navy-light: #1e3352;
+    --teal: #4a9b8e;
+    --teal-bright: #5fbfb0;
+    --teal-dim: #2d6b61;
+    --amber: #c8964a;
+    --amber-light: #e8b46a;
+    --cream: #f0ebe0;
+    --cream-dim: #c8c2b4;
+    --white: #ffffff;
+    --red-muted: #b85c5c;
+    --red-light: #d47070;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--navy);
+    color: var(--cream);
+    font-family: 'IBM Plex Sans', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.6;
+  }
+
+  .page {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 48px 32px 64px;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    text-align: center;
+    margin-bottom: 56px;
+    animation: fadeDown 0.8s ease both;
+  }
+
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--teal-bright);
+    margin-bottom: 12px;
+  }
+
+  .header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(38px, 6vw, 62px);
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    color: var(--white);
+  }
+
+  .header h1 em {
+    font-style: italic;
+    color: var(--teal-bright);
+  }
+
+  .header-rule {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 20px auto;
+    max-width: 420px;
+  }
+
+  .header-rule span {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--teal-dim));
+  }
+
+  .header-rule span:last-child {
+    background: linear-gradient(to left, transparent, var(--teal-dim));
+  }
+
+  .header-rule .diamond {
+    width: 6px;
+    height: 6px;
+    background: var(--teal-bright);
+    transform: rotate(45deg);
+  }
+
+  .subtitle {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--cream-dim);
+  }
+
+  /* ── THREE-COLUMN GRID ── */
+  .columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+    position: relative;
+  }
+
+  .col {
+    padding: 0 28px 0;
+    position: relative;
+    animation: fadeUp 0.9s ease both;
+  }
+
+  .col:nth-child(2) { animation-delay: 0.15s; }
+  .col:nth-child(3) { animation-delay: 0.3s; }
+
+  /* vertical dividers */
+  .col:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--navy-light) 20%, var(--navy-light) 80%, transparent);
+  }
+
+  /* ── COLUMN HEADERS ── */
+  .col-header {
+    margin-bottom: 28px;
+  }
+
+  .col-period {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .col-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 1.15;
+  }
+
+  .col-underline {
+    height: 2px;
+    width: 40px;
+    border-radius: 2px;
+    margin-top: 12px;
+  }
+
+  /* Column color themes */
+  .col-past .col-period { color: var(--red-light); }
+  .col-past .col-title { color: var(--cream); }
+  .col-past .col-underline { background: var(--red-muted); }
+
+  .col-present .col-period { color: var(--amber-light); }
+  .col-present .col-title { color: var(--cream); }
+  .col-present .col-underline { background: var(--amber); }
+
+  .col-future .col-period { color: var(--teal-bright); }
+  .col-future .col-title { color: var(--cream); }
+  .col-future .col-underline { background: var(--teal); }
+
+  /* ── ISSUE CARDS ── */
+  .issue {
+    background: var(--navy-mid);
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+    border-left: 3px solid transparent;
+    position: relative;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .issue:hover {
+    transform: translateX(3px);
+    box-shadow: -4px 0 20px rgba(0,0,0,0.3);
+  }
+
+  .col-past .issue { border-left-color: var(--red-muted); }
+  .col-present .issue { border-left-color: var(--amber); }
+  .col-future .issue { border-left-color: var(--teal); }
+
+  .issue-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 8.5px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    opacity: 0.7;
+  }
+
+  .col-past .issue-tag { color: var(--red-light); }
+  .col-present .issue-tag { color: var(--amber-light); }
+  .col-future .issue-tag { color: var(--teal-bright); }
+
+  .issue-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+
+  .issue-body {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 11.5px;
+    font-weight: 300;
+    color: var(--cream-dim);
+    line-height: 1.55;
+  }
+
+  /* ── SECTION LABEL (inside col) ── */
+  .section-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--cream-dim);
+    opacity: 0.5;
+    margin: 18px 0 8px;
+    padding-left: 2px;
+  }
+
+  /* ── STAT BADGE ── */
+  .stat-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+
+  .stat {
+    background: var(--navy-light);
+    border-radius: 6px;
+    padding: 10px 14px;
+    flex: 1;
+    min-width: 80px;
+  }
+
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .col-past .stat-num { color: var(--red-light); }
+  .col-present .stat-num { color: var(--amber-light); }
+  .col-future .stat-num { color: var(--teal-bright); }
+
+  .stat-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 8.5px;
+    letter-spacing: 0.1em;
+    color: var(--cream-dim);
+    margin-top: 3px;
+    line-height: 1.3;
+  }
+
+  /* ── HORIZONTAL DIVIDER ── */
+  .h-divider {
+    height: 1px;
+    background: var(--navy-light);
+    margin: 16px 0;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid var(--navy-light);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    animation: fadeUp 1s ease 0.5s both;
+  }
+
+  .footer-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-style: italic;
+    color: var(--teal-bright);
+  }
+
+  .footer-note {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    color: var(--cream-dim);
+    opacity: 0.5;
+    text-align: right;
+  }
+
+  /* ── TIMELINE SPINE (center column top decoration) ── */
+  .timeline-marker {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+
+  .marker-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 2px solid var(--amber);
+    background: var(--navy);
+    position: relative;
+  }
+
+  .marker-dot::before, .marker-dot::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    height: 1px;
+    width: 32px;
+    background: var(--amber);
+    transform: translateY(-50%);
+  }
+
+  .marker-dot::before { right: calc(100% + 2px); }
+  .marker-dot::after { left: calc(100% + 2px); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── QUOTE BLOCK ── */
+  .pullquote {
+    background: linear-gradient(135deg, var(--navy-light), var(--navy-mid));
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin-bottom: 12px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pullquote::before {
+    content: '"';
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 72px;
+    font-weight: 700;
+    position: absolute;
+    top: -10px;
+    left: 8px;
+    line-height: 1;
+    opacity: 0.08;
+    color: var(--teal-bright);
+  }
+
+  .pullquote-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--cream);
+    line-height: 1.5;
+    position: relative;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 800px) {
+    .columns { grid-template-columns: 1fr; }
+    .col::after { display: none; }
+    .col { padding: 0; margin-bottom: 40px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="eyebrow">Continuing Education · Organized Podiatry Series</div>
+    <h1>Podiatry at a <em>Crossroads</em></h1>
+    <div class="header-rule">
+      <span></span>
+      <div class="diamond"></div>
+      <span></span>
+    </div>
+    <div class="subtitle">A decade in review &nbsp;·&nbsp; solutions in progress &nbsp;·&nbsp; a profession in motion</div>
+  </div>
+
+  <!-- COLUMNS -->
+  <div class="columns">
+
+    <!-- ── COLUMN 1: PAST ── -->
+    <div class="col col-past">
+      <div class="col-header">
+        <div class="col-period">2015 – 2025</div>
+        <div class="col-title">What Brewed<br>Below the Surface</div>
+        <div class="col-underline"></div>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat">
+          <div class="stat-num">9</div>
+          <div class="stat-label">accredited DPM schools — enrollment pressure mounting</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">2</div>
+          <div class="stat-label">competing board certification bodies (ABFAS / ABPM)</div>
+        </div>
+      </div>
+
+      <div class="section-label">Credentialing Crisis</div>
+
+      <div class="issue">
+        <div class="issue-tag">Certification</div>
+        <div class="issue-title">Board Wars: ABFAS vs. ABPM</div>
+        <div class="issue-body">Two separate certifying bodies created confusion for hospitals, employers, and residents navigating credential requirements. CAQs added a third layer of complexity without uniform recognition.</div>
+      </div>
+
+      <div class="issue">
+        <div class="issue-tag">Pipeline</div>
+        <div class="issue-title">Enrollment Decline & Match Anxiety</div>
+        <div class="issue-body">Several podiatric schools reported declining applicant pools. Residency positions grew but uneven distribution created geographic dead zones and program quality disparities.</div>
+      </div>
+
+      <div class="section-label">Professional Identity</div>
+
+      <div class="issue">
+        <div class="issue-tag">Scope</div>
+        <div class="issue-title">Scope of Practice Battles</div>
+        <div class="issue-body">Orthopedic encroachment on foot and ankle, uneven state-level legislation, and inconsistent hospital privileging left DPMs fighting for procedures they were fully trained to perform.</div>
+      </div>
+
+      <div class="issue">
+        <div class="issue-tag">Economics</div>
+        <div class="issue-title">Reimbursement Erosion</div>
+        <div class="issue-body">CMS cuts and payer policy changes compressed podiatric margins. Routine care coding became a compliance minefield while high-value surgical reimbursements were reclassified or bundled.</div>
+      </div>
+
+      <div class="issue">
+        <div class="issue-tag">Governance</div>
+        <div class="issue-title">CPME Accreditation Fights</div>
+        <div class="issue-body">Behind-the-scenes tension over CPME's authority and relationship with APMA raised questions about who governs podiatric education — and in whose interest.</div>
+      </div>
+
+      <div class="pullquote">
+        <div class="pullquote-text">A profession divided on its own credentials cannot speak with one voice to hospitals, legislatures, or patients.</div>
+      </div>
+    </div>
+
+    <!-- ── COLUMN 2: PRESENT ── -->
+    <div class="col col-present">
+      <div class="col-header">
+        <div class="col-period">In Motion Now</div>
+        <div class="col-title">Proposed<br>Solutions</div>
+        <div class="col-underline"></div>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat">
+          <div class="stat-num">HOD</div>
+          <div class="stat-label">2026 — major resolutions passed in Washington, DC</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">1</div>
+          <div class="stat-label">Board concept gaining political momentum</div>
+        </div>
+      </div>
+
+      <div class="section-label">Structural Reform</div>
+
+      <div class="issue">
+        <div class="issue-tag">Certification</div>
+        <div class="issue-title">One Board Movement</div>
+        <div class="issue-body">APMA has formally engaged the "One Board" concept — unifying ABFAS and ABPM into a single certifying pathway. The 2026 HOD moved this from aspiration to active deliberation. Standardization reduces confusion and strengthens external credibility.</div>
+      </div>
+
+      <div class="issue">
+        <div class="issue-tag">Certification</div>
+        <div class="issue-title">ABPM CAQ Discontinuation</div>
+        <div class="issue-body">The 2026 HOD included action to discontinue ABPM Certificates of Added Qualification — simplifying the credentialing landscape and reducing the administrative burden on residency graduates.</div>
+      </div>
+
+      <div class="section-label">Legislative & Educational</div>
+
+      <div class="issue">
+        <div class="issue-tag">Legislation</div>
+        <div class="issue-title">State-Level Scope Expansion</div>
+        <div class="issue-body">APMA's legislative arm is pursuing coordinated state-by-state strategies. Limb salvage, ankle arthroplasty, and reconstructive surgery privileging are priority battlegrounds with real momentum in key states.</div>
+      </div>
+
+      <div class="issue">
+        <div class="issue-tag">Pipeline</div>
+        <div class="issue-title">Resident & Student Engagement</div>
+        <div class="issue-body">The APMA Emerging Leaders Program, HOD participation, and structured mentorship aim to rebuild civic investment in organized podiatry — connecting trainees to governance before they graduate.</div>
+      </div>
+
+      <div class="section-label">Technology</div>
+
+      <div class="issue">
+        <div class="issue-tag">AI & Operations</div>
+        <div class="issue-title">AI Integration in Practice</div>
+        <div class="issue-body">Early-adopter DPMs are deploying LLMs for surgical note generation, billing accuracy improvement, patient education, and research. The window to shape podiatry's AI narrative — before it's shaped for us — is open now.</div>
+      </div>
+
+      <div class="pullquote">
+        <div class="pullquote-text">Organized podiatry's power is latent. Residents who engage now inherit a profession shaped by their own hands.</div>
+      </div>
+    </div>
+
+    <!-- ── COLUMN 3: FUTURE ── -->
+    <div class="col col-future">
+      <div class="col-header">
+        <div class="col-period">2025 – 2035</div>
+        <div class="col-title">The Next<br>Ten Years</div>
+        <div class="col-underline"></div>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat">
+          <div class="stat-num">↑</div>
+          <div class="stat-label">Unified credential = stronger hospital privileging</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">AI</div>
+          <div class="stat-label">Augmented surgical planning becomes standard of care</div>
+        </div>
+      </div>
+
+      <div class="section-label">Credentialing Resolution</div>
+
+      <div class="issue">
+        <div class="issue-tag">Certification</div>
+        <div class="issue-title">A Unified Board Standard</div>
+        <div class="issue-body">If One Board succeeds, the profession presents a single, defensible credential to health systems and payers. Graduates will no longer face the confusion of dual pathways or employer unfamiliarity.</div>
+      </div>
+
+      <div class="issue">
+        <div class="issue-tag">Scope</div>
+        <div class="issue-title">Expanded Surgical Authority</div>
+        <div class="issue-body">DPMs trained in ankle arthroplasty, limb salvage, and reconstructive procedures will increasingly hold privileges previously denied. Legislative wins will compound, state by state, over the decade.</div>
+      </div>
+
+      <div class="section-label">Practice & Identity</div>
+
+      <div class="issue">
+        <div class="issue-tag">Identity</div>
+        <div class="issue-title">The DPM Brand Clarified</div>
+        <div class="issue-body">A decade of organized effort — by HOD participants, academic researchers, and thought leaders — will shift public and hospital perception of the DPM from "foot doctor" to essential musculoskeletal specialist.</div>
+      </div>
+
+      <div class="issue">
+        <div class="issue-tag">Technology</div>
+        <div class="issue-title">AI-Native Podiatric Practice</div>
+        <div class="issue-body">LLMs and computer vision will assist with preoperative imaging analysis, predictive outcomes modeling, and automated compliance documentation. DPMs who lead this transition will define the specialty's technological identity.</div>
+      </div>
+
+      <div class="section-label">Workforce</div>
+
+      <div class="issue">
+        <div class="issue-tag">Pipeline</div>
+        <div class="issue-title">Stabilized & Diversified Pipeline</div>
+        <div class="issue-body">Proactive engagement with pre-med students, community outreach, and GEO-optimized digital presence will attract the next generation. A clearer professional narrative makes recruitment easier and retention stronger.</div>
+      </div>
+
+      <div class="pullquote">
+        <div class="pullquote-text">The residents training today will preside over these outcomes. Indifference is a vote for the status quo.</div>
+      </div>
+    </div>
+
+  </div><!-- end .columns -->
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-brand">Sole Intelligence</div>
+    <div class="footer-note">
+      Peter Sorensen, DPM, MHA &nbsp;·&nbsp; PGY-3 Podiatric Surgery · Ascension St. Vincent Indianapolis<br>
+      For educational use · Organized Podiatry Resident Series · 2026
+    </div>
+  </div>
+
+</div><!-- end .page -->
+</body>
+</html>

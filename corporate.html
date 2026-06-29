@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The APMA Corporate Council — The Guidewire</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=JetBrains+Mono:wght@400;500;700&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F5F0E8;
+    --parchment: #EDE7D9;
+    --ink: #1A1A1A;
+    --ink-muted: #3D3D3D;
+    --ink-light: #6B6560;
+    --red: #B8341A;
+    --red-light: #F2E8E5;
+    --amber: #C17B2A;
+    --amber-light: #F5EDD8;
+    --teal: #2A6B5F;
+    --teal-light: #E0EDEA;
+    --rule: rgba(26,26,26,0.12);
+    --rule-heavy: rgba(26,26,26,0.25);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'IBM Plex Sans', sans-serif;
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 24px 64px;
+  }
+
+  /* ── MASTHEAD ── */
+  .masthead {
+    border-bottom: 3px solid var(--ink);
+    padding: 28px 0 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .pub-name {
+    font-family: 'Fraunces', serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  .masthead-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-light);
+    text-align: right;
+  }
+
+  /* ── SECTION LABEL ── */
+  .section-flag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: var(--ink);
+    color: var(--cream);
+    padding: 4px 10px;
+    margin: 28px 0 20px;
+  }
+
+  /* ── HEADLINE BLOCK ── */
+  .headline-block {
+    border-left: 4px solid var(--red);
+    padding-left: 20px;
+    margin-bottom: 28px;
+  }
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(28px, 5vw, 42px);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+    margin-bottom: 10px;
+  }
+  .deck {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--ink-muted);
+    max-width: 620px;
+  }
+
+  /* ── BYLINE / DATE ── */
+  .byline-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 0;
+    border-top: 1px solid var(--rule-heavy);
+    border-bottom: 1px solid var(--rule-heavy);
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+  }
+  .byline-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--ink);
+  }
+  .byline-sep { color: var(--rule-heavy); font-size: 14px; }
+  .byline-date {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-light);
+  }
+  .byline-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    padding: 3px 8px;
+    border: 1px solid var(--red);
+    color: var(--red);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* ── CONTENT BLOCKS ── */
+  .what-box {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 20px 24px;
+    margin-bottom: 32px;
+    border-left: 4px solid var(--red);
+  }
+  .what-box .wlabel {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.5);
+    margin-bottom: 8px;
+  }
+  .what-box p {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--cream);
+  }
+
+  /* ── SECTION HEADERS ── */
+  .section-head {
+    font-family: 'Fraunces', serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  /* ── MEMBER MAP GRID ── */
+  .member-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2px;
+    margin-bottom: 32px;
+    border: 2px solid var(--ink);
+  }
+  .member-card {
+    padding: 16px 18px;
+    background: var(--parchment);
+    border-right: 1px solid var(--rule-heavy);
+    border-bottom: 1px solid var(--rule-heavy);
+  }
+  .member-card:nth-child(even) { background: var(--cream); }
+  .member-name {
+    font-family: 'Fraunces', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .member-sector {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--red);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .member-desc {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--ink-muted);
+  }
+  .member-interest {
+    margin-top: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--amber);
+    font-weight: 500;
+  }
+
+  /* ── ANATOMY BOX ── */
+  .flow-box {
+    margin-bottom: 32px;
+  }
+  .flow-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .flow-row:last-child { border-bottom: none; }
+  .flow-num {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--rule-heavy);
+    line-height: 1;
+    min-width: 32px;
+  }
+  .flow-content {}
+  .flow-head {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .flow-sub {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--ink-muted);
+  }
+
+  /* ── INCENTIVE PANEL ── */
+  .incentive-panel {
+    margin-bottom: 32px;
+  }
+  .incentive-row {
+    display: grid;
+    grid-template-columns: 140px 1fr 1fr;
+    gap: 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .incentive-row:first-child {
+    background: var(--ink);
+    color: var(--cream);
+    border-bottom: 2px solid var(--ink);
+  }
+  .incentive-cell {
+    padding: 10px 14px;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--ink-muted);
+    border-right: 1px solid var(--rule);
+  }
+  .incentive-cell:last-child { border-right: none; }
+  .incentive-row:first-child .incentive-cell {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--cream);
+  }
+  .company-label {
+    font-family: 'Fraunces', serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .incentive-row:nth-child(even) { background: var(--parchment); }
+
+  /* ── ALERT BOXES ── */
+  .alert-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  @media (max-width: 520px) { .alert-row { grid-template-columns: 1fr; } }
+  .alert-card {
+    padding: 18px 20px;
+    border-left: 3px solid var(--red);
+    background: var(--red-light);
+  }
+  .alert-card.positive {
+    border-left-color: var(--teal);
+    background: var(--teal-light);
+  }
+  .alert-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 10px;
+    font-weight: 700;
+  }
+  .alert-card.positive .alert-label { color: var(--teal); }
+  .alert-item {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--ink-muted);
+    margin-bottom: 8px;
+    padding-left: 14px;
+    position: relative;
+  }
+  .alert-item::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--red);
+    font-size: 12px;
+  }
+  .alert-card.positive .alert-item::before { color: var(--teal); }
+
+  /* ── WATCH LIST ── */
+  .watch-box {
+    background: var(--parchment);
+    border: 2px solid var(--ink);
+    padding: 22px 24px;
+    margin-bottom: 32px;
+  }
+  .watch-title {
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--rule-heavy);
+  }
+  .watch-item {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 14px;
+    align-items: flex-start;
+  }
+  .watch-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--red);
+    min-width: 24px;
+    padding-top: 2px;
+  }
+  .watch-text {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--ink-muted);
+  }
+  .watch-text strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  /* ── PEARLS ── */
+  .pearls-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .pearl-card {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 16px 18px;
+  }
+  .pearl-icon {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+  .pearl-text {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 13px;
+    line-height: 1.55;
+    color: rgba(245,240,232,0.85);
+  }
+
+  /* ── CONFIDENCE ── */
+  .confidence-block {
+    margin-bottom: 32px;
+    padding: 16px 20px;
+    border: 1px solid var(--rule-heavy);
+    background: var(--parchment);
+  }
+  .conf-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 8px;
+  }
+  .conf-bar {
+    display: flex;
+    gap: 3px;
+    margin-bottom: 8px;
+  }
+  .conf-seg {
+    height: 8px;
+    width: 30px;
+    border-radius: 1px;
+  }
+  .conf-filled { background: var(--amber); }
+  .conf-empty { background: var(--rule-heavy); }
+  .conf-note {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 12px;
+    color: var(--ink-muted);
+    line-height: 1.5;
+  }
+
+  /* ── SOURCES ── */
+  .sources-block {
+    margin-bottom: 32px;
+    padding-top: 20px;
+    border-top: 2px solid var(--rule-heavy);
+  }
+  .sources-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 10px;
+  }
+  .source-item {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 12px;
+    color: var(--ink-muted);
+    line-height: 1.5;
+    margin-bottom: 6px;
+    padding-left: 16px;
+    position: relative;
+  }
+  .source-item::before {
+    content: attr(data-n);
+    position: absolute;
+    left: 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-light);
+  }
+
+  /* ── DISCLAIMER / COPYRIGHT ── */
+  .disclaimer {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 11px;
+    line-height: 1.6;
+    color: var(--ink-light);
+    padding: 14px 0;
+    border-top: 1px solid var(--rule);
+    margin-bottom: 10px;
+  }
+  .copyright {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: rgba(26,26,26,0.3);
+    text-align: center;
+    padding-top: 8px;
+  }
+
+  /* ── SOCIAL ASSET ── */
+  .social-block {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 24px;
+    margin-top: 40px;
+    margin-bottom: 16px;
+    border-left: 4px solid var(--red);
+  }
+  .social-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.45);
+    margin-bottom: 14px;
+  }
+  .social-hook {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--cream);
+    margin-bottom: 16px;
+  }
+  .social-bullet {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 13px;
+    line-height: 1.6;
+    color: rgba(245,240,232,0.8);
+    padding-left: 16px;
+    position: relative;
+    margin-bottom: 8px;
+  }
+  .social-bullet::before { content: '→'; position: absolute; left: 0; color: var(--red); }
+  .social-cta {
+    margin-top: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--amber);
+    letter-spacing: 0.06em;
+  }
+</style>
+</head>
+<body>
+
+<!-- MASTHEAD -->
+<div class="masthead">
+  <div class="pub-name">The Guidewire</div>
+  <div class="masthead-meta">
+    Governance &amp; Policy<br>
+    soleintell.com
+  </div>
+</div>
+
+<div class="section-flag">Brief — Governance</div>
+
+<!-- HEADLINE -->
+<div class="headline-block">
+  <h1>Six Companies Just Got a Seat at the APMA Table</h1>
+  <p class="deck">The new APMA Corporate Council is framed as collaboration. Here's who's in the room, what they sell, and what residents should be watching for.</p>
+</div>
+
+<!-- BYLINE -->
+<div class="byline-row">
+  <span class="byline-name">Peter Sorensen, DPM</span>
+  <span class="byline-sep">|</span>
+  <span class="byline-date">May 2026</span>
+  <span class="byline-sep">|</span>
+  <span class="byline-tag">Analysis</span>
+</div>
+
+<!-- WHAT THIS IS -->
+<div class="what-box">
+  <div class="wlabel">What this is</div>
+  <p>On May 5, 2026, APMA announced the APMA Corporate Council — a new "forum" of six founding industry members described as thought leaders who will "help raise awareness of critical issues" and engage in "strategic collaboration" with APMA leadership. The founding members paid for access. What they paid, and what they get in return, is not publicly disclosed.</p>
+</div>
+
+<!-- THE SIX -->
+<div class="section-head">The Six Founding Members — And What They Sell</div>
+<div class="member-grid">
+  <div class="member-card">
+    <div class="member-name">Amgen</div>
+    <div class="member-sector">Big Pharma · Biologics</div>
+    <div class="member-desc">Global biopharma giant. Relevant products include Enbrel (inflammation/RA, foot manifestations) and Repatha (cardiovascular, PAD risk). Amgen's diabetes pipeline is newer and expanding.</div>
+    <div class="member-interest">Interest: DPM prescribing habits, formulary positioning, PAD/diabetes overlap patients</div>
+  </div>
+  <div class="member-card">
+    <div class="member-name">Vertex Pharmaceuticals</div>
+    <div class="member-sector">Specialty Pharma</div>
+    <div class="member-desc">Known for cystic fibrosis (Trikafta). Expanding into pain and inflammatory conditions. Less obvious fit for podiatry — but their expansion into musculoskeletal/pain pipeline is ongoing.</div>
+    <div class="member-interest">Interest: Pain management policy, emerging indications, specialist access</div>
+  </div>
+  <div class="member-card">
+    <div class="member-name">NextGen Healthcare</div>
+    <div class="member-sector">EHR / Practice Management</div>
+    <div class="member-desc">APMA's officially endorsed EHR. Already a corporate partner. The Council represents a deeper seat at the table — beyond endorsement into policy dialogue.</div>
+    <div class="member-interest">Interest: Market lock-in, AI documentation tools, data access from DPM practices</div>
+  </div>
+  <div class="member-card">
+    <div class="member-name">PICA (ProAssurance)</div>
+    <div class="member-sector">Malpractice Insurance</div>
+    <div class="member-sector" style="color: var(--teal);">Pre-existing relationship</div>
+    <div class="member-desc">The podiatry malpractice insurer. Founded by podiatrists, endorsed by APMA for 40+ years. Probably the most aligned of the six — but still a vendor with financial interests in scope-of-practice debates.</div>
+    <div class="member-interest">Interest: Scope expansion = more DPMs to insure; more procedures = higher premiums</div>
+  </div>
+  <div class="member-card">
+    <div class="member-name">Sagis Diagnostics</div>
+    <div class="member-sector">Podiatric Pathology Lab</div>
+    <div class="member-desc">Houston-based CAP-accredited lab specializing in podiatric dermatopathology, bone, and soft tissue pathology. Already markets aggressively to DPMs. Already sponsors resident education.</div>
+    <div class="member-interest">Interest: Specimen referral volume, lab exclusivity, resident brand loyalty early in training</div>
+  </div>
+  <div class="member-card">
+    <div class="member-name">Clutch Medical</div>
+    <div class="member-sector">Medical Devices / Implants</div>
+    <div class="member-desc">Foot and ankle surgical device company — fixation systems, implants. Smaller company; DPM surgeons are a core customer base. Council membership = direct access to APMA policy discussions on surgical scope.</div>
+    <div class="member-interest">Interest: Surgical scope expansion, implant volume, device training programs</div>
+  </div>
+</div>
+
+<!-- HOW THIS WORKS -->
+<div class="section-head">How "Corporate Councils" Actually Function in Medical Associations</div>
+<div class="flow-box">
+  <div class="flow-row">
+    <div class="flow-num">01</div>
+    <div class="flow-content">
+      <div class="flow-head">The entry point is money, not expertise.</div>
+      <div class="flow-sub">APMA's existing corporate member program starts at $2,500 and goes to $125,000+. The Corporate Council is a tier above that — offering "exclusive" access to leadership dialogue. The price of a seat is not disclosed publicly. This is standard for medical associations; it is not inherently corrupt. But it is not charity.</div>
+    </div>
+  </div>
+  <div class="flow-row">
+    <div class="flow-num">02</div>
+    <div class="flow-content">
+      <div class="flow-head">The formal benefit is "alignment around shared goals."</div>
+      <div class="flow-sub">APMA's own language: council members engage in "joint problem-solving," "strategic collaboration," and help "raise awareness of critical issues." Translation: they get to frame what the problems are and what solutions look like — before the membership ever hears about it.</div>
+    </div>
+  </div>
+  <div class="flow-row">
+    <div class="flow-num">03</div>
+    <div class="flow-content">
+      <div class="flow-head">There is no disclosed conflict-of-interest firewall.</div>
+      <div class="flow-sub">APMA has not published governance language describing how Corporate Council input is separated from clinical guidance, advocacy positions, or HOD resolutions. In other specialties, industry-association entanglement has directly shaped CPG recommendations and scope-of-practice advocacy — sometimes in members' interests, sometimes not.</div>
+    </div>
+  </div>
+  <div class="flow-row">
+    <div class="flow-num">04</div>
+    <div class="flow-content">
+      <div class="flow-head">This is not new or unique to APMA.</div>
+      <div class="flow-sub">AMA, AAOS, ACS, and most major specialty societies have industry advisory structures. The question isn't whether corporate partnerships exist — they always have. The question is whether members know what they are, and whether transparency is sufficient.</div>
+    </div>
+  </div>
+</div>
+
+<!-- INCENTIVE TABLE -->
+<div class="section-head">Incentive Map: What Each Party Gets</div>
+<div class="incentive-panel">
+  <div class="incentive-row">
+    <div class="incentive-cell">Company</div>
+    <div class="incentive-cell">What APMA Gets From Them</div>
+    <div class="incentive-cell">What They Get From APMA</div>
+  </div>
+  <div class="incentive-row">
+    <div class="incentive-cell"><span class="company-label">Amgen / Vertex</span></div>
+    <div class="incentive-cell">Revenue, prestige, pharma legitimacy signal</div>
+    <div class="incentive-cell">Early access to advocacy positions, specialist mindshare, formulary influence opportunity</div>
+  </div>
+  <div class="incentive-row">
+    <div class="incentive-cell"><span class="company-label">NextGen</span></div>
+    <div class="incentive-cell">Tech partnership credibility, EHR endorsement renewal</div>
+    <div class="incentive-cell">Competitive moat, AI data pipeline from DPM practices, policy input on interoperability reqs</div>
+  </div>
+  <div class="incentive-row">
+    <div class="incentive-cell"><span class="company-label">PICA</span></div>
+    <div class="incentive-cell">Revenue, member services, long-standing endorsement</div>
+    <div class="incentive-cell">Input on scope-of-practice expansion discussions that affect their premium base</div>
+  </div>
+  <div class="incentive-row">
+    <div class="incentive-cell"><span class="company-label">Sagis Dx</span></div>
+    <div class="incentive-cell">Revenue, resident education sponsorship optics</div>
+    <div class="incentive-cell">Referral loyalty from a captive audience of DPMs at training stage; lab exclusivity signaling</div>
+  </div>
+  <div class="incentive-row">
+    <div class="incentive-cell"><span class="company-label">Clutch Medical</span></div>
+    <div class="incentive-cell">Revenue, surgical device ecosystem presence</div>
+    <div class="incentive-cell">Surgical scope advocacy input, implant training program access, DPM surgeon pipeline</div>
+  </div>
+</div>
+
+<!-- TWO SIDES -->
+<div class="section-head">The Honest Tension</div>
+<div class="alert-row">
+  <div class="alert-card">
+    <div class="alert-label">Reasons for Concern</div>
+    <div class="alert-item">No disclosed firewall between council input and APMA clinical/advocacy positions.</div>
+    <div class="alert-item">Members don't know what was paid or what was promised.</div>
+    <div class="alert-item">Some members (Sagis, Clutch) directly profit from DPM practice volume — scope decisions affect them financially.</div>
+    <div class="alert-item">Residents and students are the most downstream from these dynamics — least voice, most affected long-term.</div>
+  </div>
+  <div class="alert-card positive">
+    <div class="alert-label">Reasons Not to Panic</div>
+    <div class="alert-item">This is how every major medical association funds operations. APMA is not an outlier.</div>
+    <div class="alert-item">Some companies (PICA, Sagis) have genuine alignment with DPM interests — the relationship isn't inherently adversarial.</div>
+    <div class="alert-item">Industry partnerships have produced real wins: NextGen EHR is genuinely useful; PICA actually insures DPMs well.</div>
+    <div class="alert-item">Sunlight is the disinfectant — the existence of the council is public. Governance gaps can be addressed through HOD resolutions.</div>
+  </div>
+</div>
+
+<!-- WATCH LIST -->
+<div class="watch-box">
+  <div class="watch-title">What to Watch — As a Resident</div>
+  <div class="watch-item">
+    <div class="watch-num">01</div>
+    <div class="watch-text"><strong>Track APMA advocacy positions over the next 12–18 months.</strong> If positions on skin substitutes, surgical scope, or lab policy shift in ways that benefit specific council members, note the correlation.</div>
+  </div>
+  <div class="watch-item">
+    <div class="watch-num">02</div>
+    <div class="watch-text"><strong>Watch HOD resolutions for fingerprints.</strong> Industry-aligned priorities often surface as HOD resolutions before becoming policy. That's where your delegate voice matters most.</div>
+  </div>
+  <div class="watch-item">
+    <div class="watch-num">03</div>
+    <div class="watch-text"><strong>Be aware of who sponsors your education.</strong> Sagis, PICA, and Clutch Medical all market directly to residents through CE, lab sponsorships, and cadaver labs. That's not wrong — but it's not neutral either. Know when you're in a sales environment.</div>
+  </div>
+  <div class="watch-item">
+    <div class="watch-num">04</div>
+    <div class="watch-text"><strong>Ask APMA for the governance policy.</strong> A reasonable member demand: publish the conflict-of-interest firewall governing Corporate Council input into advocacy and clinical guidance. This is a legitimate HOD resolution if one doesn't exist.</div>
+  </div>
+  <div class="watch-item">
+    <div class="watch-num">05</div>
+    <div class="watch-text"><strong>Don't assume conflict — look for evidence.</strong> Reflexive cynicism is as useless as naïve trust. The Corporate Council might produce genuinely useful collaboration. Hold the question open and watch what actually happens.</div>
+  </div>
+</div>
+
+<!-- PEARLS -->
+<div class="section-head">Pearls</div>
+<div class="pearls-row">
+  <div class="pearl-card">
+    <div class="pearl-icon">💡</div>
+    <div class="pearl-text">Corporate partnerships don't corrupt associations automatically. Undisclosed corporate partnerships do.</div>
+  </div>
+  <div class="pearl-card">
+    <div class="pearl-icon">🎯</div>
+    <div class="pearl-text">Your HOD delegate is the only formal channel you have to ask APMA governance questions on the record. Use it.</div>
+  </div>
+  <div class="pearl-card">
+    <div class="pearl-icon">🔍</div>
+    <div class="pearl-text">Companies that profit from DPM volume have structural reasons to support scope expansion — and structural reasons to resist anything that shrinks it.</div>
+  </div>
+  <div class="pearl-card">
+    <div class="pearl-icon">📋</div>
+    <div class="pearl-text">The resident and student perspective is almost never in the room when these partnerships form. That's not an accident. That's a reason to engage.</div>
+  </div>
+</div>
+
+<!-- CONFIDENCE -->
+<div class="confidence-block">
+  <div class="conf-label">Confidence Level — Facts vs. Analysis</div>
+  <div class="conf-bar">
+    <div class="conf-seg conf-filled"></div>
+    <div class="conf-seg conf-filled"></div>
+    <div class="conf-seg conf-filled"></div>
+    <div class="conf-seg conf-filled"></div>
+    <div class="conf-seg conf-filled"></div>
+    <div class="conf-seg conf-filled"></div>
+    <div class="conf-seg conf-filled"></div>
+    <div class="conf-seg conf-empty"></div>
+    <div class="conf-seg conf-empty"></div>
+    <div class="conf-seg conf-empty"></div>
+  </div>
+  <div class="conf-note">The facts here — council membership, company descriptions, APMA's existing corporate structures — are verified from public sources. The interpretive framework (incentive mapping, governance gaps) is editorial analysis, not documented wrongdoing. The council is new; most of the meaningful questions are still open. Treat the analysis as a lens, not a verdict.</div>
+</div>
+
+<!-- SOURCES -->
+<div class="sources-block">
+  <div class="sources-label">Sources</div>
+  <div class="source-item" data-n="1.">APMA Press Release — "APMA's New Corporate Council Will Advance Profession Through Collaboration," May 5, 2026. apma.org</div>
+  <div class="source-item" data-n="2.">APMA Corporate Member Program — pricing and benefit tiers. apma.org</div>
+  <div class="source-item" data-n="3.">Sagis Diagnostics — Podiatric Pathology Division overview. sagisdx.com</div>
+  <div class="source-item" data-n="4.">PICA / ProAssurance — Podiatric malpractice insurance history and APMA endorsement. picagroup.com</div>
+  <div class="source-item" data-n="5.">NextGen Healthcare — APMA corporate partner and endorsed EHR. nextgen.com</div>
+  <div class="source-item" data-n="6.">FindEMR — "Top 5 Best Podiatry EMR/EHRs (2025)." findemr.com (editorial context)</div>
+</div>
+
+<!-- DISCLAIMER -->
+<div class="disclaimer">
+  <strong>Editorial &amp; AI Disclaimer:</strong> This brief is produced with AI assistance for educational and analytical purposes only. All factual claims are sourced; interpretive analysis represents the editorial perspective of the author. This content does not constitute legal, financial, or professional advice. Readers should conduct their own due diligence. The Guidewire is an independent publication — no council member, sponsor, or institutional affiliation has reviewed or influenced this content.
+</div>
+
+<div class="copyright">© 2026 Peter Sorensen, DPM &nbsp;·&nbsp; soleintell.com</div>
+
+<!-- SOCIAL ASSET -->
+<div class="social-block">
+  <div class="social-label">Social Graphic Copy — Draft</div>
+  <div class="social-hook">Six companies just got a seat at the APMA table. Here's what residents need to know.</div>
+  <div class="social-bullet">Amgen, Vertex, NextGen, PICA, Sagis, Clutch Medical — each with a different financial stake in podiatry policy.</div>
+  <div class="social-bullet">Corporate councils are standard in medicine. Undisclosed governance around them isn't.</div>
+  <div class="social-bullet">Five things to watch as a resident — and one HOD resolution worth filing.</div>
+  <div class="social-cta">Full breakdown → petersorensendpm.substack.com</div>
+</div>
+
+</body>
+</html>

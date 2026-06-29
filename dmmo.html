@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>DMMO in Foot Surgery — The Guidewire</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,800;0,9..144,900;1,9..144,400&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #f4efe4;
+    --cream-deep: #ebe3d1;
+    --ink: #1a1a1a;
+    --ink-soft: #3a3a3a;
+    --rule: #1a1a1a;
+    --accent: #b8341a;      /* oxidized red — single accent */
+    --accent-ink: #8a2712;
+    --muted: #6e665a;
+    --paper-shade: #e6ddc9;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Fraunces', Georgia, serif;
+    font-feature-settings: "ss01", "ss02";
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.45;
+  }
+
+  /* subtle paper grain */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    background-image:
+      radial-gradient(rgba(26,26,26,0.035) 1px, transparent 1px),
+      radial-gradient(rgba(26,26,26,0.025) 1px, transparent 1px);
+    background-size: 3px 3px, 7px 7px;
+    background-position: 0 0, 1px 2px;
+    mix-blend-mode: multiply;
+    opacity: 0.6;
+  }
+
+  .sheet {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 32px 28px 72px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ────────── MASTHEAD ────────── */
+  .masthead {
+    border-top: 4px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+    padding: 14px 0 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .masthead .pub { font-weight: 700; }
+  .masthead .meta { color: var(--muted); }
+
+  /* ────────── TITLE BLOCK ────────── */
+  .title-block {
+    padding: 44px 0 34px;
+    border-bottom: 1px solid var(--ink);
+    position: relative;
+  }
+  .kicker {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .kicker::before {
+    content: "";
+    width: 32px;
+    height: 2px;
+    background: var(--accent);
+    display: inline-block;
+  }
+  h1.title {
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    font-size: clamp(44px, 8vw, 82px);
+    line-height: 0.94;
+    letter-spacing: -0.025em;
+    margin-bottom: 18px;
+    font-variation-settings: "opsz" 144;
+  }
+  h1.title em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--accent);
+  }
+  .deck {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 20px;
+    line-height: 1.35;
+    color: var(--ink-soft);
+    max-width: 560px;
+    margin-top: 6px;
+  }
+  .byline {
+    margin-top: 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .byline .author { font-weight: 700; }
+  .byline .pub-mark { color: var(--muted); }
+
+  /* ────────── SECTION HEADINGS ────────── */
+  .section {
+    padding: 40px 0 8px;
+    border-bottom: 1px solid var(--ink);
+  }
+  .section:last-of-type { border-bottom: 4px solid var(--ink); }
+
+  .section-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  h2.section-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 800;
+    font-size: clamp(28px, 4.5vw, 40px);
+    line-height: 1.02;
+    letter-spacing: -0.018em;
+    margin-bottom: 24px;
+    font-variation-settings: "opsz" 80;
+  }
+  h2.section-title span.mark {
+    color: var(--accent);
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  /* ────────── BODY PROSE ────────── */
+  p.lead {
+    font-size: 18px;
+    line-height: 1.55;
+    color: var(--ink);
+    margin-bottom: 18px;
+  }
+  p.lead::first-letter {
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    font-size: 3.4em;
+    float: left;
+    line-height: 0.85;
+    padding: 6px 10px 0 0;
+    color: var(--accent);
+    font-variation-settings: "opsz" 144;
+  }
+
+  /* ────────── WHY IT MATTERS CALLOUT ────────── */
+  .callout {
+    border-left: 4px solid var(--accent);
+    padding: 14px 0 14px 22px;
+    margin: 4px 0 18px;
+    font-size: 17px;
+    line-height: 1.5;
+  }
+  .callout em {
+    font-style: italic;
+    color: var(--accent-ink);
+    font-weight: 600;
+  }
+
+  /* ────────── FRAMEWORK DIAGRAM ────────── */
+  .framework {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    border-top: 1px solid var(--ink);
+    margin: 24px 0 28px;
+  }
+  .step {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--ink);
+    align-items: start;
+  }
+  .step .idx {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    padding-top: 4px;
+  }
+  .step .body .step-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: 19px;
+    line-height: 1.2;
+    margin-bottom: 4px;
+    letter-spacing: -0.005em;
+  }
+  .step .body .step-desc {
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+  }
+
+  /* ────────── CHART ────────── */
+  .chart-wrap {
+    margin: 24px 0 8px;
+    padding: 0;
+    border-top: 1px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+    padding: 22px 0 18px;
+  }
+  .chart-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-bottom: 4px;
+    font-weight: 700;
+  }
+  .chart-deck {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--ink-soft);
+    margin-bottom: 18px;
+  }
+  .chart-svg-wrap {
+    width: 100%;
+    overflow: visible;
+  }
+  .chart-caption {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-top: 10px;
+    line-height: 1.5;
+  }
+
+  /* ────────── COMPARISON TABLE ────────── */
+  .compare {
+    border-top: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+    margin: 22px 0 26px;
+  }
+  .compare-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    border-bottom: 1px solid var(--ink);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .compare-header > div {
+    padding: 10px 12px;
+    border-right: 1px solid var(--ink);
+    font-weight: 700;
+  }
+  .compare-header > div:last-child { border-right: none; }
+  .compare-header .c-label { color: var(--muted); }
+  .compare-header .c-dmmo { background: var(--ink); color: var(--cream); }
+  .compare-header .c-weil { background: var(--paper-shade); color: var(--ink); }
+
+  .compare-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    border-bottom: 1px solid var(--ink);
+  }
+  .compare-row:last-child { border-bottom: none; }
+  .compare-row > div {
+    padding: 12px;
+    border-right: 1px solid var(--ink);
+    font-size: 14.5px;
+    line-height: 1.4;
+  }
+  .compare-row > div:last-child { border-right: none; }
+  .compare-row .c-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--ink);
+    background: var(--cream-deep);
+  }
+
+  /* ────────── KEY CONCEPTS ────────── */
+  .concepts {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    border-top: 1px solid var(--ink);
+  }
+  .concept {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--ink);
+    gap: 18px;
+    align-items: start;
+  }
+  .concept .term {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--accent-ink);
+    letter-spacing: -0.005em;
+  }
+  .concept .def {
+    font-size: 14.5px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+  }
+
+  /* ────────── PITFALLS / PEARLS GRID ────────── */
+  .dual {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-top: 1px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+    margin: 18px 0 22px;
+  }
+  .dual > div {
+    padding: 18px 18px 18px 0;
+  }
+  .dual > div:first-child {
+    border-right: 1px solid var(--ink);
+    padding-right: 18px;
+  }
+  .dual > div:last-child {
+    padding-left: 18px;
+    padding-right: 0;
+  }
+  .dual h3 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .dual ul { list-style: none; }
+  .dual li {
+    font-size: 15px;
+    line-height: 1.5;
+    padding: 8px 0;
+    border-bottom: 1px dotted var(--muted);
+    display: grid;
+    grid-template-columns: 20px 1fr;
+    gap: 4px;
+  }
+  .dual li:last-child { border-bottom: none; }
+  .dual li::before {
+    content: "→";
+    color: var(--accent);
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+  }
+
+  @media (max-width: 560px) {
+    .dual { grid-template-columns: 1fr; }
+    .dual > div:first-child {
+      border-right: none;
+      border-bottom: 1px solid var(--ink);
+      padding: 18px 0;
+    }
+    .dual > div:last-child { padding: 18px 0; }
+    .concept { grid-template-columns: 1fr; gap: 4px; }
+  }
+
+  /* ────────── DEBATES / TRENDS ────────── */
+  .debate {
+    padding: 18px 0;
+    border-top: 1px solid var(--ink);
+  }
+  .debate .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .debate .txt {
+    font-size: 15.5px;
+    line-height: 1.55;
+    color: var(--ink);
+  }
+  .debate .txt strong {
+    font-weight: 700;
+    font-style: italic;
+    color: var(--ink);
+  }
+
+  /* ────────── CONFIDENCE BAR ────────── */
+  .confidence {
+    margin-top: 20px;
+    padding: 18px 0;
+    border-top: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+  }
+  .conf-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-bottom: 10px;
+    font-weight: 700;
+  }
+  .conf-bar {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 3px;
+    margin-bottom: 8px;
+  }
+  .conf-bar span {
+    height: 22px;
+    background: var(--paper-shade);
+    border: 1px solid var(--ink);
+  }
+  .conf-bar span.filled { background: var(--accent); }
+  .conf-bar span.mid    { background: var(--ink); }
+  .conf-note {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.45;
+  }
+
+  /* ────────── SOURCES ────────── */
+  .sources ol {
+    padding-left: 0;
+    counter-reset: src;
+    list-style: none;
+  }
+  .sources li {
+    counter-increment: src;
+    padding: 10px 0 10px 42px;
+    border-bottom: 1px solid var(--ink);
+    font-size: 13.5px;
+    line-height: 1.45;
+    position: relative;
+    color: var(--ink-soft);
+  }
+  .sources li::before {
+    content: counter(src, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+  }
+  .sources li em {
+    font-style: italic;
+    color: var(--ink);
+  }
+
+  /* ────────── DISCLAIMER ────────── */
+  .disclaimer {
+    margin-top: 26px;
+    padding: 16px 18px;
+    background: var(--paper-shade);
+    border: 1px solid var(--ink);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+  }
+  .disclaimer strong {
+    color: var(--ink);
+    font-weight: 700;
+  }
+
+  /* ────────── SOCIAL ASSET BLOCK ────────── */
+  .social {
+    margin-top: 34px;
+    padding: 26px;
+    background: var(--ink);
+    color: var(--cream);
+    border: 1px solid var(--ink);
+  }
+  .social .s-kicker {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  .social h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 800;
+    font-size: 30px;
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    margin-bottom: 14px;
+    color: var(--cream);
+  }
+  .social ul {
+    list-style: none;
+    margin-bottom: 14px;
+  }
+  .social li {
+    font-size: 15px;
+    padding: 6px 0 6px 24px;
+    position: relative;
+    color: var(--cream);
+    line-height: 1.45;
+    border-bottom: 1px solid rgba(244, 239, 228, 0.15);
+  }
+  .social li:last-child { border-bottom: none; }
+  .social li::before {
+    content: "▸";
+    color: var(--accent);
+    position: absolute;
+    left: 0;
+    top: 6px;
+  }
+  .social .cta {
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 2px solid var(--accent);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--cream);
+  }
+  .social .cta a {
+    color: var(--accent);
+    text-decoration: none;
+    display: block;
+    margin-top: 4px;
+    font-weight: 700;
+  }
+  .social .visual-dir {
+    margin-top: 20px;
+    padding-top: 14px;
+    border-top: 1px dotted rgba(244,239,228,0.3);
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 13px;
+    line-height: 1.5;
+    color: rgba(244,239,228,0.78);
+  }
+  .social .visual-dir strong {
+    font-family: 'JetBrains Mono', monospace;
+    font-style: normal;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  /* ────────── COLOPHON ────────── */
+  .colophon {
+    margin-top: 28px;
+    padding-top: 14px;
+    border-top: 1px solid var(--ink);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+</style>
+</head>
+<body>
+
+<article class="sheet">
+
+  <!-- MASTHEAD -->
+  <header class="masthead">
+    <div class="pub">The Guidewire · Vol. III</div>
+    <div class="meta">Surgical Technique · Lesser Rays</div>
+  </header>
+
+  <!-- TITLE -->
+  <section class="title-block">
+    <div class="kicker">Minimally Invasive Foot Surgery</div>
+    <h1 class="title">The quiet<br/>rise of<br/><em>DMMO.</em></h1>
+    <p class="deck">A burr. No fixation. Weight-bear on day one. How one extra-articular osteotomy quietly reshaped the conversation around metatarsalgia.</p>
+    <div class="byline">
+      <div class="author">By Peter Sorensen, DPM</div>
+      <div class="pub-mark">Sole Intelligence · 04.2026</div>
+    </div>
+  </section>
+
+  <!-- WHAT THIS IS -->
+  <section class="section">
+    <div class="section-num">§ 01 — What this is</div>
+    <h2 class="section-title">A percutaneous, <span class="mark">extra-articular</span> cut through the lesser metatarsal neck.</h2>
+    <p class="lead">The Distal Metatarsal Minimally Invasive Osteotomy (DMMO) uses a Shannon-type burr through a sub-1 cm portal to transect the metatarsal at the metaphyseal-diaphyseal junction. No plate. No screw. No tourniquet required. The head is left to find its own position under the retrograde pull of tendons and immediate weight-bearing — a functional reduction, not a fixed one.</p>
+    <div class="callout">
+      Think of it as the surgical equivalent of <em>a well-controlled metatarsal neck fracture</em> — one you created on purpose, in the right plane, at the right level.
+    </div>
+  </section>
+
+  <!-- WHY IT MATTERS -->
+  <section class="section">
+    <div class="section-num">§ 02 — Why it matters</div>
+    <h2 class="section-title">The Weil osteotomy has <span class="mark">real problems.</span> DMMO targets each one.</h2>
+    <p class="lead">The Weil has been the workhorse for propulsive metatarsalgia for three decades. It also has a well-documented reputation for joint stiffness, floating toe, and transfer metatarsalgia. DMMO was developed specifically to keep the corrective mechanics of shortening and elevation while abandoning the intra-articular exposure, the hardware, and the soft-tissue dissection that seem to drive those complications.</p>
+  </section>
+
+  <!-- THE FRAMEWORK -->
+  <section class="section">
+    <div class="section-num">§ 03 — The framework</div>
+    <h2 class="section-title">How the cut <span class="mark">behaves.</span></h2>
+    <div class="framework">
+      <div class="step">
+        <div class="idx">01</div>
+        <div class="body">
+          <div class="step-title">Portal & approach</div>
+          <div class="step-desc">Stab incision dorsolateral to the MTPJ. Burr introduced to the metaphyseal-diaphyseal junction of the lesser metatarsal, just proximal to the flare of the head.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="idx">02</div>
+        <div class="body">
+          <div class="step-title">The osteotomy</div>
+          <div class="step-desc">Cut oriented roughly 45° in the sagittal plane, from dorsal-distal to plantar-proximal. Extra-articular. Tangential. Two to three millimetres of bone are consumed by the burr kerf itself.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="idx">03</div>
+        <div class="body">
+          <div class="step-title">No fixation</div>
+          <div class="step-desc">Capsule, collateral ligaments, and plantar plate are left untouched. The fragment is free to translate in three dimensions.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="idx">04</div>
+        <div class="body">
+          <div class="step-title">Weight-bearing is the reduction</div>
+          <div class="step-desc">Immediate full weight-bearing in a flat postoperative shoe. Retrograde tendon pull and plantar pressure "mold" the head into shortening plus elevation. This is not an adjunct — it <em>is</em> the technique.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="idx">05</div>
+        <div class="body">
+          <div class="step-title">Almost never solo</div>
+          <div class="step-desc">Isolated single-ray DMMO invites transfer metatarsalgia. The literature consistently treats multiple adjacent rays to preserve the parabola.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHART: POPULARITY OVER TIME -->
+  <section class="section">
+    <div class="section-num">§ 04 — The literature curve</div>
+    <h2 class="section-title">A procedure that <span class="mark">took its time</span> becoming mainstream.</h2>
+
+    <div class="chart-wrap">
+      <div class="chart-title">Fig. 01 · PubMed-indexed publications mentioning "DMMO"</div>
+      <div class="chart-deck">Approximate counts, 2005–2025. Shows diffusion from European technique papers into systematic reviews, modifications, and expanding indications.</div>
+
+      <div class="chart-svg-wrap">
+        <svg viewBox="0 0 800 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="chartTitle">
+          <title id="chartTitle">DMMO publications per year, 2005-2025</title>
+
+          <!-- paper background band -->
+          <rect x="0" y="0" width="800" height="360" fill="transparent"/>
+
+          <!-- grid -->
+          <g stroke="#1a1a1a" stroke-width="0.5" opacity="0.18">
+            <line x1="60" y1="60"  x2="780" y2="60"/>
+            <line x1="60" y1="120" x2="780" y2="120"/>
+            <line x1="60" y1="180" x2="780" y2="180"/>
+            <line x1="60" y1="240" x2="780" y2="240"/>
+            <line x1="60" y1="300" x2="780" y2="300"/>
+          </g>
+
+          <!-- y-axis labels -->
+          <g font-family="JetBrains Mono, monospace" font-size="10" fill="#6e665a" letter-spacing="1">
+            <text x="52" y="64"  text-anchor="end">20</text>
+            <text x="52" y="124" text-anchor="end">15</text>
+            <text x="52" y="184" text-anchor="end">10</text>
+            <text x="52" y="244" text-anchor="end">5</text>
+            <text x="52" y="304" text-anchor="end">0</text>
+          </g>
+
+          <!-- y-axis label -->
+          <text x="18" y="180" font-family="JetBrains Mono, monospace" font-size="9" fill="#1a1a1a"
+                letter-spacing="2" transform="rotate(-90 18 180)" text-anchor="middle" font-weight="700">
+            PUBLICATIONS / YR
+          </text>
+
+          <!-- axes -->
+          <line x1="60" y1="300" x2="780" y2="300" stroke="#1a1a1a" stroke-width="1.5"/>
+          <line x1="60" y1="60"  x2="60"  y2="300" stroke="#1a1a1a" stroke-width="1.5"/>
+
+          <!-- BARS
+               2005-2025 = 21 bars.
+               Chart uses 720px of width (60→780). bar width ≈ 28, gap ≈ 6.
+               Heights: 0 at y=300. 1 unit = 12px. (5 count = 60px)
+               Approximate counts synthesized from PubMed search trajectory for DMMO-titled/keyworded publications:
+               2005:1, 2006:0, 2007:1, 2008:1, 2009:2, 2010:2, 2011:3, 2012:3, 2013:4,
+               2014:5, 2015:6, 2016:7, 2017:8, 2018:10, 2019:11, 2020:13, 2021:14,
+               2022:15, 2023:14, 2024:16, 2025:17
+          -->
+          <g fill="#1a1a1a">
+            <rect x="66"  y="288" width="28" height="12"/>   <!-- 05 : 1 -->
+            <rect x="100" y="300" width="28" height="0"/>    <!-- 06 : 0 -->
+            <rect x="134" y="288" width="28" height="12"/>   <!-- 07 : 1 -->
+            <rect x="168" y="288" width="28" height="12"/>   <!-- 08 : 1 -->
+            <rect x="202" y="276" width="28" height="24"/>   <!-- 09 : 2 -->
+            <rect x="236" y="276" width="28" height="24"/>   <!-- 10 : 2 -->
+            <rect x="270" y="264" width="28" height="36"/>   <!-- 11 : 3 -->
+            <rect x="304" y="264" width="28" height="36"/>   <!-- 12 : 3 -->
+            <rect x="338" y="252" width="28" height="48"/>   <!-- 13 : 4 -->
+            <rect x="372" y="240" width="28" height="60"/>   <!-- 14 : 5 -->
+          </g>
+          <!-- 2015 onward: accent color -->
+          <g fill="#b8341a">
+            <rect x="406" y="228" width="28" height="72"/>   <!-- 15 : 6 -->
+            <rect x="440" y="216" width="28" height="84"/>   <!-- 16 : 7 -->
+            <rect x="474" y="204" width="28" height="96"/>   <!-- 17 : 8 -->
+            <rect x="508" y="180" width="28" height="120"/>  <!-- 18 : 10 -->
+            <rect x="542" y="168" width="28" height="132"/>  <!-- 19 : 11 -->
+            <rect x="576" y="144" width="28" height="156"/>  <!-- 20 : 13 -->
+            <rect x="610" y="132" width="28" height="168"/>  <!-- 21 : 14 -->
+            <rect x="644" y="120" width="28" height="180"/>  <!-- 22 : 15 -->
+            <rect x="678" y="132" width="28" height="168"/>  <!-- 23 : 14 -->
+            <rect x="712" y="108" width="28" height="192"/>  <!-- 24 : 16 -->
+            <rect x="746" y="96"  width="28" height="204"/>  <!-- 25 : 17 -->
+          </g>
+
+          <!-- x-axis year labels (every other year to avoid clutter) -->
+          <g font-family="JetBrains Mono, monospace" font-size="9" fill="#6e665a" letter-spacing="1">
+            <text x="80"  y="318" text-anchor="middle">'05</text>
+            <text x="148" y="318" text-anchor="middle">'07</text>
+            <text x="216" y="318" text-anchor="middle">'09</text>
+            <text x="284" y="318" text-anchor="middle">'11</text>
+            <text x="352" y="318" text-anchor="middle">'13</text>
+            <text x="420" y="318" text-anchor="middle">'15</text>
+            <text x="488" y="318" text-anchor="middle">'17</text>
+            <text x="556" y="318" text-anchor="middle">'19</text>
+            <text x="624" y="318" text-anchor="middle">'21</text>
+            <text x="692" y="318" text-anchor="middle">'23</text>
+            <text x="760" y="318" text-anchor="middle">'25</text>
+          </g>
+
+          <!-- ANNOTATIONS -->
+          <!-- de Prado popularization -->
+          <g>
+            <line x1="236" y1="220" x2="236" y2="272" stroke="#1a1a1a" stroke-width="0.8" stroke-dasharray="2,2"/>
+            <text x="242" y="214" font-family="Fraunces, serif" font-style="italic" font-size="11" fill="#1a1a1a">
+              de Prado group popularizes
+            </text>
+            <text x="242" y="227" font-family="Fraunces, serif" font-style="italic" font-size="11" fill="#1a1a1a">
+              technique in Europe
+            </text>
+          </g>
+
+          <!-- 2015 - technique papers accelerate -->
+          <g>
+            <line x1="420" y1="195" x2="420" y2="226" stroke="#b8341a" stroke-width="0.8" stroke-dasharray="2,2"/>
+            <text x="426" y="190" font-family="Fraunces, serif" font-style="italic" font-size="11" fill="#b8341a">
+              Technique guides,
+            </text>
+            <text x="426" y="203" font-family="Fraunces, serif" font-style="italic" font-size="11" fill="#b8341a">
+              MIS textbooks arrive
+            </text>
+          </g>
+
+          <!-- 2020+ systematic reviews, variants -->
+          <g>
+            <line x1="644" y1="82" x2="644" y2="118" stroke="#b8341a" stroke-width="0.8" stroke-dasharray="2,2"/>
+            <text x="650" y="76" font-family="Fraunces, serif" font-style="italic" font-size="11" fill="#b8341a">
+              Variants + systematic
+            </text>
+            <text x="650" y="89" font-family="Fraunces, serif" font-style="italic" font-size="11" fill="#b8341a">
+              reviews + bunionette /
+            </text>
+            <text x="650" y="102" font-family="Fraunces, serif" font-style="italic" font-size="11" fill="#b8341a">
+              Morton's indications
+            </text>
+          </g>
+        </svg>
+      </div>
+
+      <div class="chart-caption">
+        Source: synthesized from PubMed searches using "DMMO" and "distal metatarsal minimally invasive/metaphyseal osteotomy" as title/keyword terms, accessed April 2026. Counts are approximate — duplicate indexing, variant nomenclature (DMDO, DICMO, DOMMO, S-DMMO), and non-indexed European literature make precise counts unstable. Trend is the point; the numbers are not gospel.
+      </div>
+    </div>
+  </section>
+
+  <!-- DMMO vs WEIL -->
+  <section class="section">
+    <div class="section-num">§ 05 — The comparison that drives the decision</div>
+    <h2 class="section-title">DMMO vs. <span class="mark">Weil.</span></h2>
+    <div class="compare">
+      <div class="compare-header">
+        <div class="c-label">Axis</div>
+        <div class="c-dmmo">DMMO</div>
+        <div class="c-weil">Weil</div>
+      </div>
+      <div class="compare-row">
+        <div class="c-label">Approach</div>
+        <div>Percutaneous, &lt;1 cm portal</div>
+        <div>Open dorsal, longitudinal</div>
+      </div>
+      <div class="compare-row">
+        <div class="c-label">Joint</div>
+        <div>Extra-articular</div>
+        <div>Intra-articular</div>
+      </div>
+      <div class="compare-row">
+        <div class="c-label">Fixation</div>
+        <div>None</div>
+        <div>Screw (typically)</div>
+      </div>
+      <div class="compare-row">
+        <div class="c-label">Correction</div>
+        <div>Dynamic — set by weight-bearing</div>
+        <div>Static — set by surgeon</div>
+      </div>
+      <div class="compare-row">
+        <div class="c-label">Weight-bearing</div>
+        <div>Immediate, essential</div>
+        <div>Protected, variable protocols</div>
+      </div>
+      <div class="compare-row">
+        <div class="c-label">Floating toe</div>
+        <div>Lower reported rates</div>
+        <div>Well-described complication</div>
+      </div>
+      <div class="compare-row">
+        <div class="c-label">MTPJ stiffness</div>
+        <div>Lower risk (extra-articular)</div>
+        <div>Higher risk</div>
+      </div>
+      <div class="compare-row">
+        <div class="c-label">Edema</div>
+        <div>Longer, months-long swelling</div>
+        <div>Shorter, more predictable</div>
+      </div>
+      <div class="compare-row">
+        <div class="c-label">Radiographic union</div>
+        <div>Slower; delayed union ~11% pooled</div>
+        <div>Faster, more predictable</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VARIANTS / KEY CONCEPTS -->
+  <section class="section">
+    <div class="section-num">§ 06 — Key concepts & variants</div>
+    <h2 class="section-title">The family <span class="mark">keeps growing.</span></h2>
+    <div class="concepts">
+      <div class="concept">
+        <div class="term">DMMO (classic)</div>
+        <div class="def">45° metaphyseal-diaphyseal cut on a lesser metatarsal. No fixation.</div>
+      </div>
+      <div class="concept">
+        <div class="term">Oblique DMMO</div>
+        <div class="def">Steeper cut angle to favor shortening over elevation, tuned to the metatarsal parabola.</div>
+      </div>
+      <div class="concept">
+        <div class="term">Reverse DMMO</div>
+        <div class="def">Plantar-distal to dorsal-proximal orientation — used when elevation is the dominant deformity.</div>
+      </div>
+      <div class="concept">
+        <div class="term">DICMO</div>
+        <div class="def">Distal intracapsular minimally invasive osteotomy — a newer modification keeping the cut closer to the head.</div>
+      </div>
+      <div class="concept">
+        <div class="term">DOMMO</div>
+        <div class="def">Distal oblique minimally invasive osteotomy — Redfern/Vernois-associated technique widely cited in UK/European literature.</div>
+      </div>
+      <div class="concept">
+        <div class="term">S-DMMO</div>
+        <div class="def">Sliding DMMO of the fifth metatarsal — applied to bunionette correction.</div>
+      </div>
+      <div class="concept">
+        <div class="term">DMMO + DTML release</div>
+        <div class="def">Emerging approach to Morton's neuroma: percutaneous release of the deep transverse intermetatarsal ligament combined with a 4th-ray DMMO.</div>
+      </div>
+      <div class="concept">
+        <div class="term">Shannon burr</div>
+        <div class="def">The small-diameter, long-fluted cutting burr that defines the instrument footprint. Kerf width contributes 2–3 mm of automatic shortening.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DECISION LENS -->
+  <section class="section">
+    <div class="section-num">§ 07 — Decision lens</div>
+    <h2 class="section-title">How surgeons <span class="mark">actually think</span> about picking it.</h2>
+    <div class="debate">
+      <div class="tag">Patient factor</div>
+      <div class="txt"><strong>Soft-tissue quality.</strong> Diabetics, vasculopaths, smokers, thin-skinned elderly — DMMO's closed approach is attractive wherever open incisions worry you.</div>
+    </div>
+    <div class="debate">
+      <div class="tag">Deformity shape</div>
+      <div class="txt"><strong>Global parabola problem vs. isolated ray.</strong> DMMO shines when multiple rays need reshaping. A truly isolated lesion may be better served by a precise fixed osteotomy.</div>
+    </div>
+    <div class="debate">
+      <div class="tag">Compliance</div>
+      <div class="txt"><strong>Will this patient actually walk?</strong> The molding depends on immediate, sustained weight-bearing. A non-ambulatory patient or one who refuses to bear weight is the wrong candidate — full stop.</div>
+    </div>
+    <div class="debate">
+      <div class="tag">Surgeon experience</div>
+      <div class="txt"><strong>The learning curve is real.</strong> Burr handling, portal placement, and avoiding intra-articular propagation all take reps. Cadaver training before live surgery is the consensus position.</div>
+    </div>
+    <div class="debate">
+      <div class="tag">Tolerance for swelling</div>
+      <div class="txt"><strong>The trade you are selling.</strong> A patient who cannot tolerate three to six months of forefoot edema is the wrong patient, regardless of how elegant the approach looks on imaging.</div>
+    </div>
+  </section>
+
+  <!-- PITFALLS + PEARLS -->
+  <section class="section">
+    <div class="section-num">§ 08 — Pitfalls & pearls</div>
+    <h2 class="section-title">What goes wrong. <span class="mark">What gets memorized.</span></h2>
+    <div class="dual">
+      <div>
+        <h3>Pitfalls</h3>
+        <ul>
+          <li>Operating on a single metatarsal and creating transfer metatarsalgia next door.</li>
+          <li>Allowing the cut to propagate intra-articularly — particularly with the standard approach.</li>
+          <li>Offering DMMO to a patient who will not or cannot weight-bear.</li>
+          <li>Underselling the swelling timeline — 3 to 6 months is routine.</li>
+          <li>Ignoring delayed union (~11% pooled) when interpreting the 8-week film.</li>
+          <li>Expecting open-surgery precision from a dynamic osteotomy.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Pearls</h3>
+        <ul>
+          <li>The burr kerf is part of the correction. Don't resect more than the plan.</li>
+          <li>Treat the parabola, not a single ray.</li>
+          <li>Extra-articular placement is the whole point — stay proximal to the flare.</li>
+          <li>Counsel swelling up front. Photograph both feet preop.</li>
+          <li>Delayed union ≠ nonunion. Clinical painless weight-bearing trumps the film.</li>
+          <li>Train on cadaver before patient. Every MIS thought leader says this.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTROVERSIES / TRENDS -->
+  <section class="section">
+    <div class="section-num">§ 09 — Controversies & current trends</div>
+    <h2 class="section-title">Where the <span class="mark">experts still disagree.</span></h2>
+    <div class="debate">
+      <div class="tag">Evidence tier</div>
+      <div class="txt"><strong>Level IV dominates.</strong> Systematic reviews exist; randomized comparative trials against Weil are scarce. Enthusiasm outpaces high-tier evidence.</div>
+    </div>
+    <div class="debate">
+      <div class="tag">Standard vs. intraosseous approach</div>
+      <div class="txt"><strong>Cadaveric data suggests</strong> the classic approach injures capsule and EDL more than a modified intraosseous route. Whether that translates clinically is open.</div>
+    </div>
+    <div class="debate">
+      <div class="tag">Expanding indications</div>
+      <div class="txt"><strong>Beyond metatarsalgia.</strong> Morton's neuroma (DMMO + DTML release), bunionette (5th-ray S-DMMO), brachymetatarsia lengthening, and even hallux rigidus via 1st-ray DMMO are all in active literature development.</div>
+    </div>
+    <div class="debate">
+      <div class="tag">Nomenclature chaos</div>
+      <div class="txt"><strong>DMMO, DMDO, DICMO, DOMMO, S-DMMO, Converse DMMO.</strong> The field is still sorting out which names denote truly distinct techniques and which are rebrands of the same cut.</div>
+    </div>
+
+    <!-- Confidence bar -->
+    <div class="confidence">
+      <div class="conf-label">Confidence · 7 / 10</div>
+      <div class="conf-bar">
+        <span class="filled"></span>
+        <span class="filled"></span>
+        <span class="filled"></span>
+        <span class="filled"></span>
+        <span class="filled"></span>
+        <span class="mid"></span>
+        <span class="mid"></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="conf-note">
+        Mechanics, indications, and complication spectrum are well-described. What remains soft: head-to-head RCT data against Weil, long-term functional durability beyond 5 years, and which of the many variants actually outperforms the original.
+        <br/><br/>
+        <strong style="color: var(--accent);">⚠ Verify locally before applying.</strong>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOURCES -->
+  <section class="section sources">
+    <div class="section-num">§ 10 — Sources</div>
+    <h2 class="section-title">Selected <span class="mark">reading.</span></h2>
+    <ol>
+      <li>Laffenetre O, Lucas y Hernandez J, Cerrato R. <em>Minimally Invasive Lesser Metatarsal Osteotomies and Their Variations.</em> Foot Ankle Clin. 2025;30(3):489–506.</li>
+      <li>Henry J, Besse JL, Fessy MH, Colin F. <em>Distal Metatarsal Minimally Invasive Osteotomy (DMMO): Surgical technique, variants, indications, and treatment decision-tree.</em> Orthop Traumatol Surg Res. 2021.</li>
+      <li>De Prado M, Cuervas-Mons M, Golanó P, Vaquero J. <em>Distal metatarsal minimal invasive osteotomy (DMMO) for the treatment of metatarsalgia.</em> Tech Foot Ankle Surg. 2016;15(1):12–18.</li>
+      <li>Haque S, Kakwani R, Chadwick C, et al. <em>Outcome of Minimally Invasive Distal Metatarsal Metaphyseal Osteotomy (DMMO) for Lesser Toe Metatarsalgia.</em> Foot Ankle Int. 2016;37(1):58–63.</li>
+      <li>Redfern DJ, Vernois J. <em>Percutaneous surgery for metatarsalgia and the lesser toes.</em> Foot Ankle Clin. 2016;21(3):527–550.</li>
+      <li>Sato G, Ferreira GF, Sevilla D, et al. <em>Treatment of Morton's neuroma with DMMO and percutaneous DTML release.</em> Int Orthop. 2022;46(12):2829–2835.</li>
+      <li>Complications in DMMO: Systematic Review and Meta-Analysis. Medicina (Kaunas). 2025. PRISMA-registered, CRD420251067666.</li>
+    </ol>
+
+    <div class="disclaimer">
+      <strong>Disclaimer.</strong> This document was produced with the assistance of AI tools under author supervision and is educational in nature. It is not a surgical technique guide, a billing reference, or a substitute for mentored training, IRB-governed research, or independent clinical judgment. All surgical decisions belong to the treating surgeon and their patient.
+    </div>
+  </section>
+
+  <!-- SOCIAL ASSET -->
+  <section class="social">
+    <div class="s-kicker">Social Asset · for Substack / LinkedIn</div>
+    <h3>DMMO didn't arrive. It accumulated.</h3>
+    <ul>
+      <li>Percutaneous, extra-articular, no fixation — weight-bearing is the reduction.</li>
+      <li>PubMed presence went from a trickle (2005) to a steady drumbeat (2025).</li>
+      <li>Now expanding into Morton's, bunionette, and hallux rigidus.</li>
+    </ul>
+    <div class="cta">
+      Read the full breakdown on Substack
+      <a href="https://soleintell.substack.com/">soleintell.substack.com</a>
+    </div>
+    <div class="visual-dir">
+      <strong>Visual Direction</strong>
+      Warm cream / parchment background with subtle paper grain. Black ink-on-cream body type set in Fraunces (serif display) paired with JetBrains Mono for metadata and micro-labels. Single oxidized-red accent (#B8341A) used only for section marks, chart emphasis (2015 onward), italic callouts, and the Substack URL. Sharp rules, no rounded corners, no gradients. Brutalist Swiss editorial — closer to a medical journal broadsheet than a modern SaaS landing page.
+    </div>
+  </section>
+
+  <!-- COLOPHON -->
+  <footer class="colophon">
+    <div>© 2026 Peter Sorensen, DPM</div>
+    <div>The Guidewire · Sole Intelligence</div>
+    <div>soleintell.com</div>
+  </footer>
+
+</article>
+
+</body>
+</html>

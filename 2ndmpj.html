@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Second MTPJ Problem — A Surgical Atlas Teaching Brief</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#EBE1CB;
+    --cream-deep:#E2D6BC;
+    --paper:#F1E9D6;
+    --teal:#1F5D5E;
+    --teal-deep:#16494A;
+    --rust:#A8452A;
+    --rust-soft:#C06A4E;
+    --ink:#241F1A;
+    --ink-soft:#4A4239;
+    --rule:rgba(168,69,42,.32);
+    --hair:rgba(31,93,94,.22);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'IBM Plex Sans',sans-serif;
+    font-weight:400;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    background-image:
+      radial-gradient(circle at 18% 12%, rgba(31,93,94,.05), transparent 42%),
+      radial-gradient(circle at 86% 88%, rgba(168,69,42,.05), transparent 46%);
+    background-attachment:fixed;
+  }
+  /* subtle paper grain */
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  }
+  .wrap{position:relative;z-index:1;max-width:880px;margin:0 auto;padding:0 24px 90px}
+
+  /* ============ MASTHEAD ============ */
+  header{padding:54px 0 30px;border-bottom:2px solid var(--rust)}
+  .brandline{
+    display:flex;justify-content:space-between;align-items:baseline;
+    font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--teal);font-weight:500;flex-wrap:wrap;gap:8px;
+  }
+  .brandline .right{color:var(--rust)}
+  h1{
+    font-family:'Caladea',serif;font-weight:700;color:var(--teal-deep);
+    font-size:clamp(2.5rem,7vw,4.4rem);line-height:1.02;letter-spacing:-.01em;
+    margin:26px 0 0;
+  }
+  h1 em{font-style:italic;color:var(--rust)}
+  .deck{
+    font-family:'Caladea',serif;font-style:italic;font-size:clamp(1.05rem,2.4vw,1.4rem);
+    color:var(--ink-soft);max-width:46ch;margin:18px 0 4px;line-height:1.4;
+  }
+  .byline{
+    margin-top:22px;font-family:'IBM Plex Mono',monospace;font-size:12px;
+    letter-spacing:.08em;color:var(--ink-soft);
+  }
+  .byline b{color:var(--ink)}
+
+  /* ============ SECTION SCAFFOLD ============ */
+  section{padding:46px 0 8px;border-top:1px solid var(--rule);margin-top:8px}
+  section:first-of-type{border-top:none}
+  .sechead{display:flex;gap:20px;align-items:flex-start;margin-bottom:22px}
+  .num{
+    font-family:'IBM Plex Mono',monospace;font-weight:600;color:var(--teal);
+    font-size:clamp(1.6rem,4vw,2.4rem);line-height:.9;flex-shrink:0;
+    border-bottom:3px solid var(--rust);padding-bottom:2px;
+  }
+  .sechead h2{
+    font-family:'Caladea',serif;font-weight:700;color:var(--ink);
+    font-size:clamp(1.5rem,3.4vw,2.1rem);line-height:1.08;letter-spacing:-.01em;
+  }
+  .sechead .kicker{
+    display:block;font-family:'IBM Plex Mono',monospace;font-size:10.5px;
+    letter-spacing:.2em;text-transform:uppercase;color:var(--rust);
+    font-weight:500;margin-bottom:6px;
+  }
+  p.lead{font-size:1.05rem;color:var(--ink-soft);max-width:60ch;margin-bottom:14px}
+  p.body{max-width:62ch;color:var(--ink-soft);margin-bottom:12px}
+  strong{color:var(--ink);font-weight:600}
+  .mono{font-family:'IBM Plex Mono',monospace;color:var(--rust);font-weight:600;font-variant-numeric:tabular-nums}
+
+  /* ============ THREE-LANE CARDS ============ */
+  .lanes{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:6px}
+  .lane{
+    background:var(--paper);border:1px solid var(--hair);border-top:4px solid var(--teal);
+    padding:18px 16px 16px;
+  }
+  .lane:nth-child(2){border-top-color:var(--rust)}
+  .lane:nth-child(3){border-top-color:var(--teal-deep)}
+  .lane h3{font-family:'Caladea',serif;font-size:1.12rem;color:var(--teal-deep);margin-bottom:7px;line-height:1.15}
+  .lane p{font-size:.86rem;color:var(--ink-soft);line-height:1.42}
+  .lane .tag{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--rust);display:block;margin-bottom:8px}
+
+  /* ============ STAT STRIP ============ */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--hair);border:1px solid var(--hair);margin:18px 0}
+  .stat{background:var(--cream);padding:18px 14px;text-align:center}
+  .stat .big{font-family:'IBM Plex Mono',monospace;font-weight:600;color:var(--rust);font-size:clamp(1.5rem,4.5vw,2.1rem);line-height:1;font-variant-numeric:tabular-nums}
+  .stat .lbl{font-size:.74rem;color:var(--ink-soft);margin-top:8px;line-height:1.3;letter-spacing:.01em}
+
+  /* ============ SMILLIE LADDER ============ */
+  .ladder{margin-top:8px;border-left:2px solid var(--teal)}
+  .rung{display:grid;grid-template-columns:54px 1fr;gap:14px;padding:11px 0 11px 16px;border-bottom:1px dashed var(--hair);align-items:baseline}
+  .rung:last-child{border-bottom:none}
+  .rung .stage{font-family:'IBM Plex Mono',monospace;font-weight:600;color:var(--teal);font-size:1rem}
+  .rung .desc{font-size:.92rem;color:var(--ink-soft)}
+  .rung .desc b{color:var(--ink)}
+
+  /* ============ TIMELINE ============ */
+  .timeline{position:relative;margin:14px 0 4px;padding-left:8px}
+  .timeline::before{content:"";position:absolute;left:64px;top:8px;bottom:8px;width:2px;background:var(--rule)}
+  .tl{display:grid;grid-template-columns:56px 1fr;gap:24px;padding:9px 0;position:relative}
+  .tl .yr{font-family:'IBM Plex Mono',monospace;font-weight:600;color:var(--rust);font-size:.92rem;text-align:right;padding-top:1px}
+  .tl .ev{font-size:.94rem;color:var(--ink-soft);position:relative}
+  .tl .ev::before{content:"";position:absolute;left:-26px;top:7px;width:9px;height:9px;border-radius:50%;background:var(--cream);border:2px solid var(--teal)}
+  .tl .ev b{color:var(--ink)}
+  .tl.flip .ev::before{background:var(--rust);border-color:var(--rust)}
+
+  /* ============ EVIDENCE BARS ============ */
+  .evbar{margin:8px 0 4px}
+  .evrow{margin-bottom:16px}
+  .evrow .top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+  .evrow .name{font-family:'Caladea',serif;font-size:1.02rem;color:var(--ink)}
+  .evrow .name span{font-family:'IBM Plex Sans';font-size:.78rem;color:var(--ink-soft);font-weight:400}
+  .evrow .pct{font-family:'IBM Plex Mono',monospace;font-weight:600;color:var(--rust);font-size:1.1rem}
+  .track{height:13px;background:var(--cream-deep);border:1px solid var(--hair);overflow:hidden}
+  .fill{height:100%;width:0;transition:width 1.3s cubic-bezier(.2,.8,.2,1)}
+  .fill.teal{background:repeating-linear-gradient(135deg,var(--teal),var(--teal) 7px,var(--teal-deep) 7px,var(--teal-deep) 14px)}
+  .fill.rust{background:repeating-linear-gradient(135deg,var(--rust),var(--rust) 7px,var(--rust-soft) 7px,var(--rust-soft) 14px)}
+
+  /* ============ MENU GRID ============ */
+  .menu{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:6px}
+  .col h3{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding-bottom:8px;margin-bottom:10px;border-bottom:2px solid currentColor}
+  .col.spare h3{color:var(--teal)}
+  .col.destroy h3{color:var(--rust)}
+  .proc{background:var(--paper);border:1px solid var(--hair);padding:12px 13px;margin-bottom:9px}
+  .proc .pn{font-family:'Caladea',serif;font-weight:700;font-size:.98rem;color:var(--ink);line-height:1.15}
+  .proc .pd{font-size:.8rem;color:var(--ink-soft);margin-top:4px;line-height:1.38}
+  .proc .pd .mono{font-size:.8rem}
+  .col.spare .proc{border-left:3px solid var(--teal)}
+  .col.destroy .proc{border-left:3px solid var(--rust)}
+
+  /* ============ VERSUS ============ */
+  .vs{display:grid;grid-template-columns:1fr 44px 1fr;gap:0;align-items:stretch;margin-top:8px;border:1px solid var(--hair)}
+  .vs .side{padding:18px 16px;background:var(--paper)}
+  .vs .side.b{background:var(--cream)}
+  .vs .mid{display:flex;align-items:center;justify-content:center;font-family:'Caladea',serif;font-style:italic;color:var(--rust);font-size:1.1rem;background:var(--teal);color:var(--cream)}
+  .vs h4{font-family:'Caladea',serif;font-size:1.15rem;color:var(--teal-deep);margin-bottom:3px}
+  .vs .sub{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--rust);margin-bottom:12px}
+  .vs ul{list-style:none}
+  .vs li{font-size:.84rem;color:var(--ink-soft);padding:5px 0;border-bottom:1px dashed var(--hair);display:flex;justify-content:space-between;gap:10px}
+  .vs li:last-child{border-bottom:none}
+  .vs li b{color:var(--ink);font-weight:600}
+  .vs li .v{font-family:'IBM Plex Mono',monospace;color:var(--rust);font-weight:600;flex-shrink:0}
+
+  /* ============ BIG STAT PULL ============ */
+  .pull{background:var(--teal);color:var(--cream);padding:28px 26px;margin:14px 0;display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:center}
+  .pull .figure{font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:clamp(3rem,11vw,4.6rem);line-height:.85;color:var(--cream)}
+  .pull .txt{font-family:'Caladea',serif;font-size:1.05rem;line-height:1.35}
+  .pull .txt b{color:#F4C9A0}
+  .pull .src{display:block;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;color:rgba(235,225,203,.7);margin-top:8px;text-transform:uppercase}
+
+  /* ============ ALGORITHM ============ */
+  .algo{margin-top:6px}
+  .step{display:grid;grid-template-columns:42px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid var(--hair)}
+  .step:last-child{border-bottom:none}
+  .step .sn{font-family:'IBM Plex Mono',monospace;font-weight:600;color:var(--cream);background:var(--rust);width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.95rem}
+  .step .sc h4{font-family:'Caladea',serif;font-size:1.1rem;color:var(--teal-deep);margin-bottom:4px}
+  .step .sc p{font-size:.88rem;color:var(--ink-soft);line-height:1.42}
+
+  /* ============ DEBATE / PEARLS / PITFALLS ============ */
+  .flags{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:6px}
+  .flag{background:var(--paper);border:1px solid var(--hair);padding:16px 16px 8px}
+  .flag.full{grid-column:1/-1}
+  .flag h3{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--rust);margin-bottom:12px}
+  .flag.teal h3{color:var(--teal)}
+  .flag ul{list-style:none}
+  .flag li{font-size:.88rem;color:var(--ink-soft);padding:0 0 11px 20px;position:relative;line-height:1.42}
+  .flag li::before{content:"";position:absolute;left:0;top:8px;width:7px;height:7px;background:var(--rust)}
+  .flag.teal li::before{background:var(--teal)}
+  .flag li b{color:var(--ink)}
+
+  /* ============ CONFIDENCE ============ */
+  .conf{background:var(--paper);border:1px solid var(--hair);border-top:4px solid var(--teal);padding:20px 20px 14px;margin-top:6px}
+  .conf > .ct{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--teal);margin-bottom:16px}
+  .crow{margin-bottom:14px}
+  .crow .cl{display:flex;justify-content:space-between;align-items:baseline;font-size:.88rem;color:var(--ink);margin-bottom:5px}
+  .crow .cl .tier{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase}
+  .crow .cl .tier.hi{color:var(--teal)}
+  .crow .cl .tier.med{color:var(--rust)}
+  .crow .cl .tier.lo{color:var(--rust-soft)}
+  .segs{display:flex;gap:4px}
+  .seg{height:9px;flex:1;background:var(--cream-deep);border:1px solid var(--hair)}
+  .seg.on-teal{background:var(--teal)}
+  .seg.on-rust{background:var(--rust)}
+  .verify{margin-top:8px;font-size:.82rem;color:var(--rust);font-family:'IBM Plex Mono',monospace;letter-spacing:.02em}
+
+  /* ============ SOURCES ============ */
+  .sources{margin-top:8px;columns:2;column-gap:28px}
+  .sources li{font-size:.8rem;color:var(--ink-soft);line-height:1.4;margin-bottom:10px;break-inside:avoid;list-style:none;padding-left:18px;position:relative}
+  .sources li::before{content:counter(s);counter-increment:s;position:absolute;left:0;top:0;font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:var(--rust);font-weight:600}
+  .sources{counter-reset:s}
+  .sources li b{color:var(--ink)}
+
+  /* ============ SHARE CARD ============ */
+  .share{background:var(--teal-deep);color:var(--cream);padding:26px;margin-top:30px;border-bottom:5px solid var(--rust)}
+  .share .st{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#F4C9A0;margin-bottom:14px}
+  .share .hook{font-family:'Caladea',serif;font-weight:700;font-size:1.5rem;line-height:1.15;margin-bottom:14px}
+  .share ul{list-style:none;margin-bottom:16px}
+  .share li{font-size:.92rem;padding:5px 0 5px 18px;position:relative;color:rgba(235,225,203,.92)}
+  .share li::before{content:"→";position:absolute;left:0;color:#F4C9A0}
+  .share .cta{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:.82rem;letter-spacing:.04em;color:var(--cream);border:1px solid var(--rust-soft);padding:9px 16px;text-decoration:none}
+  .share .cta:hover{background:var(--rust);border-color:var(--rust)}
+
+  /* ============ DISCLAIMER / FOOTER ============ */
+  .disclaimer{margin-top:24px;padding:16px 18px;background:rgba(168,69,42,.07);border-left:3px solid var(--rust);font-size:.8rem;color:var(--ink-soft);line-height:1.5}
+  .disclaimer b{color:var(--rust)}
+  footer{margin-top:30px;padding-top:20px;border-top:2px solid var(--rust);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;color:var(--ink-soft)}
+  footer .fc{color:var(--ink)}
+
+  /* ============ REVEAL ANIMATION ============ */
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.fill{transition:none}}
+
+  /* ============ RESPONSIVE ============ */
+  @media(max-width:680px){
+    .lanes{grid-template-columns:1fr}
+    .stats{grid-template-columns:1fr 1fr}
+    .menu{grid-template-columns:1fr}
+    .vs{grid-template-columns:1fr}
+    .vs .mid{padding:8px;font-size:.95rem}
+    .flags{grid-template-columns:1fr}
+    .sources{columns:1}
+    .pull{grid-template-columns:1fr;gap:12px;text-align:left}
+    .tl{gap:16px}
+    .timeline::before{left:60px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ====== MASTHEAD ====== -->
+  <header>
+    <div class="brandline">
+      <span>The Guidewire · Surgical Atlas</span>
+      <span class="right">soleintell.com</span>
+    </div>
+    <h1>The Second <em>MTPJ</em> Problem</h1>
+    <p class="deck">A joint nobody studies cleanly — and the quiet shift from cutting it out to saving it.</p>
+    <div class="byline">A teaching brief for residents &nbsp;·&nbsp; By <b>Peter Sorensen, DPM</b></div>
+  </header>
+
+  <!-- ====== 01 FRAMING ====== -->
+  <section>
+    <div class="sechead reveal">
+      <span class="num">01</span>
+      <div><span class="kicker">Start here</span><h2>There is no clean "2nd MTPJ osteoarthritis" literature</h2></div>
+    </div>
+    <p class="lead reveal">Primary OA at this joint is rare. If you search "second MTPJ arthritis," you will find almost nothing. The degeneration is real — it just hides under three other diagnoses. Search those instead.</p>
+    <div class="lanes reveal">
+      <div class="lane">
+        <span class="tag">Pathway A · the big one</span>
+        <h3>Freiberg's Infraction</h3>
+        <p>AVN of the metatarsal head. The largest, most surgically relevant body of evidence relevant to this joint. Where most "2nd MTPJ" surgery actually lives.</p>
+      </div>
+      <div class="lane">
+        <span class="tag">Pathway B</span>
+        <h3>Instability &amp; Plantar Plate</h3>
+        <p>Crossover toe / predislocation syndrome. The plantar plate fails, the toe deviates, and untreated dislocation ends in secondary DJD.</p>
+      </div>
+      <div class="lane">
+        <span class="tag">Pathway C</span>
+        <h3>Trauma · Inflammatory · Iatrogenic</h3>
+        <p>Post-fracture, rheumatoid forefoot, or degeneration that follows a prior Weil osteotomy and transfer metatarsalgia.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== 02 ANATOMY ====== -->
+  <section>
+    <div class="sechead reveal">
+      <span class="num">02</span>
+      <div><span class="kicker">Why the second ray</span><h2>The most loaded, least forgiving lesser joint</h2></div>
+    </div>
+    <p class="body reveal">The second metatarsal is the longest, recessed into the cuneiform mortise as the Lisfranc keystone — stiff where the first ray is mobile. Peak plantar bending load sits beneath it. The plantar plate is the primary static stabilizer, and the 2nd MTPJ lacks a plantar interosseous insertion, leaving it exposed to unopposed lumbrical pull. The result is a joint primed for both overload arthrosis and instability.</p>
+    <div class="stats reveal">
+      <div class="stat"><div class="big">68%</div><div class="lbl">of Freiberg's involves the 2nd met (3rd 27%, 4th 3%)</div></div>
+      <div class="stat"><div class="big">63–90%</div><div class="lbl">of all lesser-MTPJ plantar plate tears occur here</div></div>
+      <div class="stat"><div class="big">~5:1</div><div class="lbl">female predominance in Freiberg's disease</div></div>
+      <div class="stat"><div class="big">86%</div><div class="lbl">women in the crossover-toe surgical cohort (Kaz &amp; Coughlin)</div></div>
+    </div>
+  </section>
+
+  <!-- ====== 03 SMILLIE ====== -->
+  <section>
+    <div class="sechead reveal">
+      <span class="num">03</span>
+      <div><span class="kicker">Staging Freiberg's</span><h2>The Smillie ladder (1955)</h2></div>
+    </div>
+    <p class="body reveal">Descriptive, widely cited, and — honestly — inconsistently used. In one survey ~70% of surgeons said the stage did not change their procedure choice. Still the common language, so know it cold. The pivot point is whether the <strong>plantar cartilage is still intact</strong>.</p>
+    <div class="ladder reveal">
+      <div class="rung"><span class="stage">I</span><span class="desc"><b>Fissure fracture</b> in the epiphysis; subtle sclerosis. Often MRI-only. Conservative.</span></div>
+      <div class="rung"><span class="stage">II</span><span class="desc"><b>Central depression</b> / early collapse of the articular surface.</span></div>
+      <div class="rung"><span class="stage">III</span><span class="desc"><b>Central absorption</b> with medial &amp; lateral projections — plantar cartilage still intact. <em>The joint-sparing sweet spot.</em></span></div>
+      <div class="rung"><span class="stage">IV</span><span class="desc"><b>Loose body</b>; fracturing of the peripheral projections.</span></div>
+      <div class="rung"><span class="stage">V</span><span class="desc"><b>Flattened, deformed head</b>; frank arthrosis; plantar involvement. Joint preservation gets hard.</span></div>
+    </div>
+  </section>
+
+  <!-- ====== 04 TIMELINE ====== -->
+  <section>
+    <div class="sechead reveal">
+      <span class="num">04</span>
+      <div><span class="kicker">How the approach changed</span><h2>From resecting the joint to rebuilding it</h2></div>
+    </div>
+    <p class="body reveal">The arc is unmistakable: a century of drift away from destroying the joint and toward sparing, decompressing, and finally resurfacing it. The osteotomy that rotates healthy plantar cartilage into the load zone was the hinge point; cartilage transplantation is the current frontier.</p>
+    <div class="timeline reveal">
+      <div class="tl"><div class="yr">1914</div><div class="ev"><b>Freiberg</b> describes the infraction of the 2nd metatarsal head.</div></div>
+      <div class="tl"><div class="yr">1955</div><div class="ev"><b>Smillie</b> publishes the five-stage radiographic classification.</div></div>
+      <div class="tl flip"><div class="yr">1979</div><div class="ev"><b>Gauthier &amp; Elbaz</b> — the dorsiflexory closing-wedge osteotomy (DCWMO), 53 cases. Rotates intact plantar cartilage into the joint. Becomes the workhorse.</div></div>
+      <div class="tl"><div class="yr">1984</div><div class="ev"><b>Weil</b> begins the distal oblique shortening osteotomy — later borrowed for both Freiberg's and plantar plate repair.</div></div>
+      <div class="tl"><div class="yr">1987</div><div class="ev"><b>Coughlin</b> defines crossover-toe deformity, launching the instability literature.</div></div>
+      <div class="tl"><div class="yr">1995</div><div class="ev"><b>Freiberg &amp; Freiberg</b> — core decompression for early, pre-collapse disease.</div></div>
+      <div class="tl flip"><div class="yr">2008+</div><div class="ev"><b>Osteochondral autograft (OAT / mosaicplasty)</b> enters foot-and-ankle practice for head resurfacing.</div></div>
+      <div class="tl flip"><div class="yr">2019</div><div class="ev"><b>Georgiannos</b> — the field's <em>only</em> RCT: OAT vs DCWMO in athletes.</div></div>
+      <div class="tl flip"><div class="yr">2026</div><div class="ev"><b>Meta-analysis</b> (16 studies, 259 toes) tilts toward OAT as the preferred joint-preserving option.</div></div>
+    </div>
+  </section>
+
+  <!-- ====== 05 EVIDENCE VERDICT ====== -->
+  <section>
+    <div class="sechead reveal">
+      <span class="num">05</span>
+      <div><span class="kicker">The verdict</span><h2>Joint-sparing outperforms joint-destruction</h2></div>
+    </div>
+    <p class="body reveal">Schade's 2015 systematic review (Level IV) is the field's anchor synthesis. The signal is consistent even if the evidence is soft: preserve the joint where you can.</p>
+    <div class="evbar reveal">
+      <div class="evrow">
+        <div class="top"><span class="name">Joint-sparing <span>· 257 procedures, mean f/u 30 mo</span></span><span class="pct">&gt;90%</span></div>
+        <div class="track"><div class="fill teal" data-w="92"></div></div>
+      </div>
+      <div class="evrow">
+        <div class="top"><span class="name">Joint-destructive <span>· 70 procedures, mean f/u 15 mo</span></span><span class="pct">&gt;70%</span></div>
+        <div class="track"><div class="fill rust" data-w="71"></div></div>
+      </div>
+    </div>
+    <p class="body reveal" style="font-size:.86rem;font-style:italic">Pain resolution + full return to activity. A second review (2020) graded the evidence for essentially every procedure as poor (grade C) — sparing and sacrificing alike. Read the trend, not the decimals.</p>
+  </section>
+
+  <!-- ====== 06 THE MENU ====== -->
+  <section>
+    <div class="sechead reveal">
+      <span class="num">06</span>
+      <div><span class="kicker">The surgical menu</span><h2>What's actually described in the literature</h2></div>
+    </div>
+    <div class="menu reveal">
+      <div class="col spare">
+        <h3>Joint-Sparing / Preserving</h3>
+        <div class="proc"><div class="pn">Debridement / cheilectomy / synovectomy</div><div class="pd">Any stage. Low morbidity, often combined or arthroscopic. Doesn't address collapse.</div></div>
+        <div class="proc"><div class="pn">Core decompression</div><div class="pd">Smillie I–II, pre-collapse. Anecdotal / case-report level.</div></div>
+        <div class="proc"><div class="pn">DCWMO (Gauthier-Elbaz)</div><div class="pd">Smillie III–IV, plantar surface intact. The most-reported option; <span class="mono">84–100%</span> good results. Costs ~15° MTPJ motion.</div></div>
+        <div class="proc"><div class="pn">Osteochondral autograft (OAT)</div><div class="pd">Advanced disease, &gt;⅓ surface lost. Knee-plug resurfacing; preserves length. The modern challenger.</div></div>
+        <div class="proc"><div class="pn">Interpositional arthroplasty</div><div class="pd">Late III–V. EDL / EDB / periosteum-fat / allograft spacer. Best joint-sparing salvage.</div></div>
+        <div class="proc"><div class="pn">Head remodeling · distraction</div><div class="pd">Case-series and emerging; thin evidence.</div></div>
+      </div>
+      <div class="col destroy">
+        <h3>Joint-Destructive / Sacrificing</h3>
+        <div class="proc"><div class="pn">Metatarsal head resection (DuVries)</div><div class="pd">The old mainstay — largely abandoned for isolated disease. Causes transfer metatarsalgia &amp; instability. Survives in rheumatoid forefoot.</div></div>
+        <div class="proc"><div class="pn">Implant / hemi / total arthroplasty</div><div class="pd">Silastic &amp; metallic tried; small series (e.g. <span class="mono">63%</span> good, n=31). Newer designs at proof-of-concept. Not standard.</div></div>
+        <div class="proc"><div class="pn">Lesser MTPJ arthrodesis</div><div class="pd">Rare; mainly for crossover toe, not pure arthritis. Karlock: <span class="mono">10/11</span> good–excellent. Nonunion ~13%. Niche.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== 07 DCWMO vs OAT ====== -->
+  <section>
+    <div class="sechead reveal">
+      <span class="num">07</span>
+      <div><span class="kicker">The headline debate</span><h2>DCWMO vs OAT for advanced Freiberg's</h2></div>
+    </div>
+    <p class="body reveal">This is the one place the field has comparative data. The lone RCT called them equal; the 2026 meta-analysis leans OAT. The numbers below are the ones worth remembering.</p>
+    <div class="vs reveal">
+      <div class="side a">
+        <h4>DCWMO</h4>
+        <div class="sub">Gauthier-Elbaz dorsal wedge</div>
+        <ul>
+          <li><b>AOFAS</b><span class="v">63 → 84</span></li>
+          <li><b>Return to sport</b><span class="v">13 wks</span></li>
+          <li><b>Met length</b><span class="v">−1.9 mm</span></li>
+          <li><b>Pooled complications</b><span class="v">~6%</span></li>
+          <li><b>Track record</b><span class="v">since 1979</span></li>
+        </ul>
+      </div>
+      <div class="mid">vs</div>
+      <div class="side b">
+        <h4>OAT</h4>
+        <div class="sub">Osteochondral autograft</div>
+        <ul>
+          <li><b>AOFAS</b><span class="v">63 → 92</span></li>
+          <li><b>Return to sport</b><span class="v">10 wks</span></li>
+          <li><b>Met length</b><span class="v">+0.2 mm</span></li>
+          <li><b>Pooled complications</b><span class="v">~1%</span></li>
+          <li><b>Trade-off</b><span class="v">knee donor</span></li>
+        </ul>
+      </div>
+    </div>
+    <p class="body reveal" style="font-size:.84rem;font-style:italic;margin-top:12px">RCT: Georgiannos 2019, n=27, 3-yr follow-up — statistically better AOFAS for OAT, not clinically decisive. Both work. Meta-analysis 2026: AOFAS mean difference +7.15 favoring OAT, complication risk ratio 0.23.</p>
+  </section>
+
+  <!-- ====== 08 WEIL / FLOATING TOE ====== -->
+  <section>
+    <div class="sechead reveal">
+      <span class="num">08</span>
+      <div><span class="kicker">The cross-cutting workhorse</span><h2>The Weil osteotomy — and its tax</h2></div>
+    </div>
+    <p class="body reveal">The Weil shortens an elongated metatarsal with stable fixation and shows up everywhere: metatarsalgia, instability (with plantar plate repair), and modified for Freiberg's. But it carries a signature complication that every resident must counsel for.</p>
+    <div class="pull reveal">
+      <div class="figure">36%</div>
+      <div class="txt"><b>Floating toe</b> across 1,131 Weil osteotomies — the most common complication. Recurrence <b>15%</b>, transfer metatarsalgia <b>7%</b>, delayed/non-/malunion ~<b>3%</b>.<span class="src">Highlander et al, systematic review (2011)</span></div>
+    </div>
+    <p class="body reveal" style="font-size:.86rem">Worse when combined with PIP arthrodesis. The triple-cut ("triple Weil") modification aims to reduce plantar translation and the floating-toe rate. Iatrogenic 2nd MTPJ stiffness and degeneration are recognized downstream consequences.</p>
+  </section>
+
+  <!-- ====== 09 INSTABILITY ====== -->
+  <section>
+    <div class="sechead reveal">
+      <span class="num">09</span>
+      <div><span class="kicker">Pathway B in depth</span><h2>The instability cascade → secondary DJD</h2></div>
+    </div>
+    <p class="body reveal">The plantar plate attenuates, then tears. Sagittal instability becomes transverse deviation — the crossover toe. Left alone, it ends in fixed dislocation and degenerative joint disease. The treatment philosophy moved from indirect balancing to direct anatomic repair.</p>
+    <div class="lanes reveal">
+      <div class="lane">
+        <span class="tag">Then</span>
+        <h3>Indirect</h3>
+        <p>Weil osteotomy alone, or flexor-to-extensor (Girdlestone-Taylor) transfer to rebalance the toe.</p>
+      </div>
+      <div class="lane">
+        <span class="tag">Now</span>
+        <h3>Direct Repair</h3>
+        <p>Anatomic plantar plate repair via dorsal (with Weil) or plantar approach. Coughlin-practice series: well-aligned toe in <span class="mono">87%</span>, recurrence <span class="mono">7.6%</span>.</p>
+      </div>
+      <div class="lane">
+        <span class="tag">Watch for</span>
+        <h3>The Drawer Sign</h3>
+        <p>The most reliable physical finding for instability (Kaz &amp; Coughlin). Test it before the radiograph convinces you otherwise.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== 10 ALGORITHM ====== -->
+  <section>
+    <div class="sechead reveal">
+      <span class="num">10</span>
+      <div><span class="kicker">Decision lens</span><h2>How to think through it</h2></div>
+    </div>
+    <div class="algo reveal">
+      <div class="step"><span class="sn">1</span><div class="sc"><h4>Diagnose the driver — don't code "arthritis"</h4><p>Freiberg's (image + Smillie stage), instability (drawer test, MRI), post-traumatic, or inflammatory. This single decision dictates everything downstream.</p></div></div>
+      <div class="step"><span class="sn">2</span><div class="sc"><h4>Exhaust non-operative care first</h4><p>≥6 months for Freiberg's I–III: offloading orthoses, met pads, stiff/rocker sole, NSAIDs, judicious injection (avoid weakening the plantar plate). ~60% of non-athletes get relief.</p></div></div>
+      <div class="step"><span class="sn">3</span><div class="sc"><h4>Match procedure to stage &amp; surface</h4><p>Early (I–II): debridement ± core decompression. Intermediate (III–IV) with intact plantar cartilage: DCWMO, or OAT if &gt;⅓ surface lost and expertise exists. Late (IV–V): interpositional arthroplasty as best sparing salvage; reserve resection/implant/fusion for failures and rheumatoid forefoot.</p></div></div>
+      <div class="step"><span class="sn">4</span><div class="sc"><h4>Honor the plan-changers</h4><p>Plantar surface destroyed → abandon DCWMO, resurface or interpose. Met excessively long → add shortening. Choosing OAT → counsel on the knee. Any Weil → counsel on floating toe and avoid concurrent PIP fusion where possible.</p></div></div>
+    </div>
+  </section>
+
+  <!-- ====== 11 CONTROVERSIES + PEARLS ====== -->
+  <section>
+    <div class="sechead reveal">
+      <span class="num">11</span>
+      <div><span class="kicker">Where experts disagree</span><h2>Controversies &amp; pearls</h2></div>
+    </div>
+    <div class="flags reveal">
+      <div class="flag">
+        <h3>⚠ Controversies / Debates</h3>
+        <ul>
+          <li><b>DCWMO vs OAT</b> — RCT says equal, meta-analysis leans OAT; knee donor-site morbidity debated.</li>
+          <li><b>Plantar plate repair</b> — indirect vs direct, and dorsal vs plantar approach.</li>
+          <li><b>Does Smillie stage matter?</b> Most surgeons say it doesn't change their plan.</li>
+          <li><b>The Weil itself</b> — championed and criticized; much controversy traces to technique drift and concurrent PIP fusion.</li>
+        </ul>
+      </div>
+      <div class="flag teal">
+        <h3>✦ Pearls</h3>
+        <ul>
+          <li><b>Stage III is the sweet spot</b> — intact plantar cartilage is what DCWMO and interposition both exploit.</li>
+          <li><b>Length is currency</b> — DCWMO shortens, OAT preserves; weigh it against transfer metatarsalgia risk.</li>
+          <li><b>The drawer test</b> beats the radiograph for instability.</li>
+          <li><b>Destruction is a salvage, not a default</b> — head resection lives on mainly in the rheumatoid forefoot.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== 12 EVIDENCE QUALITY ====== -->
+  <section>
+    <div class="sechead reveal">
+      <span class="num">12</span>
+      <div><span class="kicker">Read this before you cite anything</span><h2>How good is the evidence, really?</h2></div>
+    </div>
+    <p class="body reveal">The whole field rests on Level IV retrospective series — often fewer than 15 patients, no standardized outcome measure, inconsistent staging, short follow-up. There is exactly <strong>one</strong> RCT (n=27). No procedure is an established gold standard. Treat every percentage here as low-confidence and procedure-specific.</p>
+    <div class="conf reveal">
+      <div class="ct">Confidence by claim</div>
+      <div class="crow">
+        <div class="cl"><span>Joint-sparing &gt; joint-destructive (the trend)</span><span class="tier hi">High · consistent</span></div>
+        <div class="segs"><span class="seg on-teal"></span><span class="seg on-teal"></span><span class="seg on-teal"></span><span class="seg on-teal"></span><span class="seg on-teal"></span><span class="seg on-teal"></span><span class="seg on-teal"></span><span class="seg on-teal"></span><span class="seg"></span><span class="seg"></span></div>
+      </div>
+      <div class="crow">
+        <div class="cl"><span>DCWMO vs OAT — which is better</span><span class="tier med">Medium · debated</span></div>
+        <div class="segs"><span class="seg on-rust"></span><span class="seg on-rust"></span><span class="seg on-rust"></span><span class="seg on-rust"></span><span class="seg on-rust"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span></div>
+      </div>
+      <div class="crow">
+        <div class="cl"><span>Implants &amp; lesser-MTPJ arthrodesis for arthritis</span><span class="tier lo">Low · emerging</span></div>
+        <div class="segs"><span class="seg on-rust"></span><span class="seg on-rust"></span><span class="seg on-rust"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span></div>
+      </div>
+      <div class="verify">⚠ Verify locally before applying. Much of this sits below an 8/10 evidence threshold.</div>
+    </div>
+  </section>
+
+  <!-- ====== SOURCES ====== -->
+  <section>
+    <div class="sechead reveal">
+      <span class="num">13</span>
+      <div><span class="kicker">Selected sources</span><h2>The papers worth knowing</h2></div>
+    </div>
+    <ul class="sources reveal">
+      <li><b>Schade VL.</b> Surgical Management of Freiberg's Infraction: A Systematic Review. <i>Foot Ankle Spec.</i> 2015. <em>(Level IV anchor synthesis.)</em></li>
+      <li><b>Georgiannos D, et al.</b> Osteochondral Autologous Transplantation vs Dorsal Closing Wedge Osteotomy for Freiberg in Athletes — RCT, 3-yr follow-up. <i>Am J Sports Med.</i> 2019. <em>(The only RCT.)</em></li>
+      <li><b>Tham/Kennedy, et al.</b> Autologous osteochondral transplantation vs DCWMO for Freiberg's: systematic review &amp; meta-analysis. <i>Foot Ankle Surg.</i> 2026.</li>
+      <li><b>Gauthier G, Elbaz R.</b> Freiberg's infraction: a subchondral bone fatigue fracture — a new surgical treatment. 1979. <em>(Origin of the DCWMO.)</em></li>
+      <li><b>Highlander P, et al.</b> Complications of the Weil Osteotomy — systematic review of 1,131 cases. <i>Foot Ankle Spec.</i> 2011.</li>
+      <li><b>Coughlin MJ.</b> Crossover second toe deformity. <i>Foot Ankle.</i> 1987 &nbsp;·&nbsp; <b>Kaz &amp; Coughlin.</b> Crossover second toe: demographics, etiology, radiographic assessment. 2007.</li>
+      <li><b>Pereira BS, et al.</b> Long-term follow-up of dorsal wedge osteotomy for pediatric Freiberg. <i>Foot Ankle Int.</i> 2016.</li>
+      <li><b>Smillie IS.</b> Freiberg's infraction (Köhler's second disease) staging, 1955 &nbsp;·&nbsp; <b>Freiberg AH.</b> Original description, 1914.</li>
+    </ul>
+  </section>
+
+  <!-- ====== SHARE CARD ====== -->
+  <div class="share reveal">
+    <div class="st">Social graphic copy</div>
+    <div class="hook">Everyone learns the 1st MTPJ. Almost nobody learns the 2nd — and the literature is hiding in plain sight.</div>
+    <ul>
+      <li>2nd MTPJ arthritis isn't studied as OA — it lives under Freiberg's, instability &amp; iatrogenic disease.</li>
+      <li>The field shifted from resecting the joint to saving it: sparing &gt;90% vs destructive &gt;70%.</li>
+      <li>One RCT. Thirty-six percent floating toe. A staged way to think about all of it.</li>
+    </ul>
+    <a class="cta" href="https://soleintell.substack.com/">Read the full breakdown on Substack →</a>
+  </div>
+
+  <!-- ====== DISCLAIMER ====== -->
+  <div class="disclaimer reveal">
+    <b>Editorial &amp; AI disclaimer.</b> This brief was produced with AI assistance and is for educational purposes only. It is a synthesis of a literature that is overwhelmingly Level IV, with extrapolation from adjacent conditions (Freiberg's, plantar plate instability, rheumatoid forefoot, hallux rigidus). It is not clinical, surgical, or billing guidance, and is no substitute for primary sources, attending judgment, and institutional protocol. Verify everything locally before applying.
+  </div>
+
+  <footer>
+    <span class="fc">© 2026 Peter Sorensen, DPM</span>
+    <span>The Guidewire · Surgical Atlas</span>
+    <span>soleintell.com</span>
+  </footer>
+
+</div>
+
+<script>
+  // staggered scroll reveal
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach((e,i)=>{
+      if(e.isIntersecting){
+        e.target.classList.add('in');
+        // fire the evidence bars when their section reveals
+        e.target.querySelectorAll && e.target.querySelectorAll('.fill').forEach(f=>{
+          f.style.width = f.dataset.w + '%';
+        });
+        io.unobserve(e.target);
+      }
+    });
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach((el,i)=>{
+    el.style.transitionDelay = Math.min(i%4*0.06,0.18)+'s';
+    io.observe(el);
+  });
+  // also catch any .fill already in view on load
+  window.addEventListener('load',()=>{
+    document.querySelectorAll('.reveal.in .fill, .fill').forEach(f=>{
+      const r=f.getBoundingClientRect();
+      if(r.top < window.innerHeight) f.style.width=f.dataset.w+'%';
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Skin Substitute Debacle — The Guidewire</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,500&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F2EDE2;
+    --paper-deep:#EBE4D3;
+    --ink:#141311;
+    --ink-soft:#3A352D;
+    --rule:#1A1815;
+    --oxide:#B8341A;
+    --oxide-deep:#8F2611;
+    --mute:#6B6456;
+    --yellow-tape:#D9A441;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--paper);color:var(--ink);font-family:'Fraunces',Georgia,serif;font-optical-sizing:auto;line-height:1.5}
+  body{
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(180,150,100,0.06) 0%, transparent 40%),
+      radial-gradient(circle at 80% 80%, rgba(184,52,26,0.04) 0%, transparent 50%),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.08 0 0 0 0 0.07 0 0 0 0 0.05 0 0 0 0.08 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    background-size: auto, auto, 240px 240px;
+  }
+  .wrap{max-width:1180px;margin:0 auto;padding:32px 28px 80px;position:relative}
+  @media(max-width:720px){.wrap{padding:20px 18px 60px}}
+
+  /* ========= MASTHEAD ========= */
+  .masthead{
+    border-top:3px solid var(--ink);
+    border-bottom:1px solid var(--ink);
+    padding:14px 0 10px;
+    display:flex;justify-content:space-between;align-items:flex-end;gap:16px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+  .masthead .left{display:flex;gap:18px;flex-wrap:wrap;align-items:baseline}
+  .masthead .vol{color:var(--oxide);font-weight:700}
+  .masthead .right{text-align:right}
+  .masthead-title{
+    font-family:'Fraunces',serif;font-weight:900;font-size:14px;letter-spacing:0.02em;
+    text-transform:none;color:var(--ink);
+  }
+
+  /* ========= HEADER ========= */
+  header.hero{
+    padding:48px 0 32px;border-bottom:1px solid var(--ink);position:relative;
+  }
+  .kicker{
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.22em;
+    text-transform:uppercase;color:var(--oxide);margin-bottom:20px;
+    display:inline-flex;align-items:center;gap:10px;
+  }
+  .kicker::before{content:"";width:22px;height:2px;background:var(--oxide);display:inline-block}
+  h1.display{
+    font-family:'Fraunces',serif;font-weight:900;
+    font-size:clamp(44px,7.5vw,92px);
+    line-height:0.92;letter-spacing:-0.025em;
+    color:var(--ink);
+    max-width:16ch;
+  }
+  h1 .italic{font-style:italic;font-weight:500;color:var(--oxide)}
+  .deck{
+    margin-top:28px;max-width:58ch;
+    font-family:'Fraunces',serif;font-size:clamp(17px,2vw,20px);
+    font-weight:400;line-height:1.5;color:var(--ink-soft);
+  }
+  .byline-block{
+    margin-top:36px;display:flex;justify-content:space-between;align-items:flex-end;
+    flex-wrap:wrap;gap:18px;
+    padding-top:14px;border-top:1px solid var(--ink);
+  }
+  .byline{
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.14em;
+    text-transform:uppercase;color:var(--ink);
+  }
+  .byline strong{color:var(--oxide);font-weight:700}
+  .dateline{
+    font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.14em;
+    color:var(--mute);text-transform:uppercase;
+  }
+
+  /* ========= LEDE BOX ========= */
+  .lede{
+    margin:40px 0;padding:28px;
+    background:var(--ink);color:var(--paper);
+    position:relative;
+  }
+  .lede::before{
+    content:"BRIEF";position:absolute;top:-11px;left:28px;
+    background:var(--oxide);color:var(--paper);
+    font-family:'JetBrains Mono',monospace;font-size:10px;
+    font-weight:700;letter-spacing:0.22em;padding:4px 10px;
+  }
+  .lede-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
+  @media(max-width:780px){.lede-grid{grid-template-columns:repeat(2,1fr);gap:20px}}
+  .lede-stat .num{
+    font-family:'Fraunces',serif;font-weight:900;
+    font-size:clamp(32px,4.5vw,52px);line-height:1;
+    color:var(--paper);letter-spacing:-0.02em;
+  }
+  .lede-stat .num .unit{color:var(--oxide);font-weight:500;font-size:0.55em;margin-left:4px}
+  .lede-stat .label{
+    margin-top:10px;font-family:'JetBrains Mono',monospace;
+    font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;
+    color:var(--paper);opacity:0.72;line-height:1.4;
+  }
+
+  /* ========= SECTION HEADERS ========= */
+  section{margin-top:56px}
+  .section-num{
+    font-family:'JetBrains Mono',monospace;font-size:11px;
+    letter-spacing:0.22em;color:var(--oxide);text-transform:uppercase;
+    display:flex;align-items:center;gap:12px;margin-bottom:18px;
+  }
+  .section-num .bar{flex:1;height:1px;background:var(--ink)}
+  h2{
+    font-family:'Fraunces',serif;font-weight:700;
+    font-size:clamp(32px,4vw,48px);
+    line-height:1;letter-spacing:-0.02em;
+    margin-bottom:24px;max-width:22ch;
+  }
+  h2 em{font-style:italic;font-weight:400;color:var(--oxide)}
+
+  /* ========= BODY TYPE ========= */
+  .body-grid{display:grid;grid-template-columns:1fr 2.2fr;gap:40px;align-items:flex-start}
+  @media(max-width:820px){.body-grid{grid-template-columns:1fr;gap:20px}}
+  .sidenote{
+    font-family:'JetBrains Mono',monospace;font-size:11px;
+    letter-spacing:0.08em;line-height:1.7;color:var(--mute);
+    text-transform:uppercase;border-top:1px solid var(--ink);padding-top:10px;
+  }
+  .sidenote strong{color:var(--oxide);display:block;margin-bottom:6px;letter-spacing:0.14em}
+  p.body{
+    font-family:'Fraunces',serif;font-size:17.5px;line-height:1.62;
+    color:var(--ink);margin-bottom:16px;
+  }
+  p.body strong{font-weight:700}
+  p.body em{font-style:italic;color:var(--oxide-deep)}
+  .drop::first-letter{
+    font-family:'Fraunces',serif;font-weight:900;
+    font-size:5.2em;float:left;line-height:0.85;
+    padding:6px 10px 0 0;color:var(--oxide);
+  }
+
+  /* ========= TIMELINE ========= */
+  .timeline{
+    margin-top:32px;background:var(--paper-deep);
+    border:1px solid var(--ink);padding:28px;
+  }
+  .timeline h3{
+    font-family:'JetBrains Mono',monospace;font-size:11px;
+    letter-spacing:0.22em;text-transform:uppercase;
+    color:var(--oxide);margin-bottom:20px;
+  }
+  .tl-row{
+    display:grid;grid-template-columns:140px 1fr;gap:20px;
+    padding:14px 0;border-top:1px dashed var(--ink);
+  }
+  .tl-row:first-of-type{border-top:1px solid var(--ink)}
+  .tl-row:last-of-type{border-bottom:1px solid var(--ink)}
+  .tl-date{
+    font-family:'JetBrains Mono',monospace;font-size:11px;
+    letter-spacing:0.1em;text-transform:uppercase;
+    color:var(--ink);font-weight:700;line-height:1.4;padding-top:2px;
+  }
+  .tl-event{font-family:'Fraunces',serif;font-size:16px;line-height:1.5;color:var(--ink)}
+  .tl-event strong{color:var(--oxide-deep)}
+  @media(max-width:640px){
+    .tl-row{grid-template-columns:1fr;gap:6px}
+    .tl-date{font-size:10.5px}
+  }
+
+  /* ========= CASE FILE / FRAUD BOX ========= */
+  .caseblock{
+    border:2px solid var(--ink);margin-top:28px;background:var(--paper);
+    position:relative;
+  }
+  .case-hdr{
+    background:var(--ink);color:var(--paper);
+    padding:12px 20px;display:flex;justify-content:space-between;
+    font-family:'JetBrains Mono',monospace;font-size:10.5px;
+    letter-spacing:0.18em;text-transform:uppercase;
+  }
+  .case-hdr .stamp{color:var(--oxide);font-weight:700}
+  .case-grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:0;
+  }
+  @media(max-width:680px){.case-grid{grid-template-columns:1fr}}
+  .case-item{
+    padding:22px;border-right:1px solid var(--ink);border-bottom:1px solid var(--ink);
+  }
+  .case-item:nth-child(2n){border-right:none}
+  @media(max-width:680px){.case-item{border-right:none}}
+  .case-item:last-child,.case-item:nth-last-child(2):not(:nth-child(odd)){border-bottom:none}
+  .case-name{
+    font-family:'Fraunces',serif;font-weight:700;font-size:18px;
+    color:var(--ink);margin-bottom:6px;line-height:1.2;
+  }
+  .case-sub{
+    font-family:'JetBrains Mono',monospace;font-size:10px;
+    letter-spacing:0.14em;text-transform:uppercase;color:var(--oxide);
+    margin-bottom:12px;
+  }
+  .case-desc{
+    font-family:'Fraunces',serif;font-size:14.5px;line-height:1.55;
+    color:var(--ink-soft);
+  }
+  .case-amt{
+    display:inline-block;margin-top:10px;padding:3px 8px;
+    background:var(--yellow-tape);color:var(--ink);
+    font-family:'JetBrains Mono',monospace;font-size:11px;
+    font-weight:700;letter-spacing:0.05em;
+  }
+
+  /* ========= PAYMENT COMPARISON ========= */
+  .compare{
+    margin-top:28px;display:grid;grid-template-columns:1fr auto 1fr;
+    gap:0;align-items:stretch;
+  }
+  @media(max-width:720px){.compare{grid-template-columns:1fr;gap:10px}}
+  .compare-col{
+    padding:24px;border:1px solid var(--ink);
+  }
+  .compare-col.before{background:var(--paper-deep)}
+  .compare-col.after{background:var(--ink);color:var(--paper)}
+  .compare-arrow{
+    display:flex;align-items:center;justify-content:center;padding:0 14px;
+    font-family:'Fraunces',serif;font-size:48px;font-weight:900;color:var(--oxide);
+  }
+  @media(max-width:720px){.compare-arrow{padding:6px;font-size:30px;transform:rotate(90deg)}}
+  .compare-label{
+    font-family:'JetBrains Mono',monospace;font-size:10.5px;
+    letter-spacing:0.2em;text-transform:uppercase;margin-bottom:14px;
+  }
+  .compare-col.before .compare-label{color:var(--oxide)}
+  .compare-col.after .compare-label{color:var(--oxide)}
+  .compare-val{
+    font-family:'Fraunces',serif;font-weight:900;
+    font-size:36px;line-height:1;letter-spacing:-0.02em;margin-bottom:10px;
+  }
+  .compare-desc{
+    font-family:'Fraunces',serif;font-size:14px;line-height:1.5;
+  }
+  .compare-col.before .compare-desc{color:var(--ink-soft)}
+  .compare-col.after .compare-desc{color:var(--paper);opacity:0.85}
+
+  /* ========= PULL QUOTE ========= */
+  .pullquote{
+    margin:48px 0;padding:40px 28px;border-top:3px solid var(--ink);
+    border-bottom:3px solid var(--ink);text-align:left;
+  }
+  .pullquote .mark{
+    font-family:'Fraunces',serif;font-size:72px;font-weight:900;
+    color:var(--oxide);line-height:0.5;display:block;margin-bottom:10px;
+  }
+  .pullquote p{
+    font-family:'Fraunces',serif;font-style:italic;font-weight:500;
+    font-size:clamp(22px,3vw,32px);line-height:1.25;color:var(--ink);
+    max-width:28ch;letter-spacing:-0.01em;
+  }
+  .pullquote cite{
+    display:block;margin-top:18px;font-style:normal;
+    font-family:'JetBrains Mono',monospace;font-size:10.5px;
+    letter-spacing:0.2em;text-transform:uppercase;color:var(--mute);
+  }
+
+  /* ========= TAKEAWAYS ========= */
+  .takeaways{
+    margin-top:32px;display:grid;grid-template-columns:repeat(2,1fr);gap:0;
+    border:1px solid var(--ink);
+  }
+  @media(max-width:720px){.takeaways{grid-template-columns:1fr}}
+  .take{
+    padding:26px;border-right:1px solid var(--ink);border-bottom:1px solid var(--ink);
+  }
+  .take:nth-child(2n){border-right:none}
+  @media(max-width:720px){.take{border-right:none}}
+  .take:nth-last-child(-n+2){border-bottom:none}
+  @media(max-width:720px){.take:nth-last-child(-n+2){border-bottom:1px solid var(--ink)} .take:last-child{border-bottom:none}}
+  .take-num{
+    font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:700;
+    color:var(--oxide);line-height:1;letter-spacing:-0.02em;
+  }
+  .take-title{
+    margin-top:14px;font-family:'Fraunces',serif;font-weight:700;
+    font-size:19px;line-height:1.2;color:var(--ink);
+  }
+  .take-body{
+    margin-top:10px;font-family:'Fraunces',serif;font-size:14.5px;
+    line-height:1.55;color:var(--ink-soft);
+  }
+
+  /* ========= SOURCES ========= */
+  .sources{
+    margin-top:56px;padding-top:24px;border-top:1px solid var(--ink);
+  }
+  .sources h3{
+    font-family:'JetBrains Mono',monospace;font-size:11px;
+    letter-spacing:0.22em;text-transform:uppercase;color:var(--oxide);
+    margin-bottom:14px;
+  }
+  .sources ol{list-style:none;counter-reset:src;padding:0}
+  .sources li{
+    counter-increment:src;
+    padding:10px 0 10px 40px;border-top:1px dashed var(--ink);
+    font-family:'JetBrains Mono',monospace;font-size:11.5px;line-height:1.5;
+    color:var(--ink-soft);position:relative;
+  }
+  .sources li:first-child{border-top:none}
+  .sources li::before{
+    content:counter(src,decimal-leading-zero);
+    position:absolute;left:0;top:10px;color:var(--oxide);font-weight:700;
+  }
+
+  /* ========= DISCLAIMER / FOOTER ========= */
+  .disclaimer{
+    margin-top:40px;padding:18px;background:var(--paper-deep);
+    border-left:3px solid var(--oxide);
+    font-family:'JetBrains Mono',monospace;font-size:10.5px;line-height:1.6;
+    color:var(--mute);letter-spacing:0.02em;
+  }
+  .disclaimer strong{color:var(--ink);display:block;margin-bottom:4px;letter-spacing:0.14em;text-transform:uppercase;font-size:10px}
+  .colophon{
+    margin-top:32px;padding-top:20px;border-top:3px solid var(--ink);
+    display:flex;justify-content:space-between;align-items:flex-end;
+    flex-wrap:wrap;gap:18px;
+    font-family:'JetBrains Mono',monospace;font-size:9.5px;
+    letter-spacing:0.14em;text-transform:uppercase;color:var(--mute);
+  }
+  .colophon .cmark{opacity:0.55;font-size:9px}
+  .colophon .mark{font-family:'Fraunces',serif;font-weight:900;font-size:14px;color:var(--ink);letter-spacing:-0.02em;text-transform:none;font-style:italic}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ========= MASTHEAD ========= -->
+  <div class="masthead">
+    <div class="left">
+      <span class="masthead-title"><em>The Guidewire</em></span>
+      <span class="vol">Vol. I / Brief No. 14</span>
+      <span>Policy &amp; Analysis</span>
+    </div>
+    <div class="right">
+      <span>Filed 04.24.2026 · Indianapolis</span>
+    </div>
+  </div>
+
+  <!-- ========= HERO ========= -->
+  <header class="hero">
+    <div class="kicker">Medicare · Wound Care · Enforcement</div>
+    <h1 class="display">
+      The Skin Substitute <span class="italic">Debacle</span>
+    </h1>
+    <p class="deck">
+      A forty-fold spending increase, a billion-dollar fraud sentence, a rate cut that kills a business model on contact, and a Christmas Eve reversal that nobody saw coming. How Medicare collapsed a ten-billion-dollar market in ninety days — without ever touching the coverage rules.
+    </p>
+    <div class="byline-block">
+      <div class="byline">By <strong>Peter Sorensen, DPM</strong></div>
+      <div class="dateline">Est. read · 9 min · Brief No. 14</div>
+    </div>
+  </header>
+
+  <!-- ========= LEDE STATS ========= -->
+  <div class="lede">
+    <div class="lede-grid">
+      <div class="lede-stat">
+        <div class="num">$252<span class="unit">M</span></div>
+        <div class="label">Medicare Part B spend on skin substitutes, 2019</div>
+      </div>
+      <div class="lede-stat">
+        <div class="num">$10<span class="unit">B+</span></div>
+        <div class="label">Same line item, 2024 — a 40-fold increase</div>
+      </div>
+      <div class="lede-stat">
+        <div class="num">$19.6<span class="unit">B</span></div>
+        <div class="label">Projected CY 2026 savings from the new payment rule</div>
+      </div>
+      <div class="lede-stat">
+        <div class="num">~90<span class="unit">%</span></div>
+        <div class="label">Expected reduction in skin-substitute spending, year-over-year</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========= SECTION 1: THE GRIFT ========= -->
+  <section>
+    <div class="section-num"><span>§ 01</span><span class="bar"></span><span>The Mechanism</span></div>
+    <h2>How a reimbursement rule <em>turned into a market</em>.</h2>
+    <div class="body-grid">
+      <aside class="sidenote">
+        <strong>Key term</strong>
+        ASP+6%. Average Sales Price plus six percent. Manufacturers self-report pricing; Medicare pays that price plus a six percent margin to the clinician who applies the product.
+      </aside>
+      <div>
+        <p class="body drop">Under the pre-2026 payment structure, Medicare reimbursed most skin substitutes under the ASP+6% methodology used for biologicals. The design was coherent for drugs with competitive markets and disciplined launch prices. It was not coherent for a product category where manufacturers could set launch prices above <strong>$2,000 per square centimeter</strong>, collect ASP+6% on every application, and pay clinicians "spread" arrangements that functioned as kickbacks by any honest reading.</p>
+        <p class="body">The incentive ran one direction. Higher list price meant higher reimbursement meant higher clinician margin meant higher volume. A 2023 OIG investigation found that <em>nearly half of the relevant billing codes</em> lacked required ASP pricing submissions, leaving CMS to rely on inflated benchmarks. The system had no brake.</p>
+        <p class="body">By 2024, Medicare was spending over <strong>$10 billion annually</strong> on skin substitutes — more than 15% of all Part B drug spending — while beneficiary volume had only doubled. The delta was pricing and overutilization, not patient need.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========= SECTION 2: THE FRAUD ========= -->
+  <section>
+    <div class="section-num"><span>§ 02</span><span class="bar"></span><span>The Criminal Response</span></div>
+    <h2>DOJ made skin substitutes <em>a featured category</em>.</h2>
+    <p class="body" style="max-width:62ch">The 2025 National Health Care Fraud Takedown charged 324 defendants across 50 federal districts. Wound care was not a footnote. It was headline copy. What follows is a partial roster.</p>
+
+    <div class="caseblock">
+      <div class="case-hdr">
+        <span>Case File · Skin Substitute Fraud · 2025</span>
+        <span class="stamp">DOJ / OIG</span>
+      </div>
+      <div class="case-grid">
+        <div class="case-item">
+          <div class="case-name">King &amp; Gehrke</div>
+          <div class="case-sub">First Criminal Prosecution of Its Kind</div>
+          <div class="case-desc">Husband-and-wife wound graft company owners sentenced to 14.5 and 15 years respectively. Caused over $1.2 billion in false claims to Medicare Part B. Ordered to pay $1.2B restitution and forfeit ~$410M, including four luxury vehicles.</div>
+          <span class="case-amt">$1.2B false claims</span>
+        </div>
+        <div class="case-item">
+          <div class="case-name">Dr. David Jenson</div>
+          <div class="case-sub">Houston Podiatrist · 14 Counts</div>
+          <div class="case-desc">Indicted with business partner in $45M fraud. Allegedly applied skin substitutes to patients without wounds, sometimes describing the product as "stem cells" for body pain. Proceeds went to crypto, jewelry, private jets. Billed $90M, reimbursed $45M, 2022–2024.</div>
+          <span class="case-amt">$45M reimbursed</span>
+        </div>
+        <div class="case-item">
+          <div class="case-name">Vohra Wound Physicians</div>
+          <div class="case-sub">DOJ-initiated FCA · S.D. Fla. 2025</div>
+          <div class="case-desc">One of the largest wound care providers in the country. Allegedly built EMR software to misclassify procedures as surgical, imposed debridement quotas on physicians, and programmed billing to auto-apply Modifier 25 to nearly every visit. Not initiated by a whistleblower.</div>
+          <span class="case-amt">Nationwide scheme alleged</span>
+        </div>
+        <div class="case-item">
+          <div class="case-name">Apex / SOS WRX Ring</div>
+          <div class="case-sub">Arizona · Hospice-Targeted Scheme</div>
+          <div class="case-desc">Sales representatives with no medical training ordered allografts for elderly Medicare patients — many terminally ill in hospice — applied to superficial or nonexistent wounds in sizes far exceeding any wound present. NPs and owners charged; one owner allegedly netted over $279M in kickbacks.</div>
+          <span class="case-amt">$279M kickbacks alleged</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========= PULL QUOTE ========= -->
+  <div class="pullquote">
+    <span class="mark">"</span>
+    <p>Medicare payments for amniotic wound allografts have exploded, driven by illegal kickbacks from wholesalers and medically unnecessary applications by providers incentivized by high reimbursement rates.</p>
+    <cite>— DOJ Criminal Fraud Section, 2025 Year in Review (Jan. 22, 2026)</cite>
+  </div>
+
+  <!-- ========= SECTION 3: THE CMS RESPONSE ========= -->
+  <section>
+    <div class="section-num"><span>§ 03</span><span class="bar"></span><span>The Regulatory Pincer</span></div>
+    <h2>CMS chose <em>payment methodology</em> over coverage restriction.</h2>
+    <div class="body-grid">
+      <aside class="sidenote">
+        <strong>The Rule</strong>
+        CY 2026 Medicare Physician Fee Schedule Final Rule (CMS-1832-F). Finalized October 31, 2025. Payment policy effective January 1, 2026.
+      </aside>
+      <div>
+        <p class="body">The October 31 final rule reclassified most skin substitutes from biologicals to <strong>"incident-to supplies"</strong> and set a uniform payment rate across physician office and hospital outpatient settings. The CAA of 2021 had already required ASP submissions; the new rule stopped pretending those submissions would discipline pricing.</p>
+        <p class="body">Products licensed under PHSA §351 remain on ASP methodology. Everything else falls under the flat rate. Reimbursement is now tied strictly to <em>applied</em> surface area — no payment for discarded or unused material. Measurement precision, previously a clinical formality, is now the audit vector.</p>
+      </div>
+    </div>
+
+    <div class="compare">
+      <div class="compare-col before">
+        <div class="compare-label">Before · ASP + 6%</div>
+        <div class="compare-val">Up to $2,000+ /cm²</div>
+        <div class="compare-desc">Manufacturer-set launch prices. Site-of-service disparity between office and HOPD. Spread pricing drove product selection. Discarded product paid.</div>
+      </div>
+      <div class="compare-arrow">→</div>
+      <div class="compare-col after">
+        <div class="compare-label">After · Jan 1, 2026</div>
+        <div class="compare-val">$127.14 /cm²</div>
+        <div class="compare-desc">Volume-weighted Q4 2024 ASP, no markup. Flat across office and HOPD. Applied cm² only. Technical correction from $127.28 issued Nov. 26, 2025.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========= SECTION 4: THE TIMELINE ========= -->
+  <section>
+    <div class="section-num"><span>§ 04</span><span class="bar"></span><span>Timeline</span></div>
+    <h2>Eighteen months that <em>collapsed a market</em>.</h2>
+
+    <div class="timeline">
+      <h3>Sequence of Events · 2025–2026</h3>
+      <div class="tl-row">
+        <div class="tl-date">Apr 4, 2025</div>
+        <div class="tl-event"><strong>Vohra FCA filed.</strong> DOJ initiates — no whistleblower. Signal that this is a department priority, not a relator-driven docket.</div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-date">Jun 27, 2025</div>
+        <div class="tl-event"><strong>Jenson indictment unsealed.</strong> Houston podiatrist charged in $45M scheme; 14 counts of health care fraud.</div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-date">Jun 30, 2025</div>
+        <div class="tl-event"><strong>National Takedown press conference.</strong> CMS Administrator Oz joins DOJ to announce 324 defendants; wound care featured.</div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-date">Jul 2025</div>
+        <div class="tl-event"><strong>Proposed CY 2026 PFS released.</strong> Skin substitute payment reform included in proposed rule. APMA submits opposition comments in September.</div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-date">Sep 2025</div>
+        <div class="tl-event"><strong>OIG report published.</strong> "Medicare Part B Payment Trends for Skin Substitutes Raise Major Concerns About Fraud, Waste, and Abuse." Documents the 640%+ two-year spending increase.</div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-date">Oct 31, 2025</div>
+        <div class="tl-event"><strong>CY 2026 PFS finalized.</strong> Flat rate set at $127.28/cm². Incident-to classification. Effective January 1, 2026.</div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-date">Nov 26, 2025</div>
+        <div class="tl-event"><strong>Technical correction.</strong> Rate revised to $127.14/cm² based on updated utilization data and recalculated practice-expense inputs.</div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-date">Dec 24, 2025</div>
+        <div class="tl-event"><strong>LCDs withdrawn.</strong> MACs pull the restrictive Local Coverage Determinations scheduled to limit DFU/VLU coverage to ~18 products with duration and documentation requirements. Christmas Eve announcement.</div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-date">Jan 1, 2026</div>
+        <div class="tl-event"><strong>Payment policy live.</strong> Flat rate takes effect. Coverage criteria revert to prior status quo. Three MACs (Novitas, CGS, First Coast) retain active policies.</div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-date">Jan 22, 2026</div>
+        <div class="tl-event"><strong>DOJ Year in Review.</strong> Wound Care Initiative named as a standing enforcement priority. Health Care Fraud Data Fusion Center announced.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========= SECTION 5: THE LCD REVERSAL ========= -->
+  <section>
+    <div class="section-num"><span>§ 05</span><span class="bar"></span><span>The Christmas Eve Reversal</span></div>
+    <h2>CMS didn't need the LCDs <em>once the payment side was done</em>.</h2>
+    <div class="body-grid">
+      <aside class="sidenote">
+        <strong>Withdrawn LCDs</strong>
+        Skin Substitute Grafts / Cellular and Tissue-Based Products for the Treatment of DFUs and VLUs. Would have limited covered products, required duration of standard care, vascular assessment, and capped applications at 8.
+      </aside>
+      <div>
+        <p class="body">The withdrawn LCDs would have accomplished by coverage restriction what the PFS accomplished by payment math. With the rate cut live, the products that depended on inflated ASP for viability exit the market regardless of whether they remain "covered." This is the tell.</p>
+        <p class="body">AATB and manufacturers are lobbying for rate increases. APMA formally opposed the payment proposal but won on arthrodesis RVUs — <strong>CPT 28755 jumped from 4.88 to 7.50 wRVU</strong> — as partial consolation. The trade association response continues, but the economics are settled for CY 2026.</p>
+        <p class="body">Three MACs — Novitas, CGS, and First Coast — kept their own skin substitute policies active. Providers in those jurisdictions are not on the same glide path as the rest of the country.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========= SECTION 6: TAKEAWAYS ========= -->
+  <section>
+    <div class="section-num"><span>§ 06</span><span class="bar"></span><span>What This Means</span></div>
+    <h2>Four lessons <em>for the next CMS cycle</em>.</h2>
+
+    <div class="takeaways">
+      <div class="take">
+        <div class="take-num">01</div>
+        <div class="take-title">Payment methodology is a policy lever, not a technicality.</div>
+        <div class="take-body">CMS used rate reform to accomplish what LCDs could not — without the political cost of coverage denials. When the economics change, the prescribing patterns change. The LCDs became redundant on the same day the PFS was finalized.</div>
+      </div>
+      <div class="take">
+        <div class="take-num">02</div>
+        <div class="take-title">Specialties are judged by their worst billers.</div>
+        <div class="take-body">A handful of podiatrists and NPs running industrial-scale schemes reshape how an entire specialty is perceived by OIG, DOJ, and Congress. When the OIG report landed, "podiatry" appeared in the enforcement framing. The reputational externality is not hypothetical.</div>
+      </div>
+      <div class="take">
+        <div class="take-num">03</div>
+        <div class="take-title">Measurement is now the audit surface.</div>
+        <div class="take-body">Applied cm² determines payment. Estimated wound areas that were previously rounding errors are now direct margin hits and audit flags. Objective, repeatable measurement — including digital or AI-assisted workflows — is no longer optional for wound-focused practices.</div>
+      </div>
+      <div class="take">
+        <div class="take-num">04</div>
+        <div class="take-title">Enforcement is not receding with reimbursement.</div>
+        <div class="take-body">DOJ stood up a Health Care Fraud Data Fusion Center in 2026. Wound Care Initiative remains a named priority. Pre-2026 billing patterns are still on the table. Providers with significant skin substitute volume in the ASP+6% era should know where their documentation stands.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========= SOURCES ========= -->
+  <div class="sources">
+    <h3>Sources · Primary &amp; Secondary</h3>
+    <ol>
+      <li>CMS. Calendar Year 2026 Medicare Physician Fee Schedule Final Rule (CMS-1832-F). Oct. 31, 2025.</li>
+      <li>CMS. "Final Local Coverage Determinations for Certain Skin Substitutes Withdrawn." Dec. 24, 2025.</li>
+      <li>HHS OIG. "Medicare Part B Payment Trends for Skin Substitutes Raise Major Concerns About Fraud, Waste, and Abuse." Sept. 2025.</li>
+      <li>DOJ Criminal Fraud Section. 2025 Year in Review. Published Jan. 22, 2026.</li>
+      <li>APMA. "Medicare Finalizes 2026 Physician Fee Schedule." Oct. 31, 2025. · APMA. "CMS Withdraws Skin Substitute LCDs Scheduled for 2026." Dec. 29, 2025.</li>
+      <li>Applied Policy. "Skin Substitutes in Medicare: Trends, Challenges, and CMS's Policy Response." Updated Dec. 29, 2025.</li>
+      <li>WoundSource (HMP Global). "CMS Announces New Skin Substitute Payment Methodology: Possible Next Steps." Nov. 5, 2025.</li>
+      <li>United States v. Vohra, No. 1:25-cv-21570-RKA (S.D. Fla. Apr. 4, 2025).</li>
+    </ol>
+  </div>
+
+  <!-- ========= DISCLAIMER ========= -->
+  <div class="disclaimer">
+    <strong>Editorial &amp; AI Disclosure</strong>
+    This brief was researched and drafted with AI assistance, then reviewed and edited by the author. It is independent policy analysis, not legal, billing, or clinical advice. Readers are responsible for verifying institutional access terms for any cited source. Payment rates and regulatory status are current as of the filing date; providers should consult CMS, their MAC, and qualified counsel before acting on any information herein. The Guidewire is not affiliated with any residency program, hospital, or specialty society.
+  </div>
+
+  <!-- ========= COLOPHON ========= -->
+  <div class="colophon">
+    <div>
+      <div class="mark">The Guidewire</div>
+      <div style="margin-top:6px">Fraunces · JetBrains Mono · Set on a 12-column grid</div>
+    </div>
+    <div class="cmark">© 2026 Peter Sorensen, DPM · All rights reserved</div>
+  </div>
+
+</div>
+</body>
+</html>

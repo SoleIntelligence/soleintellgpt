@@ -107,5 +107,274 @@ window.INFOGRAPHICS = [
     url: "leave-the-matches-at-home.html",
     date: "2025-06-15",
     thumbnail: "Sole Intelligence Images/leave-the-matches-at-home.png"
+  },
+
+  // ===== Added from the "New things to add to website" batch =====
+
+  // ---- AI Tutorials ----
+  {
+    title: "GEO Ate SEO",
+    description: "Generative-engine optimization is rewiring how patients find you. How it differs from SEO — and what the hype gets dead wrong.",
+    kicker: "AI How To",
+    category: "ai-tutorials",
+    url: "GEO_how_to.html",
+    date: "2026-06-24",
+    thumbnail: "Sole Intelligence Images/GEO_how_to.png"
+  },
+  {
+    title: "AI Literacy Is a Clinical Skill",
+    description: "The real risk isn't a machine taking your job — it's trusting an AI output you can't verify. Why AI literacy now belongs in the clinical skillset.",
+    kicker: "AI in Practice",
+    category: "ai-tutorials",
+    url: "Irresponsible.html",
+    date: "2026-05-24",
+    thumbnail: "Sole Intelligence Images/irresponsible.png"
+  },
+  {
+    title: "The Deskilling Turn",
+    description: "2026 is the year clinicians started naming AI skill-erosion out loud. The fix isn't less AI — it's treating AI as a competency.",
+    kicker: "AI in Practice",
+    category: "ai-tutorials",
+    url: "deskilling.html",
+    date: "2026-06-11",
+    thumbnail: "Sole Intelligence Images/deskilling.png"
+  },
+
+  // ---- Student & Resident Education ----
+  {
+    title: "The Second MTPJ Problem",
+    description: "A surgical-atlas teaching brief on the lesser MTPJ — from cutting it out to saving it.",
+    kicker: "Surgical Atlas",
+    category: "student-resident",
+    url: "2ndmpj.html",
+    date: "2026-06-11",
+    thumbnail: "Sole Intelligence Images/2ndmpj.png"
+  },
+  {
+    title: "The Lapidus Procedure",
+    description: "First-ray stabilization by arthrodesis of the first TMT joint — indications, technique, and correction principles.",
+    kicker: "Surgical Atlas",
+    category: "student-resident",
+    url: "lapidus.html",
+    date: "2026-04-04",
+    thumbnail: "Sole Intelligence Images/lapidus.png"
+  },
+  {
+    title: "How Deep Should You Microfracture?",
+    description: "What the literature actually says about awl depth, plate violation, and when to escalate.",
+    kicker: "Surgical Pearls",
+    category: "student-resident",
+    url: "microfx.html",
+    date: "2026-05-19",
+    thumbnail: "Sole Intelligence Images/microfx.png"
+  },
+  {
+    title: "Plate Function: Start With the Force",
+    description: "The plate isn't the construct — the force it neutralizes is. Four fixation modes, matched to the failure pattern.",
+    kicker: "Field Notes",
+    category: "student-resident",
+    url: "plating.html",
+    date: "2026-04-29",
+    thumbnail: "Sole Intelligence Images/plating.png"
+  },
+  {
+    title: "TMT Slippage",
+    description: "Classroom notes on distal osteotomy failure modes — the post-op subluxation nobody named until recently.",
+    kicker: "Classroom Notes",
+    category: "student-resident",
+    url: "tmt_slippage.html",
+    date: "2026-05-16",
+    thumbnail: "Sole Intelligence Images/tmt_slippage.png"
+  },
+  {
+    title: "The Quiet Rise of DMMO",
+    description: "A burr, no fixation, weight-bearing on day one. How one minimally invasive osteotomy reshaped the metatarsalgia conversation.",
+    kicker: "Surgical Technique",
+    category: "student-resident",
+    url: "dmmo.html",
+    date: "2026-05-05",
+    thumbnail: "Sole Intelligence Images/dmmo.png"
+  },
+  {
+    title: "History of the APMA",
+    description: "A century of standing on its own two feet — the organizational story of American podiatry, 1895 to today.",
+    kicker: "History",
+    category: "student-resident",
+    url: "apma_history.html",
+    date: "2026-04-04",
+    thumbnail: "Sole Intelligence Images/apma_history.png"
+  },
+
+  // ---- Podiatry Politics & Culture ----
+  {
+    title: "Who Gets to Accredit Podiatry?",
+    description: "A neutral, both-sides explainer of the debate over moving podiatric residencies from CPME to ACGME accreditation.",
+    kicker: "Accreditation",
+    category: "politics-culture",
+    url: "acgme.html",
+    date: "2026-06-24",
+    thumbnail: "Sole Intelligence Images/acgme.png"
+  },
+  {
+    title: "The One Accreditor Question",
+    description: "Should podiatric residency move under the ACGME? The honest answer is a single disagreement that decides everything else.",
+    kicker: "Accreditation",
+    category: "politics-culture",
+    url: "one_accreditor.html",
+    date: "2026-06-11",
+    thumbnail: "Sole Intelligence Images/one_accreditor.png"
+  },
+  {
+    title: "War Room: ACGME Scenario Planning",
+    description: "A consequence-analysis matrix for the ACGME accreditation transition, built for podiatric surgery residents.",
+    kicker: "Scenario Planning",
+    category: "politics-culture",
+    url: "warroom.html",
+    date: "2026-04-04",
+    thumbnail: "Sole Intelligence Images/warroom.png"
+  },
+  {
+    title: "The One Board Question",
+    description: "Two competing boards, fifty years of parallel certification, a stalled unification effort — and a profession still divided.",
+    kicker: "Certification",
+    category: "politics-culture",
+    url: "one_board.html",
+    date: "2026-05-05",
+    thumbnail: "Sole Intelligence Images/one_board.png"
+  },
+  {
+    title: "The Two Board Dilemma",
+    description: "ABFAS vs. ABPM: how podiatry became one of the only doctoral professions with two separate certifying boards.",
+    kicker: "Certification",
+    category: "politics-culture",
+    url: "twoboards.html",
+    date: "2026-04-04",
+    thumbnail: "Sole Intelligence Images/twoboards.png"
+  },
+  {
+    title: "2026 APMA House of Delegates",
+    description: "An official outcomes brief on the 2026 HOD — what passed, what it means, and why the next generation should care.",
+    kicker: "Governance",
+    category: "politics-culture",
+    url: "hod.html",
+    date: "2026-04-04",
+    thumbnail: "Sole Intelligence Images/hod.png"
+  },
+  {
+    title: "30 Years of the House of Delegates",
+    description: "100 presidents, five major themes, and the pivotal votes that shaped APMA governance from 1996 to today.",
+    kicker: "Governance",
+    category: "politics-culture",
+    url: "HOD_hx.html",
+    date: "2026-04-04",
+    thumbnail: "Sole Intelligence Images/HOD_hx.png"
+  },
+  {
+    title: "The APMA Corporate Council",
+    description: "Six companies just got a seat at the APMA table. Who's in the room, what they sell, and what residents should watch for.",
+    kicker: "Profession",
+    category: "politics-culture",
+    url: "corporate.html",
+    date: "2026-05-22",
+    thumbnail: "Sole Intelligence Images/corporate.png"
+  },
+  {
+    title: "The Ledger",
+    description: "Industry built modern podiatric surgery — and bent it. A data-first reckoning with partnership and its price.",
+    kicker: "Industry",
+    category: "politics-culture",
+    url: "industry.html",
+    date: "2026-05-05",
+    thumbnail: "Sole Intelligence Images/industry.png"
+  },
+  {
+    title: "The Skin Substitute Debacle",
+    description: "A forty-fold spending spike, a billion-dollar fraud sentence, and the Medicare rate cut that blew up a business model.",
+    kicker: "Policy",
+    category: "politics-culture",
+    url: "skinsubs.html",
+    date: "2026-05-05",
+    thumbnail: "Sole Intelligence Images/skinsubs.png"
+  },
+  {
+    title: "A Compact of Their Own",
+    description: "Podiatry finally gets an interstate licensure compact — and why most residents won't qualify on day one.",
+    kicker: "Licensure",
+    category: "politics-culture",
+    url: "ipmic.html",
+    date: "2026-05-17",
+    thumbnail: "Sole Intelligence Images/ipmic.png"
+  },
+  {
+    title: "Fellowship Inflation",
+    description: "A profession quietly built a second residency — and forgot to write the rules. A dossier on fellowship architecture.",
+    kicker: "Training",
+    category: "politics-culture",
+    url: "fellowship.html",
+    date: "2026-05-05",
+    thumbnail: "Sole Intelligence Images/fellowship.png"
+  },
+  {
+    title: "Fellowship: Tool or Badge?",
+    description: "What r/Podiatry actually thinks about the extra training year — and the narrow cases where it still pays off.",
+    kicker: "Training",
+    category: "politics-culture",
+    url: "fellowship_roi.html",
+    date: "2026-05-21",
+    thumbnail: "Sole Intelligence Images/fellowship_roi.png"
+  },
+  {
+    title: "The False Tradeoff",
+    description: "The recruitment debate assumes quality and quantity are opposites. They're both downstream of the same unsolved problem.",
+    kicker: "Profession",
+    category: "politics-culture",
+    url: "student_recruitment.html",
+    date: "2026-05-05",
+    thumbnail: "Sole Intelligence Images/student_recruitment.png"
+  },
+  {
+    title: "Podiatry at a Crossroads",
+    description: "Enrollment pressure, board wars, and a credentialing crisis — what brewed below the surface from 2015 to 2025.",
+    kicker: "Profession",
+    category: "politics-culture",
+    url: "crossroads.html",
+    date: "2026-04-04",
+    thumbnail: "Sole Intelligence Images/crossroads.png"
+  },
+  {
+    title: "AMA · AOA · APMA",
+    description: "A triangular history of organized medicine's three houses — and where podiatry fits in the structure.",
+    kicker: "History",
+    category: "politics-culture",
+    url: "orgs.html",
+    date: "2026-04-04",
+    thumbnail: "Sole Intelligence Images/orgs.png"
+  },
+  {
+    title: "What SDN Said",
+    description: "A decade of anonymous attendings, residents, and pre-pods on Student Doctor Network — podiatry's forum era, reviewed.",
+    kicker: "Culture",
+    category: "politics-culture",
+    url: "sdn.html",
+    date: "2026-04-04",
+    thumbnail: "Sole Intelligence Images/sdn.png"
+  },
+  {
+    title: "The Bomb & The Model",
+    description: "A comparative cultural dossier on how the rhetoric and existential stakes of the nuclear age echo in the age of AI.",
+    kicker: "Cultural Dossier",
+    category: "politics-culture",
+    url: "nuclear.html",
+    date: "2026-05-05",
+    thumbnail: "Sole Intelligence Images/nuclear.png"
+  },
+  {
+    title: "The Diabetic Foot Bill — Video",
+    description: "A short NotebookLM video on the Diabetic Foot Bill I advocated for on Capitol Hill.",
+    kicker: "Video",
+    category: "politics-culture",
+    url: "Sole Intelligence Images/diabetesbill.mp4",
+    date: "2026-06-18",
+    thumbnail: "Sole Intelligence Images/diabeticfootbill.png"
   }
 ]

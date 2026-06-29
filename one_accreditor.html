@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The One Accreditor Question — The Guidewire</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,500&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f4efe4;
+    --paper-2:#ece4d3;
+    --ink:#1c1a17;
+    --ink-soft:#3a352e;
+    --rule:#cfc6b2;
+    --red:#b8341a;
+    --red-deep:#8f2713;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-font-smoothing:antialiased}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Fraunces',Georgia,serif;
+    line-height:1.6;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(28,26,23,0.015) 0 1px, transparent 1px 4px);
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:0 28px 100px}
+
+  /* Masthead */
+  .masthead{
+    border-bottom:3px solid var(--ink);
+    padding:34px 0 14px;
+    margin-bottom:0;
+  }
+  .masthead .top{
+    display:flex;justify-content:space-between;align-items:baseline;
+    font-family:'JetBrains Mono',monospace;
+    font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+  .masthead h1{
+    font-family:'Fraunces',serif;
+    font-weight:900;
+    font-size:clamp(38px,9vw,76px);
+    letter-spacing:-.02em;
+    line-height:.92;
+    margin:10px 0 6px;
+    text-transform:uppercase;
+  }
+  .masthead .sub{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--red-deep);
+  }
+
+  /* Kicker + headline */
+  .kicker{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;letter-spacing:.24em;text-transform:uppercase;
+    color:var(--red);font-weight:700;
+    margin:46px 0 16px;
+    display:flex;align-items:center;gap:12px;
+  }
+  .kicker::after{content:"";flex:1;height:1px;background:var(--rule)}
+
+  h2.headline{
+    font-family:'Fraunces',serif;
+    font-weight:900;
+    font-size:clamp(34px,6.5vw,58px);
+    line-height:1.0;
+    letter-spacing:-.02em;
+    margin-bottom:18px;
+  }
+  .dek{
+    font-size:clamp(18px,2.5vw,21px);
+    font-style:italic;
+    color:var(--ink-soft);
+    max-width:60ch;
+    margin-bottom:30px;
+  }
+
+  .byline{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-soft);
+    border-top:1px solid var(--rule);
+    border-bottom:1px solid var(--rule);
+    padding:11px 0;margin-bottom:38px;
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;
+  }
+  .byline b{color:var(--red-deep);font-weight:700}
+
+  p{font-size:18px;margin-bottom:18px;color:var(--ink-soft)}
+  p strong{color:var(--ink);font-weight:600}
+  .lede{font-size:20px;color:var(--ink)}
+  .lede::first-letter{
+    font-weight:900;font-size:3.4em;float:left;line-height:.72;
+    padding:6px 10px 0 0;color:var(--red);
+  }
+
+  /* Section label */
+  .sec{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--ink);font-weight:700;
+    margin:42px 0 14px;
+    padding-bottom:7px;
+    border-bottom:2px solid var(--ink);
+  }
+
+  /* The two cases */
+  .case{
+    border:1.5px solid var(--ink);
+    background:var(--paper-2);
+    padding:26px 26px 8px;
+    margin:24px 0;
+    position:relative;
+  }
+  .case .tag{
+    position:absolute;top:-13px;left:20px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;
+    font-weight:700;padding:4px 12px;
+  }
+  .case.for .tag{background:var(--ink);color:var(--paper)}
+  .case.against .tag{background:var(--red);color:var(--paper)}
+  .case h3{
+    font-family:'Fraunces',serif;font-weight:700;
+    font-size:26px;line-height:1.1;margin:6px 0 14px;letter-spacing:-.01em;
+  }
+  .case ol{margin:0 0 16px 0;padding:0;list-style:none;counter-reset:c}
+  .case li{
+    position:relative;padding-left:42px;margin-bottom:16px;
+    font-size:17px;color:var(--ink-soft);
+  }
+  .case li::before{
+    counter-increment:c;content:counter(c,decimal-leading-zero);
+    position:absolute;left:0;top:1px;
+    font-family:'JetBrains Mono',monospace;font-weight:700;font-size:13px;
+    color:var(--red);
+  }
+  .case li b{color:var(--ink);font-weight:600}
+
+  .pillar{
+    border-left:4px solid var(--red);
+    background:rgba(184,52,26,0.05);
+    padding:16px 20px;margin:0 0 18px;
+    font-size:17px;
+  }
+  .pillar .lbl{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--red-deep);font-weight:700;display:block;margin-bottom:6px;
+  }
+
+  /* The crux */
+  .crux{
+    border:none;
+    border-top:3px solid var(--ink);
+    border-bottom:3px solid var(--ink);
+    padding:30px 0;margin:46px 0 10px;
+    text-align:center;
+  }
+  .crux .lbl{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;letter-spacing:.24em;text-transform:uppercase;
+    color:var(--red);font-weight:700;margin-bottom:14px;
+  }
+  .crux .q{
+    font-family:'Fraunces',serif;font-weight:700;font-style:italic;
+    font-size:clamp(22px,4vw,30px);line-height:1.18;
+    color:var(--ink);max-width:48ch;margin:0 auto;
+  }
+
+  .colophon{
+    margin-top:60px;padding-top:18px;border-top:1px solid var(--rule);
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px;letter-spacing:.08em;color:#8a8170;line-height:1.7;
+  }
+  .colophon .c{color:#a39a86}
+
+  @media(max-width:520px){
+    .wrap{padding:0 18px 70px}
+    p,.case li{font-size:16px}
+    .case{padding:22px 18px 6px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="top">
+      <span>The Guidewire</span>
+      <span>Policy &amp; Analysis</span>
+    </div>
+    <h1>The Guidewire</h1>
+    <div class="sub">An editorial brief on the profession</div>
+  </header>
+
+  <div class="kicker">The Accreditation Brief</div>
+
+  <h2 class="headline">The One Accreditor Question</h2>
+  <p class="dek">Should podiatric residency training move under the ACGME? The honest answer isn&rsquo;t a verdict &mdash; it&rsquo;s a single disagreement that decides everything else.</p>
+
+  <div class="byline">
+    <span>By <b>Peter Sorensen, DPM</b></span>
+    <span>Two cases, one crux</span>
+  </div>
+
+  <p class="lede">Every few years the question resurfaces, and every time it gets argued as if it were about respect. It isn&rsquo;t. Strip away the status anxiety and a sharper version emerges &mdash; one where both sides are serious, evidence-based, and almost entirely talking past each other. Below are the two strongest cases, built to their best form, followed by the single point on which they actually diverge.</p>
+
+  <div class="sec">Case I &mdash; For Single Accreditation</div>
+
+  <div class="pillar">
+    <span class="lbl">The load-bearing pillar</span>
+    The experiment has already been run. From <strong>2015&ndash;2020</strong>, osteopathic medicine merged into ACGME single accreditation, carrying the identical fear of being absorbed. The solution was <strong>Osteopathic Recognition</strong> &mdash; a designation inside ACGME for programs preserving their distinctive training. DOs stopped being a separate tier. A &ldquo;Podiatric Recognition&rdquo; pathway isn&rsquo;t speculative; it&rsquo;s a copy of a thing that works.
+  </div>
+
+  <div class="case for">
+    <span class="tag">The Case For</span>
+    <h3>Join the building before litigating from the parking lot.</h3>
+    <ol>
+      <li><b>It collapses the &ldquo;separate, therefore lesser&rdquo; frame.</b> So long as podiatry sits in its own silo, every credentialing committee and skeptical orthopod has a structural reason to treat it as adjacent-to-medicine. Shared accreditation removes the cleanest argument the skeptics have.</li>
+      <li><b>It attacks the worst internal problem &mdash; program variance.</b> The real scandal isn&rsquo;t legitimacy; it&rsquo;s the spread between surgically rich programs and those that can&rsquo;t generate volume. ACGME&rsquo;s machinery &mdash; Milestones, CLER, enforced minimums, continuous data &mdash; is far better resourced to raise the floor.</li>
+      <li><b>Interoperability.</b> Off-service rotations in vascular, ID, endocrine, and plastics stop being negotiated favors and start counting inside one shared framework. Residents become mobile within a single system instead of two.</li>
+      <li><b>Pipeline defense.</b> A profession fighting declining applicant numbers benefits from the strongest possible &ldquo;this is mainstream medicine&rdquo; signal at the front door. ACGME accreditation is that signal.</li>
+      <li><b>It&rsquo;s the prerequisite for any larger ambition.</b> Whatever the long game &mdash; broader recognition, federal parity, eventual convergence &mdash; none of it is arguable while podiatry maintains a separate accreditation bureaucracy.</li>
+    </ol>
+  </div>
+
+  <div class="sec">Case II &mdash; Against Single Accreditation</div>
+
+  <div class="pillar">
+    <span class="lbl">The load-bearing pillar</span>
+    The osteopathic analogy breaks at the joint. DOs walked into ACGME as <strong>full physicians with an unlimited license in all 50 states</strong> &mdash; accreditation was the last formality. Podiatry&rsquo;s separateness is written into 50 state practice acts that define a <strong>limited license by anatomy</strong>. ACGME has no authority over what a DPM can legally bill or cut. Joining doesn&rsquo;t erase the difference &mdash; it spotlights the one resident in the building whose scope is set by statute, not by training.
+  </div>
+
+  <div class="case against">
+    <span class="tag">The Case Against</span>
+    <h3>The thing that makes podiatry separate is upstream of accreditation.</h3>
+    <ol>
+      <li><b>&ldquo;Raising the floor&rdquo; is a shrinking argument in a quality costume.</b> ACGME standards would close weak programs &mdash; but those slots evaporate, they don&rsquo;t transfer. For a profession already cutting its own pipeline, losing training capacity to case-minimum and resource requirements isn&rsquo;t corrective. It&rsquo;s subtractive.</li>
+      <li><b>You&rsquo;d negotiate from a fractured house.</b> Podiatry can&rsquo;t unify its own boards internally. Walking in with that disunity means you don&rsquo;t dictate terms &mdash; you accept whatever structure they offer a tiny minority with no votes. The realistic risk isn&rsquo;t lost identity; it&rsquo;s second-tier status made official.</li>
+      <li><b>The scope logic runs backwards.</b> Scope is statutory, won state by state. Accreditation has no legal bearing on it. You&rsquo;d spend the profession&rsquo;s political capital on a change that delivers no scope gain &mdash; and arguably signals subordination at the statehouse.</li>
+      <li><b>It&rsquo;s a structural sledgehammer for a perception problem.</b> The legitimacy gap is real but is largely visibility plus specific credentialing fights &mdash; VA, military, privileging, payer panels. Those are winnable directly: cheaper, faster, without dissolving your own accreditor or surviving a transition you may not have the bandwidth to absorb.</li>
+    </ol>
+  </div>
+
+  <div class="sec">The Crux</div>
+  <p>Notice what the two cases never actually argue about. The case <strong>for</strong> assumes podiatry&rsquo;s core problem is one a stronger accreditor can fix. The case <strong>against</strong> assumes that problem lives entirely upstream &mdash; in statute, in board fragmentation, in a thin public footprint &mdash; where no accreditor can reach. Both are internally coherent. They simply locate the disease in different organs.</p>
+
+  <p>Which means the real debate is narrower, and more answerable, than the usual shouting match: <strong>not</strong> &ldquo;is ACGME good,&rdquo; but a single diagnostic question.</p>
+
+  <div class="crux">
+    <div class="lbl">Everything else is downstream of this</div>
+    <div class="q">Is podiatry&rsquo;s central problem one that a stronger accreditor can fix &mdash; or one that is upstream of accreditation entirely?</div>
+  </div>
+
+  <p>The against-case quietly bets that podiatry can solve legitimacy and enrollment from inside its own walls. The last decade is not strong evidence for that bet. The for-case quietly bets that ACGME would accept podiatry on terms that preserve the degree and the scope &mdash; which is precisely the fight, not a given. Answer the crux honestly and the rest of the argument resolves on its own.</p>
+
+  <div class="colophon">
+    THE GUIDEWIRE &mdash; POLICY &amp; ANALYSIS<br>
+    A two-sided brief. The framing is the argument; the verdict is yours.<br>
+    <span class="c">&copy; 2026 Peter Sorensen, DPM</span>
+  </div>
+
+</div>
+</body>
+</html>

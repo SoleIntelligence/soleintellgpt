@@ -5,9 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="About Peter Sorensen, DPM, MHA — the person behind The GuideWire and Sole Intelligence." />
   <title>About — The GuideWire</title>
+  <script>document.documentElement.classList.add('js');</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -42,25 +43,25 @@
     <main>
       <section class="section about-hero">
         <div class="container about-grid">
-          <div class="about-image">
+          <div class="about-image" data-reveal>
             <img src="Sole Intelligence Images/headshot.jpg" alt="Headshot of Peter Sorensen, DPM, MHA" />
           </div>
           <div class="about-copy">
-            <p class="eyebrow">About</p>
-            <h1>Peter Sorensen, <span class="degree">DPM, MHA</span></h1>
-            <p class="lead">
+            <p class="eyebrow" data-reveal>About</p>
+            <h1 data-reveal style="--d:.05s">Peter Sorensen, <span class="degree">DPM, MHA</span></h1>
+            <p class="lead" data-reveal style="--d:.12s">
               Podiatry resident, educator, and builder — focused on helping the next generation navigate medicine with more clarity and less friction.
             </p>
-            <p>
+            <p data-reveal style="--d:.18s">
               Peter earned his DPM and MHA from Des Moines University after completing a Spanish degree at Southern Utah University. His path into podiatry began after an ankle injury and surgery of his own.
             </p>
-            <p>
+            <p data-reveal style="--d:.22s">
               Sole Intelligence grew out of two overlapping interests: practical medical education and the real-world use of AI. Peter has spoken with residency programs about using AI in research and clinical life, serves as Podiatry Residency Research Chief for ASVI, and is a resident member of the American College of Artificial Intelligence and Medicine.
             </p>
-            <p>
+            <p data-reveal style="--d:.26s">
               His work also extends beyond the clinic. Through advocacy, policy engagement, and APMA leadership spaces, he puts his MHA to work on issues that shape the future of the profession — including Capitol Hill meetings on podiatry legislation and involvement with the APMA Emerging Leaders Program for 2026–2027.
             </p>
-            <div class="badge-row">
+            <div class="badge-row" data-reveal style="--d:.3s">
               <span class="badge">Clinical education</span>
               <span class="badge">Biomedical research</span>
               <span class="badge">Health policy</span>
@@ -71,7 +72,7 @@
       </section>
 
       <section id="research" class="section alt-section">
-        <div class="container section-head">
+        <div class="container section-head" data-reveal>
           <div>
             <p class="eyebrow">Research</p>
             <h2>Selected publications and presentations</h2>
@@ -80,79 +81,111 @@
         </div>
         <div class="container">
           <div class="research-grid">
-            <article class="content-card">
-              <div class="content-card-media">
-                <img src="Sole Intelligence Images/Martorell.jpg" alt="Martorell ulcer publication visual" />
-              </div>
-              <div class="content-card-body">
-                <p class="card-kicker">Peer-reviewed publication</p>
-                <h3>Recurrent Martorell ulcer in Wounds</h3>
-                <p>Case report on recurrent Martorell's ulcer with therapeutic success in a hypertensive patient.</p>
-                <a class="content-card-link" href="https://www.hmpgloballearningnetwork.com/site/wounds/case-report/recurrent-martorell-ulcer-patient-hypertension-therapeutic-success" target="_blank" rel="noreferrer">Read publication →</a>
-              </div>
-            </article>
-
-            <article class="content-card">
-              <div class="content-card-media">
-                <img src="Sole Intelligence Images/PCFD.jpg" alt="Podiatry Today cover feature on progressive collapsing flatfoot deformity surgery" />
-              </div>
-              <div class="content-card-body">
-                <p class="card-kicker">Cover feature</p>
-                <h3>Advances in Progressive Collapsing Flatfoot Deformity Surgery</h3>
-                <p>Primary author on the January 2025 Podiatry Today cover feature.</p>
-                <a class="content-card-link" href="https://www.hmpgloballearningnetwork.com/site/podiatry/advances-progressive-collapsing-flatfoot-deformity-surgery" target="_blank" rel="noreferrer">Read feature →</a>
+            <article class="content-card bezel" data-reveal>
+              <div class="bezel-core">
+                <div class="content-card-media">
+                  <img src="Sole Intelligence Images/Martorell.jpg" alt="Martorell ulcer publication visual" />
+                </div>
+                <div class="content-card-body">
+                  <p class="card-kicker">Peer-reviewed publication</p>
+                  <h3>Recurrent Martorell ulcer in Wounds</h3>
+                  <p>Case report on recurrent Martorell's ulcer with therapeutic success in a hypertensive patient.</p>
+                  <a class="content-card-link" href="https://www.hmpgloballearningnetwork.com/site/wounds/case-report/recurrent-martorell-ulcer-patient-hypertension-therapeutic-success" target="_blank" rel="noreferrer">Read publication →</a>
+                </div>
               </div>
             </article>
 
-            <article class="content-card">
-              <div class="content-card-media">
-                <img src="Sole Intelligence Images/Staged Dynamization.jpg" alt="Poster for staged dynamization nonunion salvage technique" />
-              </div>
-              <div class="content-card-body">
-                <p class="card-kicker">Poster presentation</p>
-                <h3>Staged Dynamization for Salvage of Recurrent 1st MTPJ Nonunion</h3>
-                <p>A novel salvage technique using K-wires and teriparatide augmentation. Presented at APMA The National 2026.</p>
-              </div>
-            </article>
-
-            <article class="content-card">
-              <div class="content-card-media">
-                <img src="Sole Intelligence Images/Calc Fx.jpg" alt="Poster for bilateral calcaneal stress fractures case study" />
-              </div>
-              <div class="content-card-body">
-                <p class="card-kicker">Poster presentation</p>
-                <h3>Bilateral Calcaneal Stress Fractures</h3>
-                <p>Case study following shoe gear transition. Presented at APMA The National 2025.</p>
+            <article class="content-card bezel" data-reveal style="--d:.06s">
+              <div class="bezel-core">
+                <div class="content-card-media">
+                  <img src="Sole Intelligence Images/PCFD.jpg" alt="Podiatry Today cover feature on progressive collapsing flatfoot deformity surgery" />
+                </div>
+                <div class="content-card-body">
+                  <p class="card-kicker">Cover feature</p>
+                  <h3>Advances in Progressive Collapsing Flatfoot Deformity Surgery</h3>
+                  <p>Primary author on the January 2025 Podiatry Today cover feature.</p>
+                  <a class="content-card-link" href="https://www.hmpgloballearningnetwork.com/site/podiatry/advances-progressive-collapsing-flatfoot-deformity-surgery" target="_blank" rel="noreferrer">Read feature →</a>
+                </div>
               </div>
             </article>
 
-            <article class="content-card">
-              <div class="content-card-media">
-                <img src="Sole Intelligence Images/Fish Skin.jpg" alt="Poster for fish skin grafting in necrotizing fasciitis" />
-              </div>
-              <div class="content-card-body">
-                <p class="card-kicker">Poster presentation</p>
-                <h3>Fish Skin Grafting in Necrotizing Fasciitis</h3>
-                <p>Presented at the ASVI Research Symposium 2025.</p>
+            <article class="content-card bezel" data-reveal style="--d:.12s">
+              <div class="bezel-core">
+                <div class="content-card-media">
+                  <img src="Sole Intelligence Images/1stmpjposter.png" alt="Conference poster: Staged Dynamization for Salvage of Recurrent 1st MTPJ Joint Nonunion, presented at APMA The National 2026" />
+                </div>
+                <div class="content-card-body">
+                  <p class="card-kicker">Poster presentation</p>
+                  <h3>Staged Dynamization for Salvage of Recurrent 1st MTPJ Nonunion</h3>
+                  <p>A novel salvage technique using K-wires and teriparatide augmentation. Presented at APMA The National 2026.</p>
+                </div>
               </div>
             </article>
 
-            <article class="content-card">
-              <div class="content-card-media">
-                <img src="Sole Intelligence Images/miles.jpg" alt="Peter presenting a limb salvage case study at the 2025 MILES conference" />
-              </div>
-              <div class="content-card-body">
-                <p class="card-kicker">Conference presentation</p>
-                <h3>MILES Conference 2025</h3>
-                <p>Limb salvage case presentation in San Antonio.</p>
+            <article class="content-card bezel" data-reveal>
+              <div class="bezel-core">
+                <div class="content-card-media">
+                  <img src="Sole Intelligence Images/Calc Fx.jpg" alt="Poster for bilateral calcaneal stress fractures case study" />
+                </div>
+                <div class="content-card-body">
+                  <p class="card-kicker">Poster presentation</p>
+                  <h3>Bilateral Calcaneal Stress Fractures</h3>
+                  <p>Case study following shoe gear transition. Presented at APMA The National 2025.</p>
+                </div>
               </div>
             </article>
+
+            <article class="content-card bezel" data-reveal style="--d:.06s">
+              <div class="bezel-core">
+                <div class="content-card-media">
+                  <img src="Sole Intelligence Images/Fish Skin.jpg" alt="Poster for fish skin grafting in necrotizing fasciitis" />
+                </div>
+                <div class="content-card-body">
+                  <p class="card-kicker">Poster presentation</p>
+                  <h3>Fish Skin Grafting in Necrotizing Fasciitis</h3>
+                  <p>Presented at the ASVI Research Symposium 2025.</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="content-card bezel" data-reveal style="--d:.12s">
+              <div class="bezel-core">
+                <div class="content-card-media">
+                  <img src="Sole Intelligence Images/miles.jpg" alt="Peter presenting a limb salvage case study at the 2025 MILES conference" />
+                </div>
+                <div class="content-card-body">
+                  <p class="card-kicker">Conference presentation</p>
+                  <h3>MILES Conference 2025</h3>
+                  <p>Limb salvage case presentation in San Antonio.</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="content-card bezel" data-reveal>
+              <div class="bezel-core">
+                <div class="content-card-media">
+                  <img src="Sole Intelligence Images/tumor.png" alt="Peter Sorensen presenting his tibial nerve tumor excision and allograft reconstruction poster" style="object-position: center top;" />
+                </div>
+                <div class="content-card-body">
+                  <p class="card-kicker">Poster presentation</p>
+                  <h3>Tibial Nerve Tumor Excision &amp; Allograft Reconstruction</h3>
+                  <p>Restoring connectivity after major tibial nerve tumor excision. Presented at the ASVI Research Symposium 2026.</p>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+        <div class="container">
+          <div class="honors-strip" data-reveal>
+            <span class="honors-label">Honors</span>
+            <span class="badge">Alpha Eta Honor Society</span>
+            <span class="badge">APMA Educational Foundation Scholarship</span>
           </div>
         </div>
       </section>
 
       <section id="advocacy" class="section">
-        <div class="container section-head">
+        <div class="container section-head" data-reveal>
           <div>
             <p class="eyebrow">Advocacy</p>
             <h2>Policy, leadership, and showing up where decisions get made</h2>
@@ -160,7 +193,7 @@
         </div>
         <div class="container">
           <div class="advocacy-layout">
-            <div class="advocacy-copy">
+            <div class="advocacy-copy" data-reveal>
               <p>
                 Peter's advocacy work sits at the intersection of podiatric medicine, health policy, and practical leadership — meetings on Capitol Hill, engagement with APMA House of Delegates discussions, and a clear interest in helping residents and students feel less shut out from the rooms where professional decisions happen.
               </p>
@@ -183,40 +216,48 @@
               </div>
               <a class="button button-secondary" href="https://www.instagram.com/reel/DRdH66zDjT1/" target="_blank" rel="noreferrer">
                 Watch APMA Capitol video
-                <svg class="button-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span class="button-pip" aria-hidden="true">
+                  <svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
               </a>
             </div>
 
             <div class="gallery-stack">
-              <figure class="gallery-card">
+              <figure class="gallery-card" data-reveal>
                 <img src="Sole Intelligence Images/ToddYoung.jpg" alt="Peter Sorensen meeting with Senator Todd Young and Dr. Patrick DeHeer" />
                 <figcaption>
                   Meeting with Senator Todd Young of Indiana and Dr. Patrick DeHeer, DPM, 100th APMA President.
                   <span class="figcaption-meta">Photo: Lisa Helfert Photography</span>
                 </figcaption>
               </figure>
-              <figure class="gallery-card">
+              <figure class="gallery-card" data-reveal style="--d:.06s">
                 <img src="Sole Intelligence Images/Lobbying.jpg" alt="Peter Sorensen lobbying on Capitol Hill about Medicare physician fee schedule changes" />
                 <figcaption>
                   Advocating on Capitol Hill in November 2025 on the long-term effects of recent Medicare physician fee schedule updates, alongside APMA's 99th President Dr. Brooke Bisbee.
                   <span class="figcaption-meta">Photo: Lisa Helfert Photography</span>
                 </figcaption>
               </figure>
-              <figure class="gallery-card">
+              <figure class="gallery-card" data-reveal style="--d:.06s">
                 <img src="Sole Intelligence Images/speaking.jpg" alt="Peter Sorensen speaking at the 2026 APMA House of Delegates" />
                 <figcaption>
                   Speaking in favor of the resident and fellow delegation proposition as an HOD observer during the 2026 APMA House of Delegates.
                 </figcaption>
               </figure>
-              <figure class="gallery-card">
+              <figure class="gallery-card" data-reveal style="--d:.06s">
                 <img src="Sole Intelligence Images/apma.jpg" alt="Peter Sorensen at the APMA podium with Dr. Savannah Santiago" />
                 <figcaption>At the APMA podium with Dr. Savannah Santiago.</figcaption>
               </figure>
-              <figure class="gallery-card">
+              <figure class="gallery-card" data-reveal style="--d:.06s">
                 <img src="Sole Intelligence Images/ELP.jpg" alt="APMA News quote from Peter Sorensen in the January February 2026 edition" />
                 <figcaption>
                   Featured in APMA News, January/February 2026 edition.
                   <a href="http://nxtbook.com/nxtbooks/apma/news_20260102/index.php#/p/12" target="_blank" rel="noreferrer">View issue excerpt →</a>
+                </figcaption>
+              </figure>
+              <figure class="gallery-card" data-reveal style="--d:.06s">
+                <img src="Sole Intelligence Images/researchcoordinator.png" alt="Spotlight graphic naming Peter Sorensen as Chief Research Coordinator" />
+                <figcaption>
+                  Selected as Chief Research Coordinator at Ascension St. Vincent for the 2026–27 residency year — leading resident research and mentorship.
                 </figcaption>
               </figure>
             </div>
@@ -225,7 +266,7 @@
       </section>
 
       <section id="speaking" class="section alt-section">
-        <div class="container section-head">
+        <div class="container section-head" data-reveal>
           <div>
             <p class="eyebrow">Speaking</p>
             <h2>Available for residency programs and podiatry schools</h2>
@@ -233,7 +274,7 @@
         </div>
         <div class="container">
           <div class="speaking-grid">
-            <div class="topic-panel">
+            <div class="topic-panel" data-reveal>
               <h3>Topics Peter can cover</h3>
               <ul class="topic-list">
                 <li>Current AI tools worth paying attention to</li>
@@ -245,25 +286,67 @@
               </ul>
               <a class="button button-primary" href="#contact">
                 Request a talk
-                <svg class="button-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span class="button-pip" aria-hidden="true">
+                  <svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
               </a>
             </div>
             <div class="topic-gallery">
-              <figure class="gallery-card">
+              <figure class="gallery-card" data-reveal>
                 <img src="Sole Intelligence Images/IPMA.jpg" alt="Peter Sorensen speaking at the Indiana Podiatric Medical Association meeting" />
                 <figcaption>Speaking at the 2025 IPMA meeting on using AI in biomedical research.</figcaption>
               </figure>
-              <figure class="gallery-card">
+              <figure class="gallery-card" data-reveal style="--d:.06s; max-width:300px;">
                 <img src="Sole Intelligence Images/award.jpg" alt="Resident faculty award at the 2025 MILES conference" />
                 <figcaption>Recognized as resident faculty at the 2025 MILES conference.</figcaption>
               </figure>
             </div>
           </div>
         </div>
+        <div class="container">
+          <figure class="gallery-card media-feature" data-reveal>
+            <a class="media-link" href="https://www.youtube.com/watch?v=hHENRKRZwXI" target="_blank" rel="noreferrer" aria-label="Watch Peter's Dean's Chat episode on YouTube">
+              <img src="Sole Intelligence Images/deanschat.png" alt="Peter Sorensen featured as a guest on the Dean's Chat podcast for an AI update" />
+            </a>
+            <figcaption>
+              Guest on the Dean's Chat podcast, talking through how residents and students can put AI to work.
+              <a href="https://www.youtube.com/watch?v=hHENRKRZwXI" target="_blank" rel="noreferrer">Watch the episode →</a>
+            </figcaption>
+          </figure>
+          <div class="media-pair">
+            <figure class="gallery-card" data-reveal>
+              <img src="Sole Intelligence Images/thenational.png" alt="Graphic announcing Peter Sorensen speaking at APMA The National 2026 in Nashville" />
+              <figcaption>
+                Speaking at APMA The National 2026 in Nashville on resident engagement and retention — capstone project for the APMA Emerging Leaders Program.
+                <a href="https://www.apma.org/thenational" target="_blank" rel="noreferrer">About The National →</a>
+              </figcaption>
+            </figure>
+            <figure class="gallery-card" data-reveal style="--d:.06s">
+              <img src="Sole Intelligence Images/global.png" alt="Podiatry Decoded graphic introducing Peter Sorensen as an international webinar speaker" />
+              <figcaption>International webinar speaker for Podiatry Decoded, presenting on rearfoot trauma to podiatry students worldwide.</figcaption>
+            </figure>
+          </div>
+        </div>
+        <div class="container">
+          <div class="lecture-panel" data-reveal>
+            <h3>Selected lectures</h3>
+            <p class="lecture-intro">A sampling of recent invited talks across AI and foot &amp; ankle surgery.</p>
+            <ul class="lecture-list">
+              <li><span class="lecture-title">The Use of AI in Biomedical Research</span><span class="lecture-meta">IPMA State Meeting · Sept 2025</span></li>
+              <li><span class="lecture-title">Using AI for Research</span><span class="lecture-meta">Ascension St. Vincent · Aug 2025</span></li>
+              <li><span class="lecture-title">Sole Searching: How ML &amp; AI Are Revolutionizing Podiatry</span><span class="lecture-meta">VA Albuquerque · Oct 2023</span></li>
+              <li><span class="lecture-title">Dual-Column Beaming for Charcot Neuroarthropathy</span><span class="lecture-meta">Ascension St. Vincent · Dec 2025</span></li>
+              <li><span class="lecture-title">Complex Achilles &amp; Equinus Reconstruction (FHL Transfer + Distraction Histogenesis)</span><span class="lecture-meta">MILES, San Antonio · Dec 2025</span></li>
+              <li><span class="lecture-title">Subtalar &amp; Talonavicular Arthrodesis for PCFD</span><span class="lecture-meta">ASV Kenya Radiology Rounds · Aug 2025</span></li>
+              <li><span class="lecture-title">Charcot Neuroarthropathy: Operative Treatment of Eichenholtz Stages</span><span class="lecture-meta">IPMA State Meeting · Sept 2024</span></li>
+              <li><span class="lecture-title">Imaging for the Diabetic Foot</span><span class="lecture-meta">Intermountain Healthcare · Jul 2023</span></li>
+            </ul>
+          </div>
+        </div>
       </section>
 
       <section id="support" class="section">
-        <div class="container section-head">
+        <div class="container section-head" data-reveal>
           <div>
             <p class="eyebrow">Support</p>
             <h2>Helping Sole Intelligence grow</h2>
@@ -271,7 +354,7 @@
         </div>
         <div class="container">
           <div class="support-grid">
-            <div class="support-copy">
+            <div class="support-copy" data-reveal>
               <p>
                 Sole Intelligence is an early-stage educational platform with a simple aim: make useful AI knowledge more accessible to podiatry students, residents, and training programs. If you believe in that mission and want to help support responsible growth, collaboration, or sponsorship, I'd love to hear from you.
               </p>
@@ -279,7 +362,7 @@
                 Support can look like funding, strategic partnership, speaking opportunities, or simply helping expand the reach of the work.
               </p>
             </div>
-            <div class="support-card">
+            <div class="support-card" data-reveal style="--d:.06s">
               <h3>Ways to help</h3>
               <ul class="topic-list">
                 <li>Sponsor educational content or speaking</li>
@@ -289,7 +372,9 @@
               </ul>
               <a class="button button-primary" href="#contact">
                 Start a conversation
-                <svg class="button-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span class="button-pip" aria-hidden="true">
+                  <svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
               </a>
             </div>
           </div>
@@ -297,7 +382,7 @@
       </section>
 
       <section id="contact" class="section alt-section">
-        <div class="container section-head">
+        <div class="container section-head" data-reveal>
           <div>
             <p class="eyebrow">Contact</p>
             <h2>Reach out</h2>
@@ -306,7 +391,7 @@
         </div>
         <div class="container">
           <div class="contact-grid">
-            <div class="contact-copy">
+            <div class="contact-copy" data-reveal>
               <h3>Find Peter elsewhere</h3>
               <div class="social-links">
                 <a href="https://www.linkedin.com/in/peter-sorensen-6b8b1a13b?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" rel="noreferrer">LinkedIn</a>
@@ -316,7 +401,7 @@
               </div>
             </div>
 
-            <form class="contact-form" action="https://formspree.io/f/xykbwjvn" method="POST">
+            <form class="contact-form" action="https://formspree.io/f/xykbwjvn" method="POST" data-reveal style="--d:.06s">
               <label>
                 <span>Name</span>
                 <input type="text" name="name" required />
@@ -341,7 +426,7 @@
 
       <section class="section page-signoff">
         <div class="container">
-          <div class="signoff-frame">
+          <div class="signoff-frame" data-reveal>
             <img src="Sole Intelligence Images/logoanimation.gif" alt="The GuideWire animated logo" class="signoff-gif" />
           </div>
         </div>

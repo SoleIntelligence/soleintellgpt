@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Guidewire — Fellowship: Strategic Tool or Expensive Badge?</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Source+Sans+3:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0d1b2a;
+      --cream: #f4f1ec;
+      --paper: #fffaf2;
+      --red: #c8102e;
+      --ink: #13202e;
+      --muted: #65717f;
+      --rule: rgba(200, 16, 46, 0.72);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: #d9d3c9;
+      color: var(--ink);
+      font-family: "Source Sans 3", system-ui, sans-serif;
+      display: flex;
+      justify-content: center;
+      padding: 28px 14px;
+    }
+
+    .page {
+      width: 800px;
+      max-width: 100%;
+      background: var(--cream);
+      border: 1px solid rgba(13, 27, 42, 0.18);
+      box-shadow: 0 24px 70px rgba(13, 27, 42, 0.24);
+      padding: 38px 42px 28px;
+    }
+
+    .masthead {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 18px;
+      align-items: end;
+      border-bottom: 3px solid var(--red);
+      padding-bottom: 14px;
+      margin-bottom: 28px;
+    }
+
+    .brand {
+      font-family: "Libre Baskerville", Georgia, serif;
+      font-weight: 700;
+      font-size: 42px;
+      letter-spacing: -1.6px;
+      line-height: 0.96;
+      color: var(--navy);
+    }
+
+    .meta {
+      text-align: right;
+      text-transform: uppercase;
+      letter-spacing: 1.6px;
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--red);
+      line-height: 1.35;
+      white-space: nowrap;
+    }
+
+    .meta span {
+      display: block;
+      color: var(--muted);
+      font-weight: 700;
+      text-transform: none;
+      letter-spacing: 0.4px;
+      margin-top: 3px;
+    }
+
+    h1 {
+      font-family: "Libre Baskerville", Georgia, serif;
+      font-size: 48px;
+      line-height: 1.04;
+      letter-spacing: -1.5px;
+      color: var(--navy);
+      margin: 0 0 10px;
+      max-width: 690px;
+    }
+
+    .dek {
+      font-size: 19px;
+      line-height: 1.35;
+      color: #384655;
+      max-width: 680px;
+      margin: 0 0 28px;
+      font-weight: 500;
+    }
+
+    .source-note {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      border-top: 1px solid rgba(13, 27, 42, 0.15);
+      border-bottom: 1px solid rgba(13, 27, 42, 0.15);
+      padding: 12px 0;
+      margin-bottom: 24px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.25;
+      font-weight: 600;
+    }
+
+    .source-note strong {
+      color: var(--navy);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 11px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .card {
+      background: rgba(255, 250, 242, 0.72);
+      border: 1px solid rgba(13, 27, 42, 0.13);
+      padding: 18px 18px 17px;
+      min-height: 192px;
+      position: relative;
+    }
+
+    .card::before {
+      content: "";
+      display: block;
+      width: 46px;
+      height: 3px;
+      background: var(--red);
+      margin-bottom: 13px;
+    }
+
+    .card h2 {
+      font-family: "Libre Baskerville", Georgia, serif;
+      font-size: 21px;
+      line-height: 1.16;
+      color: var(--navy);
+      margin: 0 0 10px;
+      letter-spacing: -0.4px;
+    }
+
+    .card p {
+      margin: 0;
+      font-size: 15.5px;
+      line-height: 1.38;
+      color: #2d3947;
+    }
+
+    .impact {
+      grid-column: span 2;
+      background: var(--navy);
+      color: var(--cream);
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 18px;
+      align-items: center;
+      border: none;
+      padding: 22px 24px;
+      min-height: 190px;
+    }
+
+    .impact::before { display: none; }
+
+    .statbox {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .stat {
+      border-left: 4px solid var(--red);
+      padding-left: 12px;
+    }
+
+    .stat .num {
+      font-family: "Libre Baskerville", Georgia, serif;
+      color: var(--cream);
+      font-size: 48px;
+      line-height: 0.95;
+      letter-spacing: -1.8px;
+      font-weight: 700;
+    }
+
+    .stat .label {
+      color: rgba(244, 241, 236, 0.75);
+      font-size: 12px;
+      line-height: 1.15;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-top: 7px;
+    }
+
+    .impact h2 {
+      color: var(--cream);
+      font-family: "Libre Baskerville", Georgia, serif;
+      font-size: 25px;
+      margin: 0 0 9px;
+      letter-spacing: -0.4px;
+    }
+
+    .impact p {
+      color: rgba(244, 241, 236, 0.86);
+      font-size: 16px;
+      line-height: 1.38;
+      margin: 0;
+    }
+
+    .wide {
+      grid-column: span 2;
+      min-height: auto;
+      display: grid;
+      grid-template-columns: 0.75fr 1.25fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .exception-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 2px;
+    }
+
+    .pill {
+      border-top: 2px solid var(--red);
+      padding-top: 9px;
+      font-size: 14px;
+      line-height: 1.22;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .pill span {
+      display: block;
+      font-weight: 500;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+
+    blockquote {
+      margin: 24px 0 20px;
+      padding: 5px 0 5px 20px;
+      border-left: 5px solid var(--red);
+      font-family: "Libre Baskerville", Georgia, serif;
+      font-style: italic;
+      font-size: 23px;
+      line-height: 1.34;
+      color: var(--navy);
+    }
+
+    .caveat {
+      border-top: 1px solid rgba(13, 27, 42, 0.16);
+      padding-top: 13px;
+      font-size: 12.5px;
+      line-height: 1.35;
+      color: var(--muted);
+      margin-bottom: 21px;
+    }
+
+    .bottom {
+      border-top: 3px solid var(--red);
+      padding-top: 12px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 18px;
+      align-items: end;
+      color: rgba(13, 27, 42, 0.62);
+      font-size: 11px;
+      line-height: 1.35;
+    }
+
+    .bottom strong {
+      color: var(--navy);
+      font-size: 12px;
+    }
+
+    .sole {
+      text-align: right;
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      font-weight: 800;
+      color: var(--navy);
+      white-space: nowrap;
+    }
+
+    @media (max-width: 720px) {
+      body { padding: 0; background: var(--cream); }
+      .page { padding: 26px 22px 22px; box-shadow: none; border: none; }
+      .masthead, .bottom { grid-template-columns: 1fr; }
+      .meta, .sole { text-align: left; }
+      .brand { font-size: 34px; }
+      h1 { font-size: 37px; }
+      .grid, .impact, .wide { grid-template-columns: 1fr; }
+      .impact, .wide { grid-column: span 1; }
+      .statbox, .exception-list { grid-template-columns: 1fr; }
+      .card { min-height: auto; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page" role="article" aria-label="The Guidewire infographic about podiatric fellowship value">
+    <header class="masthead">
+      <div class="brand">THE GUIDEWIRE</div>
+      <div class="meta">From the Forums<span>soleintell.com</span></div>
+    </header>
+
+    <section>
+      <h1>Fellowship: Strategic Tool or Expensive Badge?</h1>
+      <p class="dek">What r/Podiatry actually thinks about the extra training year — and the narrow situations where it might still matter.</p>
+    </section>
+
+    <div class="source-note">
+      <strong>Thread signal</strong>
+      <span>One Reddit discussion; 27 reported comments, about 18 parsed. The mood was skeptical, numbers-forward, and focused less on prestige than on debt, residency quality, and job-market reality.</span>
+    </div>
+
+    <section class="grid" aria-label="Key findings">
+      <article class="impact">
+        <div class="statbox" aria-label="ROI numbers cited in thread">
+          <div class="stat">
+            <div class="num">$400K</div>
+            <div class="label">debt burden cited by commenters</div>
+          </div>
+          <div class="stat">
+            <div class="num">8–9%</div>
+            <div class="label">interest rate range raised in the thread</div>
+          </div>
+          <div class="stat">
+            <div class="num">$32K</div>
+            <div class="label">approximate annual interest alone</div>
+          </div>
+          <div class="stat">
+            <div class="num">$38K</div>
+            <div class="label">low fellowship salary cited</div>
+          </div>
+        </div>
+        <div>
+          <h2>The ROI math is the gut punch.</h2>
+          <p>The strongest argument was not philosophical. It was arithmetic: another year of low pay while large loans keep compounding, with no guarantee that the fellowship credential changes the first job.</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2>The Consensus</h2>
+        <p>Fellowship was framed as rarely necessary for most graduates. Commenters repeatedly argued that fellowship-trained DPMs often land in the same private-practice market as peers who went directly into practice.</p>
+      </article>
+
+      <article class="card">
+        <h2>The Real Variable</h2>
+        <p>Residency quality dominated the thread. Strong residency training makes fellowship feel redundant; weak residency training turns fellowship into a patch — not a cure — for a larger standardization problem.</p>
+      </article>
+
+      <article class="card">
+        <h2>When It Might Make Sense</h2>
+        <p>The clearest framework was narrow: do it only when residency left specific surgical gaps, or when a target job market or practice type demonstrably rewards the credential.</p>
+      </article>
+
+      <article class="card">
+        <h2>The Culture Read</h2>
+        <p>The thread treated some fellowships as credential signaling and cheap skilled labor more than guaranteed educational advancement. That skepticism was strong — but not universal.</p>
+      </article>
+
+      <article class="wide card">
+        <div>
+          <h2>The Exception List</h2>
+          <p>Even skeptical commenters carved out a few scenarios where the credential may carry practical value.</p>
+        </div>
+        <div class="exception-list">
+          <div class="pill">Total ankles<span>TAR was mentioned as the clearest fellowship-specific use case.</span></div>
+          <div class="pill">Leadership track<span>National education and organizational circles may favor fellowship training.</span></div>
+          <div class="pill">Competitive markets<span>Some practices may value the credential, but not uniformly by state.</span></div>
+        </div>
+      </article>
+
+      <article class="wide card">
+        <div>
+          <h2>The Strategic Take</h2>
+          <p>The best counterweight to cynicism was simple: stop asking which fellowship first.</p>
+        </div>
+        <div>
+          <p>Start with the practice you want in 10 years, then work backward. If fellowship clearly fills a gap between present training and that future practice, it may be a tool. If not, it may just be an expensive badge.</p>
+        </div>
+      </article>
+    </section>
+
+    <blockquote>“The primary question isn’t which fellowship — it’s what do you want your practice to look like in 10 years?”</blockquote>
+
+    <p class="caveat"><strong>Caveat:</strong> This is a single anonymous Reddit thread, not a workforce study. Credentials were not verified, selection bias is likely, and the parsed JSON appears incomplete. Treat the thread as a meaningful signal from engaged commenters — not a universal referendum.</p>
+
+    <footer class="bottom">
+      <div>
+        <strong>Peter Sorensen, DPM</strong><br />
+        © 2026 Peter Sorensen, DPM · Produced with AI assistance. Editorial judgment by Peter Sorensen, DPM.
+      </div>
+      <div class="sole">Sole Intelligence<br />soleintell.com</div>
+    </footer>
+  </main>
+</body>
+</html>

@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>THE GUIDEWIRE // AI TUTORIAL // GEO ATE SEO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Oswald:wght@400;600;700&family=Courier+Prime:wght@400;700&family=Special+Elite&family=Permanent+Marker&family=Caveat:wght@500;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --paper: #F2F1ED;
+    --paper-dk: #DEDCD2;
+    --ink: #141210;
+    --pink: #6B12DE;
+    --blue: #0C8140;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background:
+      radial-gradient(ellipse at top left, rgba(0,0,0,0.34), transparent 60%),
+      radial-gradient(ellipse at bottom right, rgba(0,0,0,0.48), transparent 70%),
+      #161310;
+    font-family: 'Courier Prime', monospace;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 34px 16px 64px; }
+
+  /* ---------- PLATE ---------- */
+  .plate {
+    container-type: inline-size;
+    position: relative;
+    width: min(1080px, 94vw);
+    margin: 0 auto;
+    background: var(--paper);
+    background-image:
+      radial-gradient(ellipse at 30% 8%, rgba(255,255,255,0.18), transparent 45%),
+      radial-gradient(ellipse at 80% 95%, rgba(20,18,16,0.10), transparent 50%),
+      radial-gradient(circle at 68% 40%, rgba(20,18,16,0.045), transparent 22%);
+    box-shadow: 0 1px 0 rgba(0,0,0,0.05), 0 32px 64px -22px rgba(0,0,0,0.78), 0 0 0 1px rgba(0,0,0,0.12);
+    overflow: hidden;
+  }
+  /* photocopy grime + halftone overlays */
+  .tex { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+  .grime { mix-blend-mode: multiply; opacity: 0.3; }
+  .edge { position: absolute; inset: 1.6cqw; pointer-events: none; }
+
+  .inner { position: relative; padding: 5.2cqw 5cqw 4.6cqw; z-index: 2; }
+
+  /* ---------- shared decorations ---------- */
+  .stamp {
+    font-family: 'Oswald', sans-serif; font-weight: 700;
+    color: var(--ink); border: 0.32cqw solid var(--ink);
+    padding: 0.5cqw 1cqw; letter-spacing: 0.18cqw; text-transform: uppercase;
+    display: inline-block; opacity: 0.82; line-height: 1.05;
+    box-shadow: inset 0 0 0 0.12cqw rgba(20,18,16,0.4);
+  }
+  .stamp.pink { color: var(--pink); border-color: var(--pink); opacity: 0.9; }
+  .stamp.blue { color: var(--blue); border-color: var(--blue); opacity: 0.9; }
+  .scrawl { font-family: 'Permanent Marker', cursive; color: var(--ink); line-height: 1.05; }
+  .scrawl.pink { color: var(--pink); }
+  .scrawl.blue { color: var(--blue); }
+  .hand { font-family: 'Caveat', cursive; font-weight: 700; color: var(--ink); }
+  .tape {
+    position: absolute; background: rgba(232,227,210,0.5);
+    box-shadow: 0 0.3cqw 0.7cqw rgba(0,0,0,0.18);
+    border-left: 0.12cqw dashed rgba(20,18,16,0.18);
+    border-right: 0.12cqw dashed rgba(20,18,16,0.18);
+  }
+
+  /* ---------- MASTHEAD ---------- */
+  .mast { display: flex; align-items: flex-start; justify-content: space-between; gap: 2cqw; flex-wrap: wrap; position: relative; }
+  .mast .gw { font-size: 2cqw; transform: rotate(-1.4deg); }
+  .mast .url { font-size: 1.5cqw; transform: rotate(1.6deg); padding: 0.4cqw 0.8cqw; }
+  .mast-tape { position: relative; transform: rotate(2.2deg); padding: 0.9cqw 1.8cqw; background: var(--pink);
+    box-shadow: 0 0.3cqw 0.7cqw rgba(0,0,0,0.22); }
+  .mast-tape span { font-family: 'Permanent Marker', cursive; color: #fff; font-size: 1.85cqw; letter-spacing: 0.06cqw; }
+  .rip { height: 0.4cqw; background:
+      repeating-linear-gradient(90deg, var(--ink) 0 1.4cqw, transparent 1.4cqw 2.1cqw);
+    opacity: 0.5; margin-top: 2.2cqw; }
+
+  /* ---------- HERO ---------- */
+  .hero { position: relative; margin-top: 3cqw; }
+  .kicker { font-family: 'Permanent Marker', cursive; font-size: 2cqw; color: var(--blue); transform: rotate(-1.2deg); }
+  .head1 {
+    font-family: 'Anton', sans-serif; font-size: 12.6cqw; line-height: 0.9; color: var(--ink);
+    text-transform: uppercase; letter-spacing: -0.1cqw; margin: 1cqw 0 0; position: relative; display: inline-block;
+    text-shadow: 0.55cqw 0.5cqw 0 var(--pink), -0.4cqw -0.38cqw 0 var(--blue);
+    transform: rotate(-0.8deg);
+  }
+  .strike { position: absolute; left: 30%; right: 1%; top: 52%; height: 0.7cqw; background: var(--pink);
+    transform: rotate(-3deg); box-shadow: 0 0.18cqw 0 rgba(20,18,16,0.25); }
+  .q { font-family: 'Permanent Marker', cursive; color: var(--blue); font-size: 6cqw; vertical-align: 0.5cqw; margin-left: 0.4cqw;
+    text-shadow: none; -webkit-text-stroke: 0; }
+
+  .head2 { display: flex; flex-wrap: wrap; align-items: baseline; gap: 1.2cqw 1.4cqw; margin-top: 1.6cqw; }
+  .w { display: inline-block; text-transform: uppercase; line-height: 0.92; padding: 0.4cqw 1.1cqw; }
+  .w.a { font-family: 'Anton', sans-serif; font-size: 8.2cqw; background: var(--pink); color: var(--paper); transform: rotate(-2.3deg);
+    box-shadow: 0.35cqw 0.4cqw 0 rgba(20,18,16,0.45); }
+  .w.b { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 7cqw; color: var(--ink); transform: rotate(1.4deg); padding-left: 0.2cqw; }
+  .w.c { font-family: 'Archivo Black', sans-serif; font-size: 6.7cqw; background: var(--blue); color: var(--paper); transform: rotate(-1deg);
+    box-shadow: 0.35cqw 0.4cqw 0 rgba(20,18,16,0.45); }
+  .w.d { font-family: 'Anton', sans-serif; font-size: 8cqw; background: var(--ink); color: var(--paper); transform: rotate(2.1deg);
+    box-shadow: 0.35cqw 0.4cqw 0 var(--pink); }
+
+  .hero-note { position: absolute; right: 1cqw; top: 1.5cqw; width: 26cqw; transform: rotate(4deg); text-align: center; }
+  .hero-note .scrawl { font-size: 2.05cqw; }
+  .dek { font-family: 'Courier Prime', monospace; font-weight: 700; font-size: 2.05cqw; line-height: 1.45; color: var(--ink);
+    max-width: 64cqw; margin-top: 3.4cqw; background: rgba(255,255,255,0.5); padding: 1cqw 1.2cqw; border-left: 0.5cqw solid var(--ink); }
+
+  /* ---------- STATS (clippings) ---------- */
+  .stats { display: flex; flex-wrap: wrap; gap: 2.4cqw; margin-top: 5cqw; justify-content: space-between; }
+  .clip { position: relative; flex: 1 1 26cqw; background: var(--paper); padding: 2cqw 1.8cqw 2.4cqw;
+    box-shadow: 0.3cqw 0.5cqw 0.9cqw rgba(0,0,0,0.22); border: 0.18cqw solid var(--ink); }
+  .clip:nth-child(1) { transform: rotate(-2deg); }
+  .clip:nth-child(2) { transform: rotate(1.4deg); }
+  .clip:nth-child(3) { transform: rotate(-1deg); }
+  .clip .big { font-family: 'Anton', sans-serif; font-size: 7.4cqw; line-height: 0.9; color: var(--ink); position: relative; z-index: 2;
+    text-shadow: 0.25cqw 0.25cqw 0 var(--pink); }
+  .clip .ring { position: absolute; left: -0.5cqw; top: 0.5cqw; width: 22cqw; height: 9cqw; pointer-events: none; z-index: 3; }
+  .clip .note { font-family: 'Permanent Marker', cursive; font-size: 1.75cqw; color: var(--ink); margin-top: 1cqw; line-height: 1.12; }
+  .clip .note em { color: var(--pink); font-style: normal; }
+  .clip.loop { border-color: var(--pink); }
+  .clip.loop .big { text-shadow: 0.25cqw 0.25cqw 0 var(--blue); }
+  .clip.loop .note em { color: var(--blue); }
+
+  /* ---------- DIAGRAM ---------- */
+  .diagram { margin-top: 5.6cqw; position: relative; }
+  .sec-head { display: inline-flex; align-items: center; gap: 1.4cqw; transform: rotate(-1deg); }
+  .sec-head .stamp { font-size: 2.4cqw; }
+  .sec-head .scrawl { font-size: 2.2cqw; }
+  .diagram svg { width: 100%; height: auto; display: block; margin-top: 2.4cqw; }
+
+  /* ---------- SURVIVAL ---------- */
+  .survival { margin-top: 5.6cqw; position: relative; }
+  .cuthead { display: flex; align-items: center; gap: 1.4cqw; flex-wrap: wrap; }
+  .cuthead .stamp { font-size: 2.5cqw; }
+  .cutline { display: flex; align-items: center; gap: 1cqw; margin: 2.2cqw 0; color: var(--ink); opacity: 0.6; font-size: 1.7cqw; font-family: 'Courier Prime', monospace; }
+  .cutline::before, .cutline::after { content: ""; flex: 1; height: 0; border-top: 0.22cqw dashed var(--ink); }
+  .coupons { display: grid; grid-template-columns: 1fr 1fr; gap: 2.6cqw; }
+  .coupon { position: relative; border: 0.3cqw dashed var(--ink); background: rgba(255,255,255,0.32); padding: 2.2cqw 2.2cqw 2.4cqw; }
+  .coupon:nth-child(1) { transform: rotate(-0.7deg); }
+  .coupon:nth-child(2) { transform: rotate(0.8deg); }
+  .coupon h3 { font-family: 'Permanent Marker', cursive; font-size: 2.5cqw; color: var(--ink); margin: 0 0 0.4cqw; line-height: 1.05; }
+  .coupon .tagline { font-family: 'Caveat', cursive; font-weight: 700; font-size: 2cqw; color: var(--pink); margin-bottom: 1.6cqw; line-height: 1; }
+  .coupon:nth-child(2) .tagline { color: var(--blue); }
+  .coupon ul { list-style: none; margin: 0; padding: 0; }
+  .coupon li { position: relative; padding-left: 3.4cqw; font-family: 'Courier Prime', monospace; font-weight: 700; font-size: 1.74cqw;
+    line-height: 1.34; color: var(--ink); margin-bottom: 1.3cqw; }
+  .coupon li:last-child { margin-bottom: 0; }
+  .coupon li::before { content: ""; position: absolute; left: 0; top: 0.15cqw; width: 1.9cqw; height: 1.9cqw; border: 0.26cqw solid var(--ink); }
+  .coupon li::after { content: "\2717"; position: absolute; left: 0.15cqw; top: -0.35cqw; font-size: 2.1cqw; color: var(--pink); font-family: 'Oswald', sans-serif; font-weight: 700; }
+  .coupon:nth-child(2) li::after { color: var(--blue); }
+
+  /* ---------- FINE PRINT ---------- */
+  .fineprint { margin-top: 5.4cqw; position: relative; border: 0.3cqw solid var(--ink); background: var(--paper);
+    padding: 3cqw 2.8cqw 2.6cqw; transform: rotate(-0.5deg); box-shadow: 0.3cqw 0.5cqw 0.9cqw rgba(0,0,0,0.2); }
+  .fp-stamp { position: absolute; top: -1.8cqw; left: 3cqw; background: var(--paper); transform: rotate(-2.5deg); }
+  .fp-stamp .stamp { font-size: 1.95cqw; }
+  .fineprint p { font-family: 'Courier Prime', monospace; font-size: 1.82cqw; line-height: 1.5; color: var(--ink); margin: 0; }
+  .fineprint p b { background: var(--pink); color: var(--paper); padding: 0 0.4cqw; font-weight: 700; }
+  .fineprint p .bl { background: var(--blue); }
+
+  /* ---------- ONE MOVE ---------- */
+  .onemove { margin-top: 4cqw; position: relative; background: var(--ink); padding: 3cqw 3cqw 3.2cqw; transform: rotate(0.5deg);
+    box-shadow: 0.4cqw 0.6cqw 0 var(--pink); }
+  .om-label { display: inline-block; font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 1.8cqw; letter-spacing: 0.2cqw;
+    color: var(--paper); background: var(--pink); padding: 0.5cqw 1.2cqw; text-transform: uppercase; transform: rotate(-1.5deg); }
+  .om-text { font-family: 'Archivo Black', sans-serif; font-size: 4.4cqw; line-height: 1.04; color: var(--paper); margin-top: 1.6cqw;
+    text-transform: uppercase; text-shadow: 0.3cqw 0.3cqw 0 var(--blue); }
+  .om-text em { color: var(--paper); background: var(--pink); padding: 0 0.5cqw; font-style: normal; text-shadow: none; }
+
+  /* ---------- FOOTER ---------- */
+  .footer { margin-top: 4.2cqw; display: flex; align-items: flex-end; justify-content: space-between; gap: 2cqw; flex-wrap: wrap;
+    border-top: 0.22cqw solid var(--ink); padding-top: 1.8cqw; }
+  .sig { font-family: 'Caveat', cursive; font-weight: 700; font-size: 3.6cqw; color: var(--ink); transform: rotate(-2deg); line-height: 0.9; }
+  .reg { font-family: 'Special Elite', monospace; font-size: 1.2cqw; color: var(--ink); opacity: 0.62; letter-spacing: 0.05cqw; transform: rotate(0.6deg); text-align: right; }
+
+  /* staples */
+  .staple { position: absolute; width: 2.2cqw; height: 0.8cqw; background: transparent; z-index: 6;
+    border-top: 0.34cqw solid #4a463e; border-left: 0.34cqw solid #4a463e; border-right: 0.34cqw solid #4a463e;
+    box-shadow: 0 0.18cqw 0.3cqw rgba(0,0,0,0.4); }
+
+  /* caption under plate */
+  .cap { color: #b7a98a; font-family: 'Special Elite', monospace; text-align: center; font-size: 12px; letter-spacing: 1px;
+    line-height: 1.9; margin: 26px auto 0; max-width: 680px; opacity: 0.85; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="plate">
+
+      <!-- grime + halftone texture -->
+      <svg class="tex grime" preserveAspectRatio="none" viewBox="0 0 600 800" aria-hidden="true">
+        <defs>
+          <filter id="grime" x="0" y="0" width="100%" height="100%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.82" numOctaves="2" stitchTiles="stitch" result="n"/>
+            <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.34 0"/>
+          </filter>
+          <pattern id="halftone" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(8)">
+            <circle cx="3.5" cy="3.5" r="1.15" fill="#141210"/>
+          </pattern>
+        </defs>
+        <rect x="0" y="0" width="600" height="800" filter="url(#grime)"/>
+        <rect x="0" y="120" width="600" height="40" fill="url(#halftone)" opacity="0.36"/>
+        <rect x="0" y="640" width="600" height="30" fill="url(#halftone)" opacity="0.28"/>
+      </svg>
+
+      <!-- staples -->
+      <span class="staple" style="top:3.4cqw; left:50%; transform:translateX(-50%) rotate(-6deg);"></span>
+      <span class="staple" style="bottom:3cqw; left:14cqw; transform:rotate(4deg);"></span>
+
+      <div class="inner">
+
+        <!-- MASTHEAD -->
+        <div class="mast">
+          <span class="stamp gw">The Guidewire</span>
+          <div class="mast-tape"><span>AI TUTORIAL</span></div>
+          <span class="stamp blue url">soleintell.com</span>
+        </div>
+        <div class="rip"></div>
+
+        <!-- HERO -->
+        <div class="hero">
+          <div class="kicker">FILE UNDER: SURVIVAL &#8595;</div>
+
+          <div class="head1">SEO IS DEAD<span class="strike"></span><span class="q">?</span></div>
+
+          <div class="head2">
+            <span class="w a">GEO</span>
+            <span class="w b">RUNS</span>
+            <span class="w c">SEARCH</span>
+            <span class="w d">NOW</span>
+          </div>
+
+          <div class="hero-note">
+            <div class="scrawl pink">don't panic.<br/>keep reading, doc &#8595;</div>
+          </div>
+
+          <p class="dek">Generative-engine optimization is rewiring how patients find you. Here's how it differs from SEO &mdash; and the part the hype gets DEAD wrong.</p>
+        </div>
+
+        <!-- STATS -->
+        <div class="stats">
+          <div class="clip">
+            <div class="big">~43%</div>
+            <svg class="ring" viewBox="0 0 220 90" aria-hidden="true"><path d="M14,52 C8,22 70,9 120,11 C180,13 214,28 206,52 C198,76 132,86 78,82 C36,79 16,70 18,54" fill="none" stroke="#6B12DE" stroke-width="3.4" stroke-linecap="round"/></svg>
+            <div class="note">of Google searches end with <em>NO CLICK.</em> zero. nada.</div>
+          </div>
+          <div class="clip">
+            <div class="big">2.5B</div>
+            <svg class="ring" viewBox="0 0 220 90" aria-hidden="true"><path d="M16,50 C12,20 74,8 124,12 C178,16 210,30 204,54 C198,78 128,84 74,80 C34,77 18,66 20,52" fill="none" stroke="#6B12DE" stroke-width="3.4" stroke-linecap="round"/></svg>
+            <div class="note">ChatGPT questions <em>EVERY DAY.</em> per day!!</div>
+          </div>
+          <div class="clip loop">
+            <div class="big">~7%</div>
+            <svg class="ring" viewBox="0 0 220 90" aria-hidden="true"><path d="M14,54 C6,22 72,7 122,10 C182,13 216,26 208,52 C200,78 130,88 76,84 C32,81 14,68 16,52" fill="none" stroke="#0C8140" stroke-width="3.6" stroke-linecap="round"/></svg>
+            <div class="note">of <em>LOCAL</em> searches show AI. &#8592; THIS is your loophole.</div>
+          </div>
+        </div>
+
+        <!-- DIAGRAM -->
+        <div class="diagram">
+          <div class="sec-head">
+            <span class="stamp pink">THE SWITCH</span>
+            <span class="scrawl">old way vs. new way</span>
+          </div>
+
+          <svg viewBox="0 0 1000 540" role="img" aria-label="Hand-drawn schematic: the old SEO path of ranked links and clicks versus the new GEO path where an AI synthesizes one answer from many sources">
+            <defs>
+              <marker id="mk" markerWidth="12" markerHeight="12" refX="3" refY="6" orient="auto">
+                <path d="M2,2 L9,6 L2,10" fill="none" stroke="#141210" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </marker>
+              <marker id="mkp" markerWidth="12" markerHeight="12" refX="3" refY="6" orient="auto">
+                <path d="M2,2 L9,6 L2,10" fill="none" stroke="#6B12DE" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </marker>
+            </defs>
+
+            <!-- column titles (hand) -->
+            <text x="232" y="34" text-anchor="middle" font-family="'Permanent Marker',cursive" font-size="30" fill="#141210">HOW IT USED TO WORK</text>
+            <text x="772" y="34" text-anchor="middle" font-family="'Permanent Marker',cursive" font-size="30" fill="#6B12DE">HOW IT WORKS NOW</text>
+
+            <!-- divider, hand drawn -->
+            <path d="M500,58 C497,180 503,300 499,360 C497,430 502,480 500,520" fill="none" stroke="#141210" stroke-width="2" stroke-dasharray="2 9" opacity="0.45"/>
+
+            <!-- query, shared, hand box -->
+            <path d="M392,66 L612,63 L615,104 L389,107 Z" fill="none" stroke="#141210" stroke-width="2.6" stroke-linejoin="round"/>
+            <text x="502" y="93" text-anchor="middle" font-family="'Courier Prime',monospace" font-weight="700" font-size="19" fill="#141210">a patient searches</text>
+            <path d="M455,107 C410,128 360,138 300,150" fill="none" stroke="#141210" stroke-width="2.6" stroke-linecap="round" marker-end="url(#mk)"/>
+            <path d="M548,107 C612,128 668,138 720,150" fill="none" stroke="#141210" stroke-width="2.6" stroke-linecap="round" marker-end="url(#mk)"/>
+
+            <!-- ===== OLD (left) ===== -->
+            <!-- ranked list -->
+            <path d="M96,168 L368,165 L370,200 L94,203 Z" fill="none" stroke="#6B12DE" stroke-width="3" stroke-linejoin="round"/>
+            <line x1="112" y1="186" x2="232" y2="184" stroke="#6B12DE" stroke-width="5" stroke-linecap="round"/>
+            <line x1="112" y1="196" x2="300" y2="195" stroke="#141210" stroke-width="3" stroke-linecap="round" opacity="0.5"/>
+            <path d="M98,210 L366,208 L368,242 L96,245 Z" fill="none" stroke="#141210" stroke-width="2.4" stroke-linejoin="round"/>
+            <line x1="112" y1="228" x2="210" y2="227" stroke="#141210" stroke-width="3.4" stroke-linecap="round" opacity="0.6"/>
+            <line x1="112" y1="237" x2="290" y2="236" stroke="#141210" stroke-width="2.6" stroke-linecap="round" opacity="0.4"/>
+            <path d="M96,252 L368,250 L366,284 L98,287 Z" fill="none" stroke="#141210" stroke-width="2.4" stroke-linejoin="round"/>
+            <line x1="112" y1="270" x2="224" y2="269" stroke="#141210" stroke-width="3.4" stroke-linecap="round" opacity="0.6"/>
+            <line x1="112" y1="279" x2="284" y2="278" stroke="#141210" stroke-width="2.6" stroke-linecap="round" opacity="0.4"/>
+            <text x="232" y="312" text-anchor="middle" font-family="'Special Elite',monospace" font-size="15" fill="#141210">a list of blue links</text>
+
+            <!-- arrow down to site -->
+            <path d="M232,322 C230,338 233,352 232,366" fill="none" stroke="#141210" stroke-width="2.6" stroke-linecap="round" marker-end="url(#mk)"/>
+
+            <!-- browser window, hand -->
+            <path d="M138,374 L330,371 L332,452 L140,455 Z" fill="none" stroke="#141210" stroke-width="2.8" stroke-linejoin="round"/>
+            <line x1="139" y1="392" x2="331" y2="389" stroke="#141210" stroke-width="2.4"/>
+            <circle cx="152" cy="383" r="3" fill="#141210"/><circle cx="163" cy="383" r="3" fill="#141210"/>
+            <line x1="156" y1="408" x2="312" y2="406" stroke="#141210" stroke-width="3" stroke-linecap="round" opacity="0.45"/>
+            <line x1="156" y1="422" x2="280" y2="420" stroke="#141210" stroke-width="2.4" stroke-linecap="round" opacity="0.35"/>
+            <line x1="156" y1="436" x2="300" y2="434" stroke="#141210" stroke-width="2.4" stroke-linecap="round" opacity="0.35"/>
+            <text x="235" y="486" text-anchor="middle" font-family="'Permanent Marker',cursive" font-size="22" fill="#141210">they click YOU</text>
+            <text x="235" y="516" text-anchor="middle" font-family="'Caveat',cursive" font-weight="700" font-size="24" fill="#141210">you wanted to RANK.</text>
+
+            <!-- ===== NEW (right) ===== -->
+            <!-- source nodes (hand pills) -->
+            <path d="M566,150 q-6,18 78,16 q70,-2 64,-18 q-2,-14 -70,-12 q-66,2 -72,14 Z" fill="none" stroke="#141210" stroke-width="2.4"/>
+            <text x="644" y="172" text-anchor="middle" font-family="'Special Elite',monospace" font-size="14" fill="#141210">reviews</text>
+            <path d="M734,150 q-6,18 64,16 q56,-2 52,-18 q-2,-14 -58,-12 q-52,2 -58,14 Z" fill="none" stroke="#141210" stroke-width="2.4"/>
+            <text x="798" y="172" text-anchor="middle" font-family="'Special Elite',monospace" font-size="14" fill="#141210">profile</text>
+            <path d="M566,192 q-6,18 78,16 q70,-2 64,-18 q-2,-14 -70,-12 q-66,2 -72,14 Z" fill="none" stroke="#141210" stroke-width="2.4"/>
+            <text x="644" y="214" text-anchor="middle" font-family="'Special Elite',monospace" font-size="14" fill="#141210">listings</text>
+            <path d="M734,192 q-6,18 70,16 q62,-2 56,-18 q-2,-14 -62,-12 q-56,2 -64,14 Z" fill="none" stroke="#141210" stroke-width="2.4"/>
+            <text x="800" y="214" text-anchor="middle" font-family="'Special Elite',monospace" font-size="14" fill="#141210">your words</text>
+
+            <!-- converging scribbles into robot -->
+            <path d="M644,208 C660,250 720,268 742,286" fill="none" stroke="#141210" stroke-width="2" opacity="0.6"/>
+            <path d="M798,208 C792,250 800,268 808,286" fill="none" stroke="#141210" stroke-width="2" opacity="0.6"/>
+            <path d="M644,170 C600,240 700,270 742,290" fill="none" stroke="#141210" stroke-width="2" opacity="0.45"/>
+
+            <!-- robot head = the AI -->
+            <line x1="772" y1="276" x2="772" y2="262" stroke="#141210" stroke-width="2.6" stroke-linecap="round"/>
+            <circle cx="772" cy="258" r="5" fill="#6B12DE" stroke="#141210" stroke-width="2"/>
+            <path d="M722,290 L824,287 L826,348 L724,351 Z" fill="#fff" fill-opacity="0.25" stroke="#141210" stroke-width="3" stroke-linejoin="round"/>
+            <circle cx="752" cy="312" r="6" fill="#0C8140"/><circle cx="796" cy="312" r="6" fill="#0C8140"/>
+            <path d="M744,332 H804" stroke="#141210" stroke-width="2.6"/>
+            <line x1="756" y1="326" x2="756" y2="338" stroke="#141210" stroke-width="2"/>
+            <line x1="772" y1="326" x2="772" y2="338" stroke="#141210" stroke-width="2"/>
+            <line x1="788" y1="326" x2="788" y2="338" stroke="#141210" stroke-width="2"/>
+            <text x="773" y="372" text-anchor="middle" font-family="'Special Elite',monospace" font-size="14" fill="#141210">the A.I. eats it all</text>
+
+            <!-- arrow to answer -->
+            <path d="M773,380 C771,396 774,408 773,420" fill="none" stroke="#6B12DE" stroke-width="3" stroke-linecap="round" marker-end="url(#mkp)"/>
+
+            <!-- one answer bubble, hand -->
+            <path d="M636,426 L910,423 L912,486 L760,488 L742,506 L740,489 L638,490 Z" fill="#fff" fill-opacity="0.3" stroke="#6B12DE" stroke-width="3.2" stroke-linejoin="round"/>
+            <text x="775" y="456" text-anchor="middle" font-family="'Courier Prime',monospace" font-weight="700" font-size="18" fill="#141210">ONE answer. that's it.</text>
+            <text x="775" y="478" text-anchor="middle" font-family="'Special Elite',monospace" font-size="14" fill="#6B12DE">( they never click )</text>
+            <text x="773" y="522" text-anchor="middle" font-family="'Caveat',cursive" font-weight="700" font-size="24" fill="#6B12DE">now you get QUOTED.</text>
+          </svg>
+        </div>
+
+        <!-- SURVIVAL GUIDE -->
+        <div class="survival">
+          <div class="cuthead">
+            <span class="stamp">SURVIVAL GUIDE</span>
+            <span class="hand" style="font-size:2.4cqw;">pin this to your wall</span>
+          </div>
+          <div class="cutline">&#9986;&#160;&#160;cut here&#160;&#160;- - - - - - - - - - - - - - - - - - - -</div>
+
+          <div class="coupons">
+            <div class="coupon">
+              <h3>IF YOU RUN A PRACTICE</h3>
+              <div class="tagline">getting found by patients</div>
+              <ul>
+                <li>Claim + FILL OUT your Google Business Profile. all of it.</li>
+                <li>Same name / address / phone EVERYWHERE. no typos.</li>
+                <li>Get real reviews &mdash; the AI reads the vibe, not just stars.</li>
+                <li>Write pages like patients TALK ("why does my big toe hurt??")</li>
+                <li>Get listed: APMA, Healthgrades, Zocdoc.</li>
+              </ul>
+            </div>
+            <div class="coupon">
+              <h3>IF YOU ARE THE DOCTOR</h3>
+              <div class="tagline">being the one it quotes</div>
+              <ul>
+                <li>ONE name. "Jane Doe, DPM." every single time.</li>
+                <li>Put your expertise where a machine can QUOTE it.</li>
+                <li>Get mentioned by sources AI trusts: journals, APMA, press.</li>
+                <li>One identity across every profile + your NPI record.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- FINE PRINT -->
+        <div class="fineprint">
+          <div class="fp-stamp"><span class="stamp pink">THE FINE PRINT THE HEADLINE SKIPPED</span></div>
+          <p>SEO isn't actually dead. For "podiatrist near me," the old playbook still does most of the heavy lifting &mdash; AI Overviews hit only <b>~7% of local searches</b>. GEO is a <b class="bl">NEW LAYER</b>, not a teardown. And the punchline: the same boring foundation &mdash; complete listings, consistent facts, real reviews, clear answers &mdash; is what <b>BOTH</b> the ranked list and the robot's answer read. Build it once. Works on both.</p>
+        </div>
+
+        <!-- ONE MOVE -->
+        <div class="onemove">
+          <span class="om-label">If you do ONE thing</span>
+          <div class="om-text">Be <em>consistent</em> &amp; <em>well-reviewed</em> everywhere. that's the only input both Google and the bot actually read.</div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+          <div class="sig">&mdash; Peter Sorensen, DPM</div>
+          <div class="reg">&#169; 2026 PETER SORENSEN, DPM<br/>SOLE INTELLIGENCE &middot; soleintell.com</div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="cap">THE GUIDEWIRE // AI TUTORIAL &mdash; a hand-made warning about machine-made answers. GEO vs SEO, and the loophole hiding in local search.</div>
+  </div>
+</body>
+</html>

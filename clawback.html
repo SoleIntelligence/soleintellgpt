@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Guidewire — The Clawback</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,500&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f4efe2;
+    --paper-2:#efe8d6;
+    --ink:#191613;
+    --ink-soft:#3d372f;
+    --rule:#1a1714;
+    --red:#b8341a;
+    --red-deep:#8f2713;
+    --mute:#6b6356;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Fraunces',Georgia,serif;
+    line-height:1.5;
+    padding:0 18px 90px;
+    background-image:
+      radial-gradient(circle at 12% 8%, rgba(0,0,0,0.018) 0, transparent 60%),
+      radial-gradient(circle at 88% 92%, rgba(0,0,0,0.02) 0, transparent 55%);
+  }
+  .wrap{max-width:720px;margin:0 auto;}
+
+  /* MASTHEAD — name + section + url only. No date, volume, dispatch. */
+  .masthead{
+    border-bottom:3px solid var(--rule);
+    padding-top:34px;padding-bottom:10px;margin-bottom:0;
+  }
+  .mast-title{
+    font-weight:900;
+    font-size:clamp(40px,12vw,82px);
+    line-height:.9;
+    letter-spacing:-.03em;
+    text-transform:uppercase;
+  }
+  .mast-meta{
+    display:flex;justify-content:space-between;align-items:flex-end;
+    margin-top:12px;flex-wrap:wrap;gap:6px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+  .mast-meta .sec{color:var(--red);font-weight:700;}
+  .hr-thin{height:1px;background:var(--rule);margin:6px 0 0;}
+  .hr-double{border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);height:4px;margin:0;}
+
+  /* HEADLINE BLOCK */
+  .head{padding:38px 0 22px;border-bottom:1px solid var(--rule);}
+  .kicker{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--red);margin-bottom:18px;
+  }
+  h1{
+    font-weight:900;
+    font-size:clamp(54px,16vw,116px);
+    line-height:.86;letter-spacing:-.045em;
+    text-transform:uppercase;
+  }
+  .deck{
+    font-size:clamp(19px,4.4vw,25px);
+    line-height:1.32;font-weight:400;
+    margin-top:22px;max-width:38ch;color:var(--ink-soft);
+  }
+  .deck b{font-weight:600;color:var(--ink);}
+  .byline{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+    margin-top:26px;color:var(--ink-soft);
+  }
+  .byline .name{color:var(--ink);font-weight:700;}
+
+  /* BODY */
+  section{padding:30px 0;border-bottom:1px solid rgba(26,23,20,.22);}
+  .sec-label{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--red);margin-bottom:14px;
+    display:flex;align-items:center;gap:10px;
+  }
+  .sec-label::before{content:"";width:26px;height:2px;background:var(--red);display:inline-block;}
+  h2{
+    font-weight:800;font-size:clamp(28px,6.5vw,40px);
+    line-height:1.02;letter-spacing:-.02em;margin-bottom:16px;
+  }
+  p{font-size:clamp(17px,3.8vw,19px);line-height:1.58;margin-bottom:16px;color:var(--ink-soft);}
+  p b,li b{color:var(--ink);font-weight:600;}
+  .lead{font-size:clamp(18px,4vw,21px);color:var(--ink);}
+
+  /* PULL / DATA CALLOUT */
+  .pull{
+    border-left:4px solid var(--red);
+    padding:6px 0 6px 22px;margin:26px 0;
+    font-size:clamp(22px,5.4vw,30px);
+    line-height:1.18;font-weight:500;font-style:italic;color:var(--ink);
+    letter-spacing:-.01em;
+  }
+  .databox{
+    background:var(--paper-2);
+    border:1px solid var(--rule);
+    padding:20px 22px;margin:24px 0;
+  }
+  .databox .dnum{
+    font-weight:900;font-size:clamp(40px,11vw,62px);
+    line-height:.9;color:var(--red);letter-spacing:-.03em;
+  }
+  .databox .dcap{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;letter-spacing:.05em;line-height:1.4;
+    margin-top:10px;color:var(--ink-soft);text-transform:none;
+  }
+
+  /* PROVISION LIST */
+  .prov{list-style:none;counter-reset:p;margin-top:6px;}
+  .prov li{
+    counter-increment:p;
+    border-top:1px solid var(--rule);
+    padding:18px 0 18px 52px;position:relative;
+    font-size:clamp(16px,3.7vw,18px);line-height:1.5;color:var(--ink-soft);
+  }
+  .prov li::before{
+    content:"0" counter(p);
+    position:absolute;left:0;top:17px;
+    font-family:'JetBrains Mono',monospace;
+    font-weight:700;font-size:15px;color:var(--red);
+  }
+  .prov li b{display:block;color:var(--ink);font-weight:700;font-size:1.05em;margin-bottom:3px;letter-spacing:-.01em;}
+  .prov li:last-child{border-bottom:1px solid var(--rule);}
+
+  /* MECHANISM STRIP */
+  .flow{
+    display:flex;flex-wrap:wrap;align-items:center;gap:10px;
+    margin:22px 0;font-family:'JetBrains Mono',monospace;
+    font-size:13px;letter-spacing:.02em;
+  }
+  .flow .node{background:var(--ink);color:var(--paper);padding:9px 13px;font-weight:500;}
+  .flow .node.hot{background:var(--red);}
+  .flow .arr{color:var(--red);font-weight:700;font-size:18px;}
+
+  /* SKEPTIC */
+  .skeptic{background:var(--paper-2);border:1px solid var(--rule);padding:24px;margin-top:8px;}
+  .skeptic .tag{
+    font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;
+    letter-spacing:.2em;text-transform:uppercase;color:var(--red-deep);margin-bottom:12px;
+  }
+
+  /* WATCH LIST */
+  ul.watch{list-style:none;margin-top:6px;}
+  ul.watch li{
+    padding:12px 0 12px 26px;position:relative;
+    border-bottom:1px dotted rgba(26,23,20,.3);
+    font-size:clamp(16px,3.7vw,18px);line-height:1.45;color:var(--ink-soft);
+  }
+  ul.watch li::before{content:"→";position:absolute;left:0;color:var(--red);font-weight:700;}
+
+  /* CTA */
+  .cta{border:3px solid var(--rule);padding:26px 24px;margin-top:8px;background:var(--paper-2);}
+  .cta h3{font-weight:900;font-size:clamp(24px,6vw,34px);line-height:1;letter-spacing:-.02em;margin-bottom:14px;text-transform:uppercase;}
+  .cta a{color:var(--red-deep);font-weight:600;word-break:break-word;}
+  .cta .src{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--mute);margin-top:14px;line-height:1.6;}
+
+  /* SOURCES + COLOPHON */
+  .sources{padding-top:26px;}
+  .sources .sec-label{color:var(--mute);}
+  .sources .sec-label::before{background:var(--mute);}
+  .sources ol{font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.9;color:var(--mute);padding-left:20px;}
+  .disclaimer{
+    font-family:'JetBrains Mono',monospace;font-size:11px;line-height:1.7;
+    color:var(--mute);margin-top:24px;padding-top:18px;border-top:1px solid rgba(26,23,20,.25);
+  }
+  .colophon{
+    text-align:center;margin-top:30px;
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--mute);opacity:.55;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- MASTHEAD -->
+  <header class="masthead">
+    <div class="mast-title">The Guidewire</div>
+    <div class="mast-meta">
+      <span class="sec">Policy · Medicare Payment</span>
+      <span>soleintell.com</span>
+    </div>
+  </header>
+  <div class="hr-thin"></div>
+
+  <!-- HEADLINE -->
+  <div class="head">
+    <div class="kicker">H.R. 8163 — Provider Reimbursement Stability Act of 2026</div>
+    <h1>The<br>Clawback</h1>
+    <p class="deck">Podiatry won a pay bump for 2026. A <b>1989 Medicare rule</b> is built to take it back — quietly, automatically, every year. A bipartisan bill wants to loosen the screws.</p>
+    <div class="byline">By <span class="name">Peter Sorensen, DPM</span></div>
+  </div>
+
+  <!-- 1. THE MACHINE -->
+  <section>
+    <div class="sec-label">The Machine Nobody Explains in Residency</div>
+    <h2>Budget neutrality, in one breath</h2>
+    <p class="lead">Medicare doesn't have a budget for the physician fee schedule. It has a <b>spending lock.</b></p>
+    <p>By law, if CMS projects that this year's coding changes will raise total fee-schedule spending by more than a set threshold, it must offset that increase somewhere else — usually by trimming the <b>conversion factor</b>, the single dollar multiplier applied to every RVU, for every physician, in every specialty.</p>
+    <p>Translation: when one service is revalued upward, everyone's per-RVU pay edges down to pay for it. The pie is fixed. Reslicing it for one specialty means thinner slices for all.</p>
+    <div class="flow">
+      <span class="node">A code is revalued ↑</span>
+      <span class="arr">→</span>
+      <span class="node">Projected spend &gt; threshold</span>
+      <span class="arr">→</span>
+      <span class="node hot">Conversion factor ↓ for everyone</span>
+    </div>
+    <p>That is the engine behind nearly every "Medicare cut" headline you've seen. Not a policy choice each year — a <b>statutory reflex.</b></p>
+  </section>
+
+  <!-- 2. THE RULE THAT NEVER AGED -->
+  <section>
+    <div class="sec-label">The Rule That Never Aged</div>
+    <h2>A 1989 number, run in 2026 dollars</h2>
+    <p>The trigger threshold — the dollar amount of net spending change that forces an across-the-board adjustment — was set at <b>$20 million</b> by the Omnibus Budget Reconciliation Act of 1989. It has never been indexed for inflation.</p>
+    <div class="databox">
+      <div class="dnum">$20M</div>
+      <div class="dcap">The 1989 threshold. Against roughly <b>$90 billion</b> in annual fee-schedule spending today, almost any meaningful coding change clears it — so the offset cut fires almost every year.</div>
+    </div>
+    <p>There's a second, quieter defect. To apply budget neutrality, CMS has to <b>guess</b> how often a newly valued code will be billed. When it guesses too high, it cuts the conversion factor preemptively — and when the real claims come in lower, the cut is <b>never reversed.</b></p>
+    <div class="pull">"Over a single decade, one bad utilization estimate on transitional care codes pulled $5.7 billion out of physician payment — and none of it came back."</div>
+    <p>The result isn't budget <i>neutrality</i>. It's a one-way ratchet: estimate high, cut now, keep the cut forever.</p>
+  </section>
+
+  <!-- 3. WHAT THE BILL DOES -->
+  <section>
+    <div class="sec-label">What H.R. 8163 Actually Changes</div>
+    <h2>Four screws, loosened</h2>
+    <p>The bill — led by Reps. Greg Murphy, MD (R-NC) and Tom Suozzi (D-NY) — doesn't touch <i>what</i> any service is worth. It rewrites the <b>mechanics</b> underneath:</p>
+    <ol class="prov">
+      <li><b>Raise the trigger from $20M to $54.3M</b>Indexed to the Medicare Economic Index every five years, so it ages with inflation instead of freezing in place. Fewer routine coding updates trip the offset.</li>
+      <li><b>Add a utilization lookback</b>After a full year of real claims, CMS must reconcile its estimate against actual use — and correct an over- or under-estimate the following year. This is the provision that ends the one-way ratchet.</li>
+      <li><b>Update practice-expense inputs on a clock</b>The direct costs behind practice-expense RVUs — clinical wages, supply prices, equipment — must be refreshed at least every five years, instead of drifting for a decade until a single jarring "correction."</li>
+      <li><b>Cap year-to-year conversion-factor swings</b>Limits how far the factor can move in a single year (reported at roughly ±2.5%), trading wild volatility for something a practice can actually budget around.</li>
+    </ol>
+    <p>The mechanism advocates point to most often is <b>#2.</b> The threshold bump is the headline; the lookback is the repair.</p>
+  </section>
+
+  <!-- 4. WHY PODIATRY -->
+  <section>
+    <div class="sec-label">Why This Lands Harder on Podiatry</div>
+    <h2>You just got a raise. Meet the rule that resents it.</h2>
+    <p>Podiatry is a small specialty with an outsized Medicare footprint — an older, diabetic, vascular patient base means a large share of the work runs through the fee schedule. When the conversion factor moves, podiatry feels it with less cushion than larger specialties.</p>
+    <p>And 2026 is precisely the year to understand this. Podiatry secured a meaningful reimbursement gain — a combination of a CMS update and a one-time congressional bump — alongside proposed work-RVU increases on common <b>first-ray arthrodesis codes (28750, 28755).</b> Those are real wins.</p>
+    <p>But under current law, every one of those RVU gains is a candidate for the offset. Revalue the fusion codes upward, push projected spending past a 37-year-old threshold, and the conversion factor gets trimmed to pay for it — handing back with one hand what the revaluation gave with the other.</p>
+    <div class="pull">"A raise that triggers an across-the-board cut isn't a raise. It's a transfer — and small specialties are rarely the ones who come out ahead."</div>
+    <p>H.R. 8163 doesn't guarantee podiatry keeps more. It makes it <b>less likely the gains evaporate into the machinery</b> before they reach your encounter.</p>
+  </section>
+
+  <!-- 5. SKEPTIC -->
+  <section>
+    <div class="sec-label">The Honest Counter-Read</div>
+    <h2>Don't oversell the threshold</h2>
+    <div class="skeptic">
+      <div class="tag">Where critics have a point</div>
+      <p>Moving the trigger to $54.3M sounds large, but against ~$90B in annual spending it's still under 0.1% — it screens out only the smallest coding changes. Analysts at <b>Health Affairs</b> have called the threshold bump's practical effect modest at best.</p>
+      <p>The structural reform is the <b>lookback</b> in provision #2. That's what stops permanent, uncorrected cuts from compounding year over year. If this bill matters, it matters because of the reconciliation mechanism — not the bigger number in the press release.</p>
+      <p style="margin-bottom:0;">It also doesn't deliver what physicians actually want most: an annual inflation update tied to the MEI. This stabilizes the floor; it doesn't raise it.</p>
+    </div>
+    <p style="margin-top:20px;">Worth holding both truths: it's a genuine, overdue fix to broken plumbing — <i>and</i> it is not the inflation update the AMA has chased for years. By the AMA's own figure, inflation-adjusted Medicare physician pay has fallen roughly <b>33% from 2001 to 2026.</b> This bill slows the bleed. It doesn't reverse it.</p>
+  </section>
+
+  <!-- 6. STATUS -->
+  <section>
+    <div class="sec-label">Where It Stands</div>
+    <h2>Past committee, far from law</h2>
+    <p>H.R. 8163 cleared the <b>House Ways and Means Committee</b> in May 2026 — a real, bipartisan milestone for a payment-mechanics bill that rarely makes news. It carries a physician-heavy sponsor list across both parties and the backing of the AMA, ACR, AAPA, and <b>APMA</b>.</p>
+    <p>"Cleared committee" is not "enacted." It still needs a floor vote, a Senate path, and a President's signature — and budget-neutrality reform has been introduced, in various forms, for years without crossing the finish line. The committee vote is the most momentum it has had. That's the case for acting now, not later.</p>
+  </section>
+
+  <!-- 7. CTA -->
+  <section style="border-bottom:none;">
+    <div class="sec-label">The Resident's Move</div>
+    <div class="cta">
+      <h3>Two minutes, one message</h3>
+      <p style="color:var(--ink);">APMA has an open advocacy campaign on this bill. The form pre-targets your representative; a personalized line about how payment swings hit <i>your</i> training program or future practice carries more weight than the template.</p>
+      <p style="margin-bottom:0;"><b>Act:</b> <a href="https://www.votervoice.net/APMA/Campaigns/136664/Respond">votervoice.net/APMA/Campaigns/136664/Respond</a></p>
+      <div class="src">Bill text: congress.gov → H.R. 8163, 119th Congress<br>Issue brief: apma.org → news → Medicare physician payment reform</div>
+    </div>
+  </section>
+
+  <!-- SOURCES -->
+  <div class="sources">
+    <div class="sec-label">Sources</div>
+    <ol>
+      <li>Rep. Greg Murphy, MD — bill summary & sponsor statement, Mar 2026</li>
+      <li>APMA — "Lawmakers Introduce Legislation to Reform Medicare Physician Payment," Apr 2026</li>
+      <li>KFF — "What to Know About How Medicare Pays Physicians," 2025</li>
+      <li>AMA — Medicare Basics: Budget Neutrality (threshold, lookback, PE inputs)</li>
+      <li>Health Affairs Forefront — "Modernizing the MPFS, Part 3: Adding a Lookback to Budget Neutrality"</li>
+      <li>House Ways &amp; Means Committee markup coverage, May 2026</li>
+    </ol>
+    <div class="disclaimer">
+      AI-assisted analysis, independently edited. Educational and editorial use only. Not billing, legal, or clinical advice. Reimbursement figures and bill provisions are summarized from public sources and subject to change as the legislation moves — verify current text and your local payer policy before relying on any number here.
+    </div>
+    <div class="colophon">© 2026 Peter Sorensen, DPM · The Guidewire · soleintell.com</div>
+  </div>
+
+</div>
+</body>
+</html>

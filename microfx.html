@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How Deep Should You Microfracture? | The Guidewire</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Kalam:wght@300;400;700&family=Caveat:wght@400;600;700&family=Patrick+Hand&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --board: #fafaf7;
+    --board-shadow: #e8e6df;
+    --ink: #1a1a1a;
+    --red: #d62828;
+    --blue: #1d4ed8;
+    --green: #16a34a;
+    --orange: #ea580c;
+    --purple: #7c3aed;
+    --muted: #6b6b6b;
+    --tray: #c9c4b8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #ddd9cc; font-family: 'Kalam', cursive; color: var(--ink); }
+  body::before {
+    content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background-image: radial-gradient(rgba(0,0,0,0.04) 1px, transparent 1px);
+    background-size: 4px 4px;
+  }
+  .board {
+    position: relative; z-index: 1;
+    max-width: 880px; margin: 30px auto; padding: 50px 60px 30px;
+    background: var(--board);
+    background-image:
+      radial-gradient(ellipse at 20% 30%, rgba(180,180,170,0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 70%, rgba(180,180,170,0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, rgba(200,200,190,0.04) 0%, transparent 70%);
+    box-shadow:
+      0 0 0 12px #b8a98a,
+      0 0 0 14px #8a7651,
+      0 30px 60px rgba(0,0,0,0.35),
+      inset 0 0 100px rgba(200,200,190,0.15);
+    border-radius: 4px;
+  }
+  /* eraser streaks */
+  .board::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background:
+      linear-gradient(105deg, transparent 0%, transparent 20%, rgba(220,218,210,0.4) 22%, transparent 24%, transparent 100%),
+      linear-gradient(95deg, transparent 0%, transparent 60%, rgba(220,218,210,0.3) 62%, transparent 65%, transparent 100%),
+      linear-gradient(115deg, transparent 0%, transparent 75%, rgba(220,218,210,0.35) 77%, transparent 80%, transparent 100%);
+    border-radius: 4px;
+    mix-blend-mode: multiply;
+  }
+  .chalk-tray {
+    max-width: 906px; margin: -30px auto 50px; height: 24px;
+    background: linear-gradient(180deg, #b8a98a 0%, #8a7651 100%);
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 20px 30px rgba(0,0,0,0.25);
+    display: flex; align-items: center; padding: 0 30px; gap: 12px;
+  }
+  .marker { width: 70px; height: 12px; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.3); }
+  .marker.black { background: #1a1a1a; }
+  .marker.red { background: var(--red); }
+  .marker.blue { background: var(--blue); }
+  .marker.green { background: var(--green); }
+  .marker.orange { background: var(--orange); }
+
+  /* MASTHEAD */
+  .masthead {
+    border-bottom: 3px solid var(--ink); padding-bottom: 14px; margin-bottom: 30px;
+    display: flex; justify-content: space-between; align-items: baseline;
+  }
+  .pub-name {
+    font-family: 'Permanent Marker', cursive; font-size: 32px; letter-spacing: 1px;
+    color: var(--ink); text-transform: uppercase;
+  }
+  .masthead-meta {
+    font-family: 'Kalam', cursive; font-size: 14px; color: var(--muted);
+    display: flex; gap: 16px;
+  }
+  .masthead-meta span { border-left: 1px solid #ccc; padding-left: 16px; }
+  .masthead-meta span:first-child { border-left: none; padding-left: 0; }
+
+  /* CLASSROOM TITLE STRIP */
+  .class-strip {
+    background: var(--ink); color: var(--board);
+    padding: 8px 16px; margin-bottom: 24px;
+    font-family: 'Patrick Hand', cursive; font-size: 18px; letter-spacing: 1px;
+    transform: rotate(-0.4deg);
+    box-shadow: 4px 4px 0 rgba(0,0,0,0.1);
+  }
+  .class-strip .date { float: right; opacity: 0.7; }
+
+  /* HEADLINE */
+  .headline {
+    font-family: 'Permanent Marker', cursive; font-size: 52px; line-height: 1.05;
+    color: var(--ink); margin-bottom: 12px; letter-spacing: 0.5px;
+  }
+  .headline .underline { display: inline-block; position: relative; }
+  .headline .underline::after {
+    content: ""; position: absolute; left: -4px; right: -4px; bottom: -8px; height: 6px;
+    background: var(--red); border-radius: 3px;
+    transform: rotate(-0.5deg);
+  }
+  .subhead {
+    font-family: 'Kalam', cursive; font-weight: 300; font-size: 22px;
+    color: var(--muted); margin-bottom: 8px;
+  }
+  .byline {
+    font-family: 'Caveat', cursive; font-size: 22px; color: var(--ink); margin-bottom: 40px;
+  }
+  .byline::before { content: "✎ "; color: var(--blue); }
+
+  /* SECTION HEADER */
+  h2.section {
+    font-family: 'Permanent Marker', cursive; font-size: 30px; margin: 40px 0 16px;
+    display: inline-block; position: relative;
+  }
+  h2.section::before {
+    content: ""; display: inline-block; width: 28px; height: 28px;
+    border-radius: 50%; margin-right: 14px; vertical-align: middle;
+  }
+  h2.q::before { background: var(--red); }
+  h2.k::before { background: var(--blue); }
+  h2.t::before { background: var(--purple); }
+  h2.d::before { background: var(--orange); }
+  h2.p::before { background: var(--green); }
+  h2.c::before { background: var(--red); }
+  h2.r::before { background: var(--blue); }
+  h2.s::before { background: var(--ink); }
+
+  /* TL;DR BOX */
+  .tldr {
+    border: 3px dashed var(--ink); padding: 22px 26px; margin: 24px 0 32px;
+    background: rgba(255,250,210,0.45);
+    transform: rotate(-0.3deg);
+    box-shadow: 6px 6px 0 rgba(0,0,0,0.08);
+  }
+  .tldr-label {
+    font-family: 'Permanent Marker', cursive; font-size: 20px; color: var(--red);
+    margin-bottom: 10px; letter-spacing: 1px;
+  }
+  .tldr p { font-size: 19px; line-height: 1.5; }
+  .tldr strong { color: var(--red); }
+
+  /* AWL DIAGRAM */
+  .diagram-wrap {
+    margin: 30px 0; padding: 20px;
+    background: rgba(255,255,255,0.6);
+    border: 2px solid var(--ink); border-radius: 8px;
+    transform: rotate(0.2deg);
+  }
+  .diagram-title {
+    font-family: 'Permanent Marker', cursive; font-size: 18px;
+    text-align: center; margin-bottom: 10px;
+  }
+  .diagram-caption {
+    font-family: 'Caveat', cursive; font-size: 18px; text-align: center;
+    color: var(--muted); margin-top: 8px;
+  }
+
+  /* BULLET LISTS - whiteboard style */
+  ul.wb { list-style: none; padding-left: 0; margin: 16px 0; }
+  ul.wb li {
+    position: relative; padding-left: 36px; margin-bottom: 14px;
+    font-size: 18px; line-height: 1.5;
+  }
+  ul.wb li::before {
+    content: "→"; position: absolute; left: 0; top: -2px;
+    font-family: 'Permanent Marker', cursive; font-size: 22px; color: var(--blue);
+  }
+  ul.wb.red li::before { color: var(--red); }
+  ul.wb.green li::before { color: var(--green); }
+  ul.wb.orange li::before { color: var(--orange); }
+  ul.wb li strong { font-weight: 700; }
+  ul.wb li em { font-style: italic; color: var(--muted); }
+
+  /* SIDE BY SIDE */
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 24px 0; }
+  .split-card {
+    border: 2px solid var(--ink); padding: 20px; background: rgba(255,255,255,0.5);
+    transform: rotate(-0.3deg);
+  }
+  .split-card:nth-child(2) { transform: rotate(0.4deg); }
+  .split-card h3 {
+    font-family: 'Permanent Marker', cursive; font-size: 20px; margin-bottom: 10px;
+  }
+  .split-card.convention h3 { color: var(--blue); }
+  .split-card.evidence h3 { color: var(--red); }
+  .split-card p { font-size: 17px; line-height: 1.5; }
+  .split-card .label {
+    display: inline-block; padding: 2px 10px; background: var(--ink); color: var(--board);
+    font-family: 'Patrick Hand', cursive; font-size: 13px; letter-spacing: 1px;
+    margin-bottom: 10px; transform: rotate(-1deg);
+  }
+
+  /* COMPARISON TABLE */
+  .compare-table {
+    width: 100%; border-collapse: collapse; margin: 24px 0;
+    font-family: 'Kalam', cursive;
+  }
+  .compare-table th {
+    background: var(--ink); color: var(--board); padding: 14px 12px;
+    font-family: 'Permanent Marker', cursive; font-size: 16px;
+    text-align: left; border: 2px solid var(--ink);
+  }
+  .compare-table td {
+    padding: 12px; border: 2px solid var(--ink); font-size: 16px;
+    background: rgba(255,255,255,0.5);
+  }
+  .compare-table tr:nth-child(even) td { background: rgba(245,245,235,0.5); }
+  .compare-table .tech { font-weight: 700; font-family: 'Permanent Marker', cursive; font-size: 14px; }
+
+  /* DEPTH RULER */
+  .ruler-wrap {
+    margin: 30px 0; padding: 20px; background: rgba(255,255,255,0.5);
+    border: 2px solid var(--ink); border-radius: 8px;
+  }
+  .ruler-title {
+    font-family: 'Permanent Marker', cursive; font-size: 18px;
+    margin-bottom: 16px; text-align: center;
+  }
+
+  /* DECISION FLOW */
+  .flow { margin: 24px 0; }
+  .flow-row {
+    display: flex; align-items: center; margin-bottom: 12px; gap: 14px;
+    font-size: 17px;
+  }
+  .flow-q {
+    background: var(--ink); color: var(--board); padding: 8px 14px;
+    font-family: 'Permanent Marker', cursive; font-size: 14px;
+    min-width: 180px; text-align: center;
+    transform: rotate(-0.5deg);
+  }
+  .flow-arrow { font-family: 'Permanent Marker', cursive; color: var(--blue); font-size: 22px; }
+  .flow-a { flex: 1; font-family: 'Kalam', cursive; }
+  .flow-a strong { color: var(--green); }
+  .flow-a.warn strong { color: var(--red); }
+  .flow-a.caution strong { color: var(--orange); }
+
+  /* CONFIDENCE BAR */
+  .confidence-block {
+    margin: 32px 0; padding: 22px 26px;
+    background: rgba(255,250,210,0.4); border-left: 6px solid var(--ink);
+  }
+  .confidence-label {
+    font-family: 'Permanent Marker', cursive; font-size: 18px; margin-bottom: 10px;
+  }
+  .conf-bar {
+    display: flex; gap: 4px; margin: 10px 0; height: 22px;
+  }
+  .conf-cell { flex: 1; height: 100%; border: 1.5px solid var(--ink); border-radius: 2px; }
+  .conf-cell.fill-g { background: var(--green); }
+  .conf-cell.fill-y { background: #fbbf24; }
+  .conf-cell.fill-empty { background: rgba(255,255,255,0.5); }
+  .conf-note {
+    font-family: 'Caveat', cursive; font-size: 18px; color: var(--muted);
+    margin-top: 8px;
+  }
+
+  /* SOURCES */
+  .sources {
+    margin-top: 36px; padding-top: 24px; border-top: 2px solid var(--ink);
+    font-family: 'Patrick Hand', cursive; font-size: 15px; line-height: 1.5;
+  }
+  .sources ol { padding-left: 24px; }
+  .sources li { margin-bottom: 6px; color: var(--muted); }
+  .sources li em { color: var(--ink); }
+
+  /* DISCLAIMER */
+  .disclaimer {
+    margin-top: 28px; padding: 16px 20px;
+    background: rgba(255,255,255,0.4); border: 1.5px dashed var(--muted);
+    font-family: 'Patrick Hand', cursive; font-size: 14px; color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* SOCIAL ASSET */
+  .social {
+    margin: 40px 0 0; padding: 26px 30px;
+    background: var(--ink); color: var(--board);
+    transform: rotate(-0.3deg);
+    box-shadow: 8px 8px 0 rgba(0,0,0,0.1);
+  }
+  .social-label {
+    font-family: 'Permanent Marker', cursive; font-size: 16px; color: var(--red);
+    margin-bottom: 10px; letter-spacing: 1px;
+  }
+  .social-hook {
+    font-family: 'Permanent Marker', cursive; font-size: 26px; line-height: 1.2;
+    margin-bottom: 16px;
+  }
+  .social ul { list-style: none; padding: 0; }
+  .social ul li {
+    padding-left: 24px; position: relative; margin-bottom: 8px;
+    font-family: 'Kalam', cursive; font-size: 17px;
+  }
+  .social ul li::before {
+    content: "▸"; position: absolute; left: 0; color: var(--red);
+  }
+  .social-cta {
+    margin-top: 16px; font-family: 'Caveat', cursive; font-size: 22px; color: #fde047;
+  }
+  .visual-dir {
+    margin-top: 18px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.3);
+    font-family: 'Patrick Hand', cursive; font-size: 14px; color: #b8b8b0; line-height: 1.5;
+  }
+  .visual-dir strong { color: var(--board); }
+
+  /* FOOTER */
+  .footer {
+    margin-top: 30px; padding-top: 18px; border-top: 1.5px solid #ccc;
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-family: 'Patrick Hand', cursive; font-size: 12px; color: #aaa;
+  }
+  .footer .pub-tiny { font-family: 'Permanent Marker', cursive; color: #888; }
+
+  /* CALLOUT BOX */
+  .callout {
+    margin: 22px 0; padding: 18px 22px;
+    background: rgba(255,236,179,0.5); border-left: 5px solid var(--orange);
+    transform: rotate(-0.2deg);
+    font-size: 17px; line-height: 1.5;
+  }
+  .callout strong { color: var(--orange); }
+
+  /* MOBILE */
+  @media (max-width: 720px) {
+    .board { padding: 30px 24px 20px; margin: 16px; }
+    .chalk-tray { margin: -20px 16px 30px; }
+    .headline { font-size: 36px; }
+    .pub-name { font-size: 22px; }
+    .masthead { flex-direction: column; gap: 6px; }
+    .masthead-meta { font-size: 12px; }
+    .split { grid-template-columns: 1fr; }
+    h2.section { font-size: 24px; }
+    .compare-table { font-size: 14px; }
+    .compare-table th, .compare-table td { padding: 8px 6px; font-size: 13px; }
+    .flow-row { flex-direction: column; align-items: flex-start; gap: 6px; }
+    .flow-q { min-width: auto; width: 100%; }
+    .flow-arrow { transform: rotate(90deg); margin-left: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="board">
+
+  <!-- MASTHEAD -->
+  <div class="masthead">
+    <div class="pub-name">The Guidewire</div>
+    <div class="masthead-meta">
+      <span>Clinical Education</span>
+      <span>soleintell.com</span>
+    </div>
+  </div>
+
+  <!-- CLASS STRIP -->
+  <div class="class-strip">
+    TODAY'S LESSON · Foot &amp; Ankle Surgery Rounds
+    <span class="date">Talus OCD Module</span>
+  </div>
+
+  <!-- HEADLINE -->
+  <h1 class="headline">How Deep Should You<br><span class="underline">Microfracture?</span></h1>
+  <div class="subhead">What the literature actually says about awl depth, plate violation, and when to escalate.</div>
+  <div class="byline">By Peter Sorensen, DPM</div>
+
+  <!-- TL;DR -->
+  <div class="tldr">
+    <div class="tldr-label">⚡ BOTTOM LINE UP FRONT</div>
+    <p>The clinical convention is <strong>2–4 mm</strong> awl depth, holes <strong>3–4 mm apart</strong> — and that's what 81% of published series do. But the strongest controlled basic-science evidence says <strong>deeper, narrower</strong> perforations build better cartilage. No human RCT has ever compared depths head-to-head in the talus.</p>
+  </div>
+
+  <!-- DIAGRAM: AWL CROSS-SECTION -->
+  <div class="diagram-wrap">
+    <div class="diagram-title">▼ Cross-Section: What Happens Below the Cartilage</div>
+    <svg viewBox="0 0 800 360" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto;">
+      <!-- Cartilage layer -->
+      <rect x="50" y="40" width="700" height="40" fill="#e0f2fe" stroke="#1a1a1a" stroke-width="2"/>
+      <text x="60" y="65" font-family="Kalam" font-size="14" fill="#1a1a1a">Articular Cartilage</text>
+
+      <!-- Subchondral plate -->
+      <rect x="50" y="80" width="700" height="14" fill="#cbd5e1" stroke="#1a1a1a" stroke-width="2"/>
+      <text x="60" y="91" font-family="Kalam" font-size="11" fill="#1a1a1a">Subchondral Plate</text>
+
+      <!-- Trabecular bone (textured) -->
+      <rect x="50" y="94" width="700" height="220" fill="#fef3c7" stroke="#1a1a1a" stroke-width="2"/>
+      <text x="60" y="310" font-family="Kalam" font-size="13" fill="#92400e">Trabecular Marrow / Stroma</text>
+
+      <!-- trabecular pattern dots -->
+      <g fill="#fbbf24" opacity="0.4">
+        <circle cx="120" cy="130" r="6"/><circle cx="180" cy="160" r="5"/><circle cx="240" cy="200" r="7"/>
+        <circle cx="320" cy="140" r="5"/><circle cx="400" cy="180" r="6"/><circle cx="480" cy="220" r="5"/>
+        <circle cx="560" cy="150" r="7"/><circle cx="620" cy="190" r="5"/><circle cx="690" cy="230" r="6"/>
+        <circle cx="150" cy="260" r="5"/><circle cx="280" cy="280" r="6"/><circle cx="450" cy="270" r="5"/>
+        <circle cx="600" cy="280" r="6"/><circle cx="350" cy="250" r="5"/><circle cx="500" cy="130" r="5"/>
+      </g>
+
+      <!-- AWL 1: SHALLOW (2mm) -->
+      <g>
+        <rect x="155" y="80" width="14" height="44" fill="#1d4ed8" stroke="#1a1a1a" stroke-width="2"/>
+        <!-- compaction halo -->
+        <ellipse cx="162" cy="124" rx="22" ry="14" fill="#1d4ed8" opacity="0.15"/>
+        <text x="135" y="20" font-family="Permanent Marker" font-size="18" fill="#1d4ed8">2 mm</text>
+        <text x="115" y="36" font-family="Kalam" font-size="13" fill="#1d4ed8">SHALLOW AWL</text>
+        <line x1="162" y1="125" x2="162" y2="155" stroke="#1d4ed8" stroke-width="1" stroke-dasharray="3,3"/>
+        <text x="115" y="175" font-family="Caveat" font-size="14" fill="#1d4ed8">"sealing effect"</text>
+      </g>
+
+      <!-- AWL 2: STANDARD (4mm) -->
+      <g>
+        <rect x="395" y="80" width="14" height="80" fill="#1a1a1a" stroke="#1a1a1a" stroke-width="2"/>
+        <ellipse cx="402" cy="160" rx="20" ry="12" fill="#1a1a1a" opacity="0.15"/>
+        <text x="380" y="20" font-family="Permanent Marker" font-size="18" fill="#1a1a1a">4 mm</text>
+        <text x="358" y="36" font-family="Kalam" font-size="13" fill="#1a1a1a">CLINICAL STANDARD</text>
+        <line x1="402" y1="160" x2="402" y2="190" stroke="#1a1a1a" stroke-width="1" stroke-dasharray="3,3"/>
+        <text x="345" y="208" font-family="Caveat" font-size="14" fill="#1a1a1a">Steadman 1999</text>
+      </g>
+
+      <!-- DRILL 3: DEEP (6mm) -->
+      <g>
+        <rect x="625" y="80" width="10" height="140" fill="#d62828" stroke="#1a1a1a" stroke-width="2"/>
+        <text x="608" y="20" font-family="Permanent Marker" font-size="18" fill="#d62828">6 mm</text>
+        <text x="588" y="36" font-family="Kalam" font-size="13" fill="#d62828">DEEPER DRILLING</text>
+        <text x="565" y="245" font-family="Caveat" font-size="14" fill="#d62828">open channel,</text>
+        <text x="565" y="262" font-family="Caveat" font-size="14" fill="#d62828">better repair</text>
+      </g>
+
+      <!-- depth scale on right -->
+      <g>
+        <line x1="752" y1="80" x2="752" y2="240" stroke="#1a1a1a" stroke-width="1.5"/>
+        <line x1="748" y1="80" x2="756" y2="80" stroke="#1a1a1a" stroke-width="1.5"/>
+        <line x1="748" y1="120" x2="756" y2="120" stroke="#1a1a1a" stroke-width="1.5"/>
+        <line x1="748" y1="160" x2="756" y2="160" stroke="#1a1a1a" stroke-width="1.5"/>
+        <line x1="748" y1="200" x2="756" y2="200" stroke="#1a1a1a" stroke-width="1.5"/>
+        <line x1="748" y1="240" x2="756" y2="240" stroke="#1a1a1a" stroke-width="1.5"/>
+        <text x="762" y="85" font-family="Patrick Hand" font-size="11" fill="#1a1a1a">0</text>
+        <text x="762" y="125" font-family="Patrick Hand" font-size="11" fill="#1a1a1a">2</text>
+        <text x="762" y="165" font-family="Patrick Hand" font-size="11" fill="#1a1a1a">4</text>
+        <text x="762" y="205" font-family="Patrick Hand" font-size="11" fill="#1a1a1a">6</text>
+        <text x="762" y="245" font-family="Patrick Hand" font-size="11" fill="#1a1a1a">mm</text>
+      </g>
+    </svg>
+    <div class="diagram-caption">Awls compact and "seal" bone around the channel; small-diameter drills leave the channel open.</div>
+  </div>
+
+  <!-- KEY CONCEPTS -->
+  <h2 class="section k">Key Concepts</h2>
+  <ul class="wb">
+    <li><strong>Steadman's original technique (1999):</strong> awls placed 3–4 mm apart, ~4 mm deep, into the subchondral bed until fat droplets or blood appear.</li>
+    <li><strong>The "endpoint" is intra-op feedback, not measured depth</strong> — bleeding/fat = stop. This is what most surgeons actually do.</li>
+    <li><strong>Diameter matters as much as depth.</strong> Smaller (≤1.0 mm) perforations preserve trabecular architecture; larger awls (≥2 mm) crush and compact bone.</li>
+    <li><strong>The subchondral plate gets violated either way</strong> — the meaningful variable is the <em>quality</em> of disruption (sharp drill channels vs. crushed awl pits).</li>
+    <li><strong>Lesion depth on MRI is prognostic.</strong> &gt;7.8 mm lesion depth predicts worse outcomes. Cysts &gt;5 mm push you toward augmentation.</li>
+  </ul>
+
+  <!-- CONVENTION VS EVIDENCE -->
+  <h2 class="section q">Convention vs. Evidence</h2>
+  <div class="split">
+    <div class="split-card convention">
+      <div class="label">WHAT WE DO</div>
+      <h3>2–4 mm Awl, 3–4 mm Spacing</h3>
+      <p>Steadman 1999. Kok systematic review 2012 (6 studies, 198 patients) — 81% good/excellent outcomes. Powers/Dowd/Giza 2021 review reinforces the convention.</p>
+    </div>
+    <div class="split-card evidence">
+      <div class="label">WHAT THE BENCH SAYS</div>
+      <h3>1 mm Diameter, 6+ mm Deep</h3>
+      <p>Chen/Hoemann (rabbit 2009, 2011): deeper drilling → more hyaline-character fill, more type II collagen, less type I. Eldracher/Madry (sheep 2014): 1.0 mm holes outperform 1.8 mm.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>The disconnect:</strong> Clinical results at 2–4 mm awl depth are good enough that nobody has run a human RCT to test deeper drilling. The animal data have been around for 15 years.
+  </div>
+
+  <!-- COMPARISON TABLE -->
+  <h2 class="section t">The Marrow-Stimulation Spectrum</h2>
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Technique</th>
+        <th>Diameter</th>
+        <th>Depth</th>
+        <th>Tissue effect</th>
+        <th>Talus clinical data</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="tech">Standard MFx (awl)</td>
+        <td>1–2 mm</td>
+        <td>2–4 mm</td>
+        <td>Compaction / "sealing"</td>
+        <td>Kok 2012: 81% success in small OLT</td>
+      </tr>
+      <tr>
+        <td class="tech">Small awl / microdrill</td>
+        <td>1.0 mm</td>
+        <td>2–4 mm</td>
+        <td>Less compaction, more channels</td>
+        <td>Gianakos 2016 (cadaver, micro-CT)</td>
+      </tr>
+      <tr>
+        <td class="tech">Subchondral drilling</td>
+        <td>1.2–1.6 mm</td>
+        <td>4–6 mm</td>
+        <td>Clean channels, more depth</td>
+        <td>Choi &amp; Lee 2016: clinically equivalent</td>
+      </tr>
+      <tr>
+        <td class="tech">Nanofracture</td>
+        <td>1.0 mm</td>
+        <td>~9 mm</td>
+        <td>Neo-trabecular remodeling</td>
+        <td>Kasapoğlu 2025 (RCT): equiv at 1 yr</td>
+      </tr>
+      <tr>
+        <td class="tech">AMIC (MFx + scaffold)</td>
+        <td>Standard</td>
+        <td>Standard</td>
+        <td>Adds matrix scaffold</td>
+        <td>Wang 2021 meta-analysis: superior to isolated MFx</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- DEPTH RULER -->
+  <h2 class="section d">When Lesion Depth Changes the Plan</h2>
+  <div class="ruler-wrap">
+    <div class="ruler-title">▲ Lesion depth on preop MRI</div>
+    <svg viewBox="0 0 760 200" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto;">
+      <!-- ruler base -->
+      <line x1="40" y1="120" x2="720" y2="120" stroke="#1a1a1a" stroke-width="3"/>
+
+      <!-- Zone backgrounds -->
+      <rect x="40" y="80" width="220" height="40" fill="#16a34a" opacity="0.15"/>
+      <rect x="260" y="80" width="220" height="40" fill="#ea580c" opacity="0.15"/>
+      <rect x="480" y="80" width="240" height="40" fill="#d62828" opacity="0.15"/>
+
+      <!-- Tick marks -->
+      <line x1="40" y1="115" x2="40" y2="135" stroke="#1a1a1a" stroke-width="2"/>
+      <line x1="260" y1="115" x2="260" y2="135" stroke="#1a1a1a" stroke-width="2"/>
+      <line x1="480" y1="115" x2="480" y2="135" stroke="#1a1a1a" stroke-width="2"/>
+      <line x1="720" y1="115" x2="720" y2="135" stroke="#1a1a1a" stroke-width="2"/>
+
+      <!-- Tick labels -->
+      <text x="35" y="155" font-family="Permanent Marker" font-size="16" fill="#1a1a1a">0</text>
+      <text x="252" y="155" font-family="Permanent Marker" font-size="16" fill="#1a1a1a">5</text>
+      <text x="468" y="155" font-family="Permanent Marker" font-size="16" fill="#1a1a1a">7.8</text>
+      <text x="703" y="155" font-family="Permanent Marker" font-size="16" fill="#1a1a1a">10+</text>
+      <text x="350" y="180" font-family="Kalam" font-size="14" fill="#6b6b6b" text-anchor="middle">lesion depth (mm)</text>
+
+      <!-- Zone labels -->
+      <text x="150" y="55" font-family="Permanent Marker" font-size="14" fill="#16a34a" text-anchor="middle">ISOLATED MFx OK</text>
+      <text x="150" y="74" font-family="Caveat" font-size="14" fill="#1a1a1a" text-anchor="middle">small, contained, shallow</text>
+
+      <text x="370" y="55" font-family="Permanent Marker" font-size="14" fill="#ea580c" text-anchor="middle">AUGMENT</text>
+      <text x="370" y="74" font-family="Caveat" font-size="14" fill="#1a1a1a" text-anchor="middle">AMIC, BioCartilage, BMAC</text>
+
+      <text x="600" y="55" font-family="Permanent Marker" font-size="14" fill="#d62828" text-anchor="middle">GRAFT</text>
+      <text x="600" y="74" font-family="Caveat" font-size="14" fill="#1a1a1a" text-anchor="middle">OAT, mosaicplasty, autograft</text>
+
+      <!-- 7.8mm callout -->
+      <line x1="480" y1="80" x2="480" y2="30" stroke="#d62828" stroke-width="1.5" stroke-dasharray="4,3"/>
+      <text x="480" y="22" font-family="Caveat" font-size="16" fill="#d62828" text-anchor="middle">Choi/Powers cutoff</text>
+    </svg>
+  </div>
+  <p style="font-size: 17px; line-height: 1.5;">Also consider: <strong>size</strong> &gt;107 mm² (≈10.2 mm diameter), <strong>uncontained</strong> shoulder lesions, <strong>age</strong> &gt;40, smoking — all push management away from isolated MFx. (Ramponi 2017 SR, Powers 2021).</p>
+
+  <!-- DECISION LENS -->
+  <h2 class="section t">Decision Lens — How to Think About It</h2>
+  <div class="flow">
+    <div class="flow-row">
+      <div class="flow-q">Lesion &lt;100 mm²,<br>depth &lt;5 mm?</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-a"><strong>Isolated MFx is reasonable.</strong> Use a small (≤1 mm) awl, 2–4 mm deep, 3–4 mm apart. Stop at fat droplets.</div>
+    </div>
+    <div class="flow-row">
+      <div class="flow-q">Lesion 5–7.8 mm deep<br>or cyst &gt;5 mm?</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-a caution"><strong>Augment.</strong> AMIC, BioCartilage, or BMAC on top of MFx. Wang 2021 meta supports this.</div>
+    </div>
+    <div class="flow-row">
+      <div class="flow-q">Lesion &gt;7.8 mm,<br>uncontained, or revision?</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-a warn"><strong>Graft.</strong> OAT, mosaicplasty, structural autograft, or osteochondral allograft.</div>
+    </div>
+    <div class="flow-row">
+      <div class="flow-q">High-demand athlete,<br>wants faster RTS?</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-a"><strong>Consider deeper, narrower</strong> (nanofracture or SPORT-style 1.2 mm × 10 mm drilling). Li 2026 RCT showed faster 3–6 mo recovery, equivalent at 1 yr.</div>
+    </div>
+  </div>
+
+  <!-- PITFALLS -->
+  <h2 class="section c">⚠️ Pitfalls &amp; Mistakes</h2>
+  <ul class="wb red">
+    <li><strong>Using a 2 mm awl by default.</strong> Cadaver micro-CT (Gianakos 2016) shows you're crushing more bone than you think — switch to a 1 mm awl or microdrill if available.</li>
+    <li><strong>Treating "preserve the plate" as literal.</strong> You're penetrating it — that's the point. The goal is clean penetration, not avoidance.</li>
+    <li><strong>Microfracturing large or deep lesions.</strong> &gt;107 mm² area, &gt;10 mm diameter, or &gt;7.8 mm depth → expect failure. Escalate at the front end.</li>
+    <li><strong>Ignoring postop subchondral BME on follow-up MRI.</strong> Persistent edema at 4 yr correlates with worse FAOS (Shimozono 2018). It's a signal, not noise.</li>
+    <li><strong>Assuming all "augmented MFx" is equivalent.</strong> The Wang 2021 meta pools BMAC, PRP, HA, scaffolds — supports <em>some</em> augmentation, doesn't endorse a brand.</li>
+  </ul>
+
+  <!-- PEARLS -->
+  <h2 class="section p">💎 Pearls</h2>
+  <ul class="wb green">
+    <li><strong>Endpoint &gt; depth.</strong> Fat droplets and bleeding mean you're through. Don't chase a millimeter number on the awl.</li>
+    <li><strong>Smaller diameter = better architecture.</strong> Reach for a 1 mm awl over a 2 mm awl whenever your tray allows.</li>
+    <li><strong>Spacing matters.</strong> 3–4 mm between holes — keep the bridges intact, you need them for stability.</li>
+    <li><strong>Calcified cartilage off, stable shoulders.</strong> Debridement quality predicts more than depth does.</li>
+    <li><strong>Read the lesion before you read the tray.</strong> MRI depth + size determines technique selection. The awl is the last decision, not the first.</li>
+  </ul>
+
+  <!-- CONTROVERSIES -->
+  <h2 class="section c">🔥 Controversies / Debates</h2>
+  <ul class="wb orange">
+    <li><strong>Is deeper actually better in humans?</strong> Strong rabbit and sheep data. Zero human RCT comparing 2 mm vs 4 mm vs 6 mm in the talus. The translation step is missing.</li>
+    <li><strong>Does the "sealing effect" matter clinically?</strong> 81% good outcomes at 2–4 mm awl depth suggests the compaction isn't catastrophic — but Shimozono's BME data suggest the substrate isn't healing as cleanly as we'd like.</li>
+    <li><strong>Nanofracture vs MFx in the talus.</strong> Better histology on the bench, but Kasapoğlu 2025 RCT showed equivalent AOFAS at 12 months. Tissue ≠ symptoms — at least at 1 year.</li>
+    <li><strong>The 7.8 mm cutoff.</strong> Widely cited from Powers 2021 / Choi WJ — but it's a soft threshold from prognostic series, not a hard rule from an RCT.</li>
+  </ul>
+
+  <!-- CURRENT TRENDS -->
+  <h2 class="section r">Current Trends (2024–2026)</h2>
+  <ul class="wb">
+    <li><strong>Augmentation is the standard, not the exception</strong> for moderate-to-large OLT — Wang 2021 meta-analysis tipped this conversation.</li>
+    <li><strong>Smaller-diameter tools winning the bench debate</strong> — nanofracture, SPORT-style 1.2 mm K-wires, microdrilling. Li/Jiang 2026 RCT is the strongest signal yet.</li>
+    <li><strong>MRI substrate quality (MOCART, BME persistence) is replacing AOFAS</strong> as the more sensitive outcome measure for cartilage repair research.</li>
+    <li><strong>Lesion-depth-based algorithms</strong> (rather than one-size-fits-all MFx) increasingly drive technique selection in foot &amp; ankle consensus statements.</li>
+  </ul>
+
+  <!-- CONFIDENCE -->
+  <div class="confidence-block">
+    <div class="confidence-label">📊 Confidence Level: 7 / 10</div>
+    <div class="conf-bar">
+      <div class="conf-cell fill-g"></div>
+      <div class="conf-cell fill-g"></div>
+      <div class="conf-cell fill-g"></div>
+      <div class="conf-cell fill-g"></div>
+      <div class="conf-cell fill-g"></div>
+      <div class="conf-cell fill-y"></div>
+      <div class="conf-cell fill-y"></div>
+      <div class="conf-cell fill-empty"></div>
+      <div class="conf-cell fill-empty"></div>
+      <div class="conf-cell fill-empty"></div>
+    </div>
+    <div class="conf-note">High confidence on the 2–4 mm clinical convention and on the basic-science depth/diameter findings. Medium confidence on translating animal-model results to humans — no head-to-head depth RCT in the talus exists. ⚠️ Verify locally before applying.</div>
+  </div>
+
+  <!-- SOURCES -->
+  <div class="sources">
+    <div style="font-family: 'Permanent Marker', cursive; font-size: 16px; color: #1a1a1a; margin-bottom: 10px;">📚 Sources</div>
+    <ol>
+      <li>Steadman JR, et al. <em>Der Orthopade</em>. 1999;28(1):26–32. — Original microfracture technique description.</li>
+      <li>Kok AC, van Dijk CN, Kerkhoffs GM. <em>J Foot Ankle Surg</em>. 2012;51(5):599–605. — Systematic review of MFx for talar OLT, 6 studies, 198 patients.</li>
+      <li>Chen H, Hoemann CD, et al. <em>J Orthop Res</em>. 2011;29(8):1178–84; <em>Am J Sports Med</em>. 2011;39(8):1731–40. — Deeper drilling produces more hyaline-character cartilage repair.</li>
+      <li>Eldracher M, Orth P, Madry H, et al. <em>Am J Sports Med</em>. 2014;42(11):2741–50. — 1.0 mm drill holes outperform 1.8 mm in ovine model.</li>
+      <li>Gianakos AL, Kennedy JG, et al. <em>Arthroscopy</em>. 2016;32(10):2110–2116. — Cadaver talus micro-CT; smaller awls preserve architecture.</li>
+      <li>Powers RT, Dowd TC, Giza E. <em>Arthroscopy</em>. 2021;37(12):3393–3396. — Review; lesion depth &gt;7.8 mm predicts poor MFx outcome.</li>
+      <li>Wang T, et al. <em>J Foot Ankle Surg</em>. 2021. — Meta-analysis: augmented MFx superior to isolated MFx for talar OLT.</li>
+      <li>Li, Jiang et al. <em>J Orthop Translat</em>. 2026. — SPORT-trial RCT; 1.2 mm × 10 mm drilling vs standard MFx, n=56.</li>
+    </ol>
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div class="disclaimer">
+    AI-assisted educational content for resident and student learners. Not surgical instruction. Not clinical guidance. Not for billing or treatment decisions. Verify all primary sources and current literature before applying any framework to a real patient. Surgical judgment belongs to the operating surgeon.
+  </div>
+
+  <!-- SOCIAL ASSET -->
+  <div class="social">
+    <div class="social-label">🔹 SOCIAL POST ASSET</div>
+    <div class="social-hook">"Stop chasing a millimeter on the awl. Read the lesion first."</div>
+    <ul>
+      <li>The 2–4 mm clinical convention works — but the bench says deeper &amp; narrower wins.</li>
+      <li>Lesion depth &gt;7.8 mm? You're past microfracture territory. Augment or graft.</li>
+      <li>No human RCT has ever compared awl depths in the talus. Read that twice.</li>
+    </ul>
+    <div class="social-cta">→ Read the full breakdown on Substack: https://soleintell.substack.com/</div>
+    <div class="visual-dir">
+      <strong>Visual direction:</strong> Lecture-hall whiteboard aesthetic — white board, marker colors (black/red/blue/green), Permanent Marker display font with Kalam body, classroom title strip up top, cross-sectional awl diagram as hero visual. Light cream board texture, chalk-tray with colored markers as visual anchor at top. Single scrollable column for mobile + Substack.
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div><span class="pub-tiny">SOLE INTELLIGENCE</span> · soleintell.com</div>
+    <div>© 2026 Peter Sorensen, DPM</div>
+  </div>
+
+</div>
+
+<div class="chalk-tray">
+  <div class="marker black"></div>
+  <div class="marker red"></div>
+  <div class="marker blue"></div>
+  <div class="marker green"></div>
+  <div class="marker orange"></div>
+</div>
+
+</body>
+</html>

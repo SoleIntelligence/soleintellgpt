@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="only light">
+<title>The One Board Question — The Guidewire</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,500&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: only light;
+    --cream: #F3ECDD;
+    --parchment: #EBE1CB;
+    --paper-shadow: #D9CEB3;
+    --ink: #1A1714;
+    --ink-soft: #3A342C;
+    --ink-mute: #6B6254;
+    --red: #B8341A;
+    --red-dark: #8E2712;
+    --rule: #1A1714;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--cream); color: var(--ink); -webkit-font-smoothing: antialiased; }
+  body {
+    font-family: 'Fraunces', Georgia, serif;
+    font-feature-settings: "ss01", "ss02";
+    line-height: 1.5;
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(184,52,26,0.04) 0, transparent 40%),
+      radial-gradient(circle at 90% 80%, rgba(26,23,20,0.05) 0, transparent 45%);
+  }
+  .page {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 48px 40px 80px;
+  }
+
+  /* ========= MASTHEAD ========= */
+  .masthead {
+    border-top: 6px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+    padding: 14px 0 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  .masthead .pub { font-weight: 700; }
+  .masthead .meta { color: var(--ink-mute); }
+  .masthead .meta span { margin-left: 18px; }
+
+  /* ========= TITLE BLOCK ========= */
+  .title-block {
+    padding: 60px 0 40px;
+    border-bottom: 1px solid var(--ink);
+  }
+  .issue-tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--cream);
+    background: var(--red);
+    padding: 6px 12px 5px;
+    margin-bottom: 28px;
+  }
+  .kicker {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 18px;
+  }
+  h1.headline {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: clamp(42px, 7vw, 72px);
+    line-height: 0.96;
+    letter-spacing: -0.025em;
+    margin-bottom: 24px;
+    font-variation-settings: "opsz" 144, "SOFT" 30;
+  }
+  h1.headline em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--red-dark);
+  }
+  .deck {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 1.4;
+    color: var(--ink-soft);
+    max-width: 640px;
+    font-style: italic;
+  }
+  .byline {
+    margin-top: 32px;
+    display: flex;
+    gap: 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+  .byline .author { color: var(--ink); font-weight: 700; }
+
+  /* ========= SECTION HEADERS ========= */
+  .section {
+    padding: 44px 0 0;
+  }
+  .section-number {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    color: var(--red);
+    display: block;
+    margin-bottom: 10px;
+  }
+  h2.section-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--ink);
+  }
+  h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 18px;
+    letter-spacing: -0.005em;
+    margin-bottom: 8px;
+    color: var(--ink);
+  }
+  p { font-size: 16px; line-height: 1.6; color: var(--ink-soft); margin-bottom: 14px; }
+  p strong { color: var(--ink); font-weight: 600; }
+  p em { font-style: italic; }
+
+  /* ========= WHAT THIS IS / WHY IT MATTERS ========= */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 36px;
+    margin-top: 14px;
+  }
+  .brief-card {
+    background: var(--parchment);
+    border-left: 3px solid var(--red);
+    padding: 22px 24px;
+  }
+  .brief-card .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 10px;
+    display: block;
+  }
+  .brief-card p { font-size: 15px; margin: 0; }
+
+  /* ========= TIMELINE ========= */
+  .timeline {
+    margin-top: 24px;
+    border-top: 1px solid var(--ink);
+  }
+  .timeline-row {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 24px;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--paper-shadow);
+    align-items: baseline;
+  }
+  .timeline-row .year {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--red);
+    letter-spacing: 0.05em;
+  }
+  .timeline-row .event h4 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 17px;
+    margin-bottom: 4px;
+  }
+  .timeline-row .event p {
+    font-size: 14px;
+    margin: 0;
+    color: var(--ink-soft);
+  }
+
+  /* ========= FACTION MAP ========= */
+  .faction-grid {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+  .faction {
+    padding: 22px;
+    border: 1px solid var(--ink);
+    background: var(--parchment);
+    position: relative;
+  }
+  .faction.pro-one::before {
+    content: "PRO ONE-BOARD";
+    position: absolute;
+    top: -10px;
+    left: 16px;
+    background: var(--cream);
+    padding: 0 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--red);
+    font-weight: 700;
+  }
+  .faction.anti-one::before {
+    content: "DEFENDS STATUS QUO";
+    position: absolute;
+    top: -10px;
+    left: 16px;
+    background: var(--cream);
+    padding: 0 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--ink);
+    font-weight: 700;
+  }
+  .faction h4 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 19px;
+    margin: 6px 0 10px;
+  }
+  .faction ul { list-style: none; padding: 0; }
+  .faction li {
+    font-size: 14px;
+    padding: 6px 0;
+    border-bottom: 1px dotted var(--paper-shadow);
+    color: var(--ink-soft);
+  }
+  .faction li:last-child { border-bottom: 0; }
+  .faction li strong { color: var(--ink); }
+
+  /* ========= INCENTIVES TABLE ========= */
+  .incentives {
+    margin-top: 22px;
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  .incentives th, .incentives td {
+    padding: 14px 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--paper-shadow);
+    vertical-align: top;
+  }
+  .incentives th {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--red);
+    border-bottom: 2px solid var(--ink);
+    background: transparent;
+    font-weight: 700;
+  }
+  .incentives td.actor { font-weight: 600; color: var(--ink); width: 28%; }
+  .incentives td.win { color: var(--ink-soft); }
+
+  /* ========= PULL QUOTE ========= */
+  .pull-quote {
+    margin: 40px 0 20px;
+    padding: 32px 0;
+    border-top: 6px solid var(--red);
+    border-bottom: 1px solid var(--ink);
+  }
+  .pull-quote blockquote {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(22px, 3.5vw, 30px);
+    line-height: 1.25;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    margin-bottom: 14px;
+  }
+  .pull-quote cite {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    font-style: normal;
+  }
+
+  /* ========= PATHWAYS ========= */
+  .pathways {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .pathway {
+    padding: 20px 24px;
+    background: var(--parchment);
+    border-left: 4px solid var(--ink);
+    position: relative;
+  }
+  .pathway .path-id {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--red);
+    font-weight: 700;
+    margin-bottom: 6px;
+    display: block;
+  }
+  .pathway h4 {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .pathway p { font-size: 14px; margin: 0; }
+  .pathway.unlikely { border-left-color: var(--ink-mute); opacity: 0.85; }
+  .pathway.watchable { border-left-color: var(--red); }
+
+  /* ========= PEARLS / PITFALLS ========= */
+  .dual-grid {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .box {
+    padding: 22px 24px;
+    border: 1px solid var(--ink);
+    background: var(--cream);
+  }
+  .box.pitfalls { border-top: 6px solid var(--red); }
+  .box.pearls { border-top: 6px solid var(--ink); }
+  .box .box-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    display: block;
+    font-weight: 700;
+  }
+  .box.pitfalls .box-label { color: var(--red); }
+  .box.pearls .box-label { color: var(--ink); }
+  .box ol { padding-left: 18px; }
+  .box li {
+    font-size: 14px;
+    line-height: 1.5;
+    padding: 6px 0;
+    color: var(--ink-soft);
+  }
+  .box li strong { color: var(--ink); }
+
+  /* ========= CONFIDENCE ========= */
+  .confidence-block {
+    margin-top: 36px;
+    padding: 24px;
+    background: var(--parchment);
+    border-top: 3px solid var(--red);
+  }
+  .confidence-block .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 10px;
+  }
+  .confidence-bar {
+    display: flex;
+    gap: 3px;
+    margin: 10px 0 14px;
+  }
+  .confidence-bar span {
+    height: 14px;
+    flex: 1;
+    background: var(--paper-shadow);
+  }
+  .confidence-bar span.filled { background: var(--red); }
+  .confidence-note {
+    font-family: 'Fraunces', serif;
+    font-size: 14px;
+    color: var(--ink-soft);
+    font-style: italic;
+  }
+
+  /* ========= SOURCES ========= */
+  .sources {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--ink);
+  }
+  .sources h3 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--red);
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .sources ol { padding-left: 18px; font-size: 13px; color: var(--ink-mute); line-height: 1.5; }
+  .sources li { margin-bottom: 6px; }
+
+  /* ========= SOCIAL CARD ========= */
+  .social-card {
+    margin-top: 40px;
+    padding: 28px;
+    background: var(--ink);
+    color: var(--cream);
+    border: 1px solid var(--ink);
+  }
+  .social-card .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 14px;
+  }
+  .social-card h4 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 1.2;
+    margin-bottom: 12px;
+    color: var(--cream);
+  }
+  .social-card ul { list-style: none; padding: 0; margin: 8px 0 16px; }
+  .social-card li {
+    font-size: 14px;
+    color: var(--parchment);
+    padding: 4px 0 4px 18px;
+    position: relative;
+  }
+  .social-card li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--red);
+    font-weight: 700;
+  }
+  .social-card .cta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--red);
+    margin-top: 8px;
+  }
+
+  /* ========= DISCLAIMER / FOOTER ========= */
+  .disclaimer {
+    margin-top: 40px;
+    padding: 20px;
+    background: transparent;
+    border: 1px dashed var(--ink-mute);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    line-height: 1.5;
+    color: var(--ink-mute);
+    letter-spacing: 0.02em;
+  }
+  .disclaimer strong { color: var(--ink); }
+
+  .colophon {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 2px solid var(--ink);
+    display: flex;
+    justify-content: space-between;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+
+  /* ========= MOBILE ========= */
+  @media (max-width: 680px) {
+    .page { padding: 28px 20px 60px; }
+    .two-col, .faction-grid, .dual-grid { grid-template-columns: 1fr; }
+    .timeline-row { grid-template-columns: 56px 1fr; gap: 16px; }
+    .masthead { flex-wrap: wrap; gap: 6px; }
+    .masthead .meta span { margin-left: 10px; }
+    .incentives th, .incentives td { font-size: 12px; padding: 10px 6px; }
+    h1.headline { font-size: 40px; }
+  }
+</style>
+</head>
+<body>
+<main class="page">
+
+  <!-- MASTHEAD -->
+  <header class="masthead">
+    <div class="pub">The Guidewire · Sole Intelligence</div>
+    <div class="meta"><span>Vol. I</span><span>Intelligence Brief № 14</span><span>April 2026</span></div>
+  </header>
+
+  <!-- TITLE BLOCK -->
+  <section class="title-block">
+    <span class="issue-tag">Governance Brief · The Certification Question</span>
+    <div class="kicker">A Resident's Intelligence Brief</div>
+    <h1 class="headline">The <em>One Board</em> Question</h1>
+    <p class="deck">Two competing boards. Fifty years of parallel certification. A stalled unification effort, an antitrust fence, and a profession still divided at the credential line. Here is what's actually happening — and what it means for the residents who have to choose.</p>
+    <div class="byline">
+      <span class="author">Peter Sorensen, DPM</span>
+      <span>The Guidewire</span>
+      <span>Filed April 2026</span>
+    </div>
+  </section>
+
+  <!-- SECTION 01: WHAT THIS IS / WHY IT MATTERS -->
+  <section class="section">
+    <span class="section-number">§ 01 — Orientation</span>
+    <h2 class="section-title">What this is, why it matters</h2>
+    <div class="two-col">
+      <div class="brief-card">
+        <span class="label">What This Is</span>
+        <p>A structured analysis of the movement to unify podiatric board certification under a single entity — the factions, the incentives, the legal guardrails, and the plausible pathways forward.</p>
+      </div>
+      <div class="brief-card">
+        <span class="label">Why It Matters</span>
+        <p>Board certification drives hospital privileges, job offers, and how our profession is read by outsiders. Residents carry this decision into every credentialing committee for the next forty years.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 02: LANDSCAPE -->
+  <section class="section">
+    <span class="section-number">§ 02 — The Landscape</span>
+    <h2 class="section-title">Two boards, one specialty</h2>
+    <p>Podiatry has two CPME-recognized certifying boards. Both emerged in the 1970s. Both have independent governance. Both have their own fee structures, exams, maintenance-of-certification requirements, and political constituencies. They compete for the same pool of residents graduating from the same accredited programs.</p>
+    <p>This is not how the rest of medicine works. MDs and DOs in almost every specialty certify through a single ABMS-recognized or AOA-recognized board. The podiatric profession's twin-board structure is a historical artifact — one that increasingly strains against modern credentialing systems, hospital privileging committees, and the expectations of the broader medical community.</p>
+
+    <div class="faction-grid">
+      <div class="faction pro-one">
+        <h4>ABPM</h4>
+        <p style="font-size:13px; color:var(--ink-mute); margin-bottom:10px; font-style:italic;">American Board of Podiatric Medicine · est. 1978</p>
+        <ul>
+          <li><strong>Certifies:</strong> Podiatric medicine & orthopedics</li>
+          <li><strong>Recent move:</strong> Launched a Certificate of Added Qualification in Podiatric Surgery (2022)</li>
+          <li><strong>Posture:</strong> Open to unification "for two decades"; frames itself as the willing negotiator</li>
+          <li><strong>2026 HOD action:</strong> CAQ in Podiatric Surgery discontinued</li>
+        </ul>
+      </div>
+      <div class="faction anti-one">
+        <h4>ABFAS</h4>
+        <p style="font-size:13px; color:var(--ink-mute); margin-bottom:10px; font-style:italic;">American Board of Foot and Ankle Surgery · est. 1975</p>
+        <ul>
+          <li><strong>Certifies:</strong> Foot surgery, and RRA surgery</li>
+          <li><strong>Position:</strong> Case-review standards are non-negotiable; merger would "lower the bar"</li>
+          <li><strong>Legal fence:</strong> Cites U.S. antitrust law as a reason not to engage in merger talks</li>
+          <li><strong>Constituency:</strong> 10,000+ current diplomates; surgical residency programs</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 03: TIMELINE -->
+  <section class="section">
+    <span class="section-number">§ 03 — How We Got Here</span>
+    <h2 class="section-title">A fifty-year timeline</h2>
+    <div class="timeline">
+      <div class="timeline-row">
+        <div class="year">1975</div>
+        <div class="event">
+          <h4>ABFAS established</h4>
+          <p>Originally the National Board of Podiatric Surgery. First podiatric certifying board. Case-review model anchored from day one.</p>
+        </div>
+      </div>
+      <div class="timeline-row">
+        <div class="year">1978</div>
+        <div class="event">
+          <h4>ABPM established</h4>
+          <p>Certifies in podiatric medicine and orthopedics. Independent governance, independent exam infrastructure.</p>
+        </div>
+      </div>
+      <div class="timeline-row">
+        <div class="year">2005</div>
+        <div class="event">
+          <h4>APMA Vision 2015 published</h4>
+          <p>First formal profession-wide call for unified certification. ABPM later points to this document as proof of its long-standing willingness to unify.</p>
+        </div>
+      </div>
+      <div class="timeline-row">
+        <div class="year">2019</div>
+        <div class="event">
+          <h4>APMA Blue-Ribbon Panel</h4>
+          <p>Reaffirms the policy of recognizing only one board per specialty area. Grants CPME autonomy over board recognition. Sets the table for everything that follows.</p>
+        </div>
+      </div>
+      <div class="timeline-row">
+        <div class="year">2022</div>
+        <div class="event">
+          <h4>ABPM CAQ in Podiatric Surgery launches</h4>
+          <p>ABFAS responds immediately: the CAQ "accepts a lower level of competency" and skips surgical case review. The competition becomes overtly public.</p>
+        </div>
+      </div>
+      <div class="timeline-row">
+        <div class="year">2024</div>
+        <div class="event">
+          <h4>HOD Prop 2-24: One Board</h4>
+          <p>APMA House of Delegates proposition calling for "One Board in Podiatric Medicine and Surgery" receives a Do Pass recommendation. Debate is contentious.</p>
+        </div>
+      </div>
+      <div class="timeline-row">
+        <div class="year">2024</div>
+        <div class="event">
+          <h4>Single Certifying Board Task Force</h4>
+          <p>APMA convenes a task force. ABFAS sends a letter flagging antitrust exposure, declining to discuss competitively sensitive information, and criticizing the exclusion of other certifying entities.</p>
+        </div>
+      </div>
+      <div class="timeline-row">
+        <div class="year">2025</div>
+        <div class="event">
+          <h4>APMA and CPME statements</h4>
+          <p>APMA (Dec) and CPME (Oct) independently state that CAQs are not equivalent to board or subspecialty certification. The ground begins to shift under ABPM's surgical CAQ.</p>
+        </div>
+      </div>
+      <div class="timeline-row">
+        <div class="year">2026</div>
+        <div class="event">
+          <h4>ABPM CAQ in Podiatric Surgery discontinued</h4>
+          <p>At the March 2026 APMA HOD in Washington, DC, the surgical CAQ is formally discontinued. The most public flashpoint of the dispute is removed — but the underlying two-board structure remains.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PULL QUOTE -->
+  <section class="pull-quote">
+    <blockquote>"Engaging in discussions among this group of competing bodies and competing podiatrists presents significant risks of noncompliance with the antitrust laws."</blockquote>
+    <cite>— ABFAS letter to the APMA Single Certifying Board Task Force, 2024</cite>
+  </section>
+
+  <!-- SECTION 04: INCENTIVES -->
+  <section class="section">
+    <span class="section-number">§ 04 — Follow the Incentives</span>
+    <h2 class="section-title">Who wants what, and why</h2>
+    <p>Governance fights become readable once you stop asking <em>what is the right answer</em> and start asking <em>who benefits from which outcome</em>. Here is the incentive map.</p>
+    <table class="incentives">
+      <thead>
+        <tr><th>Actor</th><th>Preferred outcome</th><th>Why</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="actor">ABFAS</td>
+          <td class="win">Status quo preserved</td>
+          <td class="win">Dominant surgical credential. 10,000+ diplomates. Any merger dilutes the brand, pressures the case-review model, and redistributes institutional power.</td>
+        </tr>
+        <tr>
+          <td class="actor">ABPM</td>
+          <td class="win">Negotiated unification (or parity)</td>
+          <td class="win">Smaller institutional footprint. Unification either elevates ABPM's surgical legitimacy or creates a combined entity in which ABPM has formal standing.</td>
+        </tr>
+        <tr>
+          <td class="actor">APMA leadership</td>
+          <td class="win">Structural simplification</td>
+          <td class="win">Two competing boards generate member confusion, internal factions, and a harder sell to MD/DO-world credentialing systems. Unification is cleaner politics.</td>
+        </tr>
+        <tr>
+          <td class="actor">CPME</td>
+          <td class="win">Jurisdictional clarity</td>
+          <td class="win">Board recognition authority is CPME's. Autonomy granted in 2019 makes CPME the procedural gatekeeper of any formal unification pathway.</td>
+        </tr>
+        <tr>
+          <td class="actor">Residency programs</td>
+          <td class="win">Predictable credentialing</td>
+          <td class="win">A single recognized board simplifies alumni placement data, hospital credentialing conversations, and program competitiveness narratives.</td>
+        </tr>
+        <tr>
+          <td class="actor">Residents</td>
+          <td class="win">Not having to choose</td>
+          <td class="win">The current system forces a credentialing decision during residency that shapes the next 40 years of a career. Unification removes the choice — and the cost of picking wrong.</td>
+        </tr>
+        <tr>
+          <td class="actor">Hospital credentialing committees</td>
+          <td class="win">A single credential to reference</td>
+          <td class="win">They already struggle to distinguish ABPM from ABFAS. One board is administratively simpler and matches how they process MD/DO certifications.</td>
+        </tr>
+        <tr>
+          <td class="actor">AOFAS / AAOS</td>
+          <td class="win">Clearer podiatric credential to compare against</td>
+          <td class="win">The Joint Task Force with orthopedics is built around education and certification equivalency. A single, legible podiatric credential strengthens that conversation.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- SECTION 05: PATHWAYS -->
+  <section class="section">
+    <span class="section-number">§ 05 — The Framework</span>
+    <h2 class="section-title">Four pathways forward</h2>
+    <p>Every governance problem has a limited set of possible resolutions. Here are the four credible ones, ranked by plausibility.</p>
+    <div class="pathways">
+      <div class="pathway watchable">
+        <span class="path-id">Pathway A — Most Likely</span>
+        <h4>Parallel boards, new equilibrium</h4>
+        <p>CAQ is gone. Both boards continue to certify within their recognized scopes. The profession lives with twin-board structure indefinitely, but with cleaner lanes and less overt conflict. Low friction, low resolution.</p>
+      </div>
+      <div class="pathway watchable">
+        <span class="path-id">Pathway B — Watchable</span>
+        <h4>CPME-driven consolidation</h4>
+        <p>CPME, using its 2019-granted autonomy, formally recognizes only one unified podiatric specialty board. Requires a multi-year process, a new governance structure, and political cover to survive the antitrust and legal review. Possible, not fast.</p>
+      </div>
+      <div class="pathway unlikely">
+        <span class="path-id">Pathway C — Unlikely (near term)</span>
+        <h4>Voluntary merger of ABFAS and ABPM</h4>
+        <p>The boards themselves agree to unify. ABFAS has publicly rejected this pathway and explicitly cited antitrust risk in engaging. Would require a genuine shift in ABFAS's strategic posture. Not currently on the table.</p>
+      </div>
+      <div class="pathway unlikely">
+        <span class="path-id">Pathway D — Disruptor</span>
+        <h4>External forcing function</h4>
+        <p>Federal regulation, Medicare policy change, or an AMA/ABMS-driven equivalency framework compresses the timeline by making twin boards operationally untenable. Low probability, high impact if triggered.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 06: KEY CONCEPTS -->
+  <section class="section">
+    <span class="section-number">§ 06 — Key Concepts</span>
+    <h2 class="section-title">Terms to know cold</h2>
+    <div class="two-col" style="grid-template-columns: 1fr;">
+      <div class="brief-card" style="border-left-color: var(--ink);">
+        <span class="label" style="color: var(--ink);">CPME</span>
+        <p><strong>Council on Podiatric Medical Education.</strong> The accrediting and recognizing body. Accredits residency programs and recognizes certifying boards. Holds the procedural keys to any formal unification pathway.</p>
+      </div>
+      <div class="brief-card" style="border-left-color: var(--ink);">
+        <span class="label" style="color: var(--ink);">JCRSB</span>
+        <p><strong>Joint Committee on the Recognition of Specialty Boards.</strong> The arm of CPME and APMA that formally recognizes podiatric certifying boards. The obscure acronym where the actual mechanics live.</p>
+      </div>
+      <div class="brief-card" style="border-left-color: var(--ink);">
+        <span class="label" style="color: var(--ink);">CAQ</span>
+        <p><strong>Certificate of Added Qualification.</strong> A credential issued independent of primary board certification. APMA and CPME both stated in 2025 that CAQs are <em>not</em> equivalent to board or subspecialty certification. The 2026 HOD discontinued ABPM's surgical CAQ.</p>
+      </div>
+      <div class="brief-card" style="border-left-color: var(--ink);">
+        <span class="label" style="color: var(--ink);">Antitrust exposure</span>
+        <p>The legal reason ABFAS gives for not engaging in merger discussions. Two competing certifying entities coordinating on credentialing standards can, in theory, trigger federal antitrust scrutiny — particularly around anti-competitive collusion or group boycotts.</p>
+      </div>
+      <div class="brief-card" style="border-left-color: var(--ink);">
+        <span class="label" style="color: var(--ink);">Vision 2015 / Blue-Ribbon Panel</span>
+        <p>The two foundational APMA policy documents — from 2005 and 2019 respectively — that establish the profession's formal preference for <em>one board per specialty area</em>. The political anchor for every subsequent unification argument.</p>
+      </div>
+      <div class="brief-card" style="border-left-color: var(--ink);">
+        <span class="label" style="color: var(--ink);">Joint Task Force of Orthopaedic & Podiatric Surgeons</span>
+        <p>AAOS, AOFAS, ACFAS, and APMA. Active since 2018. Works on education and certification equivalency. The external context that makes podiatry's internal two-board structure look increasingly out of step.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 07: PITFALLS / PEARLS -->
+  <section class="section">
+    <span class="section-number">§ 07 — For Residents & Students</span>
+    <h2 class="section-title">Pitfalls & pearls</h2>
+    <div class="dual-grid">
+      <div class="box pitfalls">
+        <span class="box-label">⚠ Pitfalls</span>
+        <ol>
+          <li><strong>Treating this as settled.</strong> The CAQ is gone. The two-board structure is not.</li>
+          <li><strong>Picking a board based on slogans.</strong> Choose based on scope of practice, case requirements, pass rates, and hospital credentialing patterns in the region where you plan to practice.</li>
+          <li><strong>Assuming unification means easier.</strong> A merged board would almost certainly inherit ABFAS's case-review model. Unification is not a shortcut.</li>
+          <li><strong>Ignoring the antitrust framing.</strong> It's not just legal theater — it is the actual reason voluntary merger talks are structurally difficult.</li>
+          <li><strong>Confusing CAQs with board certification.</strong> APMA, CPME, and ABFAS have all stated on the record that they are not equivalent.</li>
+        </ol>
+      </div>
+      <div class="box pearls">
+        <span class="box-label">◆ Pearls</span>
+        <ol>
+          <li><strong>Watch CPME, not APMA.</strong> APMA sets policy. CPME recognizes boards. The procedural gatekeeper is where the real decision lives.</li>
+          <li><strong>Follow the delegates.</strong> HOD resolution language is where direction is set. Read the resolves, not the whereas clauses.</li>
+          <li><strong>The Joint Task Force matters.</strong> External equivalency pressure with orthopedics is the most credible long-horizon forcing function.</li>
+          <li><strong>Hospital credentialing is the real battleground.</strong> Not podiatric politics. Credentialing committees are where board certification decisions get cashed in.</li>
+          <li><strong>Pay attention to language shifts.</strong> The move from "competing boards" to "recognized certifying entities" to "unified board" is linguistic ground being prepared for structural change.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONFIDENCE -->
+  <div class="confidence-block">
+    <div class="label">Analyst Confidence</div>
+    <div class="confidence-bar">
+      <span class="filled"></span><span class="filled"></span><span class="filled"></span>
+      <span class="filled"></span><span class="filled"></span><span class="filled"></span>
+      <span class="filled"></span><span></span><span></span><span></span>
+    </div>
+    <p class="confidence-note"><strong>7/10 — Medium-high.</strong> Historical events and published organizational positions are well-documented. The pathway ranking in § 05 reflects a reading of current institutional incentives, not a prediction. The 2026 HOD outcome is recent; secondary ripple effects will clarify over the next 12–18 months. ⚠ Verify local credentialing patterns before applying this to any personal decision.</p>
+  </div>
+
+  <!-- SOURCES -->
+  <section class="sources">
+    <h3>Primary Sources</h3>
+    <ol>
+      <li>ABFAS. <em>Letter re: APMA Single Certifying Board Task Force.</em> 2024.</li>
+      <li>ABPM. <em>"Moving Forward"</em> statement on CAQ in Podiatric Surgery. 2023.</li>
+      <li>ABFAS. <em>Response to the ABPM CAQ</em> (and related statements, 2022 — present).</li>
+      <li>APMA. <em>Certification and Membership Organizations in Podiatry</em> guide; Blue-Ribbon Panel summary, 2019.</li>
+      <li>APMA. <em>Statement on Certificates of Added Qualification.</em> December 2025.</li>
+      <li>CPME. <em>Statement on CAQs.</em> October 2025.</li>
+      <li>APMA. <em>Joint Task Force of Orthopaedic and Podiatric Surgeons — Announcement.</em> May 2021.</li>
+      <li>HOD records: Proposition 2-24 (2024); CAQ discontinuation action (March 2026).</li>
+    </ol>
+  </section>
+
+  <!-- SOCIAL CARD -->
+  <aside class="social-card">
+    <div class="label">◆ Social Graphic · Copy-Ready</div>
+    <h4>Podiatry's one-board question isn't settled. The CAQ is gone — the structure isn't.</h4>
+    <ul>
+      <li>Two boards. Fifty years. One unresolved certification fight.</li>
+      <li>The 2026 HOD ended the CAQ. Not the division.</li>
+      <li>For residents, the real question is still: which credential, which hospital, which next forty years.</li>
+    </ul>
+    <div class="cta">→ Read the full Intelligence Brief on Substack · soleintell.substack.com</div>
+  </aside>
+
+  <!-- DISCLAIMER -->
+  <div class="disclaimer">
+    <strong>AI-ASSISTED CONTENT.</strong> Produced with LLM assistance. Reviewed and approved by Peter Sorensen, DPM. Educational and analytical only — not legal, financial, or clinical advice. This brief summarizes publicly available organizational positions and historical documents. Characterization of motives, incentives, and pathways reflects the author's analytical reading and should not be taken as official statement of any organization referenced. Verify primary sources before citing.
+  </div>
+
+  <!-- COLOPHON -->
+  <footer class="colophon">
+    <div>© 2026 Peter Sorensen, DPM</div>
+    <div>The Guidewire · Intelligence Brief № 14</div>
+  </footer>
+
+</main>
+</body>
+</html>

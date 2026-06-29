@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lawful access — The Guidewire</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,900&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1B1A17;
+    --ink-soft:#403D36;
+    --paper:#F4F3EE;
+    --paper-2:#FBFAF6;
+    --rule:#D8D5CB;
+    --do:#2C7A4B;
+    --do-tint:#E7F1E9;
+    --do-line:#BBD9C4;
+    --dont:#A8322A;
+    --dont-tint:#F6E8E6;
+    --dont-line:#E3C2BD;
+    --flag:#9A6B12;
+    --flag-tint:#F4ECDA;
+    --serif:'Fraunces',Georgia,serif;
+    --sans:'Hanken Grotesk',-apple-system,sans-serif;
+    --mono:'JetBrains Mono',monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    background:#E8E6DE;
+    font-family:var(--sans);
+    color:var(--ink);
+    line-height:1.6;
+    padding:40px 20px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .page{
+    width:1200px;
+    max-width:100%;
+    margin:0 auto;
+    background:var(--paper);
+    padding:64px 72px 56px;
+    box-shadow:0 1px 0 rgba(0,0,0,.04),0 24px 60px rgba(0,0,0,.10);
+  }
+
+  /* masthead */
+  .kicker{
+    font-family:var(--mono);
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:.28em;
+    text-transform:uppercase;
+    color:var(--dont);
+    display:flex;
+    align-items:center;
+    gap:14px;
+  }
+  .kicker::after{content:"";flex:1;height:1px;background:var(--rule);}
+  h1{
+    font-family:var(--serif);
+    font-weight:900;
+    font-size:78px;
+    line-height:.98;
+    letter-spacing:-.02em;
+    margin:18px 0 0;
+  }
+  h1 em{font-style:italic;font-weight:400;color:var(--do);}
+  .dek{
+    font-family:var(--serif);
+    font-weight:400;
+    font-size:22px;
+    line-height:1.45;
+    color:var(--ink-soft);
+    max-width:760px;
+    margin-top:20px;
+  }
+  .byline{
+    font-family:var(--mono);
+    font-size:12.5px;
+    letter-spacing:.04em;
+    color:var(--ink-soft);
+    margin-top:22px;
+    padding-top:16px;
+    border-top:2px solid var(--ink);
+    display:inline-block;
+  }
+  .byline b{color:var(--ink);font-weight:700;}
+
+  /* body */
+  .lede{margin-top:40px;display:grid;grid-template-columns:1fr 1fr;gap:48px;}
+  .lede p{font-size:17.5px;color:var(--ink-soft);margin-bottom:16px;}
+  .lede p:last-child{margin-bottom:0;}
+  .lede strong{color:var(--ink);font-weight:600;}
+
+  /* the rule box */
+  .rulebox{
+    margin:14px 0 8px;
+    background:var(--ink);
+    color:var(--paper-2);
+    padding:34px 40px;
+    position:relative;
+  }
+  .rulebox .lab{
+    font-family:var(--mono);
+    font-size:11.5px;
+    font-weight:700;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:#C9B98F;
+  }
+  .rulebox .q{
+    font-family:var(--serif);
+    font-size:30px;
+    line-height:1.2;
+    font-weight:500;
+    margin-top:10px;
+  }
+  .rulebox .q b{color:#8FD0A8;font-weight:600;}
+
+  /* section header */
+  .sec{
+    font-family:var(--mono);
+    font-size:12.5px;
+    font-weight:700;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--ink);
+    margin:54px 0 22px;
+    display:flex;align-items:center;gap:14px;
+  }
+  .sec span{background:var(--paper);padding-right:14px;}
+  .sec::after{content:"";flex:1;height:2px;background:var(--ink);}
+
+  /* do / dont grid */
+  .dd{display:grid;grid-template-columns:1fr 1fr;gap:30px;}
+  .col h3{
+    font-family:var(--serif);
+    font-size:26px;
+    font-weight:600;
+    display:flex;align-items:center;gap:12px;
+    padding-bottom:12px;
+    margin-bottom:18px;
+    border-bottom:2px solid;
+  }
+  .col.do h3{color:var(--do);border-color:var(--do-line);}
+  .col.dont h3{color:var(--dont);border-color:var(--dont-line);}
+  .badge{
+    width:30px;height:30px;border-radius:50%;
+    display:inline-flex;align-items:center;justify-content:center;
+    flex:none;
+  }
+  .col.do .badge{background:var(--do);}
+  .col.dont .badge{background:var(--dont);}
+  .badge svg{width:16px;height:16px;}
+
+  .item{
+    padding:16px 18px;
+    margin-bottom:12px;
+    border-radius:3px;
+    border:1px solid;
+  }
+  .col.do .item{background:var(--do-tint);border-color:var(--do-line);}
+  .col.dont .item{background:var(--dont-tint);border-color:var(--dont-line);}
+  .item .t{font-weight:700;font-size:15.5px;color:var(--ink);margin-bottom:4px;}
+  .item .d{font-size:14.5px;color:var(--ink-soft);line-height:1.5;}
+  /* slight human irregularity: nudge alternating cards */
+  .col.do .item:nth-child(3){margin-left:10px;}
+  .col.dont .item:nth-child(4){margin-left:8px;}
+
+  /* two stacked principle blocks */
+  .block{margin-top:14px;}
+  .block p{font-size:17px;color:var(--ink-soft);margin-bottom:14px;max-width:1000px;}
+  .block p strong{color:var(--ink);font-weight:600;}
+  .pull{
+    font-family:var(--serif);
+    font-size:21px;
+    font-style:italic;
+    color:var(--ink);
+    border-left:3px solid var(--do);
+    padding-left:22px;
+    margin:18px 0;
+    line-height:1.4;
+  }
+  .flagnote{
+    background:var(--flag-tint);
+    border:1px solid #E3D2A8;
+    border-left:4px solid var(--flag);
+    padding:20px 24px;
+    margin-top:8px;
+  }
+  .flagnote .lab{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--flag);}
+  .flagnote p{font-size:16px;color:var(--ink-soft);margin-top:8px;max-width:1000px;}
+  .flagnote p strong{color:var(--ink);font-weight:600;}
+
+  /* takeaway */
+  .takeaway{
+    margin-top:54px;
+    background:var(--ink);
+    color:var(--paper-2);
+    padding:40px 48px;
+    display:flex;gap:34px;align-items:flex-start;
+  }
+  .takeaway .num{
+    font-family:var(--serif);
+    font-size:80px;
+    line-height:.8;
+    font-weight:900;
+    color:var(--do);
+    flex:none;
+  }
+  .takeaway .tlab{font-family:var(--mono);font-size:11.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#C9B98F;}
+  .takeaway .big{font-family:var(--serif);font-size:27px;line-height:1.3;font-weight:500;margin-top:10px;}
+  .takeaway .big b{color:#8FD0A8;font-weight:600;}
+
+  footer{
+    margin-top:30px;display:flex;justify-content:space-between;align-items:center;
+    font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);letter-spacing:.04em;
+    border-top:1px solid var(--rule);padding-top:16px;
+  }
+
+  @media print{
+    body{background:#fff;padding:0;}
+    .page{box-shadow:none;width:100%;padding:40px 44px;}
+  }
+  @media(max-width:760px){
+    .page{padding:36px 24px;}
+    h1{font-size:48px;}
+    .lede,.dd{grid-template-columns:1fr;gap:22px;}
+    .takeaway{flex-direction:column;gap:14px;}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="kicker">The Guidewire &nbsp;·&nbsp; AI &amp; the law</div>
+  <h1>Lawful <em>access</em></h1>
+  <p class="dek">The AI copyright lawsuits look like chaos, and most of that chaos is a fight you are not in. For a resident, the practical starting point is older and shorter than the headlines suggest.</p>
+  <div class="byline">By <b>Peter Sorensen, DPM</b></div>
+
+  <div class="lede">
+    <div>
+      <p>The cases against the AI companies read like a mess. Authors against OpenAI. Publishers against Meta. A German court treating extractable, memorized lyrics as copyright-relevant while a California court treats some AI training as fair use. Watch it long enough and you conclude the edges are still being fought over.</p>
+      <p>That read is fair. It also has almost nothing to do with you.</p>
+    </div>
+    <div>
+      <p>Those are mostly <strong>developer questions</strong>. Was it legal to train a model on millions of books? Does an AI answer infringe the article it summarized? Those fights decide what companies are allowed to build. Your day-to-day question is narrower: what can you safely upload and use for study, work, or publication?</p>
+      <p>Your first screen is older than generative AI, and it still matters.</p>
+    </div>
+  </div>
+
+  <div class="rulebox">
+    <div class="lab">Start with the first screen</div>
+    <div class="q">Did you have <b>lawful access</b> to the material before you put it into the tool?</div>
+  </div>
+
+  <div class="block">
+    <p>If yes, private study uses like summarizing, quizzing yourself, and reorganizing notes usually sit on much stronger ground, especially when the use is personal, educational, and not a substitute for the original. If no, you are working from a copy you were never entitled to, and running it through an AI tool does not change that.</p>
+    <p>Source-grounded tools like NotebookLM can make the line cleaner when you restrict the notebook to documents you lawfully add. The key is not that the software magically makes something legal; it is that you control the sources. Newer features can also help discover web sources, so the copyright question still depends on what you add, what rights came with it, and whether you keep the use private or publish the result.</p>
+  </div>
+
+  <div class="sec"><span>The line in practice</span></div>
+
+  <div class="dd">
+    <div class="col do">
+      <h3><span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span> Stronger ground</h3>
+
+      <div class="item">
+        <div class="t">Pull the article through your institutional login, then study it with AI</div>
+        <div class="d">Hospital or university subscription, EZproxy, a licensed copy. You have lawful access. Private study is usually strong, but check license terms before broad sharing or automated mining.</div>
+      </div>
+      <div class="item">
+        <div class="t">Generate practice questions from a textbook you bought</div>
+        <div class="d">You own the copy. Studying from it is the use it was sold for. A private question bank is much safer than a shared class resource.</div>
+      </div>
+      <div class="item">
+        <div class="t">Summarize an open-access paper</div>
+        <div class="d">Open-access work is still copyrighted, but the license usually permits reuse. Follow attribution and license terms if you share beyond yourself.</div>
+      </div>
+      <div class="item">
+        <div class="t">Reorganize your own de-identified notes or drafts</div>
+        <div class="d">Your clinic notes, manuscript, or outline. It is your work. The tool is rearranging what you wrote, but privacy, HIPAA, and platform terms still matter.</div>
+      </div>
+    </div>
+
+    <div class="col dont">
+      <h3><span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg></span> Do not do this</h3>
+
+      <div class="item">
+        <div class="t">Upload a PDF a co-resident sent you from Sci-Hub or LibGen</div>
+        <div class="d">The file was infringing the moment it was downloaded. Feeding it to an AI tool does not launder it. You are now using a pirated copy.</div>
+      </div>
+      <div class="item">
+        <div class="t">Feed in an article you reached by getting around the paywall</div>
+        <div class="d">Do not use AI on material obtained by bypassing a paywall or access-control system. That can create anti-circumvention problems separate from ordinary copyright.</div>
+      </div>
+      <div class="item">
+        <div class="t">Publish an AI summary of a copyrighted article as your own content</div>
+        <div class="d">A close summary that stands in for the original can infringe even when no sentence is copied word for word. Add real analysis, quote sparingly, cite clearly, or do not publish it.</div>
+      </div>
+      <div class="item">
+        <div class="t">Share an AI study guide built from a single-seat licensed book</div>
+        <div class="d">The license may cover one reader. Turning it into a class-wide handout can push a personal study use into distribution you were not licensed for.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec"><span>A second rule, for anyone who publishes</span></div>
+
+  <div class="block">
+    <p><strong>You do not automatically own what the AI writes for you.</strong> US copyright protects human authorship. If a tool drafts a paragraph, a figure caption, or a block of code from your prompt, the raw machine output may not be copyrightable by you.</p>
+    <div class="pull">Copyright protection comes from the human work on top: selecting, rewriting, arranging, editing, and adding judgment until the result is yours, not the machine's first draft.</div>
+    <p>For anyone publishing under their own byline, that is the difference between content you authored and content you merely generated. Edit like you mean it, cite what you rely on, and keep drafts that show the human contribution.</p>
+  </div>
+
+  <div class="sec"><span>One thing that cuts against instinct</span></div>
+
+  <div class="flagnote">
+    <div class="lab">Open does not mean unowned</div>
+    <p>Open-access work is usually still copyrighted unless it is expressly public domain. A CC-BY article is meant to be reused, but the license still requires attribution. Open material may be easier for AI systems to find and train on, while paywalled material may add contract and access-control layers. <strong>Open does not mean unprotected, and protected does not always mean locked away.</strong></p>
+  </div>
+
+  <div class="takeaway">
+    <div class="num">1</div>
+    <div>
+      <div class="tlab">Carry this one question</div>
+      <div class="big">Before you upload anything, ask first: <b>did I have the legal right to access this?</b> If not, stop. If yes, private study is stronger ground — but publishing, sharing, or distributing still needs a fair-use, license, privacy, and attribution check.</div>
+    </div>
+  </div>
+
+  <footer>
+    <span>The Guidewire · petersorensendpm.substack.com</span>
+    <span>Educational, not legal advice</span>
+  </footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WAR ROOM — ACGME Scenario Planning</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&family=Bebas+Neue&family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black:      #040404;
+    --black2:     #0c0303;
+    --red-hot:    #ff1a0a;
+    --red-bright: #ff3322;
+    --red-mid:    #cc1a08;
+    --red-dark:   #7a0a04;
+    --red-dim:    #2e0603;
+    --red-glow:   rgba(255,26,10,0.15);
+    --red-glow2:  rgba(255,26,10,0.06);
+    --amber:      #ff8800;
+    --amber-dim:  #7a4000;
+    --green-go:   #00cc44;
+    --green-dim:  #003318;
+    --text:       #f5e8e8;
+    --text-dim:   #a08080;
+    --text-muted: #5a3030;
+    --border:     #3a0a08;
+    --border-hot: #660a04;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--black);
+    color: var(--text);
+    font-family: 'IBM Plex Mono', monospace;
+    overflow-x: hidden;
+    cursor: crosshair;
+  }
+
+  /* ── SCANLINE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,0.18) 2px,
+      rgba(0,0,0,0.18) 4px
+    );
+    pointer-events: none;
+    z-index: 999;
+  }
+
+  /* ── RED GRID TEXTURE ── */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,26,10,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,26,10,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .page {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 36px 28px 60px;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    border: 2px solid var(--red-hot);
+    box-shadow: 0 0 40px var(--red-glow), inset 0 0 60px var(--red-glow2);
+    padding: 24px 32px 20px;
+    margin-bottom: 6px;
+    position: relative;
+    animation: bootIn 1s ease both;
+  }
+
+  .header::before, .header::after {
+    content: '';
+    position: absolute;
+    width: 12px; height: 12px;
+    border: 2px solid var(--red-hot);
+  }
+  .header::before { top: -2px; left: -2px; border-right: none; border-bottom: none; }
+  .header::after  { bottom: -2px; right: -2px; border-left: none; border-top: none; }
+
+  .header-top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+  }
+
+  .classified-stamp {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.3em;
+    color: var(--red-hot);
+    border: 2px solid var(--red-hot);
+    padding: 2px 10px;
+    display: inline-block;
+    transform: rotate(-1deg);
+    text-shadow: 0 0 8px var(--red-hot);
+    animation: pulse 2s ease infinite;
+  }
+
+  .header-meta {
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    color: var(--text-dim);
+    text-align: right;
+    line-height: 1.7;
+  }
+
+  .war-room-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(52px, 9vw, 88px);
+    letter-spacing: 0.06em;
+    line-height: 0.9;
+    color: var(--red-hot);
+    text-shadow: 0 0 30px var(--red-hot), 0 0 60px rgba(255,26,10,0.4);
+  }
+
+  .war-room-title span {
+    display: block;
+    font-size: clamp(18px, 3vw, 28px);
+    color: var(--text);
+    text-shadow: none;
+    letter-spacing: 0.2em;
+    margin-top: 6px;
+  }
+
+  .header-tagline {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--text-dim);
+    margin-top: 12px;
+    border-top: 1px solid var(--border-hot);
+    padding-top: 10px;
+    line-height: 1.6;
+  }
+
+  .header-tagline strong {
+    color: var(--red-bright);
+  }
+
+  /* ── BLINK CURSOR ── */
+  .blink {
+    animation: blink 1s step-end infinite;
+    color: var(--red-hot);
+  }
+
+  /* ── SECTION HEADER ── */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 22px 0 12px;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .section-header .sh-label {
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--red-hot);
+    white-space: nowrap;
+    text-shadow: 0 0 6px var(--red-hot);
+  }
+
+  .section-header .sh-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, var(--red-dark), transparent);
+  }
+
+  /* ── SCENARIO GRID ── */
+  .scenario-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  /* ── SCENARIO CARD ── */
+  .scard {
+    border: 1px solid var(--border-hot);
+    background: var(--black2);
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+    animation: fadeUp 0.7s ease both;
+  }
+
+  .scard:nth-child(2) { animation-delay: 0.08s; }
+  .scard:nth-child(3) { animation-delay: 0.16s; }
+  .scard:nth-child(4) { animation-delay: 0.24s; }
+  .scard:nth-child(5) { animation-delay: 0.32s; }
+
+  .scard:hover {
+    border-color: var(--red-hot);
+    box-shadow: 0 0 20px var(--red-glow);
+  }
+
+  /* ── CARD TAB ── */
+  .scard-tab {
+    background: var(--red-dark);
+    padding: 6px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-hot);
+  }
+
+  .scard-tab .scenario-id {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--red-bright);
+    font-weight: 700;
+  }
+
+  .prob-badge {
+    font-size: 8px;
+    letter-spacing: 0.08em;
+    padding: 1px 5px;
+    border-radius: 1px;
+    font-weight: 600;
+  }
+
+  .prob-high    { background: var(--red-hot); color: #fff; }
+  .prob-med     { background: var(--amber-dim); color: var(--amber); border: 1px solid var(--amber); }
+  .prob-low     { background: var(--green-dim); color: var(--green-go); border: 1px solid var(--green-go); }
+  .prob-extreme { background: #000; color: var(--red-hot); border: 1px solid var(--red-hot); animation: pulse 1.5s ease infinite; }
+
+  .scard-body { padding: 12px 12px 0; }
+
+  .scard-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: var(--red-bright);
+    text-transform: uppercase;
+    line-height: 1.2;
+    margin-bottom: 6px;
+    text-shadow: 0 0 8px rgba(255,51,34,0.4);
+  }
+
+  .scard-desc {
+    font-size: 9.5px;
+    letter-spacing: 0.02em;
+    color: var(--text-dim);
+    line-height: 1.55;
+    margin-bottom: 10px;
+  }
+
+  /* ── TIMELINE WITHIN CARD ── */
+  .timeline {
+    border-top: 1px solid var(--border);
+    margin: 0 -12px;
+    padding: 0 12px 12px;
+  }
+
+  .tl-phase {
+    padding: 8px 0 8px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    padding-left: 14px;
+  }
+
+  .tl-phase:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .tl-phase::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 12px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--red-hot);
+    box-shadow: 0 0 4px var(--red-hot);
+  }
+
+  .tl-label {
+    font-size: 7.5px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 3px;
+  }
+
+  .tl-immediate .tl-label { color: var(--red-hot); }
+  .tl-20yr .tl-label      { color: var(--amber); }
+  .tl-50yr .tl-label      { color: var(--green-go); }
+
+  .tl-20yr::before { background: var(--amber); box-shadow: 0 0 4px var(--amber); }
+  .tl-50yr::before { background: var(--green-go); box-shadow: 0 0 4px var(--green-go); }
+
+  .tl-text {
+    font-size: 9px;
+    letter-spacing: 0.02em;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+
+  .tl-verdict {
+    font-size: 8.5px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    margin-top: 3px;
+  }
+
+  .verdict-bad      { color: var(--red-hot); }
+  .verdict-med      { color: var(--amber); }
+  .verdict-good     { color: var(--green-go); }
+  .verdict-critical { color: #fff; background: var(--red-dark); padding: 1px 4px; }
+
+  /* ── PROBABILITY MATRIX ── */
+  .matrix {
+    border: 1px solid var(--border-hot);
+    background: var(--black2);
+    padding: 16px 20px;
+    margin-top: 8px;
+    animation: fadeUp 0.9s ease 0.4s both;
+    box-shadow: inset 0 0 30px var(--red-glow2);
+  }
+
+  .matrix-title {
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    color: var(--red-hot);
+    text-shadow: 0 0 6px var(--red-hot);
+    margin-bottom: 12px;
+    text-transform: uppercase;
+  }
+
+  .matrix-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+  }
+
+  .matrix-cell {
+    text-align: center;
+  }
+
+  .matrix-cell .mc-label {
+    font-size: 7.5px;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .prob-bar-wrap {
+    height: 60px;
+    background: var(--red-dim);
+    border: 1px solid var(--border-hot);
+    border-radius: 1px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .prob-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, var(--red-hot), var(--red-dark));
+    transition: height 1s ease;
+    animation: growBar 1.2s ease both;
+  }
+
+  .prob-pct {
+    position: absolute;
+    top: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 9px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  /* ── ANALYST NOTES ── */
+  .analyst-notes {
+    border: 1px solid var(--border-hot);
+    padding: 14px 18px;
+    margin-top: 8px;
+    background: var(--red-dim);
+    position: relative;
+    animation: fadeUp 1s ease 0.6s both;
+  }
+
+  .analyst-notes::before {
+    content: '// ANALYST NOTES';
+    position: absolute;
+    top: -8px;
+    left: 16px;
+    background: var(--black);
+    padding: 0 8px;
+    font-size: 8px;
+    letter-spacing: 0.2em;
+    color: var(--red-hot);
+  }
+
+  .notes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 4px;
+  }
+
+  .note-item .note-head {
+    font-size: 8px;
+    letter-spacing: 0.15em;
+    color: var(--red-bright);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .note-item .note-head::before {
+    content: '▶';
+    font-size: 7px;
+  }
+
+  .note-item p {
+    font-size: 9.5px;
+    color: var(--text-dim);
+    line-height: 1.55;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    margin-top: 16px;
+    border-top: 1px solid var(--border-hot);
+    padding-top: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    animation: fadeUp 1s ease 0.7s both;
+  }
+
+  .footer-brand {
+    font-family: 'Oswald', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--red-hot);
+    text-shadow: 0 0 10px var(--red-hot);
+    text-transform: uppercase;
+  }
+
+  .footer-meta {
+    font-size: 8px;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    text-align: right;
+    line-height: 1.7;
+  }
+
+  /* ── WARNING STRIP ── */
+  .warning-strip {
+    background: var(--red-hot);
+    color: #000;
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-align: center;
+    padding: 4px;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    animation: pulse 2s step-end infinite;
+  }
+
+  /* ── KEYFRAMES ── */
+  @keyframes bootIn {
+    from { opacity: 0; transform: scaleY(0.95); }
+    to   { opacity: 1; transform: scaleY(1); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.6; }
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
+  }
+
+  @keyframes growBar {
+    from { height: 0; }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .scenario-grid { grid-template-columns: 1fr 1fr; }
+    .matrix-grid   { grid-template-columns: 1fr 1fr; }
+    .notes-grid    { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 600px) {
+    .scenario-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- WARNING STRIP -->
+  <div class="warning-strip">⚠ &nbsp; STRATEGIC ANALYSIS — ACGME TRANSITION SCENARIOS — FOR RESIDENT EDUCATION ONLY &nbsp; ⚠</div>
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-top-row">
+      <div>
+        <div class="classified-stamp">// WAR ROOM //</div>
+      </div>
+      <div class="header-meta">
+        DOCUMENT TYPE: Scenario Planning Matrix<br>
+        SUBJECT: ACGME Accreditation Transition — Podiatric Surgery Residencies<br>
+        ISSUED: 2026 · FOR PODIATRIC SURGERY RESIDENTS<br>
+        STATUS: <span style="color:var(--red-hot); animation: pulse 1s infinite;">● ACTIVE DEBATE</span>
+      </div>
+    </div>
+    <div class="war-room-title">
+      WAR ROOM
+      <span>ACGME SCENARIO PLANNING &amp; CONSEQUENCE ANALYSIS</span>
+    </div>
+    <div class="header-tagline">
+      The question is not <em>if</em> podiatric residency accreditation changes — it is <em>when</em>, <em>how</em>, and <em>who controls the terms</em>.<br>
+      <strong>Five scenarios. Three time horizons: IMMEDIATE · 20 YEARS · 50 YEARS.</strong>
+      Each scenario carries irreversible downstream consequences for the DPM credential, scope, school viability, and professional identity.<span class="blink">_</span>
+    </div>
+  </div>
+
+  <!-- SECTION HEADER -->
+  <div class="section-header">
+    <div class="sh-label">// SCENARIO MATRIX — 5 BRANCHES</div>
+    <div class="sh-line"></div>
+    <div class="sh-label" style="color:var(--text-muted);">PROBABILITY · IMMEDIATE · 20-YR · 50-YR</div>
+  </div>
+
+  <!-- SCENARIO GRID -->
+  <div class="scenario-grid">
+
+    <!-- ALPHA -->
+    <div class="scard">
+      <div class="scard-tab">
+        <div class="scenario-id">SCENARIO ALPHA</div>
+        <div class="prob-badge prob-med">MED · 25%</div>
+      </div>
+      <div class="scard-body">
+        <div class="scard-title">Full ACGME Integration</div>
+        <div class="scard-desc">CPME fully replaced. All podiatric surgical residencies transition to ACGME accreditation. DPMs train alongside MD/DO residents under unified standards.</div>
+      </div>
+      <div class="timeline">
+        <div class="tl-phase tl-immediate">
+          <div class="tl-label">// IMMEDIATE</div>
+          <div class="tl-text">Estimated 40–60% of current programs fail ACGME standards. Residency spots collapse from ~1,200 to ~500. School enrollment forced to shrink. ABFAS/ABPM lose accreditation-linked authority — pressure builds for single ABMS-recognized board.</div>
+          <div class="tl-verdict verdict-bad">⚠ EXTREME SHORT-TERM DISRUPTION</div>
+        </div>
+        <div class="tl-phase tl-20yr">
+          <div class="tl-label">// 20 YEARS</div>
+          <div class="tl-text">Hospital privileging dramatically simplified. DPMs credentialed as surgical specialists without case-by-case negotiation. Scope expansion legislative wins become easier — training equivalence argument now credible. Salary compression initially, then recovery as supply tightens.</div>
+          <div class="tl-verdict verdict-good">↑ STRONGER PROFESSIONAL POSITION</div>
+        </div>
+        <div class="tl-phase tl-50yr">
+          <div class="tl-label">// 50 YEARS</div>
+          <div class="tl-text">Podiatry recognized as full surgical specialty equivalent. DPM degree either achieves true MD parity — or the separate DPM designation gradually merges into orthopedic foot &amp; ankle fellowships. The profession either wins its identity or dissolves into a larger one.</div>
+          <div class="tl-verdict verdict-critical">⚡ EXISTENTIAL OUTCOME — WIN OR LOSE</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BRAVO -->
+    <div class="scard">
+      <div class="scard-tab">
+        <div class="scenario-id">SCENARIO BRAVO</div>
+        <div class="prob-badge prob-high">HIGH · 40%</div>
+      </div>
+      <div class="scard-body">
+        <div class="scard-title">Status Quo — CPME Holds</div>
+        <div class="scard-desc">Political inertia prevails. CPME retains sole accreditation authority. No structural change. The profession continues under current governance, with incrementalist reforms only.</div>
+      </div>
+      <div class="timeline">
+        <div class="tl-phase tl-immediate">
+          <div class="tl-label">// IMMEDIATE</div>
+          <div class="tl-text">Board certification wars continue. Program quality variance unchanged. No relief from saturation. APMA HOD resolutions remain aspirational. Organized podiatry expends political energy defending turf rather than expanding it.</div>
+          <div class="tl-verdict verdict-med">→ FAMILIAR DYSFUNCTION CONTINUES</div>
+        </div>
+        <div class="tl-phase tl-20yr">
+          <div class="tl-label">// 20 YEARS</div>
+          <div class="tl-text">Hospital systems — especially health system consolidators — increasingly require ACGME credentials for institutional employment. CPME-only DPMs face widening disadvantage for hospital jobs. Orthopedic foot &amp; ankle encroaches further. Scope expansion arguments weaken without training equivalence data.</div>
+          <div class="tl-verdict verdict-bad">↓ COMPETITIVE POSITION ERODES</div>
+        </div>
+        <div class="tl-phase tl-50yr">
+          <div class="tl-label">// 50 YEARS</div>
+          <div class="tl-text">Podiatry bifurcates. A surgical elite (top programs, ABFAS RRA) maintains relevance in high-acuity foot &amp; ankle. The majority practice primary podiatric medicine — wound care, nail care, orthotics. A two-tier DPM profession is effectively formalized by market forces rather than governance.</div>
+          <div class="tl-verdict verdict-bad">⚠ DE FACTO PROFESSION SPLIT</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHARLIE -->
+    <div class="scard">
+      <div class="scard-tab">
+        <div class="scenario-id">SCENARIO CHARLIE</div>
+        <div class="prob-badge prob-med">MED · 20%</div>
+      </div>
+      <div class="scard-body">
+        <div class="scard-title">Dual-Track Accreditation</div>
+        <div class="scard-desc">Voluntary ACGME pathway opens alongside CPME. Top programs opt in voluntarily. Graduates hold either CPME or ACGME credentials — both valid, not equivalent in the market.</div>
+      </div>
+      <div class="timeline">
+        <div class="tl-phase tl-immediate">
+          <div class="tl-label">// IMMEDIATE</div>
+          <div class="tl-text">Credentialing complexity multiplies. Hospitals must now distinguish CPME-trained from ACGME-trained DPMs on top of ABFAS vs. ABPM. The match separates immediately into a de facto Tier 1 (ACGME) and Tier 2 (CPME) system. Best programs defect to ACGME within 3–5 years.</div>
+          <div class="tl-verdict verdict-med">→ MANAGED CHAOS, SHORT TERM</div>
+        </div>
+        <div class="tl-phase tl-20yr">
+          <div class="tl-label">// 20 YEARS</div>
+          <div class="tl-text">Market effectively decides. ACGME-trained DPMs dominate hospital employment. CPME programs increasingly produce graduates locked into private practice or wound care. The "dual track" becomes a euphemism for a two-class system. Pressure on CPME programs intensifies — many close voluntarily rather than formally.</div>
+          <div class="tl-verdict verdict-med">⚠ SLOW-MOTION ALPHA SCENARIO</div>
+        </div>
+        <div class="tl-phase tl-50yr">
+          <div class="tl-label">// 50 YEARS</div>
+          <div class="tl-text">CPME becomes residual — a few programs serving non-surgical DPMs. ACGME track is the de facto standard. Outcome: essentially Scenario Alpha, achieved over 30–40 additional years of transition pain. All the disruption, none of the speed.</div>
+          <div class="tl-verdict verdict-bad">↓ ALPHA'S OUTCOME, ALPHA'S COST × 2</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DELTA -->
+    <div class="scard">
+      <div class="scard-tab">
+        <div class="scenario-id">SCENARIO DELTA</div>
+        <div class="prob-badge prob-low">LOW · 8%</div>
+      </div>
+      <div class="scard-body">
+        <div class="scard-title">Orthopedic Absorption</div>
+        <div class="scard-desc">The nuclear option. Podiatric residencies absorbed into orthopedic surgery or family medicine training pipelines as foot &amp; ankle fellowship tracks. The DPM program effectively ends.</div>
+      </div>
+      <div class="timeline">
+        <div class="tl-phase tl-immediate">
+          <div class="tl-label">// IMMEDIATE</div>
+          <div class="tl-text">All 9 podiatric schools face immediate existential crisis — their programs lose value if residency disappears. APMA, CPME, ABFAS, ABPM lose purpose simultaneously. Legislative scope protections potentially invalidated if the DPM credential is no longer distinct. Triggered by: CMS policy change or major health system decision.</div>
+          <div class="tl-verdict verdict-critical">☠ PROFESSION-ENDING TRIGGER EVENT</div>
+        </div>
+        <div class="tl-phase tl-20yr">
+          <div class="tl-label">// 20 YEARS</div>
+          <div class="tl-text">Existing DPMs practice under grandfather protections but recruit no successors. Foot &amp; ankle surgery is performed by fellowship-trained MDs/DOs. Podiatric primary care (wounds, orthotics, nail care) potentially absorbed by APRNs and PAs. The DPM designation becomes historical.</div>
+          <div class="tl-verdict verdict-bad">☠ DPM DESIGNATION TERMINAL</div>
+        </div>
+        <div class="tl-phase tl-50yr">
+          <div class="tl-label">// 50 YEARS</div>
+          <div class="tl-text">Podiatry as an independent profession ceases to exist in its current form. Foot &amp; ankle surgery is an orthopedic subspecialty. Routine foot care is primary care or mid-level territory. The DPM is a historical designation. Alternatively: a small, high-quality podiatric primary care profession survives, scope-limited but stable.</div>
+          <div class="tl-verdict verdict-bad">⚫ ZERO OR NICHE — NO MIDDLE GROUND</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ECHO -->
+    <div class="scard">
+      <div class="scard-tab">
+        <div class="scenario-id">SCENARIO ECHO</div>
+        <div class="prob-badge prob-extreme">WILDCARD · 7%</div>
+      </div>
+      <div class="scard-body">
+        <div class="scard-title">CMS / Federal Mandate</div>
+        <div class="scard-desc">Congress or CMS mandates ACGME accreditation as prerequisite for Medicare surgical reimbursement. The profession has no choice but to comply — at federal speed.</div>
+      </div>
+      <div class="timeline">
+        <div class="tl-phase tl-immediate">
+          <div class="tl-label">// IMMEDIATE</div>
+          <div class="tl-text">Crisis mode. A 3–5 year compliance window triggers forced mass consolidation. Programs unable to meet standards close. Schools reduce class sizes by 50–70% in a single cycle. APMA political capital deployed entirely on transition management, not scope or salary. ABFAS/ABPM forced to unify or one is abandoned.</div>
+          <div class="tl-verdict verdict-critical">⚡ FORCED TRANSFORMATION — NO VOTE</div>
+        </div>
+        <div class="tl-phase tl-20yr">
+          <div class="tl-label">// 20 YEARS</div>
+          <div class="tl-text">Survivors emerge stronger. Remaining programs are genuinely competitive. Supply drops sharply — quality DPMs in genuine demand. Reimbursement parity arguments to CMS now viable. The profession is numerically smaller and professionally more credible than at any point in its history.</div>
+          <div class="tl-verdict verdict-good">↑ STRONGEST POST-DISRUPTION OUTCOME</div>
+        </div>
+        <div class="tl-phase tl-50yr">
+          <div class="tl-label">// 50 YEARS</div>
+          <div class="tl-text">DPMs practicing in 2076 are a smaller, elite, highly compensated surgical cohort. Scope is broad, privileging is automatic, salary is competitive with orthopedics. The profession lost 60% of its practitioners in the transition. The 40% who remained — and their successors — won. This is the hardest path and the best outcome.</div>
+          <div class="tl-verdict verdict-good">↑ ELITE OUTCOME FOR SURVIVORS</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end .scenario-grid -->
+
+  <!-- PROBABILITY MATRIX -->
+  <div class="section-header" style="animation-delay:0.35s;">
+    <div class="sh-label">// PROBABILITY ASSESSMENT</div>
+    <div class="sh-line"></div>
+  </div>
+
+  <div class="matrix">
+    <div class="matrix-title">// ANALYST PROBABILITY ESTIMATES — 2026 BASELINE — SUBJECT TO REVISION</div>
+    <div class="matrix-grid">
+      <div class="matrix-cell">
+        <div class="mc-label">ALPHA · FULL ACGME</div>
+        <div class="prob-bar-wrap">
+          <div class="prob-bar" style="height:42%; animation-delay:0.1s;"></div>
+          <div class="prob-pct">25%</div>
+        </div>
+      </div>
+      <div class="matrix-cell">
+        <div class="mc-label">BRAVO · STATUS QUO</div>
+        <div class="prob-bar-wrap">
+          <div class="prob-bar" style="height:67%; animation-delay:0.2s;"></div>
+          <div class="prob-pct">40%</div>
+        </div>
+      </div>
+      <div class="matrix-cell">
+        <div class="mc-label">CHARLIE · DUAL TRACK</div>
+        <div class="prob-bar-wrap">
+          <div class="prob-bar" style="height:33%; animation-delay:0.3s;"></div>
+          <div class="prob-pct">20%</div>
+        </div>
+      </div>
+      <div class="matrix-cell">
+        <div class="mc-label">DELTA · ABSORPTION</div>
+        <div class="prob-bar-wrap">
+          <div class="prob-bar" style="height:13%; animation-delay:0.4s;"></div>
+          <div class="prob-pct">8%</div>
+        </div>
+      </div>
+      <div class="matrix-cell">
+        <div class="mc-label">ECHO · FEDERAL MANDATE</div>
+        <div class="prob-bar-wrap">
+          <div class="prob-bar" style="height:12%; animation-delay:0.5s;"></div>
+          <div class="prob-pct">7%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ANALYST NOTES -->
+  <div class="analyst-notes">
+    <div class="notes-grid">
+      <div class="note-item">
+        <div class="note-head">The Most Likely Outcome Is Also the Worst</div>
+        <p>Scenario Bravo — status quo — carries the highest probability because no single actor in the current governance structure (APMA, CPME, ABFAS, ABPM, the schools) has sufficient incentive to absorb the short-term cost of forcing change. Political inertia is not neutral. It is a slow vote for Bravo's 50-year outcome: profession bifurcation.</p>
+      </div>
+      <div class="note-item">
+        <div class="note-head">Residents Training Now Will Live All of This</div>
+        <p>A PGY-3 resident in 2026 will be 56 years old in 2050 — still practicing. The 50-year outcomes in this matrix are not abstractions for future generations. They are the career arc of everyone currently in training. The resident who understands these scenarios is the one who can influence which one occurs.</p>
+      </div>
+      <div class="note-item">
+        <div class="note-head">The Window for Voluntary Action Is Closing</div>
+        <p>The difference between Scenario Alpha and Scenario Echo is who controls the terms. Alpha is a profession governing itself toward a hard but survivable transition. Echo is that same transition imposed at federal speed with no political buffer. Every year of Bravo makes Echo more likely — and Alpha less achievable on the profession's own terms.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-brand">Sole Intelligence</div>
+    <div class="footer-meta">
+      Peter Sorensen, DPM, MHA &nbsp;·&nbsp; PGY-3 Podiatric Surgery &nbsp;·&nbsp; Ascension St. Vincent Indianapolis<br>
+      Educational Analysis · Organized Podiatry Series · 2026 &nbsp;·&nbsp; Not official APMA/CPME/ACGME position<span class="blink">_</span>
+    </div>
+  </div>
+
+</div><!-- end .page -->
+</body>
+</html>
