@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1200">
+<title>July 1 · A letter to the new class · The Guidewire</title>
+<style>
+  :root{
+    --paper:#fbf6ec;
+    --ink:#3a332c;
+    --soft:#7c7264;
+    --coral:#e05c43;
+    --coral2:#c2482f;
+    --gold:#dd9a2a;
+    --goldbg:#f7ecd2;
+    --coralbg:#fae4db;
+    --line:#e7dcc7;
+    --serif:"Palatino Linotype","Book Antiqua",Palatino,"Iowan Old Style",Georgia,serif;
+    --sans:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:#ece3d2;font-family:var(--sans);color:var(--ink);line-height:1.62;padding:34px 16px;}
+  .page{width:1200px;max-width:100%;margin:0 auto;background:var(--paper);
+    padding:70px 96px 52px;position:relative;overflow:hidden;
+    box-shadow:0 24px 60px rgba(120,80,40,.16);border-radius:3px;}
+  .serif{font-family:var(--serif);}
+  .wrap{max-width:760px;margin:0 auto;position:relative;}
+
+  .doodle{position:absolute;pointer-events:none;z-index:2;}
+  .d-arrow{top:262px;right:38px;width:74px;transform:rotate(8deg);}
+  .d-star1{top:118px;left:44px;width:26px;}
+  .d-star2{bottom:300px;right:58px;width:22px;}
+  .d-scribble{top:648px;left:32px;width:96px;transform:rotate(-8deg);}
+  .d-heart{bottom:150px;left:52px;width:30px;transform:rotate(-6deg);}
+
+  .mast{display:flex;justify-content:space-between;align-items:center;
+    padding-bottom:14px;border-bottom:2px solid var(--ink);max-width:760px;margin:0 auto;}
+  .mast .brand{font-family:var(--serif);font-weight:700;font-size:19px;letter-spacing:.02em;}
+  .mast .brand b{color:var(--coral);}
+  .mast .tagl{font-size:12.5px;color:var(--soft);font-style:italic;}
+
+  .kicker{display:inline-block;margin-top:34px;background:var(--coral);color:#fff;
+    font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+    padding:5px 13px;border-radius:20px;transform:rotate(-1.5deg);}
+  h1{font-family:var(--serif);font-weight:700;font-size:60px;line-height:1.04;
+    margin-top:16px;letter-spacing:-.4px;}
+  .uline{display:block;width:430px;max-width:100%;height:14px;margin-top:2px;color:var(--gold);}
+  .deck{font-family:var(--serif);font-size:22px;line-height:1.42;color:var(--soft);
+    font-style:italic;margin-top:18px;max-width:54ch;}
+  .byline{margin-top:16px;font-size:14.5px;color:var(--ink);}
+  .byline b{color:var(--coral2);}
+
+  .lede{margin-top:30px;font-size:17.5px;line-height:1.72;}
+  .lede .drop{float:left;font-family:var(--serif);font-weight:700;color:var(--coral);
+    font-size:74px;line-height:.72;padding:8px 12px 0 0;}
+  .lede .glow{background:linear-gradient(transparent 60%, #fbe08e 60% 94%, transparent 94%);
+    padding:0 2px;font-weight:600;}
+
+  .sec{margin-top:50px;}
+  .sec .lab{font-family:var(--serif);font-size:27px;font-weight:700;color:var(--ink);}
+  .sec .lab .accent{color:var(--coral);}
+  .sec p{font-size:17px;line-height:1.7;margin-top:14px;}
+  .sec p .hl{background:linear-gradient(transparent 60%, #fbe08e 60% 94%, transparent 94%);padding:0 2px;font-weight:600;color:var(--ink);}
+  .sec p strong{color:var(--ink);}
+
+  /* reassurance band */
+  .reassure{margin:24px 0 6px;background:var(--goldbg);border-radius:16px;padding:26px 30px;
+    display:flex;gap:28px;align-items:center;}
+  .reassure .num{font-family:var(--serif);font-weight:700;color:var(--coral2);font-size:60px;line-height:.9;white-space:nowrap;flex:0 0 auto;}
+  .reassure .num small{font-size:26px;}
+  .reassure .cap{font-size:15.5px;line-height:1.55;}
+  .reassure .cap b{color:var(--coral2);}
+  .srcline{font-size:13px;color:var(--soft);font-style:italic;margin-top:12px;}
+
+  .note{background:var(--coralbg);border-radius:16px;padding:20px 24px;margin:24px 0 4px;
+    transform:rotate(-.5deg);position:relative;}
+  .note:before{content:"the cost";position:absolute;top:-11px;left:22px;background:var(--coral);
+    color:#fff;font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+    padding:3px 10px;border-radius:12px;transform:rotate(-2deg);}
+  .note p{font-size:15px;line-height:1.6;color:var(--ink);}
+  .note b{color:var(--coral2);}
+
+  .asks{list-style:none;margin:18px 0 4px;}
+  .asks li{display:flex;gap:13px;align-items:flex-start;font-size:16.5px;line-height:1.45;
+    padding:10px 0;border-bottom:1px solid var(--line);}
+  .asks li:last-child{border-bottom:0;}
+  .asks li svg{flex:0 0 auto;margin-top:3px;}
+  .asks li b{color:var(--ink);}
+
+  .pearl{font-family:var(--serif);font-size:20px;font-style:italic;color:var(--ink);
+    margin-top:22px;line-height:1.5;}
+  .pearl .hl{background:linear-gradient(transparent 60%, #fbe08e 60% 92%, transparent 92%);padding:0 2px;font-style:normal;font-weight:600;}
+
+  .closer{margin:44px auto 0;max-width:900px;background:var(--coral);color:#fff8f2;
+    border-radius:22px;padding:44px 48px;text-align:center;position:relative;}
+  .closer .big{font-family:var(--serif);font-weight:700;font-size:52px;line-height:1.02;}
+  .closer .sub{font-size:17px;line-height:1.6;margin-top:16px;max-width:60ch;margin-left:auto;margin-right:auto;opacity:.96;}
+  .closer .sig{font-family:var(--serif);font-style:italic;font-size:18px;margin-top:20px;opacity:.9;}
+
+  footer{max-width:760px;margin:38px auto 0;padding-top:16px;border-top:2px solid var(--ink);
+    font-size:12px;color:var(--soft);}
+  footer .meth{font-style:italic;margin-bottom:10px;}
+  footer ol{margin:0 0 12px 18px;}
+  footer li{margin-bottom:4px;line-height:1.4;}
+  footer a{color:var(--coral2);text-decoration:none;border-bottom:1px dotted var(--coral2);}
+  footer .colo{display:flex;justify-content:space-between;align-items:center;
+    padding-top:11px;border-top:1px solid var(--line);}
+  footer .colo b{color:var(--ink);}
+
+  @media print{body{background:#fff;padding:0;}.page{box-shadow:none;width:1200px;}}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <svg class="doodle d-arrow" viewBox="0 0 80 100"><path d="M64 8 C 26 24, 14 58, 30 90" fill="none" stroke="#e05c43" stroke-width="3.4" stroke-linecap="round"/><path d="M30 90 L16 78 M30 90 L45 82" fill="none" stroke="#e05c43" stroke-width="3.4" stroke-linecap="round"/></svg>
+  <svg class="doodle d-star1" viewBox="0 0 24 24"><path d="M12 1 L12 23 M1 12 L23 12 M4 4 L20 20 M20 4 L4 20" stroke="#dd9a2a" stroke-width="1.8" stroke-linecap="round"/></svg>
+  <svg class="doodle d-star2" viewBox="0 0 24 24"><path d="M12 2 L12 22 M2 12 L22 12 M5 5 L19 19 M19 5 L5 19" stroke="#dd9a2a" stroke-width="1.8" stroke-linecap="round"/></svg>
+  <svg class="doodle d-scribble" viewBox="0 0 100 60"><path d="M6 40 C 20 8, 44 6, 52 30 C 58 48, 84 44, 94 20" fill="none" stroke="#e05c43" stroke-width="3" stroke-linecap="round"/></svg>
+  <svg class="doodle d-heart" viewBox="0 0 32 30"><path d="M16 27 C 4 18, 2 9, 8 5 C 12 2, 16 6, 16 9 C 16 6, 20 2, 24 5 C 30 9, 28 18, 16 27 Z" fill="none" stroke="#dd9a2a" stroke-width="2.2" stroke-linecap="round"/></svg>
+
+  <div class="mast">
+    <div class="brand">The <b>Guidewire</b></div>
+    <div class="tagl">A letter to the new class</div>
+  </div>
+
+  <div class="wrap">
+    <span class="kicker">To the doctors who just walked in</span>
+    <h1 class="serif">July 1 Is the Best Day<br>to Come to the Hospital</h1>
+    <svg class="uline" viewBox="0 0 430 14" preserveAspectRatio="none"><path d="M4 9 C 90 3, 150 12, 220 7 S 360 3, 426 9" fill="none" stroke="#dd9a2a" stroke-width="4.5" stroke-linecap="round"/></svg>
+    <p class="deck">The new doctors just started. The data says no one dies more in July. The joke we tell new doctors still does damage.</p>
+    <p class="byline">By <b>Peter Sorensen, DPM</b></p>
+
+    <p class="lede">
+      <span class="drop">L</span>ook at who just walked in. They spent years getting here. Thousands of hours, real sacrifice. And they made it. <span class="glow">They are not cynical. They have energy. They want to meet the patient. More incredibly, they want to TALK to the patient! They still believe the work matters</span>, and they are right to. That is the most alive medicine ever gets.
+    </p>
+
+    <div class="sec">
+      <div class="lab">Then we greet them <span class="accent">like a threat.</span></div>
+      <p>Every July the joke starts. Stay away from the hospital, the new interns will get you killed. <strong>"Killing season." "Black Wednesday."</strong> We say it to their faces on the first morning of their careers.</p>
+      <p><span class="hl">Tell someone on day one that they are dangerous, and you start dimming the exact thing that makes them good.</span></p>
+      <div class="note">
+        <p>That is how a passionate new doctor slowly becomes a burned-out, cynical, disgruntled internet forum poster. It has a name in medicine: <b>moral injury.</b> And it can start on day one, before they have done a single thing wrong.</p>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="lab">And the scary story <span class="accent">was never true.</span></div>
+      <div class="reassure">
+        <div class="num">5.98<small> M</small></div>
+        <div class="cap"><b>patients</b> in the largest study ever done. No July effect on death, on complications, or on readmission.</div>
+      </div>
+      <p>It pooled 113 studies going back to 1989. July came out the same as every other month. <span class="hl">You are not more likely to be harmed because the calendar turned to July.</span> The one thing that does rise is medication errors, and only where new residents work. That is a prescribing and cross-checking gap, and it is ours to close by putting more support around new doctors.</p>
+      <p class="srcline">Zogg et al., Annals of Surgery, 2023 · Phillips &amp; Barker, J Gen Intern Med, 2010.</p>
+    </div>
+
+    <div class="sec">
+      <div class="lab">So lift them up. <span class="accent">That is the whole job.</span></div>
+      <ul class="asks">
+        <li><svg width="22" height="22" viewBox="0 0 24 24"><path d="M3 13 l6 6 l12 -16" fill="none" stroke="#e05c43" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Protect the energy</b> they walked in with. It is the safest thing in the building.</span></li>
+        <li><svg width="22" height="22" viewBox="0 0 24 24"><path d="M3 13 l6 6 l12 -16" fill="none" stroke="#e05c43" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Tell them <b>exactly who to call</b> at 2 a.m.</span></li>
+        <li><svg width="22" height="22" viewBox="0 0 24 24"><path d="M3 13 l6 6 l12 -16" fill="none" stroke="#e05c43" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Check their orders <b>the way you'd want yours checked.</b></span></li>
+        <li><svg width="22" height="22" viewBox="0 0 24 24"><path d="M3 13 l6 6 l12 -16" fill="none" stroke="#e05c43" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Treat <b>every question as competence.</b></span></li>
+      </ul>
+      <p class="pearl"><span class="hl">You can't biohack the reps that build a clinician.</span> They come from repetition and support, and both go further when the new doctor isn't braced to be blamed.</p>
+    </div>
+  </div>
+
+  <div class="closer">
+    <div class="big">Come on July 1.</div>
+    <div class="sub">You'll be seen by someone who studied for years to be standing there, who still cares a great deal, and who is watched closely by everyone above them. I would take that any day of the year.</div>
+    <div class="sig">— Peter</div>
+  </div>
+
+  <footer>
+    <div class="meth">soleintell.com</div>
+    <ol>
+      <li>Zogg CK, et al. Reassessing the July Effect: 30 Years of Evidence Show No Difference in Outcomes. <i>Ann Surg.</i> 2023;277(1):e204-e211. <a href="https://doi.org/10.1097/SLA.0000000000004805">doi:10.1097/SLA.0000000000004805</a></li>
+      <li>Phillips DP, Barker GEC. A July spike in fatal medication errors. <i>J Gen Intern Med.</i> 2010;25(8):774-779. <a href="https://doi.org/10.1007/s11606-010-1356-3">doi:10.1007/s11606-010-1356-3</a></li>
+    </ol>
+    <div class="colo">
+      <span><b>The Guidewire</b> · petersorensendpm.substack.com</span>
+      <span>&copy; 2026 Peter Sorensen, DPM</span>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>

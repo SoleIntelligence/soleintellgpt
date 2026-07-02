@@ -207,6 +207,15 @@ window.INFOGRAPHICS = [
 
   // ---- Podiatry Politics & Culture ----
   {
+    title: "July 1 is the Best Day to Come to the Hospital",
+    description: "The new doctors just started. The data says no one dies more in July. The joke we tell new doctors still does damage.",
+    kicker: "CULTURAL CONDEMNATION",
+    category: "politics-culture",
+    url: "july_effect.html",
+    date: "2026-07-01",
+    thumbnail: "Sole Intelligence Images/july_effect.png"
+  },
+  {
     title: "Who Gets to Accredit Podiatry?",
     description: "A neutral, both-sides explainer of the debate over moving podiatric residencies from CPME to ACGME accreditation.",
     kicker: "Accreditation",
