@@ -1,245 +1,204 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="color-scheme" content="light">
-<title>The Deskilling Turn — The Guidewire</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<!-- saved from url=(0091)file:///Users/peter/Desktop/To%20Review/Hard%20copy%20Outputs/frewh/deskilling_carosel.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Guidewire — Deskilling Brief</title>
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+<link href="./The Guidewire — Deskilling Brief_files/css2" rel="stylesheet">
 <style>
   :root{
-    color-scheme:only light;
-    --paper:#F5EFDE;
-    --paper-deep:#EDE5D0;
-    --ink:#1C1A14;
-    --ink-soft:#4A463B;
-    --ink-faint:#8C8676;
+    --paper:#F2EBDC;
+    --paper-2:#EBE2CF;
+    --ink:#1A1714;
+    --muted:#6B6256;
     --red:#B8341A;
-    --red-deep:#8F2814;
-    --rule:#1C1A14;
-    --hair:rgba(28,26,20,0.16);
-    --hl:#FBE7A6;
-    --serif:'Fraunces',Georgia,'Times New Roman',serif;
-    --mono:'JetBrains Mono',ui-monospace,'SF Mono',Menlo,monospace;
+    --rule:#1A1714;
   }
-  *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;background:var(--paper);}
+  *{margin:0;padding:0;box-sizing:border-box;}
   body{
-    background:var(--paper);
+    background:#d9cfb8;
+    font-family:"Fraunces",Georgia,serif;
     color:var(--ink);
-    font-family:var(--serif);
+    display:flex;justify-content:center;
+    padding:36px 16px;
     -webkit-font-smoothing:antialiased;
-    text-rendering:optimizeLegibility;
-    /* faint paper grain */
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
   }
-  .topbar{height:6px;background:var(--red);}
-  .sheet{max-width:760px;margin:0 auto;padding:30px 40px 56px;}
+  .plate{
+    width:1080px;max-width:100%;
+    background:var(--paper);
+    border:3px solid var(--ink);
+    box-shadow:14px 14px 0 rgba(26,23,20,.22);
+    position:relative;
+    background-image:radial-gradient(rgba(26,23,20,.035) 1px,transparent 1px);
+    background-size:4px 4px;
+  }
+  .mono{font-family:"JetBrains Mono",monospace;}
 
   /* masthead */
-  .masthead{
-    display:flex;justify-content:space-between;align-items:baseline;
-    font-family:var(--mono);font-size:11px;letter-spacing:0.16em;text-transform:uppercase;
-    color:var(--ink-soft);border-bottom:2px solid var(--rule);padding-bottom:9px;
+  .mast{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:14px 30px;border-bottom:3px solid var(--ink);
+    font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.18em;
+    text-transform:uppercase;
   }
-  .masthead .pub{color:var(--ink);font-weight:700;}
-  .masthead .dom{color:var(--ink-faint);letter-spacing:0.1em;}
+  .mast .pub{font-weight:700;}
+  .mast .red{color:var(--red);}
 
+  .pad{padding:34px 44px;}
+
+  /* head */
   .kicker{
-    font-family:var(--mono);font-size:11.5px;letter-spacing:0.22em;text-transform:uppercase;
-    color:var(--red);font-weight:700;margin:26px 0 12px;
+    font-family:"JetBrains Mono",monospace;font-size:12.5px;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--red);font-weight:700;margin-bottom:14px;
   }
   h1{
-    font-family:var(--serif);font-weight:600;font-size:clamp(40px,9vw,68px);
-    line-height:0.98;letter-spacing:-0.015em;margin:0;
-    font-variation-settings:"opsz" 140;
+    font-weight:900;font-size:54px;line-height:1.02;letter-spacing:-.02em;
+    max-width:15ch;
   }
+  h1 .em{font-style:italic;color:var(--red);}
   .dek{
-    font-size:18px;line-height:1.5;color:var(--ink-soft);margin:18px 0 0;max-width:60ch;
+    font-size:18px;line-height:1.45;color:var(--muted);margin-top:18px;max-width:62ch;
     font-weight:400;
   }
-  .dek em{font-style:italic;color:var(--ink);}
 
-  .standfirst{
-    margin:30px 0 6px;border-left:3px solid var(--red);padding:4px 0 4px 18px;
-    font-family:var(--serif);font-weight:500;font-size:21px;line-height:1.4;color:var(--ink);
-    font-style:italic;
+  .thesis{
+    margin:30px 0 6px;border-top:3px solid var(--ink);border-bottom:3px solid var(--ink);
+    padding:22px 0;
   }
+  .thesis p{font-size:clamp(15px, 1.55vw, 18px);line-height:1.32;font-weight:500;max-width:none;white-space:nowrap;}
+  .thesis .hl{background:var(--red);color:var(--paper);padding:0 6px;}
 
-  .divider{height:2px;background:var(--rule);margin:34px 0 0;}
-  .divider.thin{height:1px;background:var(--hair);}
-
-  section.block{padding-top:26px;}
-  .seclabel{
-    font-family:var(--mono);font-size:11.5px;letter-spacing:0.16em;text-transform:uppercase;
-    color:var(--ink-soft);margin-bottom:10px;display:flex;align-items:center;gap:9px;
+  /* grid blocks */
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:3px solid var(--ink);}
+  .cell{
+    padding:26px 28px;border-bottom:3px solid var(--ink);
   }
-  .seclabel .no{color:var(--red);font-weight:700;}
-  .seclabel .ttl{color:var(--ink);font-weight:500;}
-  p.body{font-size:16.5px;line-height:1.62;color:var(--ink);margin:0;max-width:64ch;}
-  p.body + p.body{margin-top:12px;}
-  .hl{background:linear-gradient(180deg,transparent 58%,var(--hl) 58% 92%,transparent 92%);padding:0 2px;}
-
-  /* stat row */
-  .stats{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:20px;border:2px solid var(--rule);}
-  .stat{padding:18px 18px 16px;}
-  .stat + .stat{border-left:2px solid var(--rule);}
-  .stat .fig{font-family:var(--serif);font-weight:600;font-size:42px;line-height:1;color:var(--red);letter-spacing:-0.02em;}
-  .stat .fig.word{font-size:30px;color:var(--ink);}
-  .stat .cap{font-size:13.5px;line-height:1.45;color:var(--ink-soft);margin-top:9px;}
-  .tag{
-    display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:0.08em;
-    text-transform:uppercase;margin-top:10px;padding:2px 7px;border:1px solid var(--hair);
-    color:var(--ink-faint);border-radius:2px;
+  .cell:nth-child(odd){border-right:3px solid var(--ink);}
+  .num{
+    font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--red);font-weight:700;
+    letter-spacing:.1em;
   }
-  .tag.bank{color:var(--red-deep);border-color:rgba(143,40,20,0.4);background:rgba(184,52,26,0.06);}
-  .tag.verify{color:var(--ink-soft);background:var(--paper-deep);}
+  .cell h3{font-size:23px;font-weight:600;line-height:1.05;margin:8px 0 10px;letter-spacing:-.01em;}
+  .cell p{font-size:14.5px;line-height:1.5;color:#332e28;}
+  .cell .term,.strip .term{font-style:italic;color:var(--red);font-weight:500;}
 
-  /* pull quote */
-  .pull{margin:36px 0 6px;position:relative;padding-left:26px;border-left:3px solid var(--red);}
-  .pull .mark{position:absolute;left:8px;top:-14px;font-family:var(--serif);font-size:56px;color:var(--red);line-height:1;font-weight:600;opacity:0.9;}
-  .pull q,.pull .q{font-family:var(--serif);font-style:italic;font-weight:500;font-size:25px;line-height:1.32;color:var(--ink);quotes:none;display:block;}
-  .pull .attr{font-family:var(--mono);font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-faint);margin-top:12px;}
+  /* objection strip */
+  .strip{padding:26px 44px;border-bottom:3px solid var(--ink);background:var(--paper-2);}
+  .strip .lab{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+  .strip .q{font-size:20px;font-weight:500;font-style:italic;margin-bottom:16px;max-width:60ch;}
+  .three{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .three div{border-top:2px solid var(--red);padding-top:10px;}
+  .three .t{font-family:"JetBrains Mono",monospace;font-size:12px;font-weight:700;
+    letter-spacing:.08em;text-transform:uppercase;margin-bottom:5px;}
+  .three .b{font-size:13.5px;line-height:1.45;color:#332e28;}
 
-  /* counter callout */
-  .counter{
-    margin-top:22px;background:var(--paper-deep);border:1px solid var(--hair);
-    border-top:3px solid var(--ink);padding:16px 18px;
-  }
-  .counter .lab{font-family:var(--mono);font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink);font-weight:700;margin-bottom:7px;}
-  .counter p{font-size:15px;line-height:1.55;color:var(--ink-soft);margin:0;}
+  /* discipline */
+  .disc{padding:30px 44px;border-bottom:3px solid var(--ink);}
+  .disc .hd{display:flex;align-items:baseline;gap:14px;margin-bottom:16px;}
+  .disc .hd .k{font-family:"JetBrains Mono",monospace;font-size:12.5px;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--red);font-weight:700;}
+  .disc .hd h2{font-size:30px;font-weight:900;letter-spacing:-.01em;}
+  .rules{display:grid;grid-template-columns:1fr 1fr;gap:0 36px;}
+  .rule-item{display:flex;gap:14px;padding:13px 0;border-bottom:1px dashed rgba(26,23,20,.3);}
+  .rule-item .rn{font-family:"JetBrains Mono",monospace;font-weight:700;color:var(--red);font-size:15px;}
+  .rule-item .rt b{font-size:15.5px;font-weight:600;}
+  .rule-item .rt span{display:block;font-size:13px;color:var(--muted);line-height:1.4;margin-top:2px;}
 
-  /* the take */
-  .take{margin-top:32px;border-top:2px solid var(--rule);border-bottom:2px solid var(--rule);padding:24px 0;}
-  .take .lab{font-family:var(--mono);font-size:11.5px;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);font-weight:700;margin-bottom:10px;}
-  .take p{font-family:var(--serif);font-weight:500;font-size:20px;line-height:1.42;color:var(--ink);margin:0;}
-  .take p .em{color:var(--red-deep);font-style:italic;}
+  /* landing */
+  .land{padding:30px 44px;border-bottom:3px solid var(--ink);}
+  .land .k{font-family:"JetBrains Mono",monospace;font-size:12.5px;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--red);font-weight:700;margin-bottom:12px;}
+  .land p{font-size:19px;line-height:1.4;font-weight:500;max-width:54ch;}
+  .land .big{font-size:26px;font-weight:900;line-height:1.18;margin-top:16px;letter-spacing:-.01em;max-width:30ch;}
+  .land .big em{color:var(--red);}
 
-  /* sources */
-  .sources{margin-top:30px;}
-  .sources .lab{font-family:var(--mono);font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:12px;}
-  .sources ul{list-style:none;margin:0;padding:0;}
-  .sources li{font-family:var(--mono);font-size:12px;line-height:1.5;color:var(--ink-soft);padding:6px 0;border-bottom:1px dotted var(--hair);}
-  .sources li .src{color:var(--ink);font-weight:500;}
-  .sources li .fl{color:var(--red-deep);}
-  .srcnote{font-family:var(--mono);font-size:10.5px;line-height:1.5;color:var(--ink-faint);margin-top:12px;}
+  footer{display:flex;justify-content:space-between;align-items:center;padding:14px 30px;
+    font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.08em;color:var(--muted);}
+  footer .by{color:var(--ink);font-weight:700;}
 
-  /* footer */
-  footer{margin-top:34px;border-top:6px solid var(--red);padding-top:16px;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:10px;}
-  footer .by{font-family:var(--serif);font-weight:600;font-size:17px;color:var(--ink);}
-  footer .by span{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-faint);font-weight:400;margin-top:4px;}
-  footer .fine{font-family:var(--mono);font-size:10px;letter-spacing:0.06em;color:var(--ink-faint);text-align:right;line-height:1.6;}
-
-  /* staggered load reveal */
-  @keyframes rise{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
-  .reveal{opacity:0;animation:rise 0.7s cubic-bezier(.2,.7,.2,1) forwards;}
-  @media (prefers-reduced-motion:reduce){.reveal{animation:none;opacity:1;}}
-
-  @media (max-width:540px){
-    .sheet{padding:24px 22px 44px;}
-    .stats{grid-template-columns:1fr;}
-    .stat + .stat{border-left:none;border-top:2px solid var(--rule);}
-    .dek{font-size:16.5px;}
-  }
-  @media print{
-    body{background:#fff;background-image:none;}
-    .reveal{animation:none;opacity:1;}
-    .topbar{background:var(--red);-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  @media(max-width:680px){
+    h1{font-size:38px;} .grid{grid-template-columns:1fr;}
+    .cell:nth-child(odd){border-right:none;} .three{grid-template-columns:1fr;}
+    .rules{grid-template-columns:1fr;} .pad{padding:24px;}
+    .thesis p{white-space:normal;}
   }
 </style>
 </head>
 <body>
-<div class="topbar"></div>
-<div class="sheet">
+  <div class="plate">
+    <div class="mast">
+      <span class="pub">The Guidewire</span>
+      <span class="red">Editorial</span>
+      <span>soleintell.com</span>
+    </div>
 
-  <div class="masthead reveal" style="animation-delay:0s">
-    <span><span class="pub">The Guidewire</span> &nbsp;·&nbsp; AI × Clinical Practice</span>
-    <span class="dom">soleintell.com</span>
-  </div>
+    <div class="pad">
+      <div class="kicker">AI &amp; the Making of a Clinician</div>
+      <h1>The Gruntwork You <span class="em">Outsource</span> Is the Expertise You Never Build</h1>
+      <p class="dek">AI doesn't just risk making us lazy. It risks making us look competent while the expertise never forms — and the fix is not less AI, but the intentional use thereof.</p>
 
-  <div class="kicker reveal" style="animation-delay:.06s">Policy Brief · June 2026</div>
-  <h1 class="reveal" style="animation-delay:.10s">The Deskilling Turn</h1>
-  <p class="dek reveal" style="animation-delay:.16s">2026 is the year clinicians started naming AI skill-erosion as a top concern <em>out loud</em>. The answer isn't less AI. It's training AI as a competency — and keeping the doubt that makes you an active learner.</p>
-
-  <div class="standfirst reveal" style="animation-delay:.22s">AI competence is now a clinical skill. The question isn't whether to use it — it's whether you keep the reps that make you good without it.</div>
-
-  <div class="divider reveal" style="animation-delay:.26s"></div>
-
-  <section class="block reveal" style="animation-delay:.30s">
-    <div class="seclabel"><span class="no">§01</span><span class="ttl">The shift</span></div>
-    <p class="body">Adoption isn't the story anymore — it's the baseline. Roughly four in five physicians now report using AI in some form. What changed this spring is the other side of the ledger: <span class="hl">deskilling — the slow erosion of independent clinical judgment when work gets habitually offloaded</span> — now sits among the worries clinicians and patients carry into 2026. Not as a thought experiment. As a stated concern.</p>
-    <div class="stats">
-      <div class="stat">
-        <div class="fig">~81%</div>
-        <div class="cap">of physicians report using AI in some form in practice.</div>
-        <span class="tag bank">AMA · 2026 · in your bank</span>
-      </div>
-      <div class="stat">
-        <div class="fig word">Top tier</div>
-        <div class="cap">AI deskilling now ranks among the leading 2026 concerns named by clinicians and patients.</div>
-        <span class="tag">HealthExec · 2026</span>
+      <div class="thesis">
+        <p>Offloading the labor that turns a novice into an expert is an excellent way to <span class="hl">never become an expert.</span></p>
       </div>
     </div>
-  </section>
 
-  <div class="pull reveal" style="animation-delay:.34s">
-    <span class="mark">“</span>
-    <span class="q">AI isn't a tool you adopt — it's a clinical competency you train, like suturing or reading a film.</span>
-    <div class="attr">— The Guidewire</div>
-  </div>
-
-  <div class="divider thin reveal" style="animation-delay:.36s"></div>
-
-  <section class="block reveal" style="animation-delay:.40s">
-    <div class="seclabel"><span class="no">§02</span><span class="ttl">What "deskilling" actually means</span></div>
-    <p class="body">Keep the definition observable: <strong>skill you stop practicing, you stop owning.</strong> The risk isn't the model — it's the habit of reaching for it before you've done the thinking, until the unaided version of the task quietly gets worse.</p>
-    <div class="counter">
-      <div class="lab">The counter</div>
-      <p>The honest limit: what we have is stated concern and early signal — surveys, sentiment, anecdote — not a measured decline in clinician skill. Treat deskilling as a risk to manage, not a verdict to repeat. And resist explaining a mechanism we can't yet prove.</p>
+    <div class="grid">
+      <div class="cell">
+        <div class="num">01 / THE MECHANISM</div>
+        <h3>De-skilling / Never Skilling</h3>
+        <p>Answers to complex questions are instantaneous nowadays. De-skilling is losing a skill you once had; <span class="term">never skilling</span> is what happens when the tool arrives before the skill ever forms. The judgment required to recognize a wrong answer takes effort to develop. You only get it by doing the reps — building the differential, committing before you're corrected, being wrong in a way you remember. (I remember getting kicked out of a patient room once for not knowing the global period for a toenail avulsion - I sure know it now!) The <span class="term">effort</span> required to develop real expertise <span class="term">must not be delegated to AI.</span> The struggle isn't friction on the way to skill. The struggle <span class="term">is</span> the skill.</p>
+      </div>
+      <div class="cell">
+        <div class="num">02 / WHY IT HIDES</div>
+        <h3>Cognitive Spoofing</h3>
+        <p>AI tools produce work that <span class="term">looks</span> like competence, so no one — including the learner — can tell it didn't form in a long-lasting way. Looking something up inflates your sense of what you personally know; the tool's knowledge gets miscredited to the self. Felt competence, decoupled from the real thing. A counterfeit that fools the person holding it.</p>
+      </div>
     </div>
-  </section>
 
-  <section class="block reveal" style="animation-delay:.46s">
-    <div class="seclabel"><span class="no">§03</span><span class="ttl">Why podiatry should care first</span></div>
-    <p class="body">Podiatry doesn't have to feel behind medicine on this. We're <span class="hl">small enough to move fast and close enough to the patient to do it right</span> — exactly the position from which to set the habit early. Use the tools, but protect the reps. You can't biohack the practice that builds a clinician.</p>
-  </section>
+    <div class="strip">
+      <div class="lab">The Calculator Objection — and the Answer</div>
+      <div class="q">"Every tool triggered this panic. We adapted. Why is AI different?"</div>
+      <div class="three">
+        <div><div class="t">What it offloads</div><div class="b">Not computation or recall — <b>judgment and reasoning.</b> The faculties that make a clinician, not a technician.</div></div>
+        <div><div class="t">The breadth</div><div class="b">Earlier tools took one task. AI reaches <b>every cognitive task at once</b> — history, differential, plan, note.</div></div>
+        <div><div class="t">The failure mode</div><div class="b">Wrong GPS, you're late. A confidently wrong model with no one able to catch it — you can cause <b>patient harm.</b></div></div>
+      </div>
+    </div>
 
-  <div class="pull reveal" style="animation-delay:.50s">
-    <span class="mark">“</span>
-    <span class="q">Doubt the output. That's the reason to <em>use</em> AI, not avoid it — skepticism is what makes an active learner.</span>
-    <div class="attr">— The Guidewire</div>
+    <div class="strip" style="background:var(--paper);">
+      <div class="lab">GPS Shows the Difference</div>
+      <div class="q" style="font-style:normal;font-weight:400;color:#332e28;">GPS de-skilled an entire generation away from navigating by paper map. Every generation after may now <span class="term">never skill</span> that ability at all — and in some cases, that is probably fine. Some skills can be safely replaced. But medicine is not paper navigation: when AI replaces the reps that build clinical judgment, the long-term risk is not inconvenience. It is humanity forgetting how to verify the machine.</div>
+    </div>
+
+    <div class="strip" style="background:var(--paper);">
+      <div class="lab">Twenty Years Down the Wire — the version to avoid</div>
+      <div class="q" style="font-style:normal;font-weight:400;color:#332e28;">A cohort of fluent prompters who never built the substrate beneath. Productive on paper, but unable to verify what they're handed — because verification needs the judgment that irresponsible AI use prevented them from developing.</div>
+    </div>
+
+    <div class="disc">
+      <div class="hd"><span class="k">The Fix Is Intention</span><h2>Use It Deliberately</h2></div>
+      <div class="rules">
+        <div class="rule-item"><span class="rn">01</span><span class="rt"><b>Generate first, then check.</b><span>Build your own plan, then run it past the model. The order is the entire discipline.</span></span></div>
+        <div class="rule-item"><span class="rn">02</span><span class="rt"><b>Widen, don't decide.</b><span>"What am I missing?" keeps your reasoning. "What's the plan?" outsources it.</span></span></div>
+        <div class="rule-item"><span class="rn">03</span><span class="rt"><b>Attest, don't accept.</b><span>Treat output like a junior's note you cosign — your name means you verified it.</span></span></div>
+        <div class="rule-item"><span class="rn">04</span><span class="rt"><b>Run the spoof test.</b><span>Could you reproduce the reasoning without the tool? If not, you're renting it, not owning it.</span></span></div>
+      </div>
+    </div>
+
+    <div class="land">
+      <div class="k">Who Instills This?</div>
+      <p>The mindset doesn't install itself. Trainees won't reintroduce friction that AI removes — not without someone showing why the friction and <strong>the struggle was the point all along.</strong> (Journey Before Destination) That job falls to <strong>educators.</strong> But educators are as much at risk of deskilling as learners. Educators have all the more important imperative to teach <strong>responsible and intentional AI use.</strong></p>
+      <p class="big">The goal is not less AI. It's using AI <em>responsibly</em> in ways that cultivate the skills that forge you into an expert instead of preventing you from becoming one.</p>
+    </div>
+
+    <footer>
+      <span class="by">Peter Sorensen, DPM</span>
+      <span>© 2026 Peter Sorensen, DPM · Drafted with AI, edited &amp; attested by the author</span>
+    </footer>
   </div>
 
-  <div class="divider thin reveal" style="animation-delay:.52s"></div>
 
-  <section class="block reveal" style="animation-delay:.56s">
-    <div class="seclabel"><span class="no">§04</span><span class="ttl">The governance spine</span></div>
-    <p class="body">The policy conversation is formalizing in step. A new health-AI policy index out of Mount Sinai sets out to track the moving regulatory and governance terrain — a sign that disclosure, oversight, and standards are coalescing from talking points into structure. Worth watching: it's the scaffolding the deskilling debate will hang on. <span class="tag verify" style="margin-top:0;">Mount Sinai · verify</span></p>
-  </section>
-
-  <div class="take reveal" style="animation-delay:.60s">
-    <div class="lab">The take</div>
-    <p>AI commoditizes knowledge. It does not commoditize <span class="em">wisdom</span> — and medicine runs on wisdom. Train the competency, keep the doubt, protect the reps. That's the whole brief.</p>
-  </div>
-
-  <div class="sources reveal" style="animation-delay:.64s">
-    <div class="lab">Sources</div>
-    <ul>
-      <li><span class="src">Healthcare Dive</span> — "AI adoption surges, but providers worry about deskilling" (Jun 2026)</li>
-      <li><span class="src">HealthExec</span> — "Top 6 worries about healthcare AI among clinicians and patients in 2026" (Jun 2026)</li>
-      <li><span class="src">AMA</span> — 2026 physician AI sentiment, ~81% use <span class="fl">[in your bank]</span></li>
-      <li><span class="src">Mount Sinai</span> — health-AI policy-landscape index (Jun 2026) <span class="fl">[verify]</span></li>
-    </ul>
-    <div class="srcnote">Headlines pulled from public news feeds. Confirm the ~81% figure and the Mount Sinai index against primary sources before republication.</div>
-  </div>
-
-  <footer class="reveal" style="animation-delay:.68s">
-    <div class="by">Peter Sorensen, DPM<span>The Guidewire · Sole Intelligence</span></div>
-    <div class="fine">© 2026 Peter Sorensen, DPM<br>AI-assisted draft — verify before publication<br>soleintell.com</div>
-  </footer>
-
-</div>
-</body>
-</html>
+</body></html>
