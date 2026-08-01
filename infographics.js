@@ -427,5 +427,14 @@ window.INFOGRAPHICS = [
     url: "e_advocacy.html",
     date: "2026-05-01",
     thumbnail: "Sole Intelligence Images/e_advocacy.png"
-  }
+  },
+  {
+    title: "Feedback is a Gift",
+    description: "The days I learn the most are the days somebody tells me exactly what I did wrong.",
+    kicker: "Culture",
+    category: "politics-culture",
+    url: "feedback_is_a_gift.html",
+    date: "2026-07-31",
+    thumbnail: "Sole Intelligence Images/feedback_is_a_gift.png"
+  } 
 ]
