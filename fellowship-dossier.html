@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The GuideWire — The Fellowship Question</title>
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#070c10; --bg-soft:#0a1217; --bg-alt:#0c171d;
+  --glass:rgba(255,255,255,.035); --glass-strong:rgba(255,255,255,.06); --bezel:rgba(255,255,255,.02);
+  --line:rgba(198,232,230,.09); --line-strong:rgba(198,232,230,.16);
+  --text:#ecf2f0; --text-soft:#c6d2d0; --muted:#87989a; --muted-strong:#aab9b9;
+  --accent:#4fd6d1; --accent-bright:#7defe9; --accent-deep:#2c8f8c; --highlight:#d7a25e; --ink:#04181a;
+  --radius:24px; --radius-lg:30px; --radius-sm:14px; --bezel-pad:7px;
+  --shadow:0 40px 80px -32px rgba(0,0,0,.7), 0 8px 24px -12px rgba(0,0,0,.5);
+  --shadow-sm:0 18px 40px -24px rgba(0,0,0,.6);
+  --glow:0 0 40px -6px rgba(79,214,209,.28); --inset-hi:inset 0 1px 0 rgba(255,255,255,.08);
+  --ease:cubic-bezier(.32,.72,0,1); --ease-out:cubic-bezier(.16,1,.3,1);
+  --font-display:'Fraunces',Georgia,'Times New Roman',serif;
+  --font-sans:'Plus Jakarta Sans',system-ui,sans-serif;
+  --font-mono:'JetBrains Mono',ui-monospace,monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:var(--font-sans);font-size:15.5px;line-height:1.72;letter-spacing:-.005em;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(1100px 520px at 78% -6%, rgba(79,214,209,.07), transparent 60%),
+             radial-gradient(900px 480px at 8% 30%, rgba(79,214,209,.04), transparent 60%)}
+.page{position:relative;z-index:1;max-width:1120px;margin:0 auto;padding:0 clamp(20px,4vw,52px) clamp(4.5rem,9vw,7.5rem)}
+a{color:var(--accent);text-decoration:none}
+section{padding-top:clamp(4.5rem,9vw,7.5rem)}
+
+/* reveal */
+.js .rv{opacity:0;transform:translateY(2.2rem);filter:blur(8px);transition:opacity .9s var(--ease-out) var(--d,0s),transform .9s var(--ease-out) var(--d,0s),filter .9s var(--ease-out) var(--d,0s)}
+.js .rv.in{opacity:1;transform:none;filter:none}
+@media (prefers-reduced-motion: reduce){.js .rv{opacity:1;transform:none;filter:none;transition:none}}
+
+/* masthead */
+.masthead{padding:clamp(1.6rem,3vw,2.4rem) 0 1.2rem;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+.lockup .gw{font-family:var(--font-display);font-weight:600;font-size:1.5rem;letter-spacing:-.022em}
+.lockup .gw em{font-style:italic;font-weight:500;background:linear-gradient(100deg,var(--accent),var(--accent-bright) 55%,var(--highlight));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lockup .parent{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-top:.15rem}
+.mast-meta{display:flex;align-items:center;gap:.6rem;font-family:var(--font-mono);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-strong)}
+.mast-meta .live{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent-bright);animation:pulse 2.4s var(--ease) infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+@media (prefers-reduced-motion: reduce){.mast-meta .live{animation:none}}
+
+/* eyebrow */
+.eyebrow{display:inline-flex;gap:.5rem;align-items:center;font-family:var(--font-mono);font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);padding:.4rem .8rem;border:1px solid var(--line-strong);border-radius:999px;background:rgba(79,214,209,.05);box-shadow:var(--inset-hi);margin-bottom:1.4rem}
+.eyebrow::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent-bright)}
+
+/* hero */
+.hero{padding-top:clamp(3.4rem,7vw,5.5rem)}
+.hero h1{font-family:var(--font-display);font-weight:500;font-size:clamp(2.5rem,6.2vw,4.6rem);line-height:1.04;letter-spacing:-.022em;max-width:20ch}
+.hero h1 em{font-style:italic;font-weight:500;background:linear-gradient(100deg,var(--accent),var(--accent-bright) 55%,var(--highlight));-webkit-background-clip:text;background-clip:text;color:transparent}
+.standfirst{margin-top:1.6rem;max-width:62ch;font-size:clamp(1rem,1.35vw,1.14rem);color:var(--text-soft)}
+.byline{margin-top:1.6rem;display:flex;flex-wrap:wrap;gap:.4rem 1.4rem;font-family:var(--font-mono);font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+
+/* ── sibling-view nav: same vocabulary as the database and the map ── */
+.cluster{margin-top:1.6rem;display:flex;flex-wrap:wrap;gap:.4rem}
+.cluster a{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;padding:.5rem .95rem;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.02);color:var(--muted-strong);transition:transform .4s var(--ease),color .4s var(--ease),border-color .4s var(--ease)}
+.cluster a:hover{transform:translateY(-1px);color:var(--accent);border-color:var(--accent-deep)}
+.cluster a[aria-current="page"]{background:linear-gradient(135deg,var(--accent-bright),var(--accent));color:var(--ink);border-color:transparent;box-shadow:var(--glow)}
+.byline strong{color:var(--text-soft);font-weight:500}
+
+/* bezel system */
+.bezel{padding:var(--bezel-pad);background:var(--bezel);border:1px solid var(--line);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm)}
+.bezel-core{border-radius:calc(var(--radius-lg) - var(--bezel-pad));background:var(--glass);box-shadow:var(--inset-hi);overflow:hidden;height:100%}
+
+/* stat strip */
+.stats{margin-top:clamp(2.6rem,5vw,3.6rem);display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.stat .bezel-core{padding:1.5rem 1.4rem}
+.stat .lbl{font-family:var(--font-mono);font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:.55rem}
+.stat .num{font-family:var(--font-display);font-weight:500;font-size:clamp(2.4rem,4.4vw,3.4rem);line-height:1;letter-spacing:-.02em;color:var(--text)}
+.stat .num.cy{color:var(--accent)}
+.stat .num.am{color:var(--highlight)}
+.stat .desc{margin-top:.55rem;font-size:.78rem;line-height:1.55;color:var(--muted-strong)}
+
+/* section head */
+.sec-head{display:flex;flex-direction:column;align-items:flex-start;margin-bottom:clamp(1.6rem,3vw,2.4rem)}
+.sec-head h2{font-family:var(--font-display);font-weight:500;font-size:clamp(1.7rem,3.4vw,2.5rem);line-height:1.1;letter-spacing:-.022em;max-width:26ch}
+.sec-head h2 em{font-style:italic;background:linear-gradient(100deg,var(--accent),var(--accent-bright) 60%,var(--highlight));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lede{margin-top:1rem;max-width:66ch;color:var(--text-soft)}
+.lede strong{color:var(--text);font-weight:600}
+
+/* chart */
+.chart-shell .bezel-core{padding:clamp(1.4rem,3vw,2rem)}
+.chart-cap{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:1.3rem}
+.chart{display:flex;flex-direction:column;gap:.85rem}
+.brow{display:grid;grid-template-columns:52px 1fr 56px;align-items:center;gap:.9rem}
+.brow .yr{font-family:var(--font-mono);font-size:.7rem;color:var(--muted-strong)}
+.brow .track{height:22px;display:flex;border-radius:6px;overflow:hidden;background:rgba(255,255,255,.03);box-shadow:var(--inset-hi)}
+.brow .seg{height:100%;display:flex;align-items:center;justify-content:flex-end;padding-right:.45rem;font-family:var(--font-mono);font-size:.6rem;font-weight:600}
+.seg.s1{background:linear-gradient(180deg,var(--accent-bright),var(--accent));color:var(--ink)}
+.seg.s2{background:linear-gradient(180deg,#e4b579,var(--highlight));color:var(--ink)}
+.seg.s3{background:rgba(198,232,230,.13);color:var(--muted-strong)}
+.brow .tot{font-family:var(--font-mono);font-size:.72rem;font-weight:600;color:var(--text);text-align:right}
+.legend{display:flex;flex-wrap:wrap;gap:1.2rem;margin-top:1.2rem;padding-top:1rem;border-top:1px solid var(--line)}
+.legend span{display:inline-flex;align-items:center;gap:.45rem;font-family:var(--font-mono);font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.legend i{width:11px;height:11px;border-radius:3px}
+.legend .l1{background:var(--accent)} .legend .l2{background:var(--highlight)} .legend .l3{background:rgba(198,232,230,.2)}
+.fn{margin-top:.9rem;font-size:.74rem;line-height:1.55;color:var(--muted)}
+
+/* tiers */
+.tiers{display:flex;flex-direction:column;gap:14px}
+.tier .bezel-core{display:grid;grid-template-columns:150px 1fr}
+.tier-num{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:.2rem;padding:1.6rem 1rem;border-right:1px solid var(--line);text-align:center}
+.tier-num .big{font-family:var(--font-display);font-weight:500;font-size:2.9rem;line-height:1;letter-spacing:-.02em}
+.tier-num .unit{font-family:var(--font-mono);font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.tier-body{padding:1.5rem 1.7rem}
+.tier-body h3{font-family:var(--font-display);font-weight:500;font-size:1.25rem;letter-spacing:-.015em}
+.tier-tag{font-family:var(--font-mono);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin:.3rem 0 .8rem}
+.tier-body p{font-size:.9rem;color:var(--text-soft);max-width:70ch}
+.tier-body p strong{color:var(--text)}
+.tier-feats{margin-top:1rem;display:flex;flex-wrap:wrap;gap:.45rem}
+.feat{font-family:var(--font-mono);font-size:.62rem;padding:.32rem .65rem;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.02);color:var(--muted-strong)}
+.feat.ok{color:var(--accent);border-color:rgba(79,214,209,.28)}
+.feat.no{color:var(--highlight);border-color:rgba(215,162,94,.28)}
+.t1 .tier-num .big{color:var(--accent)} .t2 .tier-num .big{color:var(--highlight)} .t3 .tier-num .big{color:var(--muted-strong)}
+
+/* engines bento */
+.bento{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.bento .wide{grid-column:1 / -1}
+.cell .bezel-core{padding:clamp(1.4rem,3vw,1.9rem)}
+.cell h3{font-family:var(--font-display);font-weight:500;font-size:1.3rem;letter-spacing:-.015em;margin-bottom:.25rem}
+.cell .tag{font-family:var(--font-mono);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:.85rem}
+.cell p{font-size:.9rem;color:var(--text-soft)}
+.cell p strong{color:var(--text)}
+.cell p + p{margin-top:.7rem}
+.cell .kfig{font-family:var(--font-mono);font-size:.68rem;color:var(--accent);margin-top:.9rem;padding-top:.8rem;border-top:1px solid var(--line);letter-spacing:.06em}
+.cell.warm .kfig{color:var(--highlight)}
+.wide .bezel-core{background:linear-gradient(120deg,rgba(79,214,209,.07),rgba(255,255,255,.03) 55%)}
+
+/* trio */
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}
+.trio .bezel-core{padding:1.3rem 1.4rem}
+.trio h4{font-family:var(--font-display);font-weight:500;font-size:1.02rem;letter-spacing:-.01em;margin-bottom:.5rem}
+.trio p{font-size:.83rem;line-height:1.62;color:var(--text-soft)}
+.trio p strong{color:var(--text)}
+
+/* compare table */
+.tbl-shell{margin-top:14px}
+.tbl-shell .bezel-core{padding:.4rem}
+table.cmp{width:100%;border-collapse:collapse;font-size:.85rem}
+.cmp th{font-family:var(--font-mono);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;text-align:left;padding:.85rem .95rem;color:var(--muted);border-bottom:1px solid var(--line-strong)}
+.cmp th.pod{color:var(--highlight)} .cmp th.orth{color:var(--accent)}
+.cmp td{padding:.8rem .95rem;border-bottom:1px solid var(--line);vertical-align:top;color:var(--text-soft);line-height:1.5}
+.cmp tr:last-child td{border-bottom:none}
+.cmp td:first-child{color:var(--text);font-weight:600;font-size:.83rem}
+.pill{display:inline-block;font-family:var(--font-mono);font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;padding:.14rem .5rem;border-radius:999px;margin-right:.45rem}
+.pill.good{background:rgba(79,214,209,.12);color:var(--accent)}
+.pill.warn{background:rgba(215,162,94,.14);color:var(--highlight)}
+
+/* versus */
+.versus{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.versus .bezel-core{padding:1.5rem 1.6rem}
+.versus h3{font-family:var(--font-display);font-weight:500;font-size:1.15rem;letter-spacing:-.01em;padding-bottom:.85rem;border-bottom:1px solid var(--line);margin-bottom:.4rem}
+.versus .pro h3{color:var(--accent)} .versus .con h3{color:var(--highlight)}
+.versus ul{list-style:none}
+.versus li{font-size:.87rem;line-height:1.6;color:var(--text-soft);padding:.75rem 0 .75rem 1.35rem;border-bottom:1px solid var(--line);position:relative}
+.versus li:last-child{border-bottom:none}
+.versus li::before{position:absolute;left:0;top:.75rem;font-family:var(--font-mono);font-size:.75rem;font-weight:600}
+.versus .pro li::before{content:"+";color:var(--accent)}
+.versus .con li::before{content:"−";color:var(--highlight)}
+.versus li strong{color:var(--text)}
+
+/* ledger */
+.ledger{display:flex;flex-direction:column;gap:10px}
+.ledger .bezel{border-radius:var(--radius)}
+.ledger .bezel-core{border-radius:calc(var(--radius) - var(--bezel-pad));display:grid;grid-template-columns:128px 1fr;align-items:center}
+.l-badge{padding:1rem;display:flex;justify-content:center}
+.l-badge span{font-family:var(--font-mono);font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;padding:.3rem .7rem;border-radius:999px}
+.st-ok{background:rgba(79,214,209,.12);color:var(--accent)}
+.st-mid{background:rgba(215,162,94,.14);color:var(--highlight)}
+.st-no{background:rgba(255,255,255,.05);color:var(--muted)}
+.l-body{padding:1rem 1.3rem 1rem .3rem;font-size:.86rem;line-height:1.6;color:var(--text-soft)}
+.l-body strong{color:var(--text)}
+
+/* verdict */
+.verdict .bezel-core{padding:clamp(1.7rem,4vw,2.6rem);background:linear-gradient(135deg,rgba(79,214,209,.08),rgba(255,255,255,.03) 50%)}
+.verdict h2{font-family:var(--font-display);font-weight:500;font-size:clamp(1.6rem,3.2vw,2.3rem);line-height:1.12;letter-spacing:-.02em;max-width:24ch}
+.verdict h2 em{font-style:italic;background:linear-gradient(100deg,var(--accent),var(--accent-bright) 60%,var(--highlight));-webkit-background-clip:text;background-clip:text;color:transparent}
+.verdict p{margin-top:1.1rem;max-width:72ch;color:var(--text-soft);font-size:.94rem}
+.verdict p strong{color:var(--text)}
+.asks{margin-top:1.5rem;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.ask{padding:1rem 1.1rem;border:1px solid var(--line);border-radius:var(--radius-sm);background:rgba(255,255,255,.03);box-shadow:var(--inset-hi)}
+.ask .n{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.2em;color:var(--accent);margin-bottom:.4rem}
+.ask p{margin:0;font-size:.82rem;line-height:1.55}
+
+/* CTA */
+.cta .bezel-core{padding:clamp(1.8rem,4vw,2.6rem);display:flex;align-items:center;justify-content:space-between;gap:1.6rem;flex-wrap:wrap;background:linear-gradient(120deg,rgba(79,214,209,.1),rgba(255,255,255,.03) 60%)}
+.cta h2{font-family:var(--font-display);font-weight:500;font-size:clamp(1.5rem,3vw,2.1rem);letter-spacing:-.02em;line-height:1.15;max-width:20ch}
+.cta h2 em{font-style:italic;background:linear-gradient(100deg,var(--accent),var(--accent-bright) 60%,var(--highlight));-webkit-background-clip:text;background-clip:text;color:transparent}
+.cta .sub{margin-top:.6rem;font-size:.88rem;color:var(--text-soft);max-width:48ch}
+.button{display:inline-flex;align-items:center;gap:.9rem;font-family:var(--font-sans);font-weight:700;font-size:.92rem;padding:.55rem .6rem .55rem 1.35rem;border-radius:999px;transition:transform .5s var(--ease),box-shadow .5s var(--ease);will-change:transform}
+.button:active{transform:scale(.975)}
+.button-primary{background:linear-gradient(135deg,var(--accent-bright),var(--accent));color:var(--ink);box-shadow:var(--glow),var(--inset-hi)}
+.button-pip{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:rgba(4,24,26,.18);transition:transform .5s var(--ease)}
+.button-pip svg{width:15px;height:15px}
+.button-primary:hover .button-pip{transform:translate(3px,-2px) scale(1.07)}
+
+/* colophon */
+.colophon{margin-top:clamp(4rem,8vw,6rem);padding-top:1.6rem;border-top:1px solid var(--line);display:grid;grid-template-columns:1.6fr 1fr;gap:2rem;font-size:.76rem;line-height:1.65;color:var(--muted)}
+.colophon h5{font-family:var(--font-mono);font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted-strong);margin-bottom:.6rem}
+.copy{grid-column:1 / -1;margin-top:1rem;padding-top:1.2rem;border-top:1px solid var(--line);font-family:var(--font-mono);font-size:.62rem;letter-spacing:.12em;color:var(--muted);text-align:center}
+
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+@media (max-width: 900px){
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .bento,.versus{grid-template-columns:1fr}
+  .trio{grid-template-columns:1fr}
+  .asks{grid-template-columns:1fr}
+}
+@media (max-width: 640px){
+  .stats{grid-template-columns:1fr}
+  .tier .bezel-core{grid-template-columns:1fr}
+  .tier-num{flex-direction:row;border-right:none;border-bottom:1px solid var(--line);padding:1rem}
+  .ledger .bezel-core{grid-template-columns:1fr}
+  .l-badge{justify-content:flex-start;padding:1rem 1.3rem 0}
+  .l-body{padding:.7rem 1.3rem 1.1rem}
+  .brow{grid-template-columns:40px 1fr 44px}
+  .colophon{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header class="masthead">
+  <div class="lockup">
+    <div class="gw">The <em>GuideWire</em></div>
+    <div class="parent">by Sole Intelligence</div>
+  </div>
+  <div class="mast-meta"><span class="live"></span><span>Intelligence Brief · Fellowships · 07.2026</span></div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="eyebrow rv">Dossier · Fellowship Architecture</p>
+  <h1 class="rv" style="--d:.06s">A profession quietly built a second residency — <em>and forgot to write the rules.</em></h1>
+  <p class="standfirst rv" style="--d:.12s">Podiatric surgery fellowships have grown roughly five-fold since 2012, but the fraction under real accreditation has barely moved. Three credentialing tiers now coexist with no shared curriculum, no match, and no published outcomes data. This brief maps the system — and borrows the one lesson organized medicine already learned about standardizing subspecialty training.</p>
+  <div class="byline rv" style="--d:.18s">
+    <span><strong>Peter Sorensen, DPM</strong></span>
+    <span>Verified July 2026</span>
+    <span>12-min read</span>
+  </div>
+  <nav class="cluster rv" style="--d:.24s" aria-label="Fellowship coverage">
+    <a href="fellowship-dossier.html" aria-current="page">The dossier</a>
+    <a href="fellowship-database.html">The database</a>
+    <a href="fellowship-map.html">The map</a>
+  </nav>
+
+  <div class="stats">
+    <div class="stat bezel rv" style="--d:.05s"><div class="bezel-core">
+      <div class="lbl">CPME-Accredited</div>
+      <div class="num cy">18</div>
+      <div class="desc">programs on the live CPME list, July 2026 (19 and 33 first-year positions per the Dec 2025 annual report)</div>
+    </div></div>
+    <div class="stat bezel rv" style="--d:.1s"><div class="bezel-core">
+      <div class="lbl">ACFAS Orbit</div>
+      <div class="num am">68</div>
+      <div class="desc">47 Recognized + 3 Research + 17 Conditional + 1 Conditional-Probationary · self-attestation model</div>
+    </div></div>
+    <div class="stat bezel rv" style="--d:.15s"><div class="bezel-core">
+      <div class="lbl">Estimated Universe</div>
+      <div class="num">~105</div>
+      <div class="desc">including independent and unaccredited programs · no central registry exists · low-confidence estimate</div>
+    </div></div>
+    <div class="stat bezel rv" style="--d:.2s"><div class="bezel-core">
+      <div class="lbl">Ortho F&amp;A · AOFAS Match</div>
+      <div class="num">~49</div>
+      <div class="desc">programs in a unified match with a published curriculum · essentially flat since 2018</div>
+    </div></div>
+  </div>
+</section>
+
+<!-- §01 GROWTH -->
+<section>
+  <div class="sec-head">
+    <p class="eyebrow rv">§ 01 · Epidemiology</p>
+    <h2 class="rv" style="--d:.06s">Growth without <em>governance.</em></h2>
+    <p class="lede rv" style="--d:.12s">CPME accreditation has grown modestly. The ACFAS-recognition layer and the unaccredited tail account for nearly all of the inflation — a roughly 5× increase in total programs since 2012, against an orthopaedic foot &amp; ankle count that has barely moved.</p>
+  </div>
+  <div class="chart-shell bezel rv" style="--d:.15s"><div class="bezel-core">
+    <div class="chart-cap">Program count by credentialing tier · 2012–2026 · widths proportional</div>
+    <div class="chart">
+      <div class="brow"><span class="yr">2012</span><div class="track"><div class="seg s1" style="width:7%">8</div><div class="seg s2" style="width:10%">12</div><div class="seg s3" style="width:9%">10</div></div><span class="tot">~30</span></div>
+      <div class="brow"><span class="yr">2015</span><div class="track"><div class="seg s1" style="width:9%">10</div><div class="seg s2" style="width:21%">25</div><div class="seg s3" style="width:13%">15</div></div><span class="tot">~50</span></div>
+      <div class="brow"><span class="yr">2018</span><div class="track"><div class="seg s1" style="width:11%">13</div><div class="seg s2" style="width:39%">46</div><div class="seg s3" style="width:17%">20</div></div><span class="tot">~79</span></div>
+      <div class="brow"><span class="yr">2020</span><div class="track"><div class="seg s1" style="width:11%">13</div><div class="seg s2" style="width:37%">44</div><div class="seg s3" style="width:25%">~30</div></div><span class="tot">~87</span></div>
+      <div class="brow"><span class="yr">2023</span><div class="track"><div class="seg s1" style="width:12%">14</div><div class="seg s2" style="width:42%">50</div><div class="seg s3" style="width:24%">~28</div></div><span class="tot">~92</span></div>
+      <div class="brow"><span class="yr">2026</span><div class="track"><div class="seg s1" style="width:15%">18</div><div class="seg s2" style="width:57%">68</div><div class="seg s3" style="width:17%">~20</div></div><span class="tot">~105</span></div>
+    </div>
+    <div class="legend">
+      <span><i class="l1"></i>CPME-Accredited</span>
+      <span><i class="l2"></i>ACFAS Recognized + Conditional</span>
+      <span><i class="l3"></i>Independent / Unaccredited (est.)</span>
+    </div>
+    <p class="fn">2026 tiers verified against live CPME and ACFAS listings, July 2026. Historical counts are estimates assembled from Roukis (JFAS 2008; FASTRAC 2024), Shofler et&nbsp;al. (JFAS 2020), ACFAS communications, and CPME annual reports. Orthopaedic comparison: ~45 → ~49 AOFAS match programs over the same window.</p>
+  </div></div>
+</section>
+
+<!-- §02 TIERS -->
+<section>
+  <div class="sec-head">
+    <p class="eyebrow rv">§ 02 · Architecture</p>
+    <h2 class="rv" style="--d:.06s">What "fellowship-trained" <em>actually</em> means.</h2>
+    <p class="lede rv" style="--d:.12s">Most applicants can't name the credentialing tier of the program they're applying to — and most fellowship marketing doesn't clarify it.</p>
+  </div>
+  <div class="tiers">
+    <div class="tier t1 bezel rv" style="--d:.05s"><div class="bezel-core">
+      <div class="tier-num"><span class="big">18</span><span class="unit">Programs</span></div>
+      <div class="tier-body">
+        <h3>CPME-Accredited</h3>
+        <div class="tier-tag">CPME 820/830 · renamed “accredited” July 2025</div>
+        <p>The only tier carrying delegated authority from APMA. Hospital or academic-health-center sponsorship required; board-certified director with ≥3 years experience; site visits and annual reporting; non-competes and productivity-contingent pay prohibited. <strong>The gap:</strong> CPME 820 prescribes no case minimums and no standardized curriculum — the accreditation is structural, not educational.</p>
+        <div class="tier-feats">
+          <span class="feat ok">✓ Hospital/AHC sponsor</span><span class="feat ok">✓ Site visits</span><span class="feat ok">✓ Non-competes banned</span><span class="feat no">✗ No case minimums</span><span class="feat no">✗ No curriculum</span>
+        </div>
+      </div>
+    </div></div>
+    <div class="tier t2 bezel rv" style="--d:.1s"><div class="bezel-core">
+      <div class="tier-num"><span class="big">68</span><span class="unit">Programs</span></div>
+      <div class="tier-body">
+        <h3>ACFAS-Recognized + Conditional</h3>
+        <div class="tier-tag">Fellowship Initiative · founded 2010 · self-attestation</div>
+        <p>Application, fee, and an ACFAS-member director. No site visits, no case-log audits, no curriculum mandate. ACFAS holds no accreditation authority — only CPME carries that delegation — so “Recognized” is a College endorsement, not an accreditation. Quality inside this tier ranges from excellent to nominal, and the label doesn't tell you which.</p>
+        <div class="tier-feats">
+          <span class="feat ok">✓ Member director</span><span class="feat ok">✓ Annual self-report</span><span class="feat no">✗ No accreditation authority</span><span class="feat no">✗ No site visits</span><span class="feat no">✗ No audits</span>
+        </div>
+      </div>
+    </div></div>
+    <div class="tier t3 bezel rv" style="--d:.15s"><div class="bezel-core">
+      <div class="tier-num"><span class="big">~20</span><span class="unit">Programs</span></div>
+      <div class="tier-body">
+        <h3>Independent / Unaccredited</h3>
+        <div class="tier-tag">No external oversight · weakest count in this brief</div>
+        <p>The shadow tier: single-surgeon programs branded as “fellowship,” private-practice associate arrangements, society-credentialed niche programs, and academic programs that haven't pursued accreditation. <strong>The filter that matters:</strong> if a program doesn't let you log cases toward the ABFAS board portfolio, its credentialing value is a CV line.</p>
+        <div class="tier-feats">
+          <span class="feat no">✗ No oversight</span><span class="feat no">✗ Variable case-logging</span><span class="feat no">✗ Non-competes possible</span><span class="feat">? Mentor-dependent value</span>
+        </div>
+      </div>
+    </div></div>
+  </div>
+</section>
+
+<!-- §03 STANDARDIZATION -->
+<section>
+  <div class="sec-head">
+    <p class="eyebrow rv">§ 03 · The Standardization Question</p>
+    <h2 class="rv" style="--d:.06s">How medicine standardizes fellowships: <em>two engines.</em></h2>
+    <p class="lede rv" style="--d:.12s">MD/DO subspecialty training isn't standardized by magic — it runs on one of two engines. Understanding them explains exactly what podiatry is missing, and why “we have multiple boards” is only half an excuse.</p>
+  </div>
+
+  <div class="bento">
+    <div class="cell bezel rv" style="--d:.05s"><div class="bezel-core">
+      <h3>Engine A — Accreditor + Certificate</h3>
+      <div class="tag">ACGME accreditation · ABMS subspecialty certificate</div>
+      <p>ACGME accredits the fellowship; an ABMS board offers a subspecialty certificate (CAQ) that <strong>requires ACGME-accredited training</strong>. The certificate is the carrot that makes programs submit to accreditation — curriculum, case logs, site review, milestones.</p>
+      <p>Hand surgery and orthopaedic sports medicine run on this engine — sports medicine fellowships were ~93% ACGME-accredited even a decade ago.</p>
+      <div class="kfig">Requires: one accreditor + one certifying board, aligned</div>
+    </div></div>
+    <div class="cell warm bezel rv" style="--d:.1s"><div class="bezel-core">
+      <h3>Engine B — Society-Run Market</h3>
+      <div class="tag">AOFAS model · no certificate needed</div>
+      <p>Orthopaedic foot &amp; ankle has <strong>no ABOS subspecialty certificate</strong> — and only ~16% of its fellowships are ACGME-accredited, the lowest of any ortho subspecialty. Yet the system is coherent, because one society (AOFAS) runs the market: a centralized SF Match since 2008, a published curriculum, an annual signed code of conduct, and public match statistics.</p>
+      <p>Standardization without an accreditor or a certificate — just one society willing to own the standard.</p>
+      <div class="kfig">Requires: one society willing to run a match + curriculum</div>
+    </div></div>
+    <div class="cell wide bezel rv" style="--d:.15s"><div class="bezel-core">
+      <h3>Podiatry runs neither engine.</h3>
+      <div class="tag">The actual diagnosis</div>
+      <p>Engine A is blocked: the certificate layer is contested between two boards — ABFAS and ABPM — so no subspecialty certificate can anchor an accreditation requirement, and CPME fellowship accreditation stays optional (18 of ~105 programs, with no case minimums even inside the tier). Engine B has simply never been built: ACFAS Recognition is a listing, not a market — no match, no curriculum mandate, no audits, no published outcomes.</p>
+      <p><strong>Here's the uncomfortable symmetry:</strong> podiatry's ~17% CPME coverage is nearly identical to ortho F&amp;A's ~16% ACGME coverage. Accreditation percentage isn't what separates the two worlds. The match, the curriculum, and the published outcomes are — and none of those require waiting for the board wars to end.</p>
+    </div></div>
+  </div>
+
+  <div class="trio">
+    <div class="bezel rv" style="--d:.05s"><div class="bezel-core">
+      <h4>What does ACGME actually do?</h4>
+      <p>Accredits MD/DO residencies and participating fellowships — curriculum, milestones, site review. In ortho F&amp;A, most programs skip it because no certificate requires it. <strong>ACGME has zero jurisdiction over podiatric training.</strong></p>
+    </div></div>
+    <div class="bezel rv" style="--d:.1s"><div class="bezel-core">
+      <h4>Where does CPME fit?</h4>
+      <p>CPME is podiatry's ACGME-analog, with authority delegated by APMA. It accredits residencies comprehensively — but fellowship accreditation is voluntary, and only 18 programs have opted in.</p>
+    </div></div>
+    <div class="bezel rv" style="--d:.15s"><div class="bezel-core">
+      <h4>Do multiple boards doom standardization?</h4>
+      <p>They block Engine A — but ortho F&amp;A proves Engine B needs no certificate at all. The APMA House passed the One Board proposition in 2024 (~62%); ABFAS is resisting. <strong>Nobody has claimed Engine B in the meantime.</strong></p>
+    </div></div>
+  </div>
+
+  <div class="tbl-shell bezel rv" style="--d:.1s"><div class="bezel-core">
+    <table class="cmp">
+      <thead><tr><th style="width:26%">Structure</th><th class="pod" style="width:37%">Podiatric (DPM)</th><th class="orth" style="width:37%">Orthopaedic F&amp;A (MD/DO)</th></tr></thead>
+      <tbody>
+        <tr><td>Centralized match</td><td><span class="pill warn">None</span>timelines vary from spring PGY-2 to winter PGY-3</td><td><span class="pill good">Yes</span>AOFAS match via SF Match since 2008</td></tr>
+        <tr><td>Required curriculum</td><td><span class="pill warn">None</span>CPME 820 is structural, not educational</td><td><span class="pill good">Yes</span>AOFAS-published curriculum; signed program commitment</td></tr>
+        <tr><td>Accreditor coverage</td><td><span class="pill warn">~17%</span>18 of ~105 hold CPME accreditation</td><td><span class="pill warn">~16%</span>ACGME participation lowest of ortho subspecialties</td></tr>
+        <tr><td>Subspecialty certificate</td><td><span class="pill warn">Contested</span>ABFAS vs ABPM — no anchor for Engine A</td><td><span class="pill good">None — by design</span>ABOS issues no F&amp;A CAQ; the society owns the standard</td></tr>
+        <tr><td>Published outcomes</td><td><span class="pill warn">No</span>ABFAS pass rates not stratified by fellowship status</td><td><span class="pill good">Yes</span>match statistics published annually</td></tr>
+        <tr><td>Growth 2018→2026</td><td><span class="pill warn">+~33%</span>~79 → ~105 programs</td><td><span class="pill good">Flat</span>~45 → ~49 programs</td></tr>
+      </tbody>
+    </table>
+  </div></div>
+</section>
+
+<!-- §04 DEBATE -->
+<section>
+  <div class="sec-head">
+    <p class="eyebrow rv">§ 04 · The Debate</p>
+    <h2 class="rv" style="--d:.06s">Two coherent positions. <em>Both partly right.</em></h2>
+  </div>
+  <div class="versus">
+    <div class="pro bezel rv" style="--d:.05s"><div class="bezel-core">
+      <h3>The case for fellowship growth</h3>
+      <ul>
+        <li><strong>Subspecialization parity.</strong> Podiatry's surgical scope has expanded faster than the 36-month residency has accommodated.</li>
+        <li><strong>Advanced technique exposure.</strong> Total ankle, complex deformity, and limb salvage routinely exceed residency volume.</li>
+        <li><strong>Market and academic signal.</strong> “Fellowship-trained” carries weight with privileging committees, referral networks, and faculty searches.</li>
+        <li><strong>Mentorship density.</strong> A focused year with a high-volume mentor can compress a decade of practice-level learning.</li>
+      </ul>
+    </div></div>
+    <div class="con bezel rv" style="--d:.1s"><div class="bezel-core">
+      <h3>The case against proliferation</h3>
+      <ul>
+        <li><strong>Credential inflation.</strong> Five-fold growth in 14 years shifts fellowship from subspecialty signal toward de facto floor.</li>
+        <li><strong>No external audit.</strong> Roughly five of six programs operate without site visits, case audits, or curriculum mandates.</li>
+        <li><strong>Workforce concentration.</strong> Programs cluster in already-saturated metros, reinforcing the problem fellows are trying to escape.</li>
+        <li><strong>Cheap-labor economics.</strong> A $60–75K stipend against a first-year associate salary is a real, rarely-stated opportunity cost.</li>
+      </ul>
+    </div></div>
+  </div>
+</section>
+
+<!-- §05 POLICY -->
+<section>
+  <div class="sec-head">
+    <p class="eyebrow rv">§ 05 · Policy Ledger</p>
+    <h2 class="rv" style="--d:.06s">What's actually moved — <em>and what hasn't.</em></h2>
+  </div>
+  <div class="ledger">
+    <div class="bezel rv" style="--d:.04s"><div class="bezel-core">
+      <div class="l-badge"><span class="st-ok">Enacted</span></div>
+      <div class="l-body"><strong>CPME 820/830 revised</strong> (Oct 2022, effective July 2023): hospital/AHC sponsorship required, director standards raised, non-competes and productivity-based pay banned. Case minimums were not added.</div>
+    </div></div>
+    <div class="bezel rv" style="--d:.08s"><div class="bezel-core">
+      <div class="l-badge"><span class="st-ok">Enacted</span></div>
+      <div class="l-body"><strong>“CPME-approved” became “CPME-accredited”</strong> effective July 1, 2025 — nomenclature aligned with ACGME convention. Substantive standards unchanged.</div>
+    </div></div>
+    <div class="bezel rv" style="--d:.12s"><div class="bezel-core">
+      <div class="l-badge"><span class="st-mid">Contested</span></div>
+      <div class="l-body"><strong>One Board (Prop 2-24) passed the 2024 APMA House with ~62%</strong> — APMA policy now supports a single certifying board, and a task force followed. ABFAS has publicly refused to participate, citing antitrust concerns. Unresolved.</div>
+    </div></div>
+    <div class="bezel rv" style="--d:.16s"><div class="bezel-core">
+      <div class="l-badge"><span class="st-no">Rejected</span></div>
+      <div class="l-body"><strong>Prop I-25 (2025)</strong>, which would have subordinated CPME to House direction on residency, fellowship, and CE standards, was opposed by ABFAS and CPME and not adopted.</div>
+    </div></div>
+    <div class="bezel rv" style="--d:.2s"><div class="bezel-core">
+      <div class="l-badge"><span class="st-no">Absent</span></div>
+      <div class="l-body"><strong>No moratorium, no match, no case minimums, no stratified pass-rate data.</strong> The next CPME 820 revision cycle (~2029) is the earliest realistic vehicle for curriculum or volume standards.</div>
+    </div></div>
+  </div>
+</section>
+
+<!-- VERDICT -->
+<section>
+  <div class="verdict bezel rv"><div class="bezel-core">
+    <p class="eyebrow">Verdict</p>
+    <h2>Fellowship growth is not the disease — <em>it's the symptom.</em></h2>
+    <p>The strongest pro-fellowship case — subspecialization parity, technique exposure, mentorship density — is real and defensible for the CPME tier and a meaningful subset of the ACFAS tier. The strongest critique — credential inflation, workforce concentration, cheap labor — is also real for the unaudited middle and the unaccredited tail. Both are true because nobody owns the standard.</p>
+    <p>Sixteen years after Roukis's 2008 JFAS editorial called for university-based, accredited fellowship training, the recommendations remain unmet while program counts quintupled. Meanwhile the orthopaedic mirror shows standardization doesn't require ending the board wars: <strong>ortho F&amp;A standardized with no subspecialty certificate and ~16% accreditor coverage</strong> — one society simply built the match, the curriculum, and the transparency.</p>
+    <p><strong>The single highest-yield intervention costs nothing:</strong> ABFAS already collects the data that would answer whether fellowship-trained DPMs certify at different rates. It has never published it stratified.</p>
+    <div class="asks">
+      <div class="ask"><div class="n">Ask 01</div><p>Case minimums and a curriculum floor in the next CPME 820 revision (~2029).</p></div>
+      <div class="ask"><div class="n">Ask 02</div><p>A centralized application and match — the single biggest structural import from the AOFAS model.</p></div>
+      <div class="ask"><div class="n">Ask 03</div><p>Published ABFAS pass rates stratified by fellowship status.</p></div>
+    </div>
+  </div></div>
+</section>
+
+<!-- CTA -->
+<section>
+  <div class="cta bezel rv"><div class="bezel-core">
+    <div>
+      <h2>Every program. Every tier. <em>One living database.</em></h2>
+      <p class="sub">All ~90 verified programs — CPME, ACFAS, and independent — searchable by tier, state, and focus. Updated as lists change.</p>
+    </div>
+    <a class="button button-primary" href="fellowship-database.html">
+      Browse the database
+      <span class="button-pip" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+    </a>
+  </div></div>
+</section>
+
+<!-- COLOPHON -->
+<footer class="colophon">
+  <div>
+    <h5>Sources &amp; Method</h5>
+    Live CPME accredited-fellowship list and live ACFAS fellowship-status list, both pulled July 2026 · CPME Annual Report 2025 · CPME 820/830 (Oct 2022, eff. July 2023) · Roukis, JFAS 47(2):77–79 (2008) and FASTRAC editorial (2024) · Shofler et&nbsp;al., “Fellowships in Podiatric Medicine,” JFAS (2020) · Cvetanovich et&nbsp;al., JBJS (2014) on ACGME accreditation rates across orthopaedic subspecialty fellowships · AOFAS Fellowship Match materials and SF Match statistics · ABFAS public statements on 2024–2025 APMA HOD propositions.
+  </div>
+  <div>
+    <h5>Caveats</h5>
+    Fellowship counts are moving targets; ACFAS lists roll on and off annually. Historical tier counts (2012–2023) are estimates. The independent-tier count is the weakest number in this brief. Verify every program against current CPME and ACFAS listings before applying.
+  </div>
+  <div class="copy">© 2026 Peter Sorensen, DPM · The GuideWire · soleintell.com · No fellowship director or sponsor reviewed this brief · AI-assisted research; editorial judgment is the author's own</div>
+</footer>
+
+</div>
+<script>
+(function(){
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('.rv').forEach(el=>el.classList.add('in')); return;
+  }
+  let pending = Array.from(document.querySelectorAll('.rv')), queued = false;
+  function check(){
+    queued = false;
+    pending = pending.filter(el=>{
+      const r = el.getBoundingClientRect();
+      if (r.top < innerHeight - 40){ el.classList.add('in'); return false; }
+      return true;
+    });
+  }
+  function onScroll(){ if(!queued && pending.length){ queued = true; requestAnimationFrame(check); } }
+  addEventListener('scroll', onScroll, {passive:true});
+  addEventListener('resize', onScroll, {passive:true});
+  check();
+})();
+</script>
+</body>
+</html>

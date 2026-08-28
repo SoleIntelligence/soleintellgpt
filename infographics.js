@@ -204,17 +204,26 @@ window.INFOGRAPHICS = [
     date: "2026-04-04",
     thumbnail: "Sole Intelligence Images/apma_history.png"
   },
-
-  // ---- Podiatry Politics & Culture ----
   {
     title: "July 1 is the Best Day to Come to the Hospital",
     description: "The new doctors just started. The data says no one dies more in July. The joke we tell new doctors still does damage.",
     kicker: "CULTURAL CONDEMNATION",
-    category: "politics-culture",
+    category: "student-resident",
     url: "july_effect.html",
     date: "2026-07-01",
     thumbnail: "Sole Intelligence Images/july_effect.png"
   },
+  {
+    title: "Feedback is a Gift",
+    description: "The days I learn the most are the days somebody tells me exactly what I did wrong.",
+    kicker: "Culture",
+    category: "student-resident",
+    url: "feedback_is_a_gift.html",
+    date: "2026-07-31",
+    thumbnail: "Sole Intelligence Images/feedback_is_a_gift.png"
+  },
+
+  // ---- Podiatry Politics & Culture ----
   {
     title: "Who Gets to Accredit Podiatry?",
     description: "A neutral, both-sides explainer of the debate over moving podiatric residencies from CPME to ACGME accreditation.",
@@ -428,13 +437,39 @@ window.INFOGRAPHICS = [
     date: "2026-05-01",
     thumbnail: "Sole Intelligence Images/e_advocacy.png"
   },
+
+  // ===== The fellowship suite (dossier · database · map) =====
+  // These three pages cross-link to each other. The dossier is the argument;
+  // the database and map are the applicant-facing reference tools.
+
+  // ---- Podiatry Politics & Culture ----
   {
-    title: "Feedback is a Gift",
-    description: "The days I learn the most are the days somebody tells me exactly what I did wrong.",
-    kicker: "Culture",
+    title: "The Fellowship Question",
+    description: "Five sections on who runs podiatric fellowships, who audits them, and why the standardization fight keeps stalling — with a verdict at the end.",
+    kicker: "Training",
     category: "politics-culture",
-    url: "feedback_is_a_gift.html",
-    date: "2026-07-31",
-    thumbnail: "Sole Intelligence Images/feedback_is_a_gift.png"
-  } 
+    url: "fellowship-dossier.html",
+    date: "2026-07-18",
+    thumbnail: "Sole Intelligence Images/fellowship-dossier.png"
+  },
+
+  // ---- Student & Resident Education ----
+  {
+    title: "The Fellowship Database",
+    description: "Every podiatric fellowship verifiable against a primary source, sorted into five tiers — because the tier tells you who audits the program, if anyone does.",
+    kicker: "Living Database",
+    category: "student-resident",
+    url: "fellowship-database.html",
+    date: "2026-08-25",
+    thumbnail: "Sole Intelligence Images/fellowship-database.png"
+  },
+  {
+    title: "The Fellowship Map",
+    description: "Ninety verified programs placed by city — and the 24 states with nothing listed. Same five tiers as the database, so a pin and a row mean the same thing.",
+    kicker: "Geographic View",
+    category: "student-resident",
+    url: "fellowship-map.html",
+    date: "2026-08-25",
+    thumbnail: "Sole Intelligence Images/fellowship-map.png"
+  }
 ]

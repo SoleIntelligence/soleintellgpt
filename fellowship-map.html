@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The GuideWire — Fellowship Map</title>
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#070c10; --bg-soft:#0a1217; --bg-alt:#0c171d;
+  --glass:rgba(255,255,255,.035); --glass-strong:rgba(255,255,255,.06); --bezel:rgba(255,255,255,.02);
+  --line:rgba(198,232,230,.09); --line-strong:rgba(198,232,230,.16);
+  --text:#ecf2f0; --text-soft:#c6d2d0; --muted:#87989a; --muted-strong:#aab9b9;
+  --accent:#4fd6d1; --accent-bright:#7defe9; --accent-deep:#2c8f8c; --highlight:#d7a25e; --ink:#04181a;
+  --radius:24px; --radius-lg:30px; --radius-sm:14px; --bezel-pad:7px;
+  --shadow-sm:0 18px 40px -24px rgba(0,0,0,.6);
+  --glow:0 0 40px -6px rgba(79,214,209,.28); --inset-hi:inset 0 1px 0 rgba(255,255,255,.08);
+  --ease:cubic-bezier(.32,.72,0,1); --ease-out:cubic-bezier(.16,1,.3,1);
+  --font-display:'Fraunces',Georgia,'Times New Roman',serif;
+  --font-sans:'Plus Jakarta Sans',system-ui,sans-serif;
+  --font-mono:'JetBrains Mono',ui-monospace,monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:var(--font-sans);font-size:15px;line-height:1.65;letter-spacing:-.005em;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(1100px 520px at 78% -6%, rgba(79,214,209,.07), transparent 60%)}
+.page{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:0 clamp(18px,3.5vw,48px) clamp(4rem,8vw,6rem)}
+a{color:var(--accent);text-decoration:none}
+
+.masthead{padding:clamp(1.5rem,3vw,2.2rem) 0 1.1rem;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+.lockup .gw{font-family:var(--font-display);font-weight:600;font-size:1.4rem;letter-spacing:-.022em}
+.lockup .gw em{font-style:italic;font-weight:500;background:linear-gradient(100deg,var(--accent),var(--accent-bright) 55%,var(--highlight));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lockup .parent{font-family:var(--font-mono);font-size:.58rem;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-top:.12rem}
+.back{font-family:var(--font-mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted-strong);display:inline-flex;align-items:center;gap:.45rem;transition:color .4s var(--ease)}
+.back:hover{color:var(--accent)}
+
+.head{padding-top:clamp(2.6rem,5vw,4rem)}
+.eyebrow{display:inline-flex;gap:.5rem;align-items:center;font-family:var(--font-mono);font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);padding:.4rem .8rem;border:1px solid var(--line-strong);border-radius:999px;background:rgba(79,214,209,.05);box-shadow:var(--inset-hi);margin-bottom:1.2rem}
+.eyebrow::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent-bright)}
+.head h1{font-family:var(--font-display);font-weight:500;font-size:clamp(2.1rem,4.6vw,3.4rem);line-height:1.06;letter-spacing:-.022em;max-width:24ch;text-wrap:balance}
+.head h1 em{font-style:italic;background:linear-gradient(100deg,var(--accent),var(--accent-bright) 55%,var(--highlight));-webkit-background-clip:text;background-clip:text;color:transparent}
+.head .sub{margin-top:1rem;max-width:68ch;color:var(--text-soft);font-size:.95rem}
+.stamp{margin-top:1.1rem;display:flex;flex-wrap:wrap;gap:.4rem 1.3rem;font-family:var(--font-mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.stamp .live{display:inline-flex;align-items:center;gap:.45rem;color:var(--accent)}
+.stamp .live::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent-bright)}
+
+.chips{margin-top:1.8rem;display:flex;flex-wrap:wrap;gap:.55rem}
+.chip{font-family:var(--font-mono);font-size:.64rem;letter-spacing:.08em;padding:.42rem .8rem;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.02);box-shadow:var(--inset-hi);color:var(--muted-strong)}
+.chip b{color:var(--text);font-weight:600}
+
+.cluster{margin-top:1.6rem;display:flex;flex-wrap:wrap;gap:.4rem}
+.cluster a{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;padding:.5rem .95rem;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.02);color:var(--muted-strong);transition:transform .4s var(--ease),color .4s var(--ease),border-color .4s var(--ease)}
+.cluster a:hover{transform:translateY(-1px);color:var(--accent);border-color:var(--accent-deep)}
+.cluster a[aria-current="page"]{background:linear-gradient(135deg,var(--accent-bright),var(--accent));color:var(--ink);border-color:transparent;box-shadow:var(--glow)}
+
+.bezel{margin-top:1.6rem;padding:var(--bezel-pad);background:var(--bezel);border:1px solid var(--line);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm)}
+.bezel-core{border-radius:calc(var(--radius-lg) - var(--bezel-pad));background:var(--glass);box-shadow:var(--inset-hi);padding:clamp(1rem,2.4vw,1.9rem)}
+
+.foot{margin-top:clamp(2.5rem,5vw,3.5rem);padding-top:1.4rem;border-top:1px solid var(--line);display:grid;grid-template-columns:1.5fr 1fr;gap:1.8rem;font-size:.75rem;line-height:1.65;color:var(--muted)}
+.foot h5{font-family:var(--font-mono);font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted-strong);margin-bottom:.5rem}
+.foot b{color:var(--text-soft);font-weight:600}
+.copy{grid-column:1 / -1;margin-top:.8rem;padding-top:1rem;border-top:1px solid var(--line);font-family:var(--font-mono);font-size:.6rem;letter-spacing:.12em;color:var(--muted);text-align:center}
+
+/* ── tier badges — identical vocabulary and colour to the database ── */
+.tierb{display:inline-block;font-family:var(--font-mono);font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;padding:.2rem .55rem;border-radius:999px;white-space:nowrap;vertical-align:.08em}
+.tb-cpme{background:rgba(79,214,209,.13);color:var(--accent)}
+.tb-acfr{background:rgba(215,162,94,.15);color:var(--highlight)}
+.tb-res{background:rgba(125,239,233,.09);color:var(--accent-bright)}
+.tb-cond{background:rgba(215,162,94,.08);color:#c7a678}
+.tb-ind{background:rgba(255,255,255,.05);color:var(--muted-strong)}
+
+/* ── map component: alias its design-system tokens onto the brand ──
+   NOTE: --muted is deliberately NOT aliased here; the brand already
+   uses that name for body text. The two component rules that read it
+   are overridden explicitly further down. */
+#podiatry-fellowship-locations{
+  --foreground:var(--text);
+  --background:var(--bg);
+  --border:var(--line-strong);
+  --muted-foreground:var(--muted-strong);
+  --destructive:var(--highlight);
+  --viz-series-1:var(--accent);
+  --font-size-base:13px;
+}
+
+    #podiatry-fellowship-locations {
+      width: 100%;
+      color: var(--foreground);
+    }
+
+    #podiatry-fellowship-locations .map-canvas {
+      position: relative;
+      width: 100%;
+    }
+
+    #podiatry-fellowship-locations .fellowship-map {
+      display: block;
+      width: 100%;
+      height: auto;
+      overflow: visible;
+    }
+
+    #podiatry-fellowship-locations .state {
+      stroke: var(--border);
+      stroke-width: 0.85;
+      vector-effect: non-scaling-stroke;
+      transition: stroke 140ms ease, fill-opacity 140ms ease;
+    }
+
+    #podiatry-fellowship-locations .state--positive {
+      fill: var(--viz-series-1);
+    }
+
+    #podiatry-fellowship-locations .state--zero {
+      fill: url(#fellowship-zero-hatch);
+      stroke: var(--destructive);
+      stroke-opacity: 0.6;
+    }
+
+    #podiatry-fellowship-locations .state:hover {
+      stroke: var(--foreground);
+      stroke-width: 1.6;
+    }
+
+    #podiatry-fellowship-locations .inset-label {
+      fill: var(--muted-foreground);
+      font-size: var(--font-size-base);
+      font-weight: 500;
+      pointer-events: none;
+    }
+
+    #podiatry-fellowship-locations .point-leader {
+      stroke: var(--muted-foreground);
+      stroke-width: 1;
+      vector-effect: non-scaling-stroke;
+      pointer-events: none;
+    }
+
+    #podiatry-fellowship-locations .location-link {
+      color: var(--foreground);
+    }
+
+    #podiatry-fellowship-locations .marker-hit {
+      fill: transparent;
+    }
+
+    #podiatry-fellowship-locations .city-marker {
+      fill: var(--viz-series-1);
+      stroke: var(--background);
+      stroke-width: 2;
+      vector-effect: non-scaling-stroke;
+      transition: stroke 140ms ease, stroke-width 140ms ease;
+    }
+
+    #podiatry-fellowship-locations .location-link:hover .city-marker,
+    #podiatry-fellowship-locations .location-link:focus .city-marker {
+      stroke: var(--foreground);
+      stroke-width: 3;
+    }
+
+    #podiatry-fellowship-locations .city-count {
+      fill: var(--background);
+      font-size: var(--font-size-base);
+      font-weight: 500;
+      text-anchor: middle;
+      dominant-baseline: central;
+      pointer-events: none;
+    }
+
+    #podiatry-fellowship-locations .map-legend {
+      align-items: center;
+      margin-top: 0.25rem;
+    }
+
+    #podiatry-fellowship-locations .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    #podiatry-fellowship-locations .legend-bubble {
+      display: inline-block;
+      width: 0.9rem;
+      height: 0.9rem;
+      border-radius: 50%;
+      background: var(--viz-series-1);
+      border: 1px solid var(--background);
+    }
+
+    #podiatry-fellowship-locations .legend-swatch {
+      display: inline-block;
+      width: 1rem;
+      height: 1rem;
+      border: 1px solid var(--border);
+    }
+
+    #podiatry-fellowship-locations .legend-swatch--positive {
+      background: var(--viz-series-1);
+      opacity: 0.35;
+    }
+
+    #podiatry-fellowship-locations .legend-swatch--zero {
+      background: repeating-linear-gradient(45deg, var(--muted) 0, var(--muted) 5px, var(--destructive) 5px, var(--destructive) 7px);
+      border-color: var(--destructive);
+    }
+
+    #podiatry-fellowship-locations .location-detail {
+      margin-top: 0.65rem;
+    }
+
+    #podiatry-fellowship-locations .detail-heading {
+      font-weight: 500;
+    }
+
+    #podiatry-fellowship-locations .program-list {
+      margin: 0.45rem 0 0;
+      padding-left: 1.25rem;
+    }
+
+    #podiatry-fellowship-locations .program-list li + li {
+      margin-top: 0.3rem;
+    }
+
+    #podiatry-fellowship-locations .map-note {
+      margin: 0.5rem 0 0;
+    }
+
+    #podiatry-fellowship-locations .tooltip {
+      position: absolute;
+      visibility: hidden;
+      pointer-events: none;
+      transform: translate(-50%, calc(-100% - 0.5rem));
+      z-index: 2;
+      white-space: nowrap;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #podiatry-fellowship-locations .state,
+      #podiatry-fellowship-locations .city-marker {
+        transition: none;
+      }
+    }
+  
+/* ── brand overrides for the component's generic classes ── */
+#podiatry-fellowship-locations .inset-label,
+#podiatry-fellowship-locations .city-count{font-family:var(--font-mono);font-weight:500}
+#podiatry-fellowship-locations .city-count{fill:var(--ink);font-weight:600}
+#podiatry-fellowship-locations .city-marker{fill:var(--accent);stroke:var(--bg-soft)}
+#podiatry-fellowship-locations .location-link:hover .city-marker,
+#podiatry-fellowship-locations .location-link:focus .city-marker{stroke:var(--accent-bright);stroke-width:3}
+#podiatry-fellowship-locations .state:hover{stroke:var(--accent);stroke-width:1.6}
+#podiatry-fellowship-locations .point-leader{stroke:var(--muted-strong);stroke-opacity:.5}
+#podiatry-fellowship-locations .state--zero{stroke-opacity:.34}
+#podiatry-fellowship-locations .inset-label{font-size:11px;letter-spacing:.14em;fill:var(--muted)}
+
+#podiatry-fellowship-locations .viz-row{display:flex;flex-wrap:wrap;gap:.5rem 1.4rem}
+#podiatry-fellowship-locations .map-legend{margin-top:1rem;font-family:var(--font-mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+#podiatry-fellowship-locations .legend-bubble{background:var(--accent);border-color:var(--bg-soft);width:.72rem;height:.72rem}
+#podiatry-fellowship-locations .legend-swatch{width:.8rem;height:.8rem;border-radius:3px;border-color:var(--line-strong)}
+#podiatry-fellowship-locations .legend-swatch--positive{background:var(--accent);opacity:.4}
+#podiatry-fellowship-locations .legend-swatch--zero{
+  background:repeating-linear-gradient(45deg, rgba(255,255,255,.05) 0, rgba(255,255,255,.05) 5px, rgba(215,162,94,.55) 5px, rgba(215,162,94,.55) 7px);
+  border-color:rgba(215,162,94,.5)}
+
+#podiatry-fellowship-locations .card{background:var(--glass);border:1px solid var(--line);border-radius:var(--radius-sm);box-shadow:var(--inset-hi);padding:1rem 1.15rem}
+#podiatry-fellowship-locations .location-detail{margin-top:1.2rem;min-height:6.5rem}
+#podiatry-fellowship-locations .detail-heading{font-family:var(--font-mono);font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:600}
+#podiatry-fellowship-locations .program-list{margin:.7rem 0 0;padding-left:1.1rem;font-size:.85rem;color:var(--text-soft)}
+#podiatry-fellowship-locations .program-list li{margin-bottom:.4rem}
+#podiatry-fellowship-locations .program-list li::marker{color:var(--accent-deep)}
+#podiatry-fellowship-locations .text-small{font-size:.78rem}
+#podiatry-fellowship-locations .text-muted{color:var(--muted)}
+#podiatry-fellowship-locations .map-note{margin-top:.9rem;font-size:.72rem;color:var(--muted)}
+
+#podiatry-fellowship-locations .tooltip{
+  font-family:var(--font-mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--text);background:rgba(10,18,23,.94);border:1px solid var(--line-strong);
+  border-radius:999px;padding:.4rem .8rem;box-shadow:var(--inset-hi),0 12px 30px -14px rgba(0,0,0,.8)}
+
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+@media (max-width:900px){.foot{grid-template-columns:1fr}}
+@media (prefers-reduced-motion: reduce){*{transition:none !important;animation:none !important}}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header class="masthead">
+  <div class="lockup">
+    <div class="gw">The <em>GuideWire</em></div>
+    <div class="parent">by Sole Intelligence</div>
+  </div>
+  <a class="back" href="fellowship-dossier.html">&larr; Read the dossier</a>
+</header>
+
+<section class="head">
+  <p class="eyebrow">Geographic View &middot; Podiatric Fellowships</p>
+  <h1>Where the fellowships <em>actually are.</em></h1>
+  <p class="sub">Ninety verified programs placed by city. Marker area is the number of programs at that location; states with nothing listed are hatched in amber. Tiers are the same five used in the database, so a pin and a table row mean the same thing. Coordinates are representative city, township, borough, county, or ZIP-area centroids and are approximate &mdash; this maps where programs are, not where their operating rooms are.</p>
+  <div class="stamp">
+    <span class="live">Last verified July 18, 2026</span>
+    <span>Sources: cpme.org &middot; acfas.org</span>
+    <span>One multi-site network entry has no single pin</span>
+  </div>
+  <div class="chips">
+    <span class="chip"><b>90</b> programs mapped</span>
+    <span class="chip"><b>75</b> locations</span>
+    <span class="chip"><b>28</b> states &amp; territories</span>
+    <span class="chip"><b>24</b> states with none listed</span>
+  </div>
+  <nav class="cluster" aria-label="Fellowship coverage">
+    <a href="fellowship-dossier.html">The dossier</a>
+    <a href="fellowship-database.html">The database</a>
+    <a href="fellowship-map.html" aria-current="page">The map</a>
+  </nav>
+</section>
+
+<div class="bezel"><div class="bezel-core">
+
+<div id="podiatry-fellowship-locations" class="fellowship-locations">
+  <div class="map-canvas">
+    <svg class="fellowship-map" viewBox="0 0 960 590" role="img" aria-labelledby="fellowship-map-title fellowship-map-desc">
+      <title id="fellowship-map-title">Podiatry fellowship locations listed in the supplied dataset</title>
+      <desc id="fellowship-map-desc">A United States map with approximate city-centroid markers for 90 location-assigned source entries across 75 locations. Marker area represents the number of entries at a location. States with no entry in the supplied list are shown with an amber hatch. Puerto Rico appears in an inset.</desc>
+      <defs>
+        <pattern id="fellowship-zero-hatch" width="17" height="17" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+          <rect width="17" height="17" fill="rgba(255,255,255,0.045)"></rect>
+          <line x1="0" y1="0" x2="0" y2="17" stroke="var(--destructive)" stroke-opacity="0.30" stroke-width="1.3"></line>
+        </pattern>
+      </defs>
+      <g class="states-layer"></g>
+      <g class="inset-layer"></g>
+      <g class="point-leaders"></g>
+      <g class="points-layer"></g>
+    </svg>
+    <div class="tooltip" role="status" aria-hidden="true"></div>
+  </div>
+
+  <div class="viz-row map-legend" aria-label="Map legend">
+    <span class="legend-item"><span class="legend-bubble" aria-hidden="true"></span>Area = programs at that location</span>
+    <span class="legend-item"><span class="legend-swatch legend-swatch--positive" aria-hidden="true"></span>State total: 1&ndash;9 listed</span>
+    <span class="legend-item"><span class="legend-swatch legend-swatch--zero" aria-hidden="true"></span>0 listed in supplied data</span>
+  </div>
+
+  <div id="fellowship-location-detail" class="card location-detail" aria-live="polite">
+    <div class="detail-heading">90 mapped programs across 75 locations</div>
+    <div class="text-small text-muted">Select a city marker to see its programs. Cross-listings remain separate; one multi-site network entry has no single pin.</div>
+  </div>
+
+  <p class="text-small text-muted map-note">Markers use representative city, township, borough, county, or ZIP-area coordinates and are approximate.</p>
+
+  <div class="sr-only">
+    <p>States with zero listed entries: Alaska, Arkansas, Delaware, Hawaii, Idaho, Kansas, Louisiana, Massachusetts, Maine, Minnesota, Mississippi, Montana, North Carolina, North Dakota, New Hampshire, Nevada, Oklahoma, Rhode Island, South Carolina, South Dakota, Tennessee, Vermont, Wisconsin, and Wyoming.</p>
+  </div>
+</div>
+
+</div></div>
+
+<footer class="foot">
+  <div>
+    <h5>How to read the map</h5>
+    <b>Marker area</b> is the number of programs at a location, not a quality signal &mdash; a big pin is a dense city, nothing more. <b>Hatched states</b> have no program in the verified list; that is a real gap, not missing data. <b>Tier</b> tells you who audits the program: CPME-accredited is the only tier with delegated accreditation authority, ACFAS Recognized and Conditional are College listings via self-attestation, and Independent has no external oversight. Same five tiers as the database.
+  </div>
+  <div>
+    <h5>About this data</h5>
+    Ninety of the ninety-one programs in the database carry a location; the one multi-site network entry has no single pin. Geometry is us-atlas states via d3-geo. Corrections welcome: peter@soleintell.com.
+  </div>
+  <div class="copy">&copy; 2026 Peter Sorensen, DPM &middot; The GuideWire &middot; soleintell.com &middot; Verify against live CPME &amp; ACFAS listings before acting</div>
+</footer>
+
+</div>
+<script type="module">
+
+    import { geoAlbersUsa, geoMercator, geoPath } from "https://cdn.jsdelivr.net/npm/d3-geo@3/+esm";
+    import { feature } from "https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/+esm";
+    import us from "https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json/+esm";
+
+    const root = document.getElementById("podiatry-fellowship-locations");
+    const svg = root.querySelector(".fellowship-map");
+    const canvas = root.querySelector(".map-canvas");
+    const tooltip = root.querySelector(".tooltip");
+    const detail = root.querySelector("#fellowship-location-detail");
+    const statesLayer = root.querySelector(".states-layer");
+    const insetLayer = root.querySelector(".inset-layer");
+    const leadersLayer = root.querySelector(".point-leaders");
+    const pointsLayer = root.querySelector(".points-layer");
+    const namespace = "http://www.w3.org/2000/svg";
+    const width = 960;
+    const height = 590;
+
+    const stateMeta = {
+      "01": ["Alabama", "AL"], "02": ["Alaska", "AK"], "04": ["Arizona", "AZ"], "05": ["Arkansas", "AR"],
+      "06": ["California", "CA"], "08": ["Colorado", "CO"], "09": ["Connecticut", "CT"], "10": ["Delaware", "DE"],
+      "11": ["District of Columbia", "DC"], "12": ["Florida", "FL"], "13": ["Georgia", "GA"], "15": ["Hawaii", "HI"],
+      "16": ["Idaho", "ID"], "17": ["Illinois", "IL"], "18": ["Indiana", "IN"], "19": ["Iowa", "IA"],
+      "20": ["Kansas", "KS"], "21": ["Kentucky", "KY"], "22": ["Louisiana", "LA"], "23": ["Maine", "ME"],
+      "24": ["Maryland", "MD"], "25": ["Massachusetts", "MA"], "26": ["Michigan", "MI"], "27": ["Minnesota", "MN"],
+      "28": ["Mississippi", "MS"], "29": ["Missouri", "MO"], "30": ["Montana", "MT"], "31": ["Nebraska", "NE"],
+      "32": ["Nevada", "NV"], "33": ["New Hampshire", "NH"], "34": ["New Jersey", "NJ"], "35": ["New Mexico", "NM"],
+      "36": ["New York", "NY"], "37": ["North Carolina", "NC"], "38": ["North Dakota", "ND"], "39": ["Ohio", "OH"],
+      "40": ["Oklahoma", "OK"], "41": ["Oregon", "OR"], "42": ["Pennsylvania", "PA"], "44": ["Rhode Island", "RI"],
+      "45": ["South Carolina", "SC"], "46": ["South Dakota", "SD"], "47": ["Tennessee", "TN"], "48": ["Texas", "TX"],
+      "49": ["Utah", "UT"], "50": ["Vermont", "VT"], "51": ["Virginia", "VA"], "53": ["Washington", "WA"],
+      "54": ["West Virginia", "WV"], "55": ["Wisconsin", "WI"], "56": ["Wyoming", "WY"], "72": ["Puerto Rico", "PR"]
+    };
+
+    const locations = [{"city":"Birmingham","state":"AL","lat":33.527174,"lon":-86.797036,"programs":[{"name":"UAB Advanced Podiatric Reconstruction and Limb Salvage","tier":"ACFAS Conditional"}]},{"city":"Phoenix","state":"AZ","lat":33.572154,"lon":-112.090132,"programs":[{"name":"The CORE Institute F&A Advanced Reconstruction","tier":"ACFAS Recognized"},{"name":"Phoenix Foot and Ankle Institute","tier":"ACFAS Recognized"}]},{"city":"Clovis","state":"CA","lat":36.827809,"lon":-119.681843,"programs":[{"name":"Valley F&A Reconstructive","tier":"ACFAS Conditional"}]},{"city":"Irvine","state":"CA","lat":33.678399,"lon":-117.771254,"programs":[{"name":"SSC Sports Medicine Fellowship Conditional Probationary","tier":"ACFAS Conditional"}]},{"city":"Laguna Niguel","state":"CA","lat":33.528654,"lon":-117.701253,"programs":[{"name":"Artisan Fellowship for Reconstructive F&A","tier":"ACFAS Conditional"}]},{"city":"Mountain View","state":"CA","lat":37.399686,"lon":-122.079269,"programs":[{"name":"Silicon Valley Comprehensive F&A Surgical (PAMF)","tier":"ACFAS Recognized"}]},{"city":"Redding","state":"CA","lat":40.570277,"lon":-122.366766,"programs":[{"name":"Northern California Reconstructive F&A","tier":"ACFAS Recognized"}]},{"city":"Sacramento","state":"CA","lat":38.567694,"lon":-121.468161,"programs":[{"name":"NorCal Ortho Associates / Balance Health Reconstructive F&A","tier":"ACFAS Conditional"}]},{"city":"San Francisco","state":"CA","lat":37.727239,"lon":-123.032229,"programs":[{"name":"University of California San Francisco Limb Preservation Center","tier":"CPME-accredited"},{"name":"Alex Reyzelman Limb Salvage","tier":"Independent"}]},{"city":"Santa Cruz","state":"CA","lat":36.974385,"lon":-122.035268,"programs":[{"name":"Palo Alto Foundation Medical Group · Santa Cruz","tier":"ACFAS Recognized"}]},{"city":"Denver","state":"CO","lat":39.76185,"lon":-104.881105,"programs":[{"name":"Rocky Mountain Reconstructive F&A","tier":"ACFAS Recognized"}]},{"city":"Middletown","state":"CT","lat":41.548611,"lon":-72.656784,"programs":[{"name":"F&A Surgery & Research","tier":"ACFAS Conditional"}]},{"city":"Washington","state":"DC","lat":38.904243,"lon":-77.016524,"programs":[{"name":"MedStar Georgetown University Hospital F&A Research","tier":"ACFAS Research"}]},{"city":"Fort Myers","state":"FL","lat":26.617839,"lon":-81.831725,"programs":[{"name":"Orthopedic Center of Florida (OCF)","tier":"ACFAS Recognized"},{"name":"Associates in Medicine and Surgery Limb Salvage and Wound Care","tier":"ACFAS Recognized"}]},{"city":"Naples","state":"FL","lat":26.150485,"lon":-81.795299,"programs":[{"name":"FFLC Reconstructive and Limb Salvage Surgical","tier":"ACFAS Recognized"}]},{"city":"Plantation","state":"FL","lat":26.125573,"lon":-80.261818,"programs":[{"name":"HCA Florida Westside Hospital","tier":"CPME-accredited"},{"name":"Westside Reconstructive F&A","tier":"ACFAS Recognized"}]},{"city":"Sarasota","state":"FL","lat":27.338257,"lon":-82.543721,"programs":[{"name":"Alexander Orthopaedic Assoc. / Florida Orthopedic F&A Center","tier":"ACFAS Recognized"}]},{"city":"Stuart","state":"FL","lat":27.195272,"lon":-80.244114,"programs":[{"name":"Treasure Coast Reconstructive F&A","tier":"ACFAS Conditional"}]},{"city":"Trinity","state":"FL","lat":28.18099,"lon":-82.646916,"programs":[{"name":"Advent Health Innovative F&A Surgery","tier":"ACFAS Conditional"}]},{"city":"West Palm Beach","state":"FL","lat":26.745114,"lon":-80.127038,"programs":[{"name":"F&A Deformity Correction Fellowship","tier":"ACFAS Recognized"}]},{"city":"Atlanta","state":"GA","lat":33.762909,"lon":-84.422675,"programs":[{"name":"Pediatric and Adult F&A Surgical Fellowship","tier":"ACFAS Recognized"},{"name":"Southeast Permanente F&A Trauma & Reconstructive","tier":"ACFAS Recognized"},{"name":"FASTR Fellowship of Atlanta","tier":"ACFAS Recognized"},{"name":"AENS Peripheral Nerve Surgery Fellowship","tier":"Independent"}]},{"city":"Decatur","state":"GA","lat":33.771067,"lon":-84.295784,"programs":[{"name":"Atlanta VA Health Care System","tier":"CPME-accredited"}]},{"city":"Des Moines","state":"IA","lat":41.57259,"lon":-93.610243,"programs":[{"name":"Broadlawns F&A Reconstruction and Trauma","tier":"ACFAS Recognized"}]},{"city":"Chicago","state":"IL","lat":41.837045,"lon":-87.684939,"programs":[{"name":"Ascension Saint Joseph–Chicago","tier":"CPME-accredited"}]},{"city":"Des Plaines","state":"IL","lat":42.034398,"lon":-87.901136,"programs":[{"name":"Weil Foot & Ankle Institute (Chicago)","tier":"Independent"}]},{"city":"Joliet","state":"IL","lat":41.516866,"lon":-88.147963,"programs":[{"name":"Illinois Bone and Joint Institute (IBJI)","tier":"ACFAS Recognized"}]},{"city":"Mount Prospect","state":"IL","lat":42.064202,"lon":-87.937364,"programs":[{"name":"Weil Foot, Ankle & Orthopedic Institute Advanced Surgical","tier":"ACFAS Recognized"}]},{"city":"Sycamore","state":"IL","lat":41.996728,"lon":-88.677644,"programs":[{"name":"Northwest Illinois F&A","tier":"ACFAS Recognized"}]},{"city":"Evansville","state":"IN","lat":37.987737,"lon":-87.534705,"programs":[{"name":"Orthopaedic Associates F&A Surgical","tier":"ACFAS Conditional"}]},{"city":"Fort Wayne","state":"IN","lat":41.088193,"lon":-85.142791,"programs":[{"name":"Fort Wayne F&A Fellowship","tier":"ACFAS Recognized"}]},{"city":"Indianapolis","state":"IN","lat":39.776664,"lon":-86.145935,"programs":[{"name":"Foot & Ankle Institute","tier":"ACFAS Recognized"}]},{"city":"Shelbyville","state":"IN","lat":39.546597,"lon":-85.776841,"programs":[{"name":"Indy F&A Reconstruction Surgical","tier":"ACFAS Recognized"}]},{"city":"Louisville","state":"KY","lat":38.224728,"lon":-85.740614,"programs":[{"name":"University of Louisville School of Medicine","tier":"CPME-accredited"},{"name":"Kentuckiana F&A Specialists Reconstructive","tier":"ACFAS Recognized"}]},{"city":"Baltimore","state":"MD","lat":39.300032,"lon":-76.610476,"programs":[{"name":"University of Maryland Limb Preservation and Deformity Correction","tier":"ACFAS Recognized"}]},{"city":"Ann Arbor","state":"MI","lat":42.276147,"lon":-83.73086,"programs":[{"name":"University of Michigan Health System","tier":"CPME-accredited"}]},{"city":"Clinton Twp","state":"MI","lat":42.590344,"lon":-82.916952,"programs":[{"name":"Michigan Minimal Invasive and Reconstructive F&A","tier":"ACFAS Recognized"}]},{"city":"Farmington Hills","state":"MI","lat":42.485648,"lon":-83.375961,"programs":[{"name":"Corewell Health East · Farmington Hills","tier":"CPME-accredited"}]},{"city":"Lansing","state":"MI","lat":42.714341,"lon":-84.560889,"programs":[{"name":"Michigan Advanced F&A Reconstructive Surgery","tier":"ACFAS Recognized"}]},{"city":"St. Louis","state":"MO","lat":38.635699,"lon":-90.244582,"programs":[{"name":"Center for Advanced F&A Surgery","tier":"ACFAS Recognized"}]},{"city":"Hastings","state":"NE","lat":40.596264,"lon":-98.39032,"programs":[{"name":"Nebraska F&A Reconstructive Surgery","tier":"ACFAS Recognized"}]},{"city":"Cedar Knolls","state":"NJ","lat":40.818911,"lon":-74.455194,"programs":[{"name":"Pediatric Foot & Ankle","tier":"ACFAS Recognized"}]},{"city":"Lyndhurst","state":"NJ","lat":40.797113,"lon":-74.11298,"programs":[{"name":"North Jersey Reconstructive F&A","tier":"ACFAS Recognized"}]},{"city":"Wall Township","state":"NJ","lat":40.165827,"lon":-74.09799,"programs":[{"name":"Orthopaedic Institute Brielle Orthopedics F&A","tier":"ACFAS Recognized"}]},{"city":"Alamogordo","state":"NM","lat":32.883619,"lon":-105.963607,"programs":[{"name":"CHRISTUS Health Podiatric LE Surgery and Research","tier":"ACFAS Recognized"}]},{"city":"Brooklyn","state":"NY","lat":40.635045,"lon":-73.95064,"programs":[{"name":"Wyckoff Heights Medical Center","tier":"CPME-accredited"}]},{"city":"Buffalo","state":"NY","lat":42.892492,"lon":-78.859686,"programs":[{"name":"VA Western New York","tier":"CPME-accredited"}]},{"city":"Far Rockaway","state":"NY","lat":40.602096,"lon":-73.761794,"programs":[{"name":"St. John's Episcopal Hospital","tier":"CPME-accredited"}]},{"city":"Huntington","state":"NY","lat":40.875389,"lon":-73.405761,"programs":[{"name":"Huntington Hospital · Northwell Health","tier":"CPME-accredited"}]},{"city":"West Nyack","state":"NY","lat":41.09114,"lon":-73.968833,"programs":[{"name":"Hudson Valley Sports and Reconstructive F&A","tier":"ACFAS Conditional"}]},{"city":"Yonkers","state":"NY","lat":40.945862,"lon":-73.867446,"programs":[{"name":"Saint Joseph's Medical Center","tier":"CPME-accredited"},{"name":"Saint Joseph's Medical Center Limb Salvage & Hyperbaric Research","tier":"ACFAS Research"}]},{"city":"Canton","state":"OH","lat":40.80765,"lon":-81.367228,"programs":[{"name":"Revisional Reconstructive Surgical at Ohio F&A Center","tier":"ACFAS Conditional"}]},{"city":"Chardon","state":"OH","lat":41.579289,"lon":-81.20906,"programs":[{"name":"UH Community Consortium · Geauga (Recon)","tier":"CPME-accredited"},{"name":"UH Community Consortium · Geauga (ID/Wound)","tier":"CPME-accredited"},{"name":"Precision Orthopaedic Specialties F&A Surgery & Sports Medicine","tier":"ACFAS Conditional"}]},{"city":"Concord Twp","state":"OH","lat":41.66996,"lon":-81.23742,"programs":[{"name":"Balance Foot and Ankle Fellowship","tier":"ACFAS Recognized"}]},{"city":"Mentor","state":"OH","lat":41.690159,"lon":-81.33588,"programs":[{"name":"F&A Specialists of Ohio Recon & Deformity Correction","tier":"ACFAS Recognized"}]},{"city":"Newark","state":"OH","lat":40.071503,"lon":-82.424221,"programs":[{"name":"F&A Specialists of Central Ohio","tier":"ACFAS Recognized"}]},{"city":"Worthington","state":"OH","lat":40.096908,"lon":-83.020216,"programs":[{"name":"Orthopedic Foot and Ankle Center","tier":"ACFAS Recognized"}]},{"city":"Youngstown","state":"OH","lat":41.099095,"lon":-80.645902,"programs":[{"name":"Reconstructive Rearfoot/Ankle Surgical (NOMS)","tier":"ACFAS Recognized"}]},{"city":"Lake Oswego","state":"OR","lat":45.413551,"lon":-122.700007,"programs":[{"name":"Orthopedic and Sports Medicine Center of Oregon F&A","tier":"ACFAS Conditional"}]},{"city":"Allentown","state":"PA","lat":40.593648,"lon":-75.478393,"programs":[{"name":"St. Luke's Hospital · Allentown","tier":"CPME-accredited"}]},{"city":"Camp Hill","state":"PA","lat":40.242192,"lon":-76.9274,"programs":[{"name":"Orthopedic Institute of Pennsylvania Advanced F&A","tier":"ACFAS Conditional"}]},{"city":"Lancaster","state":"PA","lat":40.042061,"lon":-76.30099,"programs":[{"name":"Wellspan Health Reconstructive F&A","tier":"ACFAS Recognized"}]},{"city":"Malvern","state":"PA","lat":40.033147,"lon":-75.515363,"programs":[{"name":"Pennsylvania Intensive Lower Extremity","tier":"ACFAS Recognized"}]},{"city":"Philadelphia","state":"PA","lat":40.009376,"lon":-75.133346,"programs":[{"name":"Penn Presbyterian Medical Center","tier":"CPME-accredited"},{"name":"Penn Presbyterian Podiatric Research","tier":"ACFAS Research"},{"name":"Penn LE Plastic and Reconstructive Surgery","tier":"ACFAS Conditional"}]},{"city":"Warrington","state":"PA","lat":40.249015,"lon":-75.15894,"programs":[{"name":"Bucks County Orthopedic Specialists Comprehensive F&A","tier":"ACFAS Conditional"}]},{"city":"West Chester","state":"PA","lat":39.959883,"lon":-75.605422,"programs":[{"name":"Premier Orthopaedic and Sports Medicine F&A","tier":"ACFAS Recognized"}]},{"city":"San Juan","state":"PR","lat":18.404559,"lon":-66.063746,"programs":[{"name":"Puerto Rico Foot and Ankle Reconstructive Surgical Fellowship","tier":"ACFAS Recognized"}]},{"city":"Dallas","state":"TX","lat":32.793333,"lon":-96.766513,"programs":[{"name":"UT Southwestern Plastic Surgery · DPM positions","tier":"Independent"}]},{"city":"San Antonio","state":"TX","lat":29.462809,"lon":-98.524635,"programs":[{"name":"University of Texas at San Antonio","tier":"CPME-accredited"},{"name":"San Antonio Sports Medicine Associates F&A Surgical","tier":"ACFAS Conditional"}]},{"city":"Sunnyvale","state":"TX","lat":32.799752,"lon":-96.55855,"programs":[{"name":"Dallas Advanced F&A Reconstruction","tier":"ACFAS Conditional"}]},{"city":"Salt Lake City","state":"UT","lat":40.776928,"lon":-111.930991,"programs":[{"name":"Advanced F&A Reconstructive Limb Salvage","tier":"ACFAS Recognized"}]},{"city":"Mechanicsville","state":"VA","lat":37.629896,"lon":-77.354756,"programs":[{"name":"Virginia Fellowship in Reconstruction, Revision & Limb Preservation","tier":"ACFAS Recognized"}]},{"city":"Roanoke","state":"VA","lat":37.278458,"lon":-79.958174,"programs":[{"name":"F&A Specialists of the MidAtlantic","tier":"ACFAS Recognized"}]},{"city":"Centralia","state":"WA","lat":46.72205,"lon":-122.970947,"programs":[{"name":"Olympia Orthopaedic Associates Advanced Recon F&A","tier":"ACFAS Recognized"}]},{"city":"Seattle","state":"WA","lat":47.619335,"lon":-122.351538,"programs":[{"name":"VA Puget Sound Health Care System","tier":"CPME-accredited"},{"name":"Virginia Mason Franciscan Health F&A Sports Medicine","tier":"ACFAS Recognized"}]},{"city":"Wheeling","state":"WV","lat":40.073755,"lon":-80.696025,"programs":[{"name":"WVU Medicine Wheeling Hospital Advanced Surgical","tier":"ACFAS Recognized"}]}];
+
+    function stateId(stateFeature) {
+      return String(stateFeature.id).padStart(2, "0");
+    }
+
+    const countsByState = new Map();
+    for (const location of locations) {
+      countsByState.set(location.state, (countsByState.get(location.state) ?? 0) + location.programs.length);
+    }
+
+    const allStateFeatures = feature(us, us.objects.states).features;
+    const mainFeatures = allStateFeatures.filter((stateFeature) => stateMeta[stateId(stateFeature)] && stateId(stateFeature) !== "72");
+    const puertoRicoFeature = allStateFeatures.find((stateFeature) => stateId(stateFeature) === "72");
+    const projection = geoAlbersUsa().fitExtent([[18, 16], [width - 18, height - 78]], { type: "FeatureCollection", features: mainFeatures });
+    const statePath = geoPath(projection);
+    const puertoRicoProjection = geoMercator().fitExtent([[770, 532], [942, 575]], puertoRicoFeature);
+    const puertoRicoPath = geoPath(puertoRicoProjection);
+    const maxStateCount = Math.max(...countsByState.values());
+
+    function stateStatus(name, abbreviation) {
+      const count = countsByState.get(abbreviation) ?? 0;
+      return count === 0
+        ? `${name} — 0 entries listed in the supplied data`
+        : `${name} — ${count} listed ${count === 1 ? "entry" : "entries"}`;
+    }
+
+    function showTooltip(text, x, y) {
+      tooltip.textContent = text;
+      tooltip.setAttribute("aria-hidden", "false");
+      tooltip.style.visibility = "visible";
+
+      const svgRect = svg.getBoundingClientRect();
+      const canvasRect = canvas.getBoundingClientRect();
+      const rawX = svgRect.left - canvasRect.left + (x / width) * svgRect.width;
+      const rawY = svgRect.top - canvasRect.top + (y / height) * svgRect.height;
+      tooltip.style.left = `${rawX}px`;
+      tooltip.style.top = `${rawY}px`;
+
+      const tooltipRect = tooltip.getBoundingClientRect();
+      const halfWidth = tooltipRect.width / 2;
+      const clampedX = Math.max(halfWidth + 4, Math.min(canvasRect.width - halfWidth - 4, rawX));
+      const clampedY = Math.max(tooltipRect.height + 12, rawY);
+      tooltip.style.left = `${clampedX}px`;
+      tooltip.style.top = `${clampedY}px`;
+    }
+
+    function hideTooltip() {
+      tooltip.style.visibility = "hidden";
+      tooltip.setAttribute("aria-hidden", "true");
+    }
+
+    function drawState(stateFeature, pathGenerator, layer) {
+      const id = stateId(stateFeature);
+      const [name, abbreviation] = stateMeta[id];
+      const count = countsByState.get(abbreviation) ?? 0;
+      const stateElement = document.createElementNS(namespace, "path");
+      stateElement.setAttribute("d", pathGenerator(stateFeature));
+      stateElement.setAttribute("class", `state ${count === 0 ? "state--zero" : "state--positive"}`);
+      stateElement.setAttribute("aria-label", stateStatus(name, abbreviation));
+      if (count > 0) stateElement.style.fillOpacity = String(0.13 + (count / maxStateCount) * 0.3);
+      const [x, y] = pathGenerator.centroid(stateFeature);
+      stateElement.addEventListener("mouseenter", () => showTooltip(stateStatus(name, abbreviation), x, y));
+      stateElement.addEventListener("mouseleave", hideTooltip);
+      layer.appendChild(stateElement);
+    }
+
+    for (const stateFeature of mainFeatures) drawState(stateFeature, statePath, statesLayer);
+    drawState(puertoRicoFeature, puertoRicoPath, insetLayer);
+
+    const insetLabel = document.createElementNS(namespace, "text");
+    insetLabel.setAttribute("class", "inset-label");
+    insetLabel.setAttribute("x", "770");
+    insetLabel.setAttribute("y", "525");
+    insetLabel.textContent = "Puerto Rico";
+    insetLayer.appendChild(insetLabel);
+
+    function markerRadius(count) {
+      return 5 * Math.sqrt(count);
+    }
+
+    const plottedLocations = locations.map((location, index) => {
+      const projected = location.state === "PR"
+        ? puertoRicoProjection([location.lon, location.lat])
+        : projection([location.lon, location.lat]);
+      const radius = markerRadius(location.programs.length);
+      return {
+        ...location,
+        index,
+        radius,
+        anchorX: projected[0],
+        anchorY: projected[1],
+        x: projected[0],
+        y: projected[1]
+      };
+    });
+
+    const movableLocations = plottedLocations.filter((location) => location.state !== "PR");
+    for (let iteration = 0; iteration < 120; iteration += 1) {
+      for (let firstIndex = 0; firstIndex < movableLocations.length; firstIndex += 1) {
+        for (let secondIndex = firstIndex + 1; secondIndex < movableLocations.length; secondIndex += 1) {
+          const first = movableLocations[firstIndex];
+          const second = movableLocations[secondIndex];
+          let dx = second.x - first.x;
+          let dy = second.y - first.y;
+          let distance = Math.hypot(dx, dy);
+          const minimum = first.radius + second.radius + 2.5;
+          if (distance >= minimum) continue;
+          if (distance < 0.01) {
+            const angle = ((first.index + 1) * 2.399963) % (Math.PI * 2);
+            dx = Math.cos(angle);
+            dy = Math.sin(angle);
+            distance = 1;
+          }
+          const shift = (minimum - distance) / 2;
+          const unitX = dx / distance;
+          const unitY = dy / distance;
+          first.x -= unitX * shift;
+          first.y -= unitY * shift;
+          second.x += unitX * shift;
+          second.y += unitY * shift;
+        }
+      }
+
+      for (const location of movableLocations) {
+        location.x += (location.anchorX - location.x) * 0.065;
+        location.y += (location.anchorY - location.y) * 0.065;
+        const dx = location.x - location.anchorX;
+        const dy = location.y - location.anchorY;
+        const distance = Math.hypot(dx, dy);
+        if (distance > 34) {
+          location.x = location.anchorX + (dx / distance) * 34;
+          location.y = location.anchorY + (dy / distance) * 34;
+        }
+      }
+    }
+
+    const TIER_CLASS = {
+      "CPME-accredited": "tb-cpme",
+      "ACFAS Recognized": "tb-acfr",
+      "ACFAS Conditional": "tb-cond",
+      "ACFAS Research": "tb-res",
+      "Independent": "tb-ind"
+    };
+
+    function renderDetail(location) {
+      detail.replaceChildren();
+      const heading = document.createElement("div");
+      heading.setAttribute("class", "detail-heading");
+      const count = location.programs.length;
+      heading.textContent = `${location.city}, ${location.state} · ${count} listed ${count === 1 ? "entry" : "entries"}`;
+      detail.appendChild(heading);
+
+      const list = document.createElement("ul");
+      list.setAttribute("class", "program-list");
+      for (const program of location.programs) {
+        const item = document.createElement("li");
+        item.appendChild(document.createTextNode(program.name));
+        const tier = document.createElement("span");
+        tier.setAttribute("class", `tierb ${TIER_CLASS[program.tier] ?? "tb-ind"}`);
+        tier.textContent = program.tier;
+        item.appendChild(document.createTextNode(" "));
+        item.appendChild(tier);
+        list.appendChild(item);
+      }
+      detail.appendChild(list);
+    }
+
+    for (const location of plottedLocations) {
+      const displacement = Math.hypot(location.x - location.anchorX, location.y - location.anchorY);
+      if (displacement > 1.5) {
+        const leader = document.createElementNS(namespace, "line");
+        leader.setAttribute("class", "point-leader");
+        leader.setAttribute("x1", location.anchorX);
+        leader.setAttribute("y1", location.anchorY);
+        leader.setAttribute("x2", location.x);
+        leader.setAttribute("y2", location.y);
+        leadersLayer.appendChild(leader);
+      }
+
+      const link = document.createElementNS(namespace, "a");
+      const count = location.programs.length;
+      const tooltipText = `${location.city}, ${location.state} — ${count} listed ${count === 1 ? "entry" : "entries"}`;
+      link.setAttribute("class", "location-link");
+      link.setAttribute("href", "#fellowship-location-detail");
+      link.setAttribute("aria-controls", "fellowship-location-detail");
+      link.setAttribute("aria-label", tooltipText);
+
+      const hitCircle = document.createElementNS(namespace, "circle");
+      hitCircle.setAttribute("class", "marker-hit");
+      hitCircle.setAttribute("cx", location.x);
+      hitCircle.setAttribute("cy", location.y);
+      hitCircle.setAttribute("r", Math.max(11, location.radius));
+      link.appendChild(hitCircle);
+
+      const marker = document.createElementNS(namespace, "circle");
+      marker.setAttribute("class", "city-marker");
+      marker.setAttribute("cx", location.x);
+      marker.setAttribute("cy", location.y);
+      marker.setAttribute("r", location.radius);
+      link.appendChild(marker);
+
+      if (count > 1) {
+        const countLabel = document.createElementNS(namespace, "text");
+        countLabel.setAttribute("class", "city-count");
+        countLabel.setAttribute("x", location.x);
+        countLabel.setAttribute("y", location.y);
+        countLabel.textContent = String(count);
+        link.appendChild(countLabel);
+      }
+
+      const selectLocation = () => {
+        showTooltip(tooltipText, location.x, location.y);
+        renderDetail(location);
+      };
+      link.addEventListener("mouseenter", selectLocation);
+      link.addEventListener("mouseleave", hideTooltip);
+      link.addEventListener("focus", selectLocation);
+      link.addEventListener("blur", hideTooltip);
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+        renderDetail(location);
+      });
+      pointsLayer.appendChild(link);
+    }
+  
+</script>
+</body>
+</html>

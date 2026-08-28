@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The GuideWire — Fellowship Database</title>
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#070c10; --bg-soft:#0a1217; --bg-alt:#0c171d;
+  --glass:rgba(255,255,255,.035); --glass-strong:rgba(255,255,255,.06); --bezel:rgba(255,255,255,.02);
+  --line:rgba(198,232,230,.09); --line-strong:rgba(198,232,230,.16);
+  --text:#ecf2f0; --text-soft:#c6d2d0; --muted:#87989a; --muted-strong:#aab9b9;
+  --accent:#4fd6d1; --accent-bright:#7defe9; --accent-deep:#2c8f8c; --highlight:#d7a25e; --ink:#04181a;
+  --radius:24px; --radius-lg:30px; --radius-sm:14px; --bezel-pad:7px;
+  --shadow-sm:0 18px 40px -24px rgba(0,0,0,.6);
+  --glow:0 0 40px -6px rgba(79,214,209,.28); --inset-hi:inset 0 1px 0 rgba(255,255,255,.08);
+  --ease:cubic-bezier(.32,.72,0,1); --ease-out:cubic-bezier(.16,1,.3,1);
+  --font-display:'Fraunces',Georgia,'Times New Roman',serif;
+  --font-sans:'Plus Jakarta Sans',system-ui,sans-serif;
+  --font-mono:'JetBrains Mono',ui-monospace,monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:var(--font-sans);font-size:15px;line-height:1.65;letter-spacing:-.005em;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(1100px 520px at 78% -6%, rgba(79,214,209,.07), transparent 60%)}
+.page{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:0 clamp(18px,3.5vw,48px) clamp(4rem,8vw,6rem)}
+a{color:var(--accent);text-decoration:none}
+
+.masthead{padding:clamp(1.5rem,3vw,2.2rem) 0 1.1rem;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+.lockup .gw{font-family:var(--font-display);font-weight:600;font-size:1.4rem;letter-spacing:-.022em}
+.lockup .gw em{font-style:italic;font-weight:500;background:linear-gradient(100deg,var(--accent),var(--accent-bright) 55%,var(--highlight));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lockup .parent{font-family:var(--font-mono);font-size:.58rem;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-top:.12rem}
+.back{font-family:var(--font-mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted-strong);display:inline-flex;align-items:center;gap:.45rem;transition:color .4s var(--ease)}
+.back:hover{color:var(--accent)}
+
+.head{padding-top:clamp(2.6rem,5vw,4rem)}
+.eyebrow{display:inline-flex;gap:.5rem;align-items:center;font-family:var(--font-mono);font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);padding:.4rem .8rem;border:1px solid var(--line-strong);border-radius:999px;background:rgba(79,214,209,.05);box-shadow:var(--inset-hi);margin-bottom:1.2rem}
+.eyebrow::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent-bright)}
+.head h1{font-family:var(--font-display);font-weight:500;font-size:clamp(2.1rem,4.6vw,3.4rem);line-height:1.06;letter-spacing:-.022em;max-width:22ch}
+.head h1 em{font-style:italic;background:linear-gradient(100deg,var(--accent),var(--accent-bright) 55%,var(--highlight));-webkit-background-clip:text;background-clip:text;color:transparent}
+.head .sub{margin-top:1rem;max-width:68ch;color:var(--text-soft);font-size:.95rem}
+.stamp{margin-top:1.1rem;display:flex;flex-wrap:wrap;gap:.4rem 1.3rem;font-family:var(--font-mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.stamp .live{display:inline-flex;align-items:center;gap:.45rem;color:var(--accent)}
+.stamp .live::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent-bright)}
+
+.chips{margin-top:1.8rem;display:flex;flex-wrap:wrap;gap:.55rem}
+.chip{font-family:var(--font-mono);font-size:.64rem;letter-spacing:.08em;padding:.42rem .8rem;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.02);box-shadow:var(--inset-hi);color:var(--muted-strong)}
+
+/* ── sibling-view nav: same vocabulary as the map and the dossier ── */
+.cluster{margin-top:1.6rem;display:flex;flex-wrap:wrap;gap:.4rem}
+.cluster a{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;padding:.5rem .95rem;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.02);color:var(--muted-strong);transition:transform .4s var(--ease),color .4s var(--ease),border-color .4s var(--ease)}
+.cluster a:hover{transform:translateY(-1px);color:var(--accent);border-color:var(--accent-deep)}
+.cluster a[aria-current="page"]{background:linear-gradient(135deg,var(--accent-bright),var(--accent));color:var(--ink);border-color:transparent;box-shadow:var(--glow)}
+.chip b{color:var(--text);font-weight:600}
+
+.controls{margin-top:1.6rem;display:grid;grid-template-columns:1.4fr auto auto;gap:.7rem;align-items:center}
+.search{position:relative}
+.search input{width:100%;font-family:var(--font-sans);font-size:.92rem;color:var(--text);background:var(--glass);border:1px solid var(--line);border-radius:999px;padding:.72rem 1.15rem .72rem 2.5rem;box-shadow:var(--inset-hi);transition:border-color .4s var(--ease)}
+.search input::placeholder{color:var(--muted)}
+.search input:focus{outline:none;border-color:var(--accent-deep)}
+.search svg{position:absolute;left:1rem;top:50%;transform:translateY(-50%);width:15px;height:15px;color:var(--muted)}
+.filters{display:flex;flex-wrap:wrap;gap:.4rem}
+.fpill{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;padding:.5rem .85rem;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.02);color:var(--muted-strong);cursor:pointer;transition:transform .4s var(--ease),background .4s var(--ease),color .4s var(--ease)}
+.fpill:hover{transform:translateY(-1px)}
+.fpill.on{background:linear-gradient(135deg,var(--accent-bright),var(--accent));color:var(--ink);border-color:transparent;box-shadow:var(--glow)}
+select{font-family:var(--font-mono);font-size:.66rem;letter-spacing:.08em;color:var(--text-soft);background:var(--bg-alt);border:1px solid var(--line);border-radius:999px;padding:.6rem 1rem;cursor:pointer}
+select:focus{outline:none;border-color:var(--accent-deep)}
+
+.count{margin-top:1rem;font-family:var(--font-mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.count b{color:var(--accent);font-weight:600}
+
+.bezel{margin-top:.8rem;padding:var(--bezel-pad);background:var(--bezel);border:1px solid var(--line);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm)}
+.bezel-core{border-radius:calc(var(--radius-lg) - var(--bezel-pad));background:var(--glass);box-shadow:var(--inset-hi);overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.84rem;min-width:820px}
+thead th{font-family:var(--font-mono);font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;text-align:left;padding:.9rem 1rem;color:var(--muted);border-bottom:1px solid var(--line-strong);white-space:nowrap;position:sticky;top:0;background:var(--bg-soft)}
+tbody td{padding:.72rem 1rem;border-bottom:1px solid var(--line);vertical-align:top;color:var(--text-soft);line-height:1.5}
+tbody tr:last-child td{border-bottom:none}
+tbody tr{transition:background .3s var(--ease)}
+tbody tr:hover{background:rgba(79,214,209,.04)}
+td.prog{color:var(--text);font-weight:600;font-size:.84rem;max-width:340px}
+td.prog .note{display:block;font-weight:400;font-size:.72rem;color:var(--muted);margin-top:.15rem}
+td.loc{font-family:var(--font-mono);font-size:.7rem;color:var(--muted-strong);white-space:nowrap}
+td.dir{font-size:.8rem}
+.tierb{display:inline-block;font-family:var(--font-mono);font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;padding:.2rem .55rem;border-radius:999px;white-space:nowrap}
+.tb-cpme{background:rgba(79,214,209,.13);color:var(--accent)}
+.tb-acfr{background:rgba(215,162,94,.15);color:var(--highlight)}
+.tb-res{background:rgba(125,239,233,.09);color:var(--accent-bright)}
+.tb-cond{background:rgba(215,162,94,.08);color:#c7a678}
+.tb-ind{background:rgba(255,255,255,.05);color:var(--muted-strong)}
+.statb{display:inline-block;font-family:var(--font-mono);font-size:.55rem;letter-spacing:.08em;text-transform:uppercase;font-weight:600;padding:.18rem .5rem;border-radius:999px;background:rgba(224,110,110,.12);color:#e39a9a;white-space:nowrap}
+.statb.prov{background:rgba(215,162,94,.12);color:var(--highlight)}
+.empty{padding:2.5rem;text-align:center;color:var(--muted);font-size:.9rem}
+
+.foot{margin-top:clamp(2.5rem,5vw,3.5rem);padding-top:1.4rem;border-top:1px solid var(--line);display:grid;grid-template-columns:1.5fr 1fr;gap:1.8rem;font-size:.75rem;line-height:1.65;color:var(--muted)}
+.foot h5{font-family:var(--font-mono);font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted-strong);margin-bottom:.5rem}
+.copy{grid-column:1 / -1;margin-top:.8rem;padding-top:1rem;border-top:1px solid var(--line);font-family:var(--font-mono);font-size:.6rem;letter-spacing:.12em;color:var(--muted);text-align:center}
+
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+@media (max-width: 900px){.controls{grid-template-columns:1fr}.foot{grid-template-columns:1fr}}
+@media (prefers-reduced-motion: reduce){*{transition:none !important;animation:none !important}}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header class="masthead">
+  <div class="lockup">
+    <div class="gw">The <em>GuideWire</em></div>
+    <div class="parent">by Sole Intelligence</div>
+  </div>
+  <a class="back" href="fellowship-dossier.html">← Read the dossier</a>
+</header>
+
+<section class="head">
+  <p class="eyebrow">Living Database · Podiatric Fellowships</p>
+  <h1>The complete fellowship universe, <em>tier by tier.</em></h1>
+  <p class="sub">Every podiatric fellowship we can verify against a primary source — CPME-accredited, ACFAS-Recognized, ACFAS-Conditional, research, and known independent programs. Tier tells you who audits the program (and whether anyone does). Always confirm against the live CPME and ACFAS listings before applying: counts move.</p>
+  <div class="stamp">
+    <span class="live">Last verified July 18, 2026</span>
+    <span>Sources: cpme.org · acfas.org</span>
+    <span>Independent tier: partial by nature</span>
+  </div>
+  <div class="chips" id="chips"></div>
+  <nav class="cluster" aria-label="Fellowship coverage">
+    <a href="fellowship-dossier.html">The dossier</a>
+    <a href="fellowship-database.html" aria-current="page">The database</a>
+    <a href="fellowship-map.html">The map</a>
+  </nav>
+
+  <div class="controls">
+    <div class="search">
+      <svg viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="4.5" stroke="currentColor" stroke-width="1.4"/><path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+      <input id="q" type="search" placeholder="Search programs, cities, directors, focus…" aria-label="Search fellowships">
+    </div>
+    <div class="filters" id="tierFilters" role="group" aria-label="Filter by tier">
+      <button class="fpill on" data-tier="ALL">All</button>
+      <button class="fpill" data-tier="CPME">CPME</button>
+      <button class="fpill" data-tier="ACFAS-R">ACFAS Recognized</button>
+      <button class="fpill" data-tier="ACFAS-RES">Research</button>
+      <button class="fpill" data-tier="ACFAS-C">Conditional</button>
+      <button class="fpill" data-tier="IND">Independent</button>
+    </div>
+    <select id="state" aria-label="Filter by state"><option value="ALL">All states</option></select>
+  </div>
+  <p class="count" id="count"></p>
+</section>
+
+<div class="bezel"><div class="bezel-core">
+  <table>
+    <thead><tr><th>Program</th><th>Tier</th><th>Location</th><th>Director</th><th>Status</th></tr></thead>
+    <tbody id="rows"></tbody>
+  </table>
+  <div class="empty" id="empty" hidden>No programs match. Clear a filter or broaden the search.</div>
+</div></div>
+
+<footer class="foot">
+  <div>
+    <h5>How to read the tiers</h5>
+    <b>CPME</b> — the only tier with delegated accreditation authority (site visits, annual reporting, non-competes banned; no case minimums). <b>ACFAS Recognized</b> — College endorsement via self-attestation; no site visits or audits. <b>Conditional</b> — has not yet completed a fellowship year under Recognition. <b>Research</b> — non-surgical, research-focused Recognition track. <b>Independent</b> — no external oversight; verify case-logging rights for the ABFAS portfolio before valuing the credential.
+  </div>
+  <div>
+    <h5>Maintaining this page</h5>
+    Program data lives in one array in this file's source — append a row, and the counts, filters, and table update automatically. Corrections welcome: peter@soleintell.com.
+  </div>
+  <div class="copy">© 2026 Peter Sorensen, DPM · The GuideWire · soleintell.com · Verify against live CPME &amp; ACFAS listings before acting</div>
+</footer>
+
+</div>
+<script>
+// ─────────────────────────────────────────────────────────────
+// LIVING DATABASE — to add a program, append an object here.
+// tier: "CPME" | "ACFAS-R" | "ACFAS-RES" | "ACFAS-C" | "IND"
+// status: "" | "Provisional (yyyy)" | "Probationary…" etc.
+// Verified against live CPME + ACFAS listings 2026-07-18.
+// ─────────────────────────────────────────────────────────────
+const PROGRAMS = [
+  // ── Tier 1 · CPME-Accredited (18 · live list July 2026) ──
+  {name:"University of California San Francisco Limb Preservation Center", tier:"CPME", city:"San Francisco", state:"CA", dir:"", status:"", note:"Limb preservation"},
+  {name:"HCA Florida Westside Hospital", tier:"CPME", city:"Plantation", state:"FL", dir:"Warren Windram, DPM", status:"", note:"Reconstructive F&A · also ACFAS-Recognized (Westside Reconstructive)"},
+  {name:"Atlanta VA Health Care System", tier:"CPME", city:"Decatur", state:"GA", dir:"Shahzad Ghori, DPM", status:"Provisional (2023)", note:"Limb preservation"},
+  {name:"Ascension Saint Joseph–Chicago", tier:"CPME", city:"Chicago", state:"IL", dir:"", status:"", note:"Complex deformity correction & limb reconstruction"},
+  {name:"University of Louisville School of Medicine", tier:"CPME", city:"Louisville", state:"KY", dir:"Timothy C. Ford, DPM", status:"", note:"Reconstructive foot & ankle surgery and limb salvage"},
+  {name:"Corewell Health East – Farmington Hills Hospital", tier:"CPME", city:"Farmington Hills", state:"MI", dir:"Michele Bertelle-Semma, DPM", status:"Provisional (2022)", note:"Diabetic limb salvage & wound care"},
+  {name:"University of Michigan Health System", tier:"CPME", city:"Ann Arbor", state:"MI", dir:"Gary M. Rothenberg, DPM", status:"", note:"Research: limb preservation, wound care & diabetic LE complications"},
+  {name:"Huntington Hospital at Northwell Health", tier:"CPME", city:"Huntington", state:"NY", dir:"Jason E. Feinberg, DPM", status:"Provisional (2022)", note:"Wound care & hyperbaric oxygen therapy"},
+  {name:"Saint Joseph's Medical Center", tier:"CPME", city:"Yonkers", state:"NY", dir:"", status:"Provisional (2023)", note:"Wound care & HBOT · related ACFAS research fellowship below"},
+  {name:"St. John's Episcopal Hospital", tier:"CPME", city:"Far Rockaway", state:"NY", dir:"Joseph Tarantino, DPM", status:"", note:"Wound care & tissue healing"},
+  {name:"VA Western New York Healthcare System", tier:"CPME", city:"Buffalo", state:"NY", dir:"", status:"", note:"Comprehensive limb salvage"},
+  {name:"Wyckoff Heights Medical Center", tier:"CPME", city:"Brooklyn", state:"NY", dir:"", status:"Provisional (2022)", note:"Wound care"},
+  {name:"UH Community Consortium – Advanced Foot & Ankle", tier:"CPME", city:"Chardon", state:"OH", dir:"", status:"Probationary · withdrawal candidate 7/2027", note:"Advanced F&A reconstructive surgery"},
+  {name:"UH Community Consortium – Infectious Disease/Wound", tier:"CPME", city:"Chardon", state:"OH", dir:"Jacqueline Donovan, DPM", status:"", note:"ID, wound care & limb salvage"},
+  {name:"Penn Presbyterian Medical Center", tier:"CPME", city:"Philadelphia", state:"PA", dir:"D. Scot Malay, DPM", status:"Probationary · withdrawal candidate 7/2026", note:"Podiatric research · also ACFAS Research-Recognized"},
+  {name:"St. Luke's Hospital – Allentown Campus", tier:"CPME", city:"Allentown", state:"PA", dir:"Steven Hawley, DPM", status:"", note:"Limb preservation"},
+  {name:"The University of Texas at San Antonio", tier:"CPME", city:"San Antonio", state:"TX", dir:"Collin E. Pehde, DPM", status:"", note:"Amputation prevention & research · oldest program in the US"},
+  {name:"VA Puget Sound Health Care System", tier:"CPME", city:"Seattle", state:"WA", dir:"", status:"Provisional (2024)", note:"Amputation prevention & advanced wound care"},
+
+  // ── Tier 2A · ACFAS-Recognized F&A Surgery (47 · live list July 2026) ──
+  {name:"Puerto Rico Foot and Ankle Reconstructive Surgical Fellowship", tier:"ACFAS-R", city:"San Juan", state:"PR", dir:"Carlos I. Arroyo-Romeu, DPM", status:"", note:""},
+  {name:"Orthopedic Center of Florida (OCF) Foot and Ankle Fellowship", tier:"ACFAS-R", city:"Fort Myers", state:"FL", dir:"Andrew Belis, DPM", status:"", note:""},
+  {name:"Illinois Bone and Joint Institute (IBJI) Foot and Ankle Fellowship", tier:"ACFAS-R", city:"Joliet", state:"IL", dir:"Brian Burgess, DPM", status:"", note:""},
+  {name:"Pediatric and Adult Foot & Ankle Surgical Fellowship", tier:"ACFAS-R", city:"Atlanta", state:"GA", dir:"Craig A. Camasta, DPM", status:"", note:"Pediatric emphasis"},
+  {name:"Fort Wayne Foot and Ankle Fellowship", tier:"ACFAS-R", city:"Fort Wayne", state:"IN", dir:"Cage Caudell, DPM", status:"", note:""},
+  {name:"Advanced Foot and Ankle Reconstructive Limb Salvage Fellowship", tier:"ACFAS-R", city:"Salt Lake City", state:"UT", dir:"Scott A. Clark, DPM & David Seegmiller, DPM", status:"", note:""},
+  {name:"Alexander Orthopaedic Associates / Florida Orthopedic Foot & Ankle Center Fellowship", tier:"ACFAS-R", city:"Sarasota", state:"FL", dir:"James M. Cottom, DPM", status:"", note:""},
+  {name:"Reconstructive Rearfoot and Ankle Surgical Fellowship (NOMS)", tier:"ACFAS-R", city:"Youngstown", state:"OH", dir:"Lawrence A. DiDomenico, DPM", status:"", note:""},
+  {name:"Olympia Orthopaedic Associates Advanced Reconstructive F&A Surgery Fellowship", tier:"ACFAS-R", city:"Centralia", state:"WA", dir:"Michael Dujela, DPM", status:"", note:""},
+  {name:"Michigan Advanced Foot and Ankle Reconstructive Surgery Fellowship", tier:"ACFAS-R", city:"Lansing", state:"MI", dir:"Karl Dunn, DPM", status:"", note:""},
+  {name:"Foot & Ankle Specialists of Ohio Reconstructive Surgery and Deformity Correction Fellowship", tier:"ACFAS-R", city:"Mentor", state:"OH", dir:"Stephen J. Frania, DPM", status:"", note:""},
+  {name:"The CORE Institute Foot and Ankle Advanced Reconstruction Fellowship", tier:"ACFAS-R", city:"Phoenix", state:"AZ", dir:"Melissa Galli, DPM", status:"", note:""},
+  {name:"Balance Foot and Ankle Fellowship", tier:"ACFAS-R", city:"Concord Township", state:"OH", dir:"Mark A. Hardy, DPM", status:"", note:""},
+  {name:"Virginia Mason Franciscan Health Foot and Ankle Sports Medicine Fellowship", tier:"ACFAS-R", city:"Seattle", state:"WA", dir:"Eric J. Heit, DPM", status:"", note:"Sports medicine"},
+  {name:"WVU Medicine Wheeling Hospital Foot and Ankle Advanced Surgical Fellowship", tier:"ACFAS-R", city:"Wheeling", state:"WV", dir:"Mark H. Hofbauer, DPM", status:"", note:""},
+  {name:"Orthopaedic Institute Brielle Orthopedics Foot and Ankle Fellowship", tier:"ACFAS-R", city:"Wall Township", state:"NJ", dir:"Shane Hollawell, DPM", status:"", note:""},
+  {name:"Center for Advanced Foot and Ankle Surgery Fellowship", tier:"ACFAS-R", city:"St. Louis", state:"MO", dir:"John Holtzman, DPM", status:"", note:""},
+  {name:"Weil Foot, Ankle & Orthopedic Institute Advanced Surgical Fellowship", tier:"ACFAS-R", city:"Mount Prospect", state:"IL", dir:"Jonathan L. Hook, DPM", status:"", note:""},
+  {name:"Silicon Valley Comprehensive Foot and Ankle Surgical Fellowship", tier:"ACFAS-R", city:"Mountain View", state:"CA", dir:"Meagan Jennings, DPM", status:"", note:""},
+  {name:"Kentuckiana Foot & Ankle Specialists Reconstructive F&A Surgery Fellowship", tier:"ACFAS-R", city:"Louisville", state:"KY", dir:"Paul J. Klutts, DPM", status:"", note:""},
+  {name:"FFLC Reconstructive and Limb Salvage Surgical Fellowship", tier:"ACFAS-R", city:"Naples", state:"FL", dir:"Kevin Lam, DPM", status:"", note:""},
+  {name:"Foot and Ankle Deformity Correction Fellowship", tier:"ACFAS-R", city:"West Palm Beach", state:"FL", dir:"Bradley M. Lamm, DPM", status:"", note:"Deformity correction"},
+  {name:"Palo Alto Foundation Medical Group – Santa Cruz Foot and Ankle Fellowship", tier:"ACFAS-R", city:"Santa Cruz", state:"CA", dir:"Brandon Lindberg, DPM", status:"", note:""},
+  {name:"Michigan Minimal Invasive and Reconstructive Foot and Ankle Surgery Fellowship", tier:"ACFAS-R", city:"Clinton Township", state:"MI", dir:"Brian Loder, DPM", status:"", note:"MIS emphasis"},
+  {name:"Phoenix Foot and Ankle Institute Fellowship", tier:"ACFAS-R", city:"Phoenix", state:"AZ", dir:"Jeffrey McAlister, DPM", status:"", note:""},
+  {name:"Indy Foot and Ankle Reconstruction Surgical Fellowship", tier:"ACFAS-R", city:"Shelbyville", state:"IN", dir:"J. Michael Miller, DPM", status:"", note:""},
+  {name:"Pennsylvania Intensive Lower Extremity Fellowship", tier:"ACFAS-R", city:"Malvern", state:"PA", dir:"Jason R. Miller, DPM", status:"", note:""},
+  {name:"Premier Orthopaedic and Sports Medicine Foot and Ankle Surgery Fellowship", tier:"ACFAS-R", city:"West Chester", state:"PA", dir:"Spencer Monaco, DPM", status:"", note:""},
+  {name:"Broadlawns Foot & Ankle Reconstruction and Trauma Fellowship", tier:"ACFAS-R", city:"Des Moines", state:"IA", dir:"Mica Murdoch, DPM", status:"", note:"Trauma emphasis"},
+  {name:"Southeast Permanente Foot & Ankle Trauma & Reconstructive Surgical Fellowship", tier:"ACFAS-R", city:"Atlanta", state:"GA", dir:"Brian D. Neerings, DPM", status:"", note:""},
+  {name:"Rocky Mountain Reconstructive Foot and Ankle Fellowship", tier:"ACFAS-R", city:"Denver", state:"CO", dir:"Alan Ng, DPM", status:"", note:""},
+  {name:"Northwest Illinois Foot & Ankle Fellowship", tier:"ACFAS-R", city:"Sycamore", state:"IL", dir:"Douglas Pacaccio, DPM", status:"", note:""},
+  {name:"Orthopedic Foot and Ankle Center Fellowship", tier:"ACFAS-R", city:"Worthington", state:"OH", dir:"Mark Prissel, DPM", status:"", note:""},
+  {name:"Foot & Ankle Specialists of Central Ohio Foot & Ankle Surgery Fellowship", tier:"ACFAS-R", city:"Newark", state:"OH", dir:"Amanda Quisno, DPM", status:"", note:""},
+  {name:"The Foot & Ankle Salvage, Trauma and Reconstruction (FASTR) Fellowship of Atlanta", tier:"ACFAS-R", city:"Atlanta", state:"GA", dir:"Allen Raphael, DPM", status:"", note:""},
+  {name:"Foot & Ankle Institute Fellowship", tier:"ACFAS-R", city:"Indianapolis", state:"IN", dir:"Sandra Raynor, DPM", status:"", note:""},
+  {name:"Virginia Fellowship in Reconstruction, Revision and Limb Preservation", tier:"ACFAS-R", city:"Mechanicsville", state:"VA", dir:"Laurence Rubin, DPM", status:"", note:""},
+  {name:"Pediatric Foot & Ankle Fellowship", tier:"ACFAS-R", city:"Cedar Knolls", state:"NJ", dir:"Mark Solomon, DPM", status:"", note:"Pediatric"},
+  {name:"CHRISTUS Health Podiatric Lower Extremity Surgery and Research Fellowship", tier:"ACFAS-R", city:"Alamogordo", state:"NM", dir:"Loren Spencer, DPM", status:"", note:""},
+  {name:"Northern California Reconstructive Foot and Ankle Fellowship", tier:"ACFAS-R", city:"Redding", state:"CA", dir:"Garret Strand, DPM", status:"", note:""},
+  {name:"North Jersey Reconstructive Foot and Ankle Fellowship", tier:"ACFAS-R", city:"Lyndhurst", state:"NJ", dir:"Michael Subik, DPM", status:"", note:""},
+  {name:"Associates in Medicine and Surgery Limb Salvage and Wound Care Fellowship", tier:"ACFAS-R", city:"Fort Myers", state:"FL", dir:"William H. Thetford, DPM", status:"", note:""},
+  {name:"Nebraska Foot and Ankle Reconstructive Surgery Fellowship", tier:"ACFAS-R", city:"Hastings", state:"NE", dir:"David E. Waters, DPM", status:"", note:""},
+  {name:"Westside Reconstructive Foot and Ankle Fellowship", tier:"ACFAS-R", city:"Plantation", state:"FL", dir:"Warren Windram, DPM", status:"", note:"Also CPME-accredited (HCA Florida Westside)"},
+  {name:"University of Maryland Limb Preservation and Deformity Correction Fellowship", tier:"ACFAS-R", city:"Baltimore", state:"MD", dir:"Jacob Wynes, DPM", status:"", note:""},
+  {name:"Wellspan Health Reconstructive Foot and Ankle Fellowship", tier:"ACFAS-R", city:"Lancaster", state:"PA", dir:"Michael Younes, DPM", status:"", note:""},
+  {name:"Foot and Ankle Specialists of the MidAtlantic Fellowship", tier:"ACFAS-R", city:"Roanoke", state:"VA", dir:"Charles M. Zelen, DPM", status:"", note:""},
+
+  // ── Tier 2B · ACFAS-Recognized Research (3) ──
+  {name:"MedStar Georgetown University Hospital Foot and Ankle Research Fellowship", tier:"ACFAS-RES", city:"Washington", state:"DC", dir:"Jayson Atves, DPM", status:"", note:""},
+  {name:"Saint Joseph's Medical Center Limb Salvage & Hyperbaric Medicine Research Fellowship", tier:"ACFAS-RES", city:"Yonkers", state:"NY", dir:"James De Meo, DPM", status:"", note:"Related CPME wound-care fellowship above"},
+  {name:"Penn Presbyterian Podiatric Research Fellowship", tier:"ACFAS-RES", city:"Philadelphia", state:"PA", dir:"D. Scot Malay, DPM", status:"", note:"Also CPME-accredited (probationary)"},
+
+  // ── Tier 2C · ACFAS Conditional (17) + Conditional Probationary (1) ──
+  {name:"Foot & Ankle Surgery & Research Fellowship", tier:"ACFAS-C", city:"Middletown", state:"CT", dir:"Adebola Adeleke, DPM", status:"", note:""},
+  {name:"San Antonio Sports Medicine Associates Foot & Ankle Surgical Fellowship", tier:"ACFAS-C", city:"San Antonio", state:"TX", dir:"Marque Allen, DPM", status:"", note:"Sports medicine"},
+  {name:"Treasure Coast Reconstructive Foot & Ankle Fellowship", tier:"ACFAS-C", city:"Stuart", state:"FL", dir:"Craig Breslauer, DPM", status:"", note:""},
+  {name:"Penn Lower Extremity Plastic and Reconstructive Surgery Fellowship", tier:"ACFAS-C", city:"Philadelphia", state:"PA", dir:"William \"Jake\" Brownell III, DPM", status:"", note:"LE plastic & reconstructive"},
+  {name:"Revisional Reconstructive Surgical Fellowship at Ohio Foot and Ankle Center", tier:"ACFAS-C", city:"Canton", state:"OH", dir:"Aaron Chokan, DPM", status:"", note:""},
+  {name:"Artisan Fellowship for Reconstructive Foot and Ankle Surgery", tier:"ACFAS-C", city:"Laguna Niguel", state:"CA", dir:"Devon Glazer, DPM", status:"", note:""},
+  {name:"Valley Foot and Ankle Reconstructive Fellowship", tier:"ACFAS-C", city:"Clovis", state:"CA", dir:"Gan Golshteyn, DPM", status:"", note:""},
+  {name:"Orthopedic and Sports Medicine Center of Oregon Foot and Ankle Fellowship", tier:"ACFAS-C", city:"Lake Oswego", state:"OR", dir:"Kenneth Hegewald, DPM", status:"", note:""},
+  {name:"NorCal Balance Health Reconstructive Foot and Ankle Fellowship", tier:"ACFAS-C", city:"Sacramento", state:"CA", dir:"Phong Le, DPM", status:"", note:""},
+  {name:"UAB Advanced Podiatric Reconstruction and Limb Salvage Fellowship", tier:"ACFAS-C", city:"Birmingham", state:"AL", dir:"Kyle Mauk, DPM", status:"", note:""},
+  {name:"Precision Orthopaedic Specialties Advanced F&A Surgery & Sports Medicine Fellowship", tier:"ACFAS-C", city:"Chardon", state:"OH", dir:"Mark J. Mendeszoon, DPM", status:"", note:""},
+  {name:"Bucks County Orthopedic Specialists Comprehensive Foot and Ankle Fellowship", tier:"ACFAS-C", city:"Warrington", state:"PA", dir:"Andrew Peacock, DPM", status:"", note:"At Penn Medicine Doylestown Health"},
+  {name:"Dallas Advanced Foot & Ankle Reconstruction Fellowship", tier:"ACFAS-C", city:"Sunnyvale", state:"TX", dir:"Calvin J. Rushing, DPM", status:"", note:""},
+  {name:"Orthopedic Institute of Pennsylvania Advanced Foot and Ankle Fellowship", tier:"ACFAS-C", city:"Camp Hill", state:"PA", dir:"Christopher H. Schank, DPM", status:"", note:""},
+  {name:"Orthopaedic Associates Foot and Ankle Surgical Fellowship", tier:"ACFAS-C", city:"Evansville", state:"IN", dir:"Charles Sisovsky, DPM", status:"", note:""},
+  {name:"Hudson Valley Sports and Reconstructive Foot and Ankle Fellowship", tier:"ACFAS-C", city:"West Nyack", state:"NY", dir:"Todd R. Stewart, DPM", status:"", note:""},
+  {name:"Advent Health Innovative Foot & Ankle Surgery Fellowship", tier:"ACFAS-C", city:"Trinity", state:"FL", dir:"Ronald D. Troxell, DPM", status:"", note:""},
+  {name:"SSC Sports Medicine Fellowship", tier:"ACFAS-C", city:"Irvine", state:"CA", dir:"Austin Hewlett, DPM", status:"Conditional Probationary", note:"Out of compliance with ACFAS criteria"},
+
+  // ── Tier 3 · Independent / Society-credentialed (partial — no registry exists) ──
+  {name:"AENS Peripheral Nerve Surgery Fellowship", tier:"IND", city:"Atlanta", state:"GA", dir:"Stephen L. Barrett, DPM", status:"", note:"2-year · AENS society-credentialed · peripheral nerve"},
+  {name:"Reyzelman Limb Salvage Fellowship", tier:"IND", city:"San Francisco", state:"CA", dir:"Alex Reyzelman, DPM", status:"", note:"Independent"},
+  {name:"UT Southwestern Plastic Surgery — DPM Fellowship Positions", tier:"IND", city:"Dallas", state:"TX", dir:"Lawrence Lavery, DPM", status:"", note:"University-affiliated · not CPME"},
+  {name:"Balance Health Surgical Fellowship Network", tier:"IND", city:"Multiple sites", state:"—", dir:"Various", status:"", note:"Markets a \"comprehensive first year in practice\""},
+  {name:"Weil Foot & Ankle Institute (legacy program)", tier:"IND", city:"Des Plaines", state:"IL", dir:"Lowell Weil Jr., DPM", status:"", note:"Legacy independent · related Recognized program listed above"},
+];
+
+const TIER_META = {
+  "CPME":      {label:"CPME-Accredited", cls:"tb-cpme"},
+  "ACFAS-R":   {label:"ACFAS Recognized", cls:"tb-acfr"},
+  "ACFAS-RES": {label:"ACFAS Research", cls:"tb-res"},
+  "ACFAS-C":   {label:"ACFAS Conditional", cls:"tb-cond"},
+  "IND":       {label:"Independent", cls:"tb-ind"},
+};
+const TIER_ORDER = ["CPME","ACFAS-R","ACFAS-RES","ACFAS-C","IND"];
+
+const rowsEl = document.getElementById('rows');
+const emptyEl = document.getElementById('empty');
+const countEl = document.getElementById('count');
+const qEl = document.getElementById('q');
+const stateEl = document.getElementById('state');
+let tierSel = "ALL";
+
+// chips
+const chipsEl = document.getElementById('chips');
+TIER_ORDER.forEach(t=>{
+  const n = PROGRAMS.filter(p=>p.tier===t).length;
+  const c = document.createElement('span');
+  c.className = 'chip';
+  c.innerHTML = `<b>${n}</b> ${TIER_META[t].label}${t==='IND' ? ' (partial)' : ''}`;
+  chipsEl.appendChild(c);
+});
+const totalChip = document.createElement('span');
+totalChip.className = 'chip';
+totalChip.innerHTML = `<b>${PROGRAMS.length}</b> total verified`;
+chipsEl.appendChild(totalChip);
+
+// state options
+[...new Set(PROGRAMS.map(p=>p.state))].filter(s=>s!=="—").sort()
+  .forEach(s=>{ const o=document.createElement('option'); o.value=s; o.textContent=s; stateEl.appendChild(o); });
+
+function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function render(){
+  const q = qEl.value.trim().toLowerCase();
+  const st = stateEl.value;
+  const list = PROGRAMS
+    .filter(p => (tierSel==="ALL" || p.tier===tierSel))
+    .filter(p => (st==="ALL" || p.state===st))
+    .filter(p => !q || [p.name,p.city,p.state,p.dir,p.note].join(' ').toLowerCase().includes(q))
+    .sort((a,b)=> TIER_ORDER.indexOf(a.tier)-TIER_ORDER.indexOf(b.tier) || a.name.localeCompare(b.name));
+
+  rowsEl.innerHTML = list.map(p=>{
+    const m = TIER_META[p.tier];
+    const statusCls = /provisional/i.test(p.status) ? 'statb prov' : 'statb';
+    return `<tr>
+      <td class="prog">${esc(p.name)}${p.note?`<span class="note">${esc(p.note)}</span>`:''}</td>
+      <td><span class="tierb ${m.cls}">${m.label}</span></td>
+      <td class="loc">${esc(p.city)}, ${esc(p.state)}</td>
+      <td class="dir">${p.dir?esc(p.dir):'—'}</td>
+      <td>${p.status?`<span class="${statusCls}">${esc(p.status)}</span>`:'—'}</td>
+    </tr>`;
+  }).join('');
+  emptyEl.hidden = list.length>0;
+  countEl.innerHTML = `Showing <b>${list.length}</b> of ${PROGRAMS.length} programs`;
+}
+
+qEl.addEventListener('input', render);
+stateEl.addEventListener('change', render);
+document.querySelectorAll('.fpill').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.fpill').forEach(b=>b.classList.remove('on'));
+    btn.classList.add('on');
+    tierSel = btn.dataset.tier;
+    render();
+  });
+});
+render();
+</script>
+</body>
+</html>
