@@ -316,21 +316,12 @@ window.INFOGRAPHICS = [
   },
   {
     title: "A Compact of Their Own",
-    description: "Podiatry finally gets an interstate licensure compact — and why most residents won't qualify on day one.",
+    description: "Podiatry finally gets an interstate licensure compact — and why the eligibility rules are where the story is.",
     kicker: "Licensure",
     category: "politics-culture",
     url: "ipmic.html",
     date: "2026-05-17",
     thumbnail: "Sole Intelligence Images/ipmic.png"
-  },
-  {
-    title: "Fellowship Inflation",
-    description: "A profession quietly built a second residency — and forgot to write the rules. A dossier on fellowship architecture.",
-    kicker: "Training",
-    category: "politics-culture",
-    url: "fellowship.html",
-    date: "2026-05-05",
-    thumbnail: "Sole Intelligence Images/fellowship.png"
   },
   {
     title: "Fellowship: Tool or Badge?",

@@ -15,6 +15,10 @@
   --line:rgba(198,232,230,.09); --line-strong:rgba(198,232,230,.16);
   --text:#ecf2f0; --text-soft:#c6d2d0; --muted:#87989a; --muted-strong:#aab9b9;
   --accent:#4fd6d1; --accent-bright:#7defe9; --accent-deep:#2c8f8c; --highlight:#d7a25e; --ink:#04181a;
+  /* Lane hue for the ACFAS tier — a peer colour to the CPME cyan, so the
+     two lanes read as different, not ranked. Amber stays the editorial
+     "caution / missing" signal it is everywhere else on this page. */
+  --lane-acfas:#a09ef0;
   --radius:24px; --radius-lg:30px; --radius-sm:14px; --bezel-pad:7px;
   --shadow:0 40px 80px -32px rgba(0,0,0,.7), 0 8px 24px -12px rgba(0,0,0,.5);
   --shadow-sm:0 18px 40px -24px rgba(0,0,0,.6);
@@ -76,7 +80,7 @@ section{padding-top:clamp(4.5rem,9vw,7.5rem)}
 .stat .lbl{font-family:var(--font-mono);font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:.55rem}
 .stat .num{font-family:var(--font-display);font-weight:500;font-size:clamp(2.4rem,4.4vw,3.4rem);line-height:1;letter-spacing:-.02em;color:var(--text)}
 .stat .num.cy{color:var(--accent)}
-.stat .num.am{color:var(--highlight)}
+.stat .num.am{color:var(--lane-acfas)}
 .stat .desc{margin-top:.55rem;font-size:.78rem;line-height:1.55;color:var(--muted-strong)}
 
 /* section head */
@@ -95,13 +99,13 @@ section{padding-top:clamp(4.5rem,9vw,7.5rem)}
 .brow .track{height:22px;display:flex;border-radius:6px;overflow:hidden;background:rgba(255,255,255,.03);box-shadow:var(--inset-hi)}
 .brow .seg{height:100%;display:flex;align-items:center;justify-content:flex-end;padding-right:.45rem;font-family:var(--font-mono);font-size:.6rem;font-weight:600}
 .seg.s1{background:linear-gradient(180deg,var(--accent-bright),var(--accent));color:var(--ink)}
-.seg.s2{background:linear-gradient(180deg,#e4b579,var(--highlight));color:var(--ink)}
+.seg.s2{background:linear-gradient(180deg,#bcbaf6,var(--lane-acfas));color:var(--ink)}
 .seg.s3{background:rgba(198,232,230,.13);color:var(--muted-strong)}
 .brow .tot{font-family:var(--font-mono);font-size:.72rem;font-weight:600;color:var(--text);text-align:right}
 .legend{display:flex;flex-wrap:wrap;gap:1.2rem;margin-top:1.2rem;padding-top:1rem;border-top:1px solid var(--line)}
 .legend span{display:inline-flex;align-items:center;gap:.45rem;font-family:var(--font-mono);font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
 .legend i{width:11px;height:11px;border-radius:3px}
-.legend .l1{background:var(--accent)} .legend .l2{background:var(--highlight)} .legend .l3{background:rgba(198,232,230,.2)}
+.legend .l1{background:var(--accent)} .legend .l2{background:var(--lane-acfas)} .legend .l3{background:rgba(198,232,230,.2)}
 .fn{margin-top:.9rem;font-size:.74rem;line-height:1.55;color:var(--muted)}
 
 /* tiers */
@@ -119,7 +123,7 @@ section{padding-top:clamp(4.5rem,9vw,7.5rem)}
 .feat{font-family:var(--font-mono);font-size:.62rem;padding:.32rem .65rem;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.02);color:var(--muted-strong)}
 .feat.ok{color:var(--accent);border-color:rgba(79,214,209,.28)}
 .feat.no{color:var(--highlight);border-color:rgba(215,162,94,.28)}
-.t1 .tier-num .big{color:var(--accent)} .t2 .tier-num .big{color:var(--highlight)} .t3 .tier-num .big{color:var(--muted-strong)}
+.t1 .tier-num .big{color:var(--accent)} .t2 .tier-num .big{color:var(--lane-acfas)} .t3 .tier-num .big{color:var(--muted-strong)}
 
 /* engines bento */
 .bento{display:grid;grid-template-columns:1fr 1fr;gap:14px}
@@ -257,13 +261,13 @@ table.cmp{width:100%;border-collapse:collapse;font-size:.85rem}
   <div class="stats">
     <div class="stat bezel rv" style="--d:.05s"><div class="bezel-core">
       <div class="lbl">CPME-Accredited</div>
-      <div class="num cy">17</div>
-      <div class="desc">programs on the live CPME list, August 2026 (19 and 33 first-year positions per the Dec 2025 annual report)</div>
+      <div class="num cy">16</div>
+      <div class="desc">programs on the live CPME list, August 2026, net of the UH ID/wound program now closing (19 and 33 first-year positions per the Dec 2025 annual report)</div>
     </div></div>
     <div class="stat bezel rv" style="--d:.1s"><div class="bezel-core">
       <div class="lbl">ACFAS Orbit</div>
       <div class="num am">69</div>
-      <div class="desc">51 Recognized + 2 Research + 12 Conditional + 4 Conditional-Probationary · self-attestation model</div>
+      <div class="desc">52 Recognized + 2 Research + 11 Conditional + 4 Conditional-Probationary · self-attestation model</div>
     </div></div>
     <div class="stat bezel rv" style="--d:.15s"><div class="bezel-core">
       <div class="lbl">Estimated Universe</div>
@@ -293,7 +297,7 @@ table.cmp{width:100%;border-collapse:collapse;font-size:.85rem}
       <div class="brow"><span class="yr">2018</span><div class="track"><div class="seg s1" style="width:11%">13</div><div class="seg s2" style="width:39%">46</div><div class="seg s3" style="width:17%">20</div></div><span class="tot">~79</span></div>
       <div class="brow"><span class="yr">2020</span><div class="track"><div class="seg s1" style="width:11%">13</div><div class="seg s2" style="width:37%">44</div><div class="seg s3" style="width:25%">~30</div></div><span class="tot">~87</span></div>
       <div class="brow"><span class="yr">2023</span><div class="track"><div class="seg s1" style="width:12%">14</div><div class="seg s2" style="width:42%">50</div><div class="seg s3" style="width:24%">~28</div></div><span class="tot">~92</span></div>
-      <div class="brow"><span class="yr">2026</span><div class="track"><div class="seg s1" style="width:14%">17</div><div class="seg s2" style="width:58%">69</div><div class="seg s3" style="width:17%">~20</div></div><span class="tot">~105</span></div>
+      <div class="brow"><span class="yr">2026</span><div class="track"><div class="seg s1" style="width:14%">16</div><div class="seg s2" style="width:58%">69</div><div class="seg s3" style="width:17%">~20</div></div><span class="tot">~105</span></div>
     </div>
     <div class="legend">
       <span><i class="l1"></i>CPME-Accredited</span>
@@ -309,11 +313,11 @@ table.cmp{width:100%;border-collapse:collapse;font-size:.85rem}
   <div class="sec-head">
     <p class="eyebrow rv">§ 02 · Architecture</p>
     <h2 class="rv" style="--d:.06s">What "fellowship-trained" <em>actually</em> means.</h2>
-    <p class="lede rv" style="--d:.12s">There are three different lanes. Make sure you know which one you're playing in.</p>
+    <p class="lede rv" style="--d:.12s">There are three different lanes. They are reviewed by different bodies, against different criteria, for different reasons — this is a map of who is watching, not a ranking of who trains better. Make sure you know which one you're playing in.</p>
   </div>
   <div class="tiers">
     <div class="tier t1 bezel rv" style="--d:.05s"><div class="bezel-core">
-      <div class="tier-num"><span class="big">17</span><span class="unit">Programs</span></div>
+      <div class="tier-num"><span class="big">16</span><span class="unit">Programs</span></div>
       <div class="tier-body">
         <h3>CPME-Accredited</h3>
         <div class="tier-tag">CPME 820/830 · renamed “accredited” July 2025</div>
@@ -488,7 +492,7 @@ table.cmp{width:100%;border-collapse:collapse;font-size:.85rem}
   <div class="cta bezel rv"><div class="bezel-core">
     <div>
       <h2>Every program. Every tier. <em>One living database.</em></h2>
-      <p class="sub">All 96 verified programs — CPME, ACFAS, and independent — searchable by tier, state, and focus. Updated as lists change.</p>
+      <p class="sub">All 97 verified programs — CPME, ACFAS, and independent — searchable by tier, state, and focus. Updated as lists change.</p>
     </div>
     <a class="button button-primary" href="fellowship-database.html">
       Browse the database
