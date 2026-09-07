@@ -38,6 +38,10 @@ a{color:var(--accent);text-decoration:none}
 .lockup .gw{font-family:var(--font-display);font-weight:600;font-size:1.4rem;letter-spacing:-.022em}
 .lockup .gw em{font-style:italic;font-weight:500;background:linear-gradient(100deg,var(--accent),var(--accent-bright) 55%,var(--highlight));-webkit-background-clip:text;background-clip:text;color:transparent}
 .lockup .parent{font-family:var(--font-mono);font-size:.58rem;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-top:.12rem}
+a.lockup{display:block;color:inherit;text-decoration:none;transition:opacity .4s var(--ease)}
+a.lockup:hover{opacity:.72}
+.copy a{color:var(--accent-deep);text-decoration:none}
+.copy a:hover{color:var(--accent)}
 .back{font-family:var(--font-mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted-strong);display:inline-flex;align-items:center;gap:.45rem;transition:color .4s var(--ease)}
 .back:hover{color:var(--accent)}
 
@@ -259,6 +263,8 @@ a{color:var(--accent);text-decoration:none}
 #podiatry-fellowship-locations .point-leader{stroke:var(--muted-strong);stroke-opacity:.5}
 #podiatry-fellowship-locations .state--zero{stroke-opacity:.34}
 #podiatry-fellowship-locations .inset-label{font-size:11px;letter-spacing:.14em;fill:var(--muted)}
+#podiatry-fellowship-locations .offshore-marker{fill:var(--muted-strong);stroke:var(--bg-soft);stroke-width:2;vector-effect:non-scaling-stroke}
+#podiatry-fellowship-locations .offshore-label{fill:var(--muted);font-family:var(--font-mono);font-size:10.5px;letter-spacing:.04em;dominant-baseline:middle}
 
 #podiatry-fellowship-locations .viz-row{display:flex;flex-wrap:wrap;gap:.5rem 1.4rem}
 #podiatry-fellowship-locations .map-legend{margin-top:1rem;font-family:var(--font-mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
@@ -295,17 +301,17 @@ a{color:var(--accent);text-decoration:none}
 <div class="page">
 
 <header class="masthead">
-  <div class="lockup">
+  <a class="lockup" href="index.html" aria-label="The GuideWire by Sole Intelligence — home">
     <div class="gw">The <em>GuideWire</em></div>
     <div class="parent">by Sole Intelligence</div>
-  </div>
+  </a>
   <a class="back" href="fellowship-dossier.html">&larr; Read the dossier</a>
 </header>
 
 <section class="head">
   <p class="eyebrow">Geographic View &middot; Podiatric Fellowships</p>
   <h1>Where the fellowships <em>actually are.</em></h1>
-  <p class="sub">Ninety-six verified programs placed by city. Marker area is the number of programs at that location; states with nothing listed are hatched in amber. Tiers are the same five used in the database, so a pin and a table row mean the same thing &mdash; and the tier colour is a <em>lane</em>, not a ranking: cyan for the CPME lane, violet for the ACFAS lane, grey for programs with no external review. Coordinates are representative city, township, borough, county, or ZIP-area centroids and are approximate &mdash; this maps where programs are, not where their operating rooms are.</p>
+  <p class="sub">Ninety-six verified US programs placed by city; the database's one Canadian program (Calgary, Alberta) sits outside this US-only projection and is flagged with a single marker above the frame, not to scale. Marker area is the number of programs at that location; states with nothing listed are hatched in amber. Tiers are the same five used in the database, so a pin and a table row mean the same thing &mdash; and the tier colour is a <em>lane</em>, not a ranking: cyan for the CPME lane, violet for the ACFAS lane, grey for programs with no external review. Coordinates are representative city, township, borough, county, or ZIP-area centroids and are approximate &mdash; this maps where programs are, not where their operating rooms are.</p>
   <div class="stamp">
     <span class="live">Last verified August 28, 2026</span>
     <span>Community corrections August 29, 2026</span>
@@ -319,6 +325,7 @@ a{color:var(--accent);text-decoration:none}
     <span class="chip"><b>23</b> states with none listed</span>
   </div>
   <nav class="cluster" aria-label="Fellowship coverage">
+    <a href="index.html">Sole Intelligence &#8599;</a>
     <a href="fellowship-dossier.html">The dossier</a>
     <a href="fellowship-database.html">The database</a>
     <a href="fellowship-map.html" aria-current="page">The map</a>
@@ -329,7 +336,7 @@ a{color:var(--accent);text-decoration:none}
 
 <div id="podiatry-fellowship-locations" class="fellowship-locations">
   <div class="map-canvas">
-    <svg class="fellowship-map" viewBox="0 0 960 590" role="img" aria-labelledby="fellowship-map-title fellowship-map-desc">
+    <svg class="fellowship-map" viewBox="0 -24 960 614" role="img" aria-labelledby="fellowship-map-title fellowship-map-desc">
       <title id="fellowship-map-title">Podiatry fellowship locations listed in the supplied dataset</title>
       <desc id="fellowship-map-desc">A United States map with approximate city-centroid markers for 96 location-assigned source entries across 81 locations. Marker area represents the number of entries at a location. States with no entry in the supplied list are shown with an amber hatch. Puerto Rico appears in an inset.</desc>
       <defs>
@@ -342,6 +349,10 @@ a{color:var(--accent);text-decoration:none}
       <g class="inset-layer"></g>
       <g class="point-leaders"></g>
       <g class="points-layer"></g>
+      <g class="offshore" aria-label="Program accredited outside the US system, shown outside the map frame">
+        <circle class="offshore-marker" cx="196" cy="-7" r="5"></circle>
+        <text class="offshore-label" x="210" y="-7">Calgary, AB &middot; Rose Zivot Fellowship (CCPME) &mdash; outside the US frame, not to scale</text>
+      </g>
     </svg>
     <div class="tooltip" role="status" aria-hidden="true"></div>
   </div>
@@ -373,9 +384,9 @@ a{color:var(--accent);text-decoration:none}
   </div>
   <div>
     <h5>About this data</h5>
-    Ninety-six of the ninety-seven programs in the database carry a location; the one multi-site network entry has no single pin. Geometry is us-atlas states via d3-geo. Corrections welcome: peter@soleintell.com.
+    Ninety-six of the database's programs carry a plottable US location; the one multi-site network entry has no single pin, and one CCPME-accredited program in Calgary, Alberta sits outside this US-only projection &mdash; it is flagged with a lone marker above the map frame, not to scale. Geometry is us-atlas states via d3-geo. Corrections welcome: peter@soleintell.com.
   </div>
-  <div class="copy">&copy; 2026 Peter Sorensen, DPM &middot; The GuideWire &middot; soleintell.com &middot; Verify against live CPME &amp; ACFAS listings before acting</div>
+  <div class="copy">&copy; 2026 Peter Sorensen, DPM &middot; The GuideWire &middot; <a href="index.html">soleintell.com</a> &middot; Verify against live CPME &amp; ACFAS listings before acting</div>
 </footer>
 
 </div>
@@ -397,6 +408,8 @@ a{color:var(--accent);text-decoration:none}
     const namespace = "http://www.w3.org/2000/svg";
     const width = 960;
     const height = 590;
+    const viewMinY = -24;
+    const viewHeight = height - viewMinY;
 
     const stateMeta = {
       "01": ["Alabama", "AL"], "02": ["Alaska", "AK"], "04": ["Arizona", "AZ"], "05": ["Arkansas", "AR"],
@@ -449,7 +462,7 @@ a{color:var(--accent);text-decoration:none}
       const svgRect = svg.getBoundingClientRect();
       const canvasRect = canvas.getBoundingClientRect();
       const rawX = svgRect.left - canvasRect.left + (x / width) * svgRect.width;
-      const rawY = svgRect.top - canvasRect.top + (y / height) * svgRect.height;
+      const rawY = svgRect.top - canvasRect.top + ((y - viewMinY) / viewHeight) * svgRect.height;
       tooltip.style.left = `${rawX}px`;
       tooltip.style.top = `${rawY}px`;
 

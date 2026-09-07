@@ -38,6 +38,10 @@ a{color:var(--accent);text-decoration:none}
 .lockup .gw{font-family:var(--font-display);font-weight:600;font-size:1.4rem;letter-spacing:-.022em}
 .lockup .gw em{font-style:italic;font-weight:500;background:linear-gradient(100deg,var(--accent),var(--accent-bright) 55%,var(--highlight));-webkit-background-clip:text;background-clip:text;color:transparent}
 .lockup .parent{font-family:var(--font-mono);font-size:.58rem;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-top:.12rem}
+a.lockup{display:block;color:inherit;text-decoration:none;transition:opacity .4s var(--ease)}
+a.lockup:hover{opacity:.72}
+.copy a{color:var(--accent-deep);text-decoration:none}
+.copy a:hover{color:var(--accent)}
 .back{font-family:var(--font-mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted-strong);display:inline-flex;align-items:center;gap:.45rem;transition:color .4s var(--ease)}
 .back:hover{color:var(--accent)}
 
@@ -95,6 +99,7 @@ td.dir{font-size:.8rem}
 .tb-res{background:rgba(160,158,240,.09);color:#b6b1f5}
 .tb-cond{background:rgba(160,158,240,.06);color:var(--lane-acfas-dk);box-shadow:inset 0 0 0 1px rgba(160,158,240,.3)}
 .tb-ind{background:rgba(255,255,255,.05);color:var(--muted-strong);box-shadow:inset 0 0 0 1px rgba(255,255,255,.07)}
+.tb-other{background:rgba(198,232,230,.05);color:var(--muted-strong);box-shadow:inset 0 0 0 1px var(--line-strong)}
 .statb{display:inline-block;font-family:var(--font-mono);font-size:.55rem;letter-spacing:.08em;text-transform:uppercase;font-weight:600;padding:.18rem .5rem;border-radius:999px;background:rgba(224,110,110,.12);color:#e39a9a;white-space:nowrap}
 .statb.prov{background:rgba(215,162,94,.12);color:var(--highlight)}
 .statb.seek{background:rgba(160,158,240,.1);color:#b0ade9;box-shadow:inset 0 0 0 1px rgba(160,158,240,.26)}
@@ -114,17 +119,17 @@ td.dir{font-size:.8rem}
 <div class="page">
 
 <header class="masthead">
-  <div class="lockup">
+  <a class="lockup" href="index.html" aria-label="The GuideWire by Sole Intelligence — home">
     <div class="gw">The <em>GuideWire</em></div>
     <div class="parent">by Sole Intelligence</div>
-  </div>
+  </a>
   <a class="back" href="fellowship-dossier.html">← Read the dossier</a>
 </header>
 
 <section class="head">
   <p class="eyebrow">Living Database · Podiatric Fellowships</p>
   <h1>The complete fellowship universe, <em>tier by tier.</em></h1>
-  <p class="sub">Every podiatric fellowship we can verify — CPME-accredited, ACFAS-Recognized, ACFAS-Conditional, research, and known independent programs. Tier tells you <em>which lane a program runs in</em> — who reviews it, and whether anyone does — not which program is better. The colours are lane labels, not a ranking. Always confirm against the live CPME and ACFAS listings before applying: counts move.</p>
+  <p class="sub">Every podiatric fellowship we can verify — CPME-accredited, ACFAS-Recognized, ACFAS-Conditional, research, known independent programs, and a small "Other" lane for programs accredited outside the US system. Tier tells you <em>which lane a program runs in</em> — who reviews it, and whether anyone does — not which program is better. The colours are lane labels, not a ranking. Always confirm against the live CPME and ACFAS listings before applying: counts move.</p>
   <div class="stamp">
     <span class="live">Last verified August 28, 2026</span>
     <span>Community corrections August 29, 2026</span>
@@ -133,6 +138,7 @@ td.dir{font-size:.8rem}
   </div>
   <div class="chips" id="chips"></div>
   <nav class="cluster" aria-label="Fellowship coverage">
+    <a href="index.html">Sole Intelligence &#8599;</a>
     <a href="fellowship-dossier.html">The dossier</a>
     <a href="fellowship-database.html" aria-current="page">The database</a>
     <a href="fellowship-map.html">The map</a>
@@ -150,6 +156,7 @@ td.dir{font-size:.8rem}
       <button class="fpill" data-tier="ACFAS-RES">Research</button>
       <button class="fpill" data-tier="ACFAS-C">Conditional</button>
       <button class="fpill" data-tier="IND">Independent</button>
+      <button class="fpill" data-tier="OTHER">Other</button>
     </div>
     <select id="state" aria-label="Filter by state"><option value="ALL">All states</option></select>
   </div>
@@ -168,13 +175,13 @@ td.dir{font-size:.8rem}
   <div>
     <h5>How to read the tiers</h5>
     <b>These are lanes, not rungs.</b> The colour tells you who reviews a program and by what mechanism — cyan for the CPME lane, violet for the ACFAS lane, grey for neither. It is not a quality score, and it does not say which lane produces the better surgeon. Amber on this page means a status flag (provisional, probationary, pursuing), never a tier.<br><br>
-    <b>CPME</b> — the only tier with delegated accreditation authority: site visits, annual reporting, non-competes banned. Structural, not educational — CPME 820 sets no case minimums and no curriculum. <b>ACFAS Recognized</b> — College endorsement reviewed against ACFAS's own criteria via self-attestation; no site visits. <b>Conditional</b> — inside the ACFAS lane, but has not yet completed a fellowship year under Recognition. <b>Research</b> — the non-surgical, research-focused Recognition track. <b>Independent</b> — no external review at all; verify case-logging rights for the ABFAS portfolio before valuing the credential. Excellent and nominal programs exist in every one of these.
+    <b>CPME</b> — the only tier with delegated accreditation authority: site visits, annual reporting, non-competes banned. Structural, not educational — CPME 820 sets no case minimums and no curriculum. <b>ACFAS Recognized</b> — College endorsement reviewed against ACFAS's own criteria via self-attestation; no site visits. <b>Conditional</b> — inside the ACFAS lane, but has not yet completed a fellowship year under Recognition. <b>Research</b> — the non-surgical, research-focused Recognition track. <b>Independent</b> — no external review at all; verify case-logging rights for the ABFAS portfolio before valuing the credential. <b>Other</b> — accredited, but by a body outside the US system (e.g. the Canadian CCPME); a real credential in its own jurisdiction, listed here for completeness. Excellent and nominal programs exist in every one of these.
   </div>
   <div>
     <h5>Maintaining this page</h5>
     Program data lives in one array in this file's source — append a row, and the counts, filters, and table update automatically. Rows sourced from a program directly rather than from the CPME or ACFAS lists say so in the note. Corrections welcome: peter@soleintell.com.
   </div>
-  <div class="copy">© 2026 Peter Sorensen, DPM · The GuideWire · soleintell.com · Verify against live CPME &amp; ACFAS listings before acting</div>
+  <div class="copy">© 2026 Peter Sorensen, DPM · The GuideWire · <a href="index.html">soleintell.com</a> · Verify against live CPME &amp; ACFAS listings before acting</div>
 </footer>
 
 </div>
@@ -199,7 +206,7 @@ const PROGRAMS = [
   {name:"St. John's Episcopal Hospital", tier:"CPME", city:"Far Rockaway", state:"NY", dir:"Joseph Tarantino, DPM", status:"", note:"Wound care and tissue healing · 4 positions"},
   {name:"VA Western New York Healthcare System", tier:"CPME", city:"Buffalo", state:"NY", dir:"Andrew G. Puckett, DPM", status:"", note:"Comprehensive limb salvage fellowship · 1 position"},
   {name:"Wyckoff Heights Medical Center", tier:"CPME", city:"Brooklyn", state:"NY", dir:"Ronald M. Guberman, DPM", status:"Provisional (2022)", note:"Wound care · 5 positions"},
-  {name:"University Hospitals Community Consortium – Advanced Foot & Ankle", tier:"CPME", city:"Chardon", state:"OH", dir:"Jacqueline Donovan, DPM", status:"", note:"Advanced F&A reconstructive surgery · Donovan took over from Jennifer Rossi · also ACFAS-Recognized (cross-listed below) · 2 positions"},
+  {name:"University Hospitals Community Consortium – Advanced Foot & Ankle", tier:"CPME", city:"Chardon", state:"OH", dir:"Jacqueline Donovan, DPM", status:"", note:"Advanced F&A reconstructive surgery · Donovan took over from Jennifer Rossi · also ACFAS-Recognized (cross-listed below) · 1 position"},
   {name:"St. Luke's Hospital – Allentown Campus", tier:"CPME", city:"Allentown", state:"PA", dir:"Steven Hawley, DPM", status:"", note:"Limb preservation fellowship · 1 position"},
   {name:"The University of Texas at San Antonio", tier:"CPME", city:"San Antonio", state:"TX", dir:"Collin E. Pehde, DPM", status:"", note:"Amputation prevention & research · oldest program in the US · 2 positions"},
   {name:"VA Puget Sound Health Care System", tier:"CPME", city:"Seattle", state:"WA", dir:"Jason Huss, DPM", status:"Provisional (2024)", note:"Amputation prevention and advanced wound care · 1 position"},
@@ -281,7 +288,7 @@ const PROGRAMS = [
 
   // ── Tier 3 · Independent / Society-credentialed (12 · partial — no registry exists) ──
   {name:"AENS Peripheral Nerve Surgery Fellowship", tier:"IND", city:"Atlanta", state:"GA", dir:"Stephen L. Barrett, DPM", status:"", note:"2-year · AENS society-credentialed · peripheral nerve"},
-  {name:"UT Southwestern Plastic Surgery — DPM Fellowship Positions", tier:"IND", city:"Dallas", state:"TX", dir:"Lawrence Lavery, DPM", status:"", note:"University-affiliated · not CPME · separate from the ACFAS-Conditional UT Southwestern F&A program"},
+  {name:"UT Southwestern Plastic Surgery — DPM Fellowship Positions", tier:"IND", city:"Dallas", state:"TX", dir:"Peter Andrew Crisologo, DPM", status:"CPME accreditation pending", note:"University-affiliated · ALPS-Recognized (American Limb Preservation Society) · CPME accreditation pending, so not yet on the CPME list · separate from the ACFAS-Conditional UT Southwestern F&A program"},
   {name:"Balance Health Surgical Fellowship Network", tier:"IND", city:"Multiple sites", state:"—", dir:"Various", status:"", note:"Markets a \"comprehensive first year in practice\""},
   {name:"Weil Foot & Ankle Institute (legacy program)", tier:"IND", city:"Des Plaines", state:"IL", dir:"Lowell Weil Jr., DPM", status:"", note:"Legacy independent · related Recognized program listed above"},
   {name:"Methodist Healthcare Reconstructive Foot & Ankle Surgery Fellowship", tier:"IND", city:"San Antonio", state:"TX", dir:"Thomas Zgonis, DPM", status:"", note:"1-year · Methodist Diabetic Foot & Ankle Institute · Charcot reconstruction, diabetic-foot plastic surgery & deformity correction · moved from UT Health San Antonio"},
@@ -292,6 +299,9 @@ const PROGRAMS = [
   {name:"Revisional Reconstructive Surgical Fellowship at Ohio Foot and Ankle Center", tier:"IND", city:"Canton", state:"OH", dir:"Aaron Chokan, DPM", status:"", note:"Off the ACFAS list as of Aug 2026 (was Conditional) · current status unverified"},
   {name:"Albuquerque Associated Podiatrists Lower Extremity Salvage (AAPLES) Fellowship", tier:"IND", city:"Albuquerque", state:"NM", dir:"Haywan Chiu, DPM", status:"Pursuing ACFAS recognition (2027)", note:"Lower extremity salvage · independent by design; ACFAS recognition in progress for 2027 · program-reported Aug 2026, not yet on the CPME or ACFAS lists"},
   {name:"Carilion Clinic Combined Foot and Ankle Research and Surgical Fellowship", tier:"IND", city:"Roanoke", state:"VA", dir:"Blayne Patton, DPM", status:"", note:"Combined surgical training, independent clinical practice & research · Carilion Roanoke Memorial Hospital, Institute for Orthopaedics and Neurosciences · requires ABFAS Board Qualification by the start date · program-reported, not on the CPME or ACFAS lists — lane unverified"},
+
+  // ── Tier 4 · Other / accredited outside the US system (1) ──
+  {name:"Rose Zivot Podiatric Surgery Limb Salvage and Foot Reconstruction Fellowship", tier:"OTHER", city:"Calgary", state:"AB", dir:"Steven L. Smith, DPM", status:"", note:"Calgary, Alberta, Canada · accredited by the CCPME (Canadian Council on Podiatric Medical Education), not the US CPME or ACFAS · limb salvage & foot reconstruction · listed at the program director's request"},
 ];
 
 const TIER_META = {
@@ -300,8 +310,9 @@ const TIER_META = {
   "ACFAS-RES": {label:"ACFAS Research", cls:"tb-res"},
   "ACFAS-C":   {label:"ACFAS Conditional", cls:"tb-cond"},
   "IND":       {label:"Independent", cls:"tb-ind"},
+  "OTHER":     {label:"Other", cls:"tb-other"},
 };
-const TIER_ORDER = ["CPME","ACFAS-R","ACFAS-RES","ACFAS-C","IND"];
+const TIER_ORDER = ["CPME","ACFAS-R","ACFAS-RES","ACFAS-C","IND","OTHER"];
 
 const rowsEl = document.getElementById('rows');
 const emptyEl = document.getElementById('empty');

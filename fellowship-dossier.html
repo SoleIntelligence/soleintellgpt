@@ -47,6 +47,10 @@ section{padding-top:clamp(4.5rem,9vw,7.5rem)}
 .lockup .gw{font-family:var(--font-display);font-weight:600;font-size:1.5rem;letter-spacing:-.022em}
 .lockup .gw em{font-style:italic;font-weight:500;background:linear-gradient(100deg,var(--accent),var(--accent-bright) 55%,var(--highlight));-webkit-background-clip:text;background-clip:text;color:transparent}
 .lockup .parent{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-top:.15rem}
+a.lockup{display:block;color:inherit;text-decoration:none;transition:opacity .4s var(--ease)}
+a.lockup:hover{opacity:.72}
+.copy a{color:var(--accent-deep);text-decoration:none}
+.copy a:hover{color:var(--accent)}
 .mast-meta{display:flex;align-items:center;gap:.6rem;font-family:var(--font-mono);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-strong)}
 .mast-meta .live{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent-bright);animation:pulse 2.4s var(--ease) infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
@@ -235,10 +239,10 @@ table.cmp{width:100%;border-collapse:collapse;font-size:.85rem}
 <div class="page">
 
 <header class="masthead">
-  <div class="lockup">
+  <a class="lockup" href="index.html" aria-label="The GuideWire by Sole Intelligence — home">
     <div class="gw">The <em>GuideWire</em></div>
     <div class="parent">by Sole Intelligence</div>
-  </div>
+  </a>
   <div class="mast-meta"><span class="live"></span><span>Intelligence Brief · Fellowships · 08.2026</span></div>
 </header>
 
@@ -253,6 +257,7 @@ table.cmp{width:100%;border-collapse:collapse;font-size:.85rem}
     <span>12-min read</span>
   </div>
   <nav class="cluster rv" style="--d:.24s" aria-label="Fellowship coverage">
+    <a href="index.html">Sole Intelligence &#8599;</a>
     <a href="fellowship-dossier.html" aria-current="page">The dossier</a>
     <a href="fellowship-database.html">The database</a>
     <a href="fellowship-map.html">The map</a>
@@ -492,7 +497,7 @@ table.cmp{width:100%;border-collapse:collapse;font-size:.85rem}
   <div class="cta bezel rv"><div class="bezel-core">
     <div>
       <h2>Every program. Every tier. <em>One living database.</em></h2>
-      <p class="sub">All 97 verified programs — CPME, ACFAS, and independent — searchable by tier, state, and focus. Updated as lists change.</p>
+      <p class="sub">All 98 verified programs — CPME, ACFAS, independent, and one CCPME-accredited Canadian program — searchable by tier, state, and focus. Updated as lists change.</p>
     </div>
     <a class="button button-primary" href="fellowship-database.html">
       Browse the database
@@ -509,9 +514,9 @@ table.cmp{width:100%;border-collapse:collapse;font-size:.85rem}
   </div>
   <div>
     <h5>Caveats</h5>
-    Fellowship counts are moving targets; ACFAS lists roll on and off annually. Historical tier counts (2012–2023) are estimates. The independent-tier count is the weakest number in this brief. Verify every program against current CPME and ACFAS listings before applying.
+    Fellowship counts are moving targets; ACFAS lists roll on and off annually. Historical tier counts (2012–2023) are estimates. The independent-tier count is the weakest number in this brief. Every count and chart here is US-only; the database also carries one Canadian program accredited by the CCPME, filed under a separate "Other" lane. Verify every program against current CPME and ACFAS listings before applying.
   </div>
-  <div class="copy">© 2026 Peter Sorensen, DPM · The GuideWire · soleintell.com · No fellowship director or sponsor reviewed this brief · AI-assisted research; editorial judgment is the author's own</div>
+  <div class="copy">© 2026 Peter Sorensen, DPM · The GuideWire · <a href="index.html">soleintell.com</a> · No fellowship director or sponsor reviewed this brief · AI-assisted research; editorial judgment is the author's own</div>
 </footer>
 
 </div>
