@@ -462,5 +462,16 @@ window.INFOGRAPHICS = [
     url: "fellowship-map.html",
     date: "2026-08-25",
     thumbnail: "Sole Intelligence Images/fellowship-map.png"
+  },
+
+  // ---- Student & Resident Education ----
+  {
+    title: "The Chief Summit",
+    description: "Chief year feels like mastery. Plotted against the Dunning-Kruger curve it is a false peak — and the training system pulls the guardrails exactly when confidence crests.",
+    kicker: "Culture",
+    category: "student-resident",
+    url: "Dunning_krueger.html",
+    date: "2026-09-09",
+    thumbnail: "Sole Intelligence Images/Dunning_krueger.png"
   }
 ]

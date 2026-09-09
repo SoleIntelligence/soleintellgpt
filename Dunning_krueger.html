@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Chief Summit — The Guidewire</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F6F1E4;
+    --ink:#1C1914;
+    --red:#B8341A;
+    --muted:#6E675A;
+    --tint:rgba(184,52,26,0.06);
+    --measure:760px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:"Fraunces",serif;
+    font-optical-sizing:auto;
+    line-height:1.65;
+    font-size:18px;
+  }
+  .page{max-width:var(--measure);margin:0 auto;padding:0 22px 64px;}
+
+  /* ---------- masthead ---------- */
+  .bar{height:8px;background:var(--ink);margin-top:26px;}
+  .masthead{
+    display:flex;justify-content:space-between;align-items:baseline;gap:12px;
+    font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.14em;
+    text-transform:uppercase;padding:10px 0;border-bottom:1.5px solid var(--ink);
+  }
+  .masthead .pub{font-weight:700;}
+  .masthead .sec{color:var(--red);font-weight:700;}
+  .masthead .site{color:var(--muted);}
+
+  /* ---------- header ---------- */
+  .kicker{
+    font-family:"JetBrains Mono",monospace;font-size:12.5px;font-weight:700;
+    letter-spacing:.18em;text-transform:uppercase;color:var(--red);
+    margin:44px 0 18px;
+  }
+  h1{
+    font-size:clamp(2.7rem,8vw,4.7rem);
+    font-weight:900;font-optical-sizing:auto;
+    line-height:.99;letter-spacing:-.022em;
+    max-width:14ch;
+  }
+  .standfirst{
+    margin-top:26px;font-size:clamp(1.12rem,2.6vw,1.3rem);
+    font-weight:340;line-height:1.55;color:var(--ink);max-width:56ch;
+  }
+
+  /* ---------- op-note frame ---------- */
+  .opnote{
+    margin:40px 0 0;border-top:3px solid var(--ink);border-bottom:1.5px solid var(--ink);
+    font-family:"JetBrains Mono",monospace;
+  }
+  .opnote .row{
+    display:flex;flex-wrap:wrap;gap:6px 24px;align-items:baseline;
+    padding:13px 0;
+  }
+  .opnote .row + .row{border-top:1px solid rgba(28,25,20,.25);}
+  .opnote .lbl{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);min-width:250px;}
+  .opnote .val{font-size:14px;font-weight:700;}
+  .opnote .val em{color:var(--red);font-style:normal;}
+
+  /* ---------- sections ---------- */
+  .section{margin-top:64px;}
+  .eyebrow{
+    display:flex;align-items:center;gap:14px;margin-bottom:22px;
+    font-family:"JetBrains Mono",monospace;font-size:12px;font-weight:700;
+    letter-spacing:.18em;text-transform:uppercase;
+  }
+  .eyebrow::after{content:"";flex:1;height:1.5px;background:var(--ink);}
+  .eyebrow .tick{color:var(--red);}
+  .section p{margin-bottom:1.15em;max-width:62ch;}
+  .section p:last-child{margin-bottom:0;}
+  .lead-in{font-weight:600;}
+
+  /* ---------- figure ---------- */
+  .fig{margin:56px -22px 0;padding:0 22px;}
+  .fig-frame{border:2px solid var(--ink);background:var(--cream);padding:8px;}
+  .fig svg{display:block;width:100%;height:auto;}
+  .fig-caption{
+    margin-top:12px;font-family:"JetBrains Mono",monospace;font-size:11.5px;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--muted);line-height:1.7;
+  }
+  .fig-caption b{color:var(--ink);}
+
+  svg text{font-family:"JetBrains Mono",monospace;}
+  .ax{fill:var(--muted);font-size:15px;letter-spacing:.16em;}
+  .ann{fill:var(--ink);font-size:16.5px;letter-spacing:.03em;}
+  .ann-sub{fill:var(--muted);font-size:15px;letter-spacing:.02em;}
+  .ann-red{fill:var(--red);font-size:18px;font-weight:700;letter-spacing:.08em;}
+
+  /* ---------- stats ---------- */
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:44px;}
+  .stat{border-top:5px solid var(--ink);padding-top:14px;}
+  .stat .big{
+    font-family:"Fraunces",serif;font-weight:900;font-optical-sizing:auto;
+    font-size:clamp(2rem,4.6vw,2.7rem);line-height:1;letter-spacing:-.01em;
+  }
+  .stat .big em{font-style:normal;color:var(--red);}
+  .stat .cap{
+    margin-top:12px;font-family:"JetBrains Mono",monospace;font-size:12px;
+    line-height:1.75;color:var(--ink);
+  }
+  .stat .src{display:block;margin-top:8px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;font-size:10.5px;}
+
+  /* ---------- pull quote ---------- */
+  .pull{
+    margin:52px 0;padding:6px 0 6px 26px;border-left:6px solid var(--red);
+    font-size:clamp(1.35rem,3.4vw,1.8rem);font-weight:330;font-style:italic;
+    line-height:1.35;max-width:26ch;letter-spacing:-.005em;
+  }
+  .pull b{font-weight:800;font-style:normal;}
+
+  /* ---------- plan ---------- */
+  .plan{list-style:none;counter-reset:rx;margin-top:6px;}
+  .plan li{
+    counter-increment:rx;position:relative;padding:20px 0 20px 62px;
+    border-top:1px solid rgba(28,25,20,.25);max-width:62ch;
+  }
+  .plan li:last-child{border-bottom:1px solid rgba(28,25,20,.25);}
+  .plan li::before{
+    content:counter(rx,decimal-leading-zero);
+    position:absolute;left:0;top:22px;
+    font-family:"JetBrains Mono",monospace;font-size:15px;font-weight:700;color:var(--red);
+  }
+  .plan b{font-weight:750;}
+
+  /* ---------- closing ---------- */
+  .closing{margin-top:76px;border-top:8px solid var(--ink);padding-top:40px;}
+  .flame{
+    font-size:clamp(2.1rem,6.4vw,3.4rem);font-weight:900;font-optical-sizing:auto;
+    line-height:1.06;letter-spacing:-.02em;max-width:18ch;
+  }
+  .flame em{font-style:normal;color:var(--red);}
+  .closing p{margin-top:26px;max-width:60ch;}
+  .descend{
+    margin-top:34px;font-family:"JetBrains Mono",monospace;font-size:14px;font-weight:700;
+    letter-spacing:.2em;text-transform:uppercase;color:var(--red);
+  }
+
+  /* ---------- footer ---------- */
+  footer{margin-top:64px;}
+  .foot-rule{height:3px;background:var(--ink);}
+  .foot-row{
+    display:flex;justify-content:space-between;gap:12px;padding:12px 0 4px;
+    font-family:"JetBrains Mono",monospace;font-size:11.5px;font-weight:700;
+    letter-spacing:.16em;text-transform:uppercase;
+  }
+  .fineprint{
+    font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.1em;
+    color:var(--muted);text-transform:uppercase;padding-top:2px;
+  }
+
+  @media (max-width:640px){
+    body{font-size:17px;}
+    .stats{grid-template-columns:1fr;gap:30px;}
+    .opnote .lbl{min-width:100%;}
+    .plan li{padding-left:50px;}
+  }
+</style>
+</head>
+<body>
+<main class="page">
+
+  <div class="bar"></div>
+  <header class="masthead">
+    <span class="pub">The Guidewire</span>
+    <span class="sec">Editorial</span>
+    <span class="site">soleintell.com</span>
+  </header>
+
+  <p class="kicker">The Dunning–Kruger Effect, PGY-3 Edition</p>
+  <h1>Nobody is as falsely confident as a senior resident.</h1>
+  <p class="standfirst">Not the attending. Not the fellow. Certainly not the intern. Seniors, stay humble. False confidence leads to a rude awakening next year. Shoutout to Dr. Brady Mallory, DPM, who taught me about the Dunning-Kruger effect when I rotated with him.</p>
+
+  <div class="opnote">
+    <div class="row"><span class="lbl">Preoperative diagnosis</span><span class="val">Chief-year confidence.</span></div>
+    <div class="row"><span class="lbl">Postoperative diagnosis</span><span class="val">Same. <em>With humble insight.</em></span></div>
+  </div>
+
+  <section class="section">
+    <div class="eyebrow"><span class="tick">■</span> Indications</div>
+    <p>Chief year feels like fluency. The techs don't need to look over my shoulder. The attending often breaks leaves me to close. I quote the classification, the screw length, the angle of correction from memory. The intern watches me the way I used to watch my chiefs. Some quiet part of my brain files that look away as evidence.</p>
+    <p>Here's the uncomfortable part: <span class="lead-in">fluency is not true mastery.</span> Knowing every step of the case is not the same as knowing where the case goes wrong. In 1999, two psychologists put a name to the gap between how good we are and how good we think we are. The people who performed worst rated themselves highest — not out of arrogance, but because the skills they lacked were the very skills required to notice the lack.</p>
+    <p>Plot confidence against experience, and residency looks like this:</p>
+  </section>
+
+  <figure class="fig">
+    <div class="fig-frame">
+      <svg viewBox="0 0 1000 600" role="img" aria-label="Chart of confidence over a training career: a steep rise to a false peak at chief year, a deep valley in the first year of practice, then a long slow climb to mastery that never returns to the peak's height.">
+        <!-- gridlines -->
+        <line x1="80" y1="110" x2="960" y2="110" stroke="#1C1914" stroke-opacity=".14" stroke-width="1" stroke-dasharray="2 7"/>
+        <line x1="80" y1="300" x2="960" y2="300" stroke="#1C1914" stroke-opacity=".1" stroke-width="1" stroke-dasharray="2 7"/>
+        <line x1="80" y1="440" x2="960" y2="440" stroke="#1C1914" stroke-opacity=".1" stroke-width="1" stroke-dasharray="2 7"/>
+        <!-- axes -->
+        <line x1="80" y1="60" x2="80" y2="520" stroke="#1C1914" stroke-width="3"/>
+        <line x1="80" y1="520" x2="960" y2="520" stroke="#1C1914" stroke-width="3"/>
+        <!-- ticks -->
+        <g stroke="#1C1914" stroke-width="2">
+          <line x1="80" y1="110" x2="70" y2="110"/><line x1="80" y1="215" x2="70" y2="215"/>
+          <line x1="80" y1="320" x2="70" y2="320"/><line x1="80" y1="425" x2="70" y2="425"/>
+          <line x1="190" y1="520" x2="190" y2="530"/><line x1="300" y1="520" x2="300" y2="530"/>
+          <line x1="410" y1="520" x2="410" y2="530"/><line x1="520" y1="520" x2="520" y2="530"/>
+          <line x1="630" y1="520" x2="630" y2="530"/><line x1="740" y1="520" x2="740" y2="530"/>
+          <line x1="850" y1="520" x2="850" y2="530"/>
+        </g>
+        <!-- axis labels -->
+        <text class="ax" x="520" y="566" text-anchor="middle">EXPERIENCE →</text>
+        <text class="ax" x="46" y="300" text-anchor="middle" transform="rotate(-90 46 300)">CONFIDENCE →</text>
+
+        <!-- the curve -->
+        <path d="M 100 502 C 190 486, 260 150, 340 122 C 420 96, 470 300, 560 398 C 640 400, 700 300, 780 258 C 850 222, 900 214, 940 212"
+              fill="none" stroke="#1C1914" stroke-width="4.5" stroke-linecap="round"/>
+
+        <!-- summit marker -->
+        <line x1="354" y1="120" x2="354" y2="520" stroke="#B8341A" stroke-width="1.5" stroke-dasharray="3 6"/>
+        <circle cx="354" cy="120" r="8" fill="#B8341A"/>
+        <text class="ann-red" x="354" y="76" text-anchor="middle">THE CHIEF SUMMIT</text>
+        <text class="ann-sub" x="354" y="100" text-anchor="middle">you are here. it is a false peak.</text>
+
+        <!-- start annotation -->
+        <text class="ann" x="118" y="432">PGY-1, DAY ONE</text>
+        <text class="ann-sub" x="118" y="456">appropriately terrified</text>
+        <line x1="112" y1="466" x2="103" y2="494" stroke="#6E675A" stroke-width="1.5"/>
+
+        <!-- valley annotation -->
+        <text class="ann" x="560" y="450" text-anchor="middle">YEAR ONE OUT</text>
+        <text class="ann-sub" x="560" y="474" text-anchor="middle">the 3 a.m. valley. no one to call.</text>
+
+        <!-- plateau annotation -->
+        <text class="ann" x="948" y="160" text-anchor="end">MASTERY</text>
+        <text class="ann-sub" x="948" y="184" text-anchor="end">never as sure as the summit. on purpose.</text>
+      </svg>
+    </div>
+    <figcaption class="fig-caption"><b>Fig. 1</b> — Confidence over a training career. The first peak is false.</figcaption>
+  </figure>
+
+  <section class="section">
+    <div class="eyebrow"><span class="tick">■</span> Findings</div>
+    <div class="stats">
+      <div class="stat">
+        <div class="big">12<em>→</em>62</div>
+        <p class="cap">In the original studies, the lowest-quartile performers scored near the 12th percentile — and estimated themselves near the 62nd.
+        <span class="src">Kruger &amp; Dunning, J Pers Soc Psychol, 1999</span></p>
+      </div>
+      <div class="stat">
+        <div class="big">13<em>/</em>20</div>
+        <p class="cap">Comparisons of physician self-assessment against observed performance showing little, no, or an inverse relationship. The least skilled were the least accurate.
+        <span class="src">Davis et al., JAMA, 2006</span></p>
+      </div>
+      <div class="stat">
+        <div class="big">The dual burden</div>
+        <p class="cap">The same gaps that produce your errors conceal them. You need the missing skill to see the missing skill.
+        <span class="src">The mechanism, in one line</span></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="eyebrow"><span class="tick">■</span> Procedure in detail</div>
+    <p>Why does the summit sit at chief year? Because I finally have enough repetitions to feel fluent — and nowhere near enough to have met the rare disaster. My case log is deep in cases that went fine.</p>
+    <p>The attending's edge was never the thousand cases that went well. It's the thirty that didn't — the iatrogenic tibial shaft fracture, the simple mass excision that ended up not having enough tissue to close primarily, the fixation that looked perfect on the table but was an airball at the first post-op visit. Those cases build the one thing the summit lacks: an accurate map of what can go wrong. So far, I've mostly watched the experience that comes from veteran attending's scars.</p>
+
+    <div class="pull">My case log is deep in the cases that went fine. <b>The attending's edge is the thirty that didn't.</b></div>
+
+    <p>The training system removes the guardrails exactly at the peak. Supervision tapers as confidence crests. Autonomy arrives right on schedule; calibration does not.</p>
+    <p><span class="lead-in">Senioritis is mistaking the false peak for the top of the mountain.</span> You stop reading. You coast the last year on accumulated fluency, and you graduate at maximum confidence and maximum blind spot — simultaneously. The valley on the far side does not care how the summit felt.</p>
+  </section>
+
+  <section class="section">
+    <div class="eyebrow"><span class="tick">■</span> Plan</div>
+    <ol class="plan">
+      <li><b>Board-run every case like it's your first.</b> The day you stop rehearsing is the day the case starts rehearsing you.</li>
+      <li><b>Keep a complications log</b> — and read it more often than your CV.</li>
+      <li><b>Say "I don't know" out loud.</b> On rounds. In front of the students. It isn't a confession; it's a demonstration.</li>
+      <li><b>Ask your attendings why, not just what.</b> The steps are in the textbook. The judgment is the inheritance.</li>
+      <li><b>Teach the interns.</b> Nothing exposes borrowed fluency faster than trying to hand it to someone else.</li>
+      <li><b>Read one thing a week that disagrees with how you were trained.</b> Curiosity that's never contradicted isn't curiosity — it's indoctrination.</li>
+    </ol>
+  </section>
+
+  <section class="closing">
+    <p class="flame">Senior year confidence is the flame. Humiilty and self-reflection are the wind. <em>Stay humble, check your confidence level, and don't fall unwittingly off that cliff.</em></p>
+    <p>The summit is false and the valley is coming — for all of us, as it should. The surgeons I want to become walked into practice still asking questions like interns, just with better hands. So stay humble on purpose. Stay hungry on purpose. The learning doesn't end at the summit; the summit is where it finally starts.</p>
+    <p class="descend">Descend on purpose.</p>
+  </section>
+
+  <footer>
+    <div class="foot-rule"></div>
+    <div class="foot-row">
+      <span>Peter Sorensen, DPM</span>
+      <span>The Guidewire</span>
+    </div>
+    <p class="fineprint">© 2026 Peter Sorensen, DPM</p>
+  </footer>
+
+</main>
+</body>
+</html>
