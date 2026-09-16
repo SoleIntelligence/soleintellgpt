@@ -1,237 +1,1724 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="The GuideWire, from Sole Intelligence — practical AI tools and knowledge for podiatry students and residents." />
-  <title>The GuideWire — Sole Intelligence</title>
-  <script>document.documentElement.classList.add('js');</script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-  <div class="site-shell">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      try {
+        const t = localStorage.getItem("guidewire-appearance");
+        if (t === "light" || t === "dark")
+          document.documentElement.dataset.theme = t;
+      } catch {}
+    </script>
+    <meta
+      name="description"
+      content="The GuideWire, from Sole Intelligence — practical AI tools and knowledge for podiatry students and residents."
+    />
+    <meta name="theme-color" content="#070c10" />
+    <title>The GuideWire — Sole Intelligence</title>
+    <link
+      rel="icon"
+      href="assets/images/guidewire-mark.webp"
+      type="image/webp"
+    />
+    <link
+      rel="preload"
+      href="assets/fonts/barlow-condensed-800.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="styles.css?v=20260916b" />
+    <script src="assets/vendor/gsap.min.js" defer></script>
+    <script src="assets/vendor/ScrollTrigger.min.js" defer></script>
+    <script src="assets/thumbnails/manifest.js" defer></script>
+    <script src="infographics.js" defer></script>
+    <script src="script.js?v=20260916a" defer></script>
+  </head>
+  <body class="home-page">
+    <div id="top"></div>
+    <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header">
-      <div class="container nav-wrap">
-        <a href="#top" class="brand" aria-label="The GuideWire — Home">
-          <span class="brand-mark" aria-hidden="true">
-            <img src="Sole Intelligence Images/logoanimation.gif" alt="" class="brand-logo" />
-          </span>
-          <span class="brand-words">
-            <span class="brand-name">The GuideWire</span>
-            <span class="brand-parent">by Sole Intelligence</span>
-          </span>
-        </a>
-
-        <button class="menu-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle menu">
-          <span></span><span></span><span></span>
+      <div class="nav-wrap">
+        <a href="#top" class="brand"
+          ><img
+            src="assets/images/guidewire-mark.webp"
+            width="44"
+            height="44"
+            alt=""
+          /><span class="brand-words"
+            ><span class="brand-name">The GuideWire</span
+            ><span class="brand-parent">by Sole Intelligence</span></span
+          ></a
+        >
+        <button
+          class="menu-toggle"
+          aria-expanded="false"
+          aria-controls="site-nav"
+          aria-label="Toggle menu"
+        >
+          <span class="menu-label">Menu</span
+          ><span class="menu-lines" aria-hidden="true"><i></i><i></i></span>
         </button>
-
-        <nav id="site-nav" class="site-nav">
-          <a href="#top">Home</a>
-          <a href="#ai-tutorials">AI Tutorials</a>
-          <a href="#politics-culture">Politics &amp; Culture</a>
-          <a href="#student-resident">Education</a>
-          <a href="about.html">About</a>
-          <a href="https://substack.com/@petersorensendpm" target="_blank" rel="noreferrer" class="nav-cta">Substack</a>
+        <nav id="site-nav" class="site-nav" aria-label="Main navigation">
+          <a href="#top" aria-current="page">Home</a
+          ><a href="#ai-tutorials">AI Tutorials</a
+          ><a href="#politics-culture">Politics &amp; Culture</a
+          ><a href="#student-resident">Education</a
+          ><a href="about.html">About</a
+          ><a
+            href="https://substack.com/@petersorensendpm"
+            target="_blank"
+            rel="noreferrer"
+            class="nav-cta"
+            >Substack <span aria-hidden="true">↗</span></a
+          >
         </nav>
       </div>
     </header>
-
-    <main id="top">
-      <section class="hero section">
-        <div class="container hero-grid">
+    <main id="main">
+      <section class="hero">
+        <div class="hero-inner container">
           <div class="hero-copy">
-            <p class="eyebrow" data-reveal>From Sole Intelligence</p>
-            <h1 data-reveal style="--d:.05s">The <span class="hero-accent">GuideWire</span>.</h1>
-            <p class="hero-lead" data-reveal style="--d:.12s">Practical AI for the next generation of podiatrists.</p>
-            <p class="hero-text" data-reveal style="--d:.18s">
-              Sole Intelligence equips podiatry students and residents with the AI tools and knowledge to become more effective clinicians,
-              stronger leaders, and the practitioners the profession needs next.
-            </p>
-            <div class="hero-actions" data-reveal style="--d:.24s">
-              <a class="button button-primary" href="https://substack.com/@petersorensendpm" target="_blank" rel="noreferrer">
-                Read the Substack
-                <span class="button-pip" aria-hidden="true">
-                  <svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </span>
-              </a>
-              <a class="button button-secondary" href="#ai-tutorials">Browse the work</a>
-            </div>
-            <div class="micro-points" data-reveal style="--d:.3s">
-              <span>Medicine first</span>
-              <span>AI without hype</span>
-              <span>Made for trainees</span>
-            </div>
-          </div>
-
-          <div class="hero-media" data-reveal style="--d:.2s">
-            <div class="hero-mark" aria-hidden="true">
-              <img src="Sole Intelligence Images/logogw.png" alt="" class="hero-mark-img" />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section strip">
-        <div class="container strip-grid">
-          <article class="strip-card" data-reveal>
-            <span class="strip-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg>
-            </span>
-            <h2>What you'll find here</h2>
-            <p>
-              Clean, single-page infographics on AI tools, the politics of the profession, and the day-to-day of being a podiatry student or resident.
-            </p>
-          </article>
-          <article class="strip-card" data-reveal style="--d:.08s">
-            <span class="strip-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M12 3v18M3 12h18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.25" fill="none" opacity="0.4"/></svg>
-            </span>
-            <h2>Why "GuideWire"</h2>
-            <p>
-              A guidewire is the quiet tool that gets the bigger one to the right place. That's the goal here — get useful AI to the people doing the work.
-            </p>
-          </article>
-          <article class="strip-card" data-reveal style="--d:.16s">
-            <span class="strip-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M5 19c2-6 5-9 7-9s5 3 7 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/><circle cx="12" cy="6" r="3" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
-            </span>
-            <h2>Who it's for</h2>
-            <p>
-              Podiatry students, residents, and the programs training them. Built for people short on time and long on questions.
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <section id="ai-tutorials" class="section category-section">
-        <div class="container section-head" data-reveal>
-          <div>
-            <p class="eyebrow">Category 01</p>
-            <h2>AI Tutorials</h2>
-            <p class="section-sub">Walk-throughs and reference guides for the AI tools worth knowing — in clinic, on the wards, and at the desk.</p>
-          </div>
-          <a class="text-link" href="#substack">See more on Substack <span aria-hidden="true">→</span></a>
-        </div>
-        <div class="container">
-          <div class="card-grid" data-category="ai-tutorials" data-reveal></div>
-        </div>
-      </section>
-
-      <section id="politics-culture" class="section alt-section category-section">
-        <div class="container section-head" data-reveal>
-          <div>
-            <p class="eyebrow">Category 02</p>
-            <h2>Podiatry Politics &amp; Culture</h2>
-            <p class="section-sub">The forces shaping the profession — legislation, advocacy, scope, identity, and where podiatry shows up in the wider world.</p>
-          </div>
-          <a class="text-link" href="#substack">See more on Substack <span aria-hidden="true">→</span></a>
-        </div>
-        <div class="container">
-          <div class="card-grid" data-category="politics-culture" data-reveal></div>
-        </div>
-      </section>
-
-      <section id="student-resident" class="section category-section">
-        <div class="container section-head" data-reveal>
-          <div>
-            <p class="eyebrow">Category 03</p>
-            <h2>Student &amp; Resident Education</h2>
-            <p class="section-sub">Boards, rotations, research, surgical prep, and the rest of the training years — distilled into things you can actually use.</p>
-          </div>
-          <a class="text-link" href="#substack">See more on Substack <span aria-hidden="true">→</span></a>
-        </div>
-        <div class="container">
-          <div class="card-grid" data-category="student-resident" data-reveal></div>
-        </div>
-      </section>
-
-      <section id="substack" class="section alt-section">
-        <div class="container section-head" data-reveal>
-          <div>
-            <p class="eyebrow">Latest writing</p>
-            <h2>From the Substack</h2>
-            <p class="section-sub">Short, practical posts on putting AI to work in podiatry training.</p>
-          </div>
-          <a class="text-link" href="https://substack.com/@petersorensendpm" target="_blank" rel="noreferrer">Visit Substack <span aria-hidden="true">→</span></a>
-        </div>
-        <div class="container">
-          <div id="substack-posts" class="post-grid" data-reveal>
-            <article class="post-card skeleton-card">
-              <div class="skeleton skeleton-line wide"></div>
-              <div class="skeleton skeleton-line"></div>
-              <div class="skeleton skeleton-line short"></div>
-            </article>
-            <article class="post-card skeleton-card hide-mobile">
-              <div class="skeleton skeleton-line wide"></div>
-              <div class="skeleton skeleton-line"></div>
-              <div class="skeleton skeleton-line short"></div>
-            </article>
-            <article class="post-card skeleton-card hide-mobile">
-              <div class="skeleton skeleton-line wide"></div>
-              <div class="skeleton skeleton-line"></div>
-              <div class="skeleton skeleton-line short"></div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section cta-section">
-        <div class="container">
-          <div class="cta-grid" data-reveal>
-            <p class="eyebrow">Start here</p>
-            <h2>Learn how to actually use AI in your day.</h2>
-            <p>
-              The Substack is the home base — practical thoughts, tips, and tools, written for podiatry students and residents who want to do more with less friction.
+            <p class="eyebrow">For the next generation of podiatrists</p>
+            <h1>
+              <span class="line"><span>THINK</span></span
+              ><span class="line"><span>FORWARD.</span></span>
+            </h1>
+            <p class="hero-lead">
+              Practical AI. Real-world medicine.<br />A clearer path through
+              podiatry training.
             </p>
             <div class="hero-actions">
-              <a class="button button-primary" href="https://substack.com/@petersorensendpm" target="_blank" rel="noreferrer">
-                Subscribe to the Substack
-                <span class="button-pip" aria-hidden="true">
-                  <svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </span>
-              </a>
-              <a class="button button-secondary" href="about.html">About the work</a>
+              <a class="button button-primary" href="#explore"
+                >Browse the work <span aria-hidden="true">↘</span></a
+              ><a
+                class="button button-text"
+                href="https://substack.com/@petersorensendpm"
+                target="_blank"
+                rel="noreferrer"
+                >Read the Substack <span aria-hidden="true">↗</span></a
+              >
             </div>
+          </div>
+          <div class="hero-art" aria-hidden="true">
+            <img
+              src="assets/images/guidewire-foot-kwire-v2.webp"
+              alt=""
+              width="1254"
+              height="1254"
+              fetchpriority="high"
+            />
+            <div class="hero-art-reveal"></div>
+          </div>
+        </div>
+      </section>
+      <section class="mission-section">
+        <div class="container">
+          <h2 class="mission-statement" data-word-reveal>
+            A little guidance.<br />A bigger possibility.
+          </h2>
+          <div class="mission-notes">
+            <p>
+              Sole Intelligence equips podiatry students and residents with the
+              AI tools and knowledge to become more effective clinicians,
+              stronger leaders, and the practitioners the profession needs next.
+            </p>
+            <div>
+              <h3>Why “GuideWire”?</h3>
+              <p>
+                A guidewire is the quiet tool that gets the bigger one to the
+                right place. That's the goal here: get useful AI to the people
+                doing the work.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="image-marquee" aria-hidden="true">
+          <div class="marquee-row marquee-row-0">
+            <img
+              src="assets/thumbnails/boardstudy.webp"
+              alt=""
+              loading="lazy"
+              width="420"
+              height="270"
+            /><img
+              src="assets/thumbnails/GEO_how_to.webp"
+              alt=""
+              loading="lazy"
+              width="420"
+              height="270"
+            /><img
+              src="assets/thumbnails/fellowship-database.webp"
+              alt=""
+              loading="lazy"
+              width="420"
+              height="270"
+            /><img
+              src="assets/thumbnails/lapidus.webp"
+              alt=""
+              loading="lazy"
+              width="420"
+              height="270"
+            /><img
+              src="assets/thumbnails/Dunning_krueger.webp"
+              alt=""
+              loading="lazy"
+              width="420"
+              height="270"
+            />
+          </div>
+          <div class="marquee-row marquee-row-1">
+            <img
+              src="assets/thumbnails/industry.webp"
+              alt=""
+              loading="lazy"
+              width="420"
+              height="270"
+            /><img
+              src="assets/thumbnails/acgme.webp"
+              alt=""
+              loading="lazy"
+              width="420"
+              height="270"
+            /><img
+              src="assets/thumbnails/fellowship-map.webp"
+              alt=""
+              loading="lazy"
+              width="420"
+              height="270"
+            /><img
+              src="assets/thumbnails/feedback_is_a_gift.webp"
+              alt=""
+              loading="lazy"
+              width="420"
+              height="270"
+            /><img
+              src="assets/thumbnails/infographics.webp"
+              alt=""
+              loading="lazy"
+              width="420"
+              height="270"
+            />
+          </div>
+        </div>
+      </section>
+      <section
+        id="explore"
+        class="explore-section"
+        aria-labelledby="explore-heading"
+      >
+        <div class="container explore-intro">
+          <h2 id="explore-heading" data-reveal>Find what you need<br />to pave your own path forward.</h2>
+          <p>
+            Find AI tutorials to help you improve your workflows. Find explanations of difficult surgery topics.<br />Find clarification of the podiatry profession's challenges. And help find solutions.
+          </p>
+        </div>
+        <div class="pathways">
+          <article class="pathway pathway-ai">
+            <div class="pathway-inner container">
+              <div class="pathway-copy">
+                <span class="pathway-category">AI Tutorials</span>
+                <h3>MAKE AI<br />USEFUL.</h3>
+                <p>
+                  Medicine first. AI without hype. Practical tools for learning,
+                  research, and the work in front of you.
+                </p>
+                <a class="button button-dark" href="#ai-tutorials"
+                  >Explore AI Tutorials <span aria-hidden="true">↗</span></a
+                >
+              </div>
+              <div class="pathway-image">
+                <img
+                  src="assets/thumbnails/boardstudy.webp"
+                  alt="Preview of the AI Powered Board Study infographic"
+                  width="800"
+                  height="500"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+          </article>
+          <article class="pathway pathway-politics">
+            <div class="pathway-inner container">
+              <div class="pathway-copy">
+                <span class="pathway-category">Politics &amp; Culture</span>
+                <h3>KNOW THE<br />BIGGER PICTURE.</h3>
+                <p>
+                  Policy, power, and the future of podiatry. Understand the
+                  forces shaping the profession you're stepping into.
+                </p>
+                <a class="button button-dark" href="#politics-culture"
+                  >Explore Politics &amp; Culture
+                  <span aria-hidden="true">↗</span></a
+                >
+              </div>
+              <div class="pathway-image">
+                <img
+                  src="assets/thumbnails/acgme.webp"
+                  alt="Preview of the podiatry accreditation explainer"
+                  width="800"
+                  height="500"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+          </article>
+          <article class="pathway pathway-education">
+            <div class="pathway-inner container">
+              <div class="pathway-copy">
+                <span class="pathway-category"
+                  >Student &amp; Resident Education</span
+                >
+                <h3>BUILD YOUR<br />NEXT CHAPTER.</h3>
+                <p>
+                  Explore the Pod Fellowship Map. Read surgical
+                  references, board prep, and perspective for the training
+                  years.
+                </p>
+                <a class="button button-dark" href="#student-resident"
+                  >Explore Education <span aria-hidden="true">↗</span></a
+                >
+              </div>
+              <div class="pathway-image">
+                <img
+                  src="assets/thumbnails/fellowship-map.webp"
+                  alt="Preview of The Fellowship Map"
+                  width="800"
+                  height="500"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+      <section
+        class="fellowship-feature"
+        aria-labelledby="fellowship-feature-title"
+      >
+        <div class="container fellowship-feature-grid">
+          <div class="fellowship-feature-copy" data-reveal>
+            <h2 id="fellowship-feature-title">THE FELLOWSHIP MAP.</h2>
+            <p class="fellowship-feature-lead">
+              Explore 90 verified podiatric fellowship programs by city and
+              tier. See where opportunities cluster, compare oversight, and
+              spot the gaps.
+            </p>
+            <dl class="fellowship-feature-facts">
+              <div>
+                <dt>90</dt>
+                <dd>verified programs</dd>
+              </div>
+              <div>
+                <dt>5</dt>
+                <dd>verification tiers</dd>
+              </div>
+              <div>
+                <dt>24</dt>
+                <dd>states with no listing</dd>
+              </div>
+            </dl>
+            <a class="button button-primary" href="fellowship-map.html"
+              >Explore the map <span aria-hidden="true">↗</span></a
+            >
+          </div>
+          <a
+            class="fellowship-feature-visual"
+            href="fellowship-map.html"
+            aria-label="Open The Fellowship Map"
+            data-reveal
+          >
+            <img
+              src="assets/thumbnails/fellowship-map.webp"
+              alt="Map of verified podiatric fellowship programs across the United States"
+              width="960"
+              height="550"
+              loading="lazy"
+            />
+          </a>
+        </div>
+      </section>
+      <section id="library" class="library-section">
+        <div class="container">
+          <div class="library-intro">
+            <p class="eyebrow">The resource library</p>
+            <h2 data-reveal>FOLLOW YOUR<br />CURIOSITY.</h2>
+            <p>Explore the collection. Find something you can use today.</p>
+          </div>
+          <div class="library-tools" hidden>
+            <label class="search-box"
+              ><span class="sr-only">Search resources</span
+              ><span aria-hidden="true">⌕</span
+              ><input
+                id="resource-search"
+                type="search"
+                placeholder="Search topics, tools, and ideas…"
+                autocomplete="off"
+              /><kbd aria-hidden="true">/</kbd></label
+            >
+            <div class="filter-buttons" aria-label="Filter resources">
+              <button class="is-active" data-filter="all" aria-pressed="true">
+                All resources</button
+              ><button data-filter="ai-tutorials" aria-pressed="false">
+                AI</button
+              ><button data-filter="politics-culture" aria-pressed="false">
+                Politics &amp; Culture</button
+              ><button data-filter="student-resident" aria-pressed="false">
+                Education
+              </button>
+            </div>
+          </div>
+          <p
+            id="search-status"
+            class="search-status"
+            role="status"
+            aria-live="polite"
+          ></p>
+          <section
+            class="category-section"
+            id="ai-tutorials"
+            data-category-section="ai-tutorials"
+          >
+            <div class="category-heading">
+              <h2>AI Tutorials</h2>
+              <span class="category-count">7 resources</span>
+            </div>
+            <p class="category-description">
+              Walk-throughs and reference guides for the AI tools worth knowing:
+              in clinic, on the wards, and at the desk.
+            </p>
+            <div class="resource-grid" data-category="ai-tutorials">
+              <a
+                class="resource-card"
+                href="GEO_how_to.html"
+                data-card-index="0"
+                ><div class="resource-image">
+                  <img
+                    src="assets/thumbnails/GEO_how_to.webp"
+                    alt=""
+                    width="640"
+                    height="400"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="resource-copy">
+                  <p class="resource-kicker">AI How To</p>
+                  <h3>GEO Ate SEO</h3>
+                  <p class="resource-description">
+                    Generative-engine optimization is rewiring how patients find
+                    you. How it differs from SEO — and what the hype gets dead
+                    wrong.
+                  </p>
+                  <div class="resource-bottom">
+                    <time datetime="2026-06">2026-06</time
+                    ><span>Explore <span aria-hidden="true">↗</span></span>
+                  </div>
+                </div></a
+              ><a
+                class="resource-card"
+                href="deskilling.html"
+                data-card-index="1"
+                ><div class="resource-image">
+                  <img
+                    src="assets/thumbnails/deskilling.webp"
+                    alt=""
+                    width="640"
+                    height="400"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="resource-copy">
+                  <p class="resource-kicker">AI in Practice</p>
+                  <h3>The Deskilling Turn</h3>
+                  <p class="resource-description">
+                    2026 is the year clinicians started naming AI skill-erosion
+                    out loud. The fix isn&#x27;t less AI — it&#x27;s treating AI
+                    as a competency.
+                  </p>
+                  <div class="resource-bottom">
+                    <time datetime="2026-06">2026-06</time
+                    ><span>Explore <span aria-hidden="true">↗</span></span>
+                  </div>
+                </div></a
+              ><a
+                class="resource-card"
+                href="Lawful Access.html"
+                data-card-index="2"
+                ><div class="resource-image">
+                  <img
+                    src="assets/thumbnails/Lawful_access.webp"
+                    alt=""
+                    width="640"
+                    height="400"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="resource-copy">
+                  <p class="resource-kicker">AI &amp; the Law</p>
+                  <h3>Lawful Access</h3>
+                  <p class="resource-description">
+                    The AI copyright lawsuits look like chaos — but for a
+                    resident the practical rules are older and shorter than the
+                    headlines suggest.
+                  </p>
+                  <div class="resource-bottom">
+                    <time datetime="2026-06">2026-06</time
+                    ><span>Explore <span aria-hidden="true">↗</span></span>
+                  </div>
+                </div></a
+              ><a
+                class="resource-card"
+                href="Irresponsible.html"
+                data-card-index="3"
+                ><div class="resource-image">
+                  <img
+                    src="assets/thumbnails/irresponsible.webp"
+                    alt=""
+                    width="640"
+                    height="400"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="resource-copy">
+                  <p class="resource-kicker">AI in Practice</p>
+                  <h3>AI Literacy Is a Clinical Skill</h3>
+                  <p class="resource-description">
+                    The real risk isn&#x27;t a machine taking your job —
+                    it&#x27;s trusting an AI output you can&#x27;t verify. Why
+                    AI literacy now belongs in the clinical skillset.
+                  </p>
+                  <div class="resource-bottom">
+                    <time datetime="2026-05">2026-05</time
+                    ><span>Explore <span aria-hidden="true">↗</span></span>
+                  </div>
+                </div></a
+              ><a
+                class="resource-card"
+                href="ai_ethics.html"
+                data-card-index="4"
+                ><div class="resource-image">
+                  <img
+                    src="assets/thumbnails/ai_ethics.webp"
+                    alt=""
+                    width="640"
+                    height="400"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="resource-copy">
+                  <p class="resource-kicker">Ethics &amp; Policy</p>
+                  <h3>The Ethical Weight of AI</h3>
+                  <p class="resource-description">
+                    Five questions every healthcare professional should be able
+                    to answer about who owns AI, how it was built, and what it
+                    costs the planet.
+                  </p>
+                  <div class="resource-bottom">
+                    <time datetime="2026-05">2026-05</time
+                    ><span>Explore <span aria-hidden="true">↗</span></span>
+                  </div>
+                </div></a
+              ><a
+                class="resource-card"
+                href="boardstudy.html"
+                data-card-index="5"
+                ><div class="resource-image">
+                  <img
+                    src="assets/thumbnails/boardstudy.webp"
+                    alt=""
+                    width="640"
+                    height="400"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="resource-copy">
+                  <p class="resource-kicker">AI How To</p>
+                  <h3>AI Powered Board Study</h3>
+                  <p class="resource-description">
+                    How to use NotebookLM to become an ACTIVE learner, and how
+                    to use Claude if you&#x27;re brave enough to try.
+                  </p>
+                  <div class="resource-bottom">
+                    <time datetime="2025-05">2025-05</time
+                    ><span>Explore <span aria-hidden="true">↗</span></span>
+                  </div>
+                </div></a
+              ><a
+                class="resource-card"
+                href="how_to_infographics.html"
+                data-card-index="6"
+                ><div class="resource-image">
+                  <img
+                    src="assets/thumbnails/infographics.webp"
+                    alt=""
+                    width="640"
+                    height="400"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="resource-copy">
+                  <p class="resource-kicker">AI How To</p>
+                  <h3>Handwritten Notes to AI Infographic</h3>
+                  <p class="resource-description">
+                    Start building your digital brain by converting all those
+                    paper notes into something actually useful.
+                  </p>
+                  <div class="resource-bottom">
+                    <time datetime="2025-05">2025-05</time
+                    ><span>Explore <span aria-hidden="true">↗</span></span>
+                  </div>
+                </div></a
+              >
+            </div>
+            <button class="load-more" data-more="ai-tutorials" hidden>
+              View all 7 resources <span aria-hidden="true">↓</span>
+            </button>
+          </section>
+          <section
+            class="category-section"
+            id="politics-culture"
+            data-category-section="politics-culture"
+          >
+            <div class="category-heading">
+              <h2>Podiatry Politics & Culture</h2>
+              <span class="category-count">26 resources</span>
+            </div>
+            <p class="category-description">
+              The forces shaping the profession: legislation, advocacy, scope,
+              identity, and where podiatry shows up in the wider world.
+            </p>
+            <div class="resource-grid" data-category="politics-culture">
+              <a
+                class="resource-card"
+                href="fellowship-dossier.html"
+                data-card-index="0"
+                ><div class="resource-image">
+                  <img
+                    src="assets/thumbnails/fellowship-dossier.webp"
+                    alt=""
+                    width="640"
+                    height="400"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="resource-copy">
+                  <p class="resource-kicker">Training</p>
+                  <h3>The Fellowship Question</h3>
+                  <p class="resource-description">
+                    Five sections on who runs podiatric fellowships, who audits
+                    them, and why the standardization fight keeps stalling —
+                    with a verdict at the end.
+                  </p>
+                  <div class="resource-bottom">
+                    <time datetime="2026-07">2026-07</time
+                    ><span>Explore <span aria-hidden="true">↗</span></span>
+                  </div>
+                </div></a
+              ><a class="resource-card" href="acgme.html" data-card-index="1"
+                ><div class="resource-image">
+                  <img
+                    src="assets/thumbnails/acgme.webp"
+                    alt=""
+                    width="640"
+                    height="400"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="resource-copy">
+                  <p class="resource-kicker">Accreditation</p>
+                  <h3>Who Gets to Accredit Podiatry?</h3>
+                  <p class="resource-description">
+                    A neutral, both-sides explainer of the debate over moving
+                    podiatric residencies from CPME to ACGME accreditation.
+                  </p>
+                  <div class="resource-bottom">
+                    <time datetime="2026-06">2026-06</time
+                    ><span>Explore <span aria-hidden="true">↗</span></span>
+                  </div>
+                </div></a
+              ><a
+                class="resource-card"
+                href="Sole Intelligence Images/diabetesbill.mp4"
+                data-card-index="2"
+                ><div class="resource-image">
+                  <img
+                    src="assets/thumbnails/diabeticfootbill.webp"
+                    alt=""
+                    width="640"
+                    height="400"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="resource-copy">
+                  <p class="resource-kicker">Video</p>
+                  <h3>The Diabetic Foot Bill — Video</h3>
+                  <p class="resource-description">
+                    A short NotebookLM video on the Diabetic Foot Bill I
+                    advocated for on Capitol Hill.
+                  </p>
+                  <div class="resource-bottom">
+                    <time datetime="2026-06">2026-06</time
+                    ><span>Explore <span aria-hidden="true">↗</span></span>
+                  </div>
+                </div></a
+              ><a
+                class="resource-card"
+                href="one_accreditor.html"
+                data-card-index="3"
+                ><div class="resource-image">
+                  <img
+                    src="assets/thumbnails/one_accreditor.webp"
+                    alt=""
+                    width="640"
+                    height="400"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="resource-copy">
+                  <p class="resource-kicker">Accreditation</p>
+                  <h3>The One Accreditor Question</h3>
+                  <p class="resource-description">
+                    Should podiatric residency move under the ACGME? The honest
+                    answer is a single disagreement that decides everything
+                    else.
+                  </p>
+                  <div class="resource-bottom">
+                    <time datetime="2026-06">2026-06</time
+                    ><span>Explore <span aria-hidden="true">↗</span></span>
+                  </div>
+                </div></a
+              ><a class="resource-card" href="clawback.html" data-card-index="4"
+                ><div class="resource-image">
+                  <img
+                    src="assets/thumbnails/clawback.webp"
+                    alt=""
+                    width="640"
+                    height="400"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="resource-copy">
+                  <p class="resource-kicker">Policy</p>
+                  <h3>The Clawback</h3>
+                  <p class="resource-description">
+                    Podiatry won a pay bump for 2026. A 1989 Medicare
+                    budget-neutrality rule is built to quietly take it back —
+                    and a bipartisan bill wants to loosen the screws.
+                  </p>
+                  <div class="resource-bottom">
+                    <time datetime="2026-06">2026-06</time
+                    ><span>Explore <span aria-hidden="true">↗</span></span>
+                  </div>
+                </div></a
+              ><a
+                class="resource-card"
+                href="corporate.html"
+                data-card-index="5"
+                ><div class="resource-image">
+                  <img
+                    src="assets/thumbnails/corporate.webp"
+                    alt=""
+                    width="640"
+                    height="400"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="resource-copy">
+                  <p class="resource-kicker">Profession</p>
+                  <h3>The APMA Corporate Council</h3>
+                  <p class="resource-description">
+                    Six companies just got a seat at the APMA table. Who&#x27;s
+                    in the room, what they sell, and what residents should watch
+                    for.
+                  </p>
+                  <div class="resource-bottom">
+                    <time datetime="2026-05">2026-05</time
+                    ><span>Explore <span aria-hidden="true">↗</span></span>
+                  </div>
+                </div></a
+              ><a
+                class="resource-card"
+                href="fellowship_roi.html"
+                data-card-index="6"
+                ><div class="resource-image">
+                  <img
+                    src="assets/thumbnails/fellowship_roi.webp"
+                    alt=""
+                    width="640"
+                    height="400"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="resource-copy">
+                  <p class="resource-kicker">Training</p>
+                  <h3>Fellowship: Tool or Badge?</h3>
+                  <p class="resource-description">
+                    What r/Podiatry actually thinks about the extra training
+                    year — and the narrow cases where it still pays off.
+                  </p>
+                  <div class="resource-bottom">
+                    <time datetime="2026-05">2026-05</time
+                    ><span>Explore <span aria-hidden="true">↗</span></span>
+                  </div>
+                </div></a
+              ><a class="resource-card" href="ipmic.html" data-card-index="7"
+                ><div class="resource-image">
+                  <img
+                    src="assets/thumbnails/ipmic.webp"
+                    alt=""
+                    width="640"
+                    height="400"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="resource-copy">
+                  <p class="resource-kicker">Licensure</p>
+                  <h3>A Compact of Their Own</h3>
+                  <p class="resource-description">
+                    Podiatry finally gets an interstate licensure compact — and
+                    why the eligibility rules are where the story is.
+                  </p>
+                  <div class="resource-bottom">
+                    <time datetime="2026-05">2026-05</time
+                    ><span>Explore <span aria-hidden="true">↗</span></span>
+                  </div>
+                </div></a
+              ><a
+                class="resource-card"
+                href="one_board.html"
+                data-card-index="8"
+                ><div class="resource-image">
+                  <img
+                    src="assets/thumbnails/one_board.webp"
+                    alt=""
+                    width="640"
+                    height="400"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="resource-copy">
+                  <p class="resource-kicker">Certification</p>
+                  <h3>The One Board Question</h3>
+                  <p class="resource-description">
+                    Two competing boards, fifty years of parallel certification,
+                    a stalled unification effort — and a profession still
+                    divided.
+                  </p>
+                  <div class="resource-bottom">
+                    <time datetime="2026-05">2026-05</time
+                    ><span>Explore <span aria-hidden="true">↗</span></span>
+                  </div>
+                </div></a
+              ><a class="resource-card" href="industry.html" data-card-index="9"
+                ><div class="resource-image">
+                  <img
+                    src="assets/thumbnails/industry.webp"
+                    alt=""
+                    width="640"
+                    height="400"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="resource-copy">
+                  <p class="resource-kicker">Industry</p>
+                  <h3>The Ledger</h3>
+                  <p class="resource-description">
+                    Industry built modern podiatric surgery — and bent it. A
+                    data-first reckoning with partnership and its price.
+                  </p>
+                  <div class="resource-bottom">
+                    <time datetime="2026-05">2026-05</time
+                    ><span>Explore <span aria-hidden="true">↗</span></span>
+                  </div>
+                </div></a
+              ><a
+                class="resource-card"
+                href="skinsubs.html"
+                data-card-index="10"
+                ><div class="resource-image">
+                  <img
+                    src="assets/thumbnails/skinsubs.webp"
+                    alt=""
+                    width="640"
+                    height="400"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="resource-copy">
+                  <p class="resource-kicker">Policy</p>
+                  <h3>The Skin Substitute Debacle</h3>
+                  <p class="resource-description">
+                    A forty-fold spending spike, a billion-dollar fraud
+                    sentence, and the Medicare rate cut that blew up a business
+                    model.
+                  </p>
+                  <div class="resource-bottom">
+                    <time datetime="2026-05">2026-05</time
+                    ><span>Explore <span aria-hidden="true">↗</span></span>
+                  </div>
+                </div></a
+              ><a
+                class="resource-card"
+                href="student_recruitment.html"
+                data-card-index="11"
+                ><div class="resource-image">
+                  <img
+                    src="assets/thumbnails/student_recruitment.webp"
+                    alt=""
+                    width="640"
+                    height="400"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="resource-copy">
+                  <p class="resource-kicker">Profession</p>
+                  <h3>The False Tradeoff</h3>
+                  <p class="resource-description">
+                    The recruitment debate assumes quality and quantity are
+                    opposites. They&#x27;re both downstream of the same unsolved
+                    problem.
+                  </p>
+                  <div class="resource-bottom">
+                    <time datetime="2026-05">2026-05</time
+                    ><span>Explore <span aria-hidden="true">↗</span></span>
+                  </div>
+                </div></a
+              ><a class="resource-card" href="nuclear.html" data-card-index="12"
+                ><div class="resource-image">
+                  <img
+                    src="assets/thumbnails/nuclear.webp"
+                    alt=""
+                    width="640"
+                    height="400"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="resource-copy">
+                  <p class="resource-kicker">Cultural Dossier</p>
+                  <h3>The Bomb &amp; The Model</h3>
+                  <p class="resource-description">
+                    A comparative cultural dossier on how the rhetoric and
+                    existential stakes of the nuclear age echo in the age of AI.
+                  </p>
+                  <div class="resource-bottom">
+                    <time datetime="2026-05">2026-05</time
+                    ><span>Explore <span aria-hidden="true">↗</span></span>
+                  </div>
+                </div></a
+              ><a
+                class="resource-card"
+                href="e_advocacy.html"
+                data-card-index="13"
+                ><div class="resource-image">
+                  <img
+                    src="assets/thumbnails/e_advocacy.webp"
+                    alt=""
+                    width="640"
+                    height="400"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="resource-copy">
+                  <p class="resource-kicker">Advocacy</p>
+                  <h3>The eAdvocacy Action Center</h3>
+                  <p class="resource-description">
+                    You don&#x27;t have to wait until you&#x27;re an attending
+                    to shape the profession. How residents and students can
+                    weigh in on the policy that defines their future practice.
+                  </p>
+                  <div class="resource-bottom">
+                    <time datetime="2026-05">2026-05</time
+                    ><span>Explore <span aria-hidden="true">↗</span></span>
+                  </div>
+                </div></a
+              ><a class="resource-card" href="warroom.html" data-card-index="14"
+                ><div class="resource-image">
+                  <img
+                    src="assets/thumbnails/warroom.webp"
+                    alt=""
+                    width="640"
+                    height="400"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="resource-copy">
+                  <p class="resource-kicker">Scenario Planning</p>
+                  <h3>War Room: ACGME Scenario Planning</h3>
+                  <p class="resource-description">
+                    A consequence-analysis matrix for the ACGME accreditation
+                    transition, built for podiatric surgery residents.
+                  </p>
+                  <div class="resource-bottom">
+                    <time datetime="2026-04">2026-04</time
+                    ><span>Explore <span aria-hidden="true">↗</span></span>
+                  </div>
+                </div></a
+              ><a
+                class="resource-card"
+                href="twoboards.html"
+                data-card-index="15"
+                ><div class="resource-image">
+                  <img
+                    src="assets/thumbnails/twoboards.webp"
+                    alt=""
+                    width="640"
+                    height="400"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="resource-copy">
+                  <p class="resource-kicker">Certification</p>
+                  <h3>The Two Board Dilemma</h3>
+                  <p class="resource-description">
+                    ABFAS vs. ABPM: how podiatry became one of the only doctoral
+                    professions with two separate certifying boards.
+                  </p>
+                  <div class="resource-bottom">
+                    <time datetime="2026-04">2026-04</time
+                    ><span>Explore <span aria-hidden="true">↗</span></span>
+                  </div>
+                </div></a
+              ><a class="resource-card" href="hod.html" data-card-index="16"
+                ><div class="resource-image">
+                  <img
+                    src="assets/thumbnails/hod.webp"
+                    alt=""
+                    width="640"
+                    height="400"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="resource-copy">
+                  <p class="resource-kicker">Governance</p>
+                  <h3>2026 APMA House of Delegates</h3>
+                  <p class="resource-description">
+                    An official outcomes brief on the 2026 HOD — what passed,
+                    what it means, and why the next generation should care.
+                  </p>
+                  <div class="resource-bottom">
+                    <time datetime="2026-04">2026-04</time
+                    ><span>Explore <span aria-hidden="true">↗</span></span>
+                  </div>
+                </div></a
+              ><a class="resource-card" href="HOD_hx.html" data-card-index="17"
+                ><div class="resource-image">
+                  <img
+                    src="assets/thumbnails/HOD_hx.webp"
+                    alt=""
+                    width="640"
+                    height="400"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="resource-copy">
+                  <p class="resource-kicker">Governance</p>
+                  <h3>30 Years of the House of Delegates</h3>
+                  <p class="resource-description">
+                    100 presidents, five major themes, and the pivotal votes
+                    that shaped APMA governance from 1996 to today.
+                  </p>
+                  <div class="resource-bottom">
+                    <time datetime="2026-04">2026-04</time
+                    ><span>Explore <span aria-hidden="true">↗</span></span>
+                  </div>
+                </div></a
+              ><a
+                class="resource-card"
+                href="crossroads.html"
+                data-card-index="18"
+                ><div class="resource-image">
+                  <img
+                    src="assets/thumbnails/crossroads.webp"
+                    alt=""
+                    width="640"
+                    height="400"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="resource-copy">
+                  <p class="resource-kicker">Profession</p>
+                  <h3>Podiatry at a Crossroads</h3>
+                  <p class="resource-description">
+                    Enrollment pressure, board wars, and a credentialing crisis
+                    — what brewed below the surface from 2015 to 2025.
+                  </p>
+                  <div class="resource-bottom">
+                    <time datetime="2026-04">2026-04</time
+                    ><span>Explore <span aria-hidden="true">↗</span></span>
+                  </div>
+                </div></a
+              ><a class="resource-card" href="orgs.html" data-card-index="19"
+                ><div class="resource-image">
+                  <img
+                    src="assets/thumbnails/orgs.webp"
+                    alt=""
+                    width="640"
+                    height="400"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="resource-copy">
+                  <p class="resource-kicker">History</p>
+                  <h3>AMA · AOA · APMA</h3>
+                  <p class="resource-description">
+                    A triangular history of organized medicine&#x27;s three
+                    houses — and where podiatry fits in the structure.
+                  </p>
+                  <div class="resource-bottom">
+                    <time datetime="2026-04">2026-04</time
+                    ><span>Explore <span aria-hidden="true">↗</span></span>
+                  </div>
+                </div></a
+              ><a class="resource-card" href="sdn.html" data-card-index="20"
+                ><div class="resource-image">
+                  <img
+                    src="assets/thumbnails/sdn.webp"
+                    alt=""
+                    width="640"
+                    height="400"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="resource-copy">
+                  <p class="resource-kicker">Culture</p>
+                  <h3>What SDN Said</h3>
+                  <p class="resource-description">
+                    A decade of anonymous attendings, residents, and pre-pods on
+                    Student Doctor Network — podiatry&#x27;s forum era,
+                    reviewed.
+                  </p>
+                  <div class="resource-bottom">
+                    <time datetime="2026-04">2026-04</time
+                    ><span>Explore <span aria-hidden="true">↗</span></span>
+                  </div>
+                </div></a
+              ><a
+                class="resource-card"
+                href="leave-the-matches-at-home.html"
+                data-card-index="21"
+                ><div class="resource-image">
+                  <img
+                    src="assets/thumbnails/leave-the-matches-at-home.webp"
+                    alt=""
+                    width="640"
+                    height="400"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="resource-copy">
+                  <p class="resource-kicker">Profession</p>
+                  <h3>Leave the Matches at Home</h3>
+                  <p class="resource-description">
+                    It&#x27;s harder to build a bridge than to burn one.
+                  </p>
+                  <div class="resource-bottom">
+                    <time datetime="2025-06">2025-06</time
+                    ><span>Explore <span aria-hidden="true">↗</span></span>
+                  </div>
+                </div></a
+              ><a
+                class="resource-card"
+                href="diabeticfootbillstudents.html"
+                data-card-index="22"
+                ><div class="resource-image">
+                  <img
+                    src="assets/thumbnails/diabeticfootbillstudents.webp"
+                    alt=""
+                    width="640"
+                    height="400"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="resource-copy">
+                  <p class="resource-kicker">Profession</p>
+                  <h3>Diabetic Foot Bill - Student Edition</h3>
+                  <p class="resource-description">
+                    Why students should care about advocacy now. An infographic
+                    example of how I use AI to explain complex topics to myself.
+                  </p>
+                  <div class="resource-bottom">
+                    <time datetime="2025-06">2025-06</time
+                    ><span>Explore <span aria-hidden="true">↗</span></span>
+                  </div>
+                </div></a
+              ><a
+                class="resource-card"
+                href="diabeticfootbillresidents.html"
+                data-card-index="23"
+                ><div class="resource-image">
+                  <img
+                    src="assets/thumbnails/diabeticfootbill.webp"
+                    alt=""
+                    width="640"
+                    height="400"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="resource-copy">
+                  <p class="resource-kicker">Profession</p>
+                  <h3>Diabetic Foot Bill - Resident Edition</h3>
+                  <p class="resource-description">
+                    A higher register version for those who are interested. An
+                    example of how you can easily change AI output&#x27;s
+                    intended audience.
+                  </p>
+                  <div class="resource-bottom">
+                    <time datetime="2025-06">2025-06</time
+                    ><span>Explore <span aria-hidden="true">↗</span></span>
+                  </div>
+                </div></a
+              ><a
+                class="resource-card"
+                href="ao_index.html"
+                data-card-index="24"
+                ><div class="resource-image">
+                  <img
+                    src="assets/thumbnails/ao.webp"
+                    alt=""
+                    width="640"
+                    height="400"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="resource-copy">
+                  <p class="resource-kicker">Profession</p>
+                  <h3>The DPM Comeback</h3>
+                  <p class="resource-description">
+                    A bento-style overview of where podiatry sits today and the
+                    case for what&#x27;s next.
+                  </p>
+                  <div class="resource-bottom">
+                    <time datetime="2025-05">2025-05</time
+                    ><span>Explore <span aria-hidden="true">↗</span></span>
+                  </div>
+                </div></a
+              ><a
+                class="resource-card"
+                href="podiatry_in_media_index.html"
+                data-card-index="25"
+                ><div class="resource-image">
+                  <img
+                    src="assets/thumbnails/popmedia.webp"
+                    alt=""
+                    width="640"
+                    height="400"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="resource-copy">
+                  <p class="resource-kicker">Culture</p>
+                  <h3>Feet &amp; Film</h3>
+                  <p class="resource-description">
+                    Podiatry on screen — a cultural look at how feet have shown
+                    up in film and what that tells us about the
+                    profession&#x27;s image.
+                  </p>
+                  <div class="resource-bottom">
+                    <time datetime="2025-04">2025-04</time
+                    ><span>Explore <span aria-hidden="true">↗</span></span>
+                  </div>
+                </div></a
+              >
+            </div>
+            <button class="load-more" data-more="politics-culture" hidden>
+              View all 26 resources <span aria-hidden="true">↓</span>
+            </button>
+          </section>
+          <section
+            class="category-section"
+            id="student-resident"
+            data-category-section="student-resident"
+          >
+            <div class="category-heading">
+              <h2>Student & Resident Education</h2>
+              <span class="category-count">15 resources</span>
+            </div>
+            <p class="category-description">
+              Boards, rotations, research, surgical prep, and the rest of the
+              training years, distilled into things you can actually use.
+            </p>
+            <div class="resource-grid" data-category="student-resident">
+              <a
+                class="resource-card"
+                href="Dunning_krueger.html"
+                data-card-index="0"
+                ><div class="resource-image">
+                  <img
+                    src="assets/thumbnails/Dunning_krueger.webp"
+                    alt=""
+                    width="640"
+                    height="400"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="resource-copy">
+                  <p class="resource-kicker">Culture</p>
+                  <h3>The Chief Summit</h3>
+                  <p class="resource-description">
+                    Chief year feels like mastery. Plotted against the
+                    Dunning-Kruger curve it is a false peak — and the training
+                    system pulls the guardrails exactly when confidence crests.
+                  </p>
+                  <div class="resource-bottom">
+                    <time datetime="2026-09">2026-09</time
+                    ><span>Explore <span aria-hidden="true">↗</span></span>
+                  </div>
+                </div></a
+              ><a
+                class="resource-card"
+                href="fellowship-database.html"
+                data-card-index="1"
+                ><div class="resource-image">
+                  <img
+                    src="assets/thumbnails/fellowship-database.webp"
+                    alt=""
+                    width="640"
+                    height="400"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="resource-copy">
+                  <p class="resource-kicker">Living Database</p>
+                  <h3>The Fellowship Database</h3>
+                  <p class="resource-description">
+                    Every podiatric fellowship verifiable against a primary
+                    source, sorted into five tiers — because the tier tells you
+                    who audits the program, if anyone does.
+                  </p>
+                  <div class="resource-bottom">
+                    <time datetime="2026-08">2026-08</time
+                    ><span>Explore <span aria-hidden="true">↗</span></span>
+                  </div>
+                </div></a
+              ><a
+                class="resource-card"
+                href="fellowship-map.html"
+                data-card-index="2"
+                ><div class="resource-image">
+                  <img
+                    src="assets/thumbnails/fellowship-map.webp"
+                    alt=""
+                    width="640"
+                    height="400"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="resource-copy">
+                  <p class="resource-kicker">Geographic View</p>
+                  <h3>The Fellowship Map</h3>
+                  <p class="resource-description">
+                    Ninety verified programs placed by city — and the 24 states
+                    with nothing listed. Same five tiers as the database, so a
+                    pin and a row mean the same thing.
+                  </p>
+                  <div class="resource-bottom">
+                    <time datetime="2026-08">2026-08</time
+                    ><span>Explore <span aria-hidden="true">↗</span></span>
+                  </div>
+                </div></a
+              ><a
+                class="resource-card"
+                href="feedback_is_a_gift.html"
+                data-card-index="3"
+                ><div class="resource-image">
+                  <img
+                    src="assets/thumbnails/feedback_is_a_gift.webp"
+                    alt=""
+                    width="640"
+                    height="400"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="resource-copy">
+                  <p class="resource-kicker">Culture</p>
+                  <h3>Feedback is a Gift</h3>
+                  <p class="resource-description">
+                    The days I learn the most are the days somebody tells me
+                    exactly what I did wrong.
+                  </p>
+                  <div class="resource-bottom">
+                    <time datetime="2026-07">2026-07</time
+                    ><span>Explore <span aria-hidden="true">↗</span></span>
+                  </div>
+                </div></a
+              ><a
+                class="resource-card"
+                href="july_effect.html"
+                data-card-index="4"
+                ><div class="resource-image">
+                  <img
+                    src="assets/thumbnails/july_effect.webp"
+                    alt=""
+                    width="640"
+                    height="400"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="resource-copy">
+                  <p class="resource-kicker">CULTURAL CONDEMNATION</p>
+                  <h3>July 1 is the Best Day to Come to the Hospital</h3>
+                  <p class="resource-description">
+                    The new doctors just started. The data says no one dies more
+                    in July. The joke we tell new doctors still does damage.
+                  </p>
+                  <div class="resource-bottom">
+                    <time datetime="2026-07">2026-07</time
+                    ><span>Explore <span aria-hidden="true">↗</span></span>
+                  </div>
+                </div></a
+              ><a class="resource-card" href="2ndmpj.html" data-card-index="5"
+                ><div class="resource-image">
+                  <img
+                    src="assets/thumbnails/2ndmpj.webp"
+                    alt=""
+                    width="640"
+                    height="400"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="resource-copy">
+                  <p class="resource-kicker">Surgical Atlas</p>
+                  <h3>The Second MTPJ Problem</h3>
+                  <p class="resource-description">
+                    A surgical-atlas teaching brief on the lesser MTPJ — from
+                    cutting it out to saving it.
+                  </p>
+                  <div class="resource-bottom">
+                    <time datetime="2026-06">2026-06</time
+                    ><span>Explore <span aria-hidden="true">↗</span></span>
+                  </div>
+                </div></a
+              ><a class="resource-card" href="microfx.html" data-card-index="6"
+                ><div class="resource-image">
+                  <img
+                    src="assets/thumbnails/microfx.webp"
+                    alt=""
+                    width="640"
+                    height="400"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="resource-copy">
+                  <p class="resource-kicker">Surgical Pearls</p>
+                  <h3>How Deep Should You Microfracture?</h3>
+                  <p class="resource-description">
+                    What the literature actually says about awl depth, plate
+                    violation, and when to escalate.
+                  </p>
+                  <div class="resource-bottom">
+                    <time datetime="2026-05">2026-05</time
+                    ><span>Explore <span aria-hidden="true">↗</span></span>
+                  </div>
+                </div></a
+              ><a
+                class="resource-card"
+                href="tmt_slippage.html"
+                data-card-index="7"
+                ><div class="resource-image">
+                  <img
+                    src="assets/thumbnails/tmt_slippage.webp"
+                    alt=""
+                    width="640"
+                    height="400"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="resource-copy">
+                  <p class="resource-kicker">Classroom Notes</p>
+                  <h3>TMT Slippage</h3>
+                  <p class="resource-description">
+                    Classroom notes on distal osteotomy failure modes — the
+                    post-op subluxation nobody named until recently.
+                  </p>
+                  <div class="resource-bottom">
+                    <time datetime="2026-05">2026-05</time
+                    ><span>Explore <span aria-hidden="true">↗</span></span>
+                  </div>
+                </div></a
+              ><a class="resource-card" href="dmmo.html" data-card-index="8"
+                ><div class="resource-image">
+                  <img
+                    src="assets/thumbnails/dmmo.webp"
+                    alt=""
+                    width="640"
+                    height="400"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="resource-copy">
+                  <p class="resource-kicker">Surgical Technique</p>
+                  <h3>The Quiet Rise of DMMO</h3>
+                  <p class="resource-description">
+                    A burr, no fixation, weight-bearing on day one. How one
+                    minimally invasive osteotomy reshaped the metatarsalgia
+                    conversation.
+                  </p>
+                  <div class="resource-bottom">
+                    <time datetime="2026-05">2026-05</time
+                    ><span>Explore <span aria-hidden="true">↗</span></span>
+                  </div>
+                </div></a
+              ><a class="resource-card" href="plating.html" data-card-index="9"
+                ><div class="resource-image">
+                  <img
+                    src="assets/thumbnails/plating.webp"
+                    alt=""
+                    width="640"
+                    height="400"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="resource-copy">
+                  <p class="resource-kicker">Field Notes</p>
+                  <h3>Plate Function: Start With the Force</h3>
+                  <p class="resource-description">
+                    The plate isn&#x27;t the construct — the force it
+                    neutralizes is. Four fixation modes, matched to the failure
+                    pattern.
+                  </p>
+                  <div class="resource-bottom">
+                    <time datetime="2026-04">2026-04</time
+                    ><span>Explore <span aria-hidden="true">↗</span></span>
+                  </div>
+                </div></a
+              ><a class="resource-card" href="lapidus.html" data-card-index="10"
+                ><div class="resource-image">
+                  <img
+                    src="assets/thumbnails/lapidus.webp"
+                    alt=""
+                    width="640"
+                    height="400"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="resource-copy">
+                  <p class="resource-kicker">Surgical Atlas</p>
+                  <h3>The Lapidus Procedure</h3>
+                  <p class="resource-description">
+                    First-ray stabilization by arthrodesis of the first TMT
+                    joint — indications, technique, and correction principles.
+                  </p>
+                  <div class="resource-bottom">
+                    <time datetime="2026-04">2026-04</time
+                    ><span>Explore <span aria-hidden="true">↗</span></span>
+                  </div>
+                </div></a
+              ><a
+                class="resource-card"
+                href="apma_history.html"
+                data-card-index="11"
+                ><div class="resource-image">
+                  <img
+                    src="assets/thumbnails/apma_history.webp"
+                    alt=""
+                    width="640"
+                    height="400"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="resource-copy">
+                  <p class="resource-kicker">History</p>
+                  <h3>History of the APMA</h3>
+                  <p class="resource-description">
+                    A century of standing on its own two feet — the
+                    organizational story of American podiatry, 1895 to today.
+                  </p>
+                  <div class="resource-bottom">
+                    <time datetime="2026-04">2026-04</time
+                    ><span>Explore <span aria-hidden="true">↗</span></span>
+                  </div>
+                </div></a
+              ><a
+                class="resource-card"
+                href="appendix_s.html"
+                data-card-index="12"
+                ><div class="resource-image">
+                  <img
+                    src="assets/thumbnails/appendix_s.webp"
+                    alt=""
+                    width="640"
+                    height="400"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="resource-copy">
+                  <p class="resource-kicker">Timeline</p>
+                  <h3>CPT Appendix S</h3>
+                  <p class="resource-description">AI as a billable service</p>
+                  <div class="resource-bottom">
+                    <time datetime="2025-06">2025-06</time
+                    ><span>Explore <span aria-hidden="true">↗</span></span>
+                  </div>
+                </div></a
+              ><a
+                class="resource-card"
+                href="posterolateral_ocd.html"
+                data-card-index="13"
+                ><div class="resource-image">
+                  <img
+                    src="assets/thumbnails/posterolateral_ocd.webp"
+                    alt=""
+                    width="640"
+                    height="400"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="resource-copy">
+                  <p class="resource-kicker">Timeline</p>
+                  <h3>Posterolateral Talus OCDs</h3>
+                  <p class="resource-description">
+                    Very rare - often asymptomatic. But if it&#x27;s
+                    not...surgical approach is tricky.
+                  </p>
+                  <div class="resource-bottom">
+                    <time datetime="2025-05">2025-05</time
+                    ><span>Explore <span aria-hidden="true">↗</span></span>
+                  </div>
+                </div></a
+              ><a
+                class="resource-card"
+                href="history_index.html"
+                data-card-index="14"
+                ><div class="resource-image">
+                  <img
+                    src="assets/thumbnails/history.webp"
+                    alt=""
+                    width="640"
+                    height="400"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="resource-copy">
+                  <p class="resource-kicker">Timeline</p>
+                  <h3>History of Podiatry</h3>
+                  <p class="resource-description">
+                    A visual walk through where the profession came from and how
+                    it grew into what it is today.
+                  </p>
+                  <div class="resource-bottom">
+                    <time datetime="2025-04">2025-04</time
+                    ><span>Explore <span aria-hidden="true">↗</span></span>
+                  </div>
+                </div></a
+              >
+            </div>
+            <button class="load-more" data-more="student-resident" hidden>
+              View all 15 resources <span aria-hidden="true">↓</span>
+            </button>
+          </section>
+          <div class="empty-state" hidden>
+            <h3>No matches yet.</h3>
+            <p>Try another topic or browse the full collection.</p>
+            <button class="button button-dark" id="clear-search">
+              Show all resources
+            </button>
+          </div>
+        </div>
+      </section>
+      <section class="author-teaser">
+        <div class="author-teaser-photo">
+          <img
+            src="assets/images/peter-sorensen.webp"
+            width="772"
+            height="953"
+            loading="lazy"
+            alt="Peter Sorensen, DPM, MHA"
+          />
+        </div>
+        <div class="author-teaser-copy">
+          <p class="eyebrow">The person behind the platform</p>
+          <h2 data-reveal>IN THE CLINIC.<br />IN YOUR CORNER.</h2>
+          <p>
+            Peter Sorensen, DPM, MHA. Podiatry resident, educator, and builder,
+            focused on helping the next generation navigate medicine with more
+            clarity and less friction.
+          </p>
+          <a class="button button-dark" href="about.html"
+            >Meet Peter <span aria-hidden="true">↗</span></a
+          >
+        </div>
+      </section>
+      <section id="substack" class="substack-section">
+        <div class="container">
+          <h2 data-reveal>KEEP THE<br />IDEAS COMING.</h2>
+          <div class="substack-intro">
+            <p>
+              Short, practical posts on putting AI to work in podiatry training.
+              The Substack is where new content gets published first.
+            </p>
+            <a
+              class="button button-primary"
+              href="https://substack.com/@petersorensendpm"
+              target="_blank"
+              rel="noreferrer"
+              >Subscribe to the Substack <span aria-hidden="true">↗</span></a
+            >
+          </div>
+          <div id="substack-posts" class="post-grid">
+            <article class="post-card">
+              <p class="post-meta">From the Substack</p>
+              <h3>Learn how to actually use AI in your day.</h3>
+              <p>
+                Practical thoughts, tips, and tools for podiatry students and
+                residents.
+              </p>
+              <a
+                href="https://substack.com/@petersorensendpm"
+                target="_blank"
+                rel="noreferrer"
+                >Read the latest writing ↗</a
+              >
+            </article>
           </div>
         </div>
       </section>
     </main>
-
     <footer class="site-footer">
-      <div class="container footer-grid">
-        <div>
-          <div class="brand footer-brand">
-            <span class="brand-mark" aria-hidden="true">
-              <img src="Sole Intelligence Images/logoanimation.gif" alt="" class="brand-logo" />
-            </span>
-            <span class="brand-words">
-              <span class="brand-name">The GuideWire</span>
-              <span class="brand-parent">by Sole Intelligence</span>
-            </span>
-          </div>
-          <p class="footer-copy">Practical AI for podiatry students and residents.</p>
+      <div class="footer-top container">
+        <div class="footer-brand-panel">
+          <img
+            src="Sole Intelligence Images/logogw.png"
+            alt="The GuideWire logo"
+            width="150"
+            height="150"
+            loading="lazy"
+          />
+          <p>Practical AI for podiatry<br />students and residents.</p>
         </div>
-        <div class="footer-links">
-          <a href="#ai-tutorials">AI Tutorials</a>
-          <a href="#politics-culture">Politics &amp; Culture</a>
-          <a href="#student-resident">Education</a>
-          <a href="about.html">About</a>
-          <a href="https://substack.com/@petersorensendpm" target="_blank" rel="noreferrer">Substack</a>
+        <div class="footer-nav-panel">
+          <p class="footer-invite">
+            Keep your curiosity.<br /><strong>Find your next step.</strong>
+          </p>
+          <div class="footer-links">
+            <a href="index.html#ai-tutorials">AI Tutorials</a
+            ><a href="index.html#politics-culture">Politics &amp; Culture</a
+            ><a href="index.html#student-resident">Education</a
+            ><a href="about.html">About</a
+            ><a href="about.html#contact">Contact</a
+            ><a
+              href="https://substack.com/@petersorensendpm"
+              target="_blank"
+              rel="noreferrer"
+              >Substack ↗</a
+            >
+          </div>
         </div>
       </div>
-      <div class="container legal">
+      <div class="container">
+        <button class="appearance-toggle" type="button" hidden>
+          Appearance: <span>System</span>
+        </button>
+      </div>
+      <div class="footer-wordmark" aria-hidden="true">THE GUIDEWIRE</div>
+      <div class="legal container">
         <p>
-          Disclaimer: All views, opinions, and commentary on this website are the author's own and are provided for educational and informational purposes only.
+          Disclaimer: All views, opinions, and commentary on this website are
+          the author's own and are provided for educational and informational
+          purposes only.
         </p>
+        <a href="#top" class="back-top">Back to top ↑</a>
       </div>
     </footer>
-  </div>
-
-  <script src="infographics.js"></script>
-  <script src="script.js"></script>
-</body>
+  </body>
 </html>
