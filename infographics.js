@@ -443,6 +443,33 @@ window.INFOGRAPHICS = [
     date: "2026-07-18",
     thumbnail: "Sole Intelligence Images/fellowship-dossier.png"
   },
+  {
+    title: "Podiatry's Alphabet Soup Problem",
+    description: "A national survey of 129 trainees on professional literacy, engagement, and belonging, plus the on-ramps that could close the gap.",
+    kicker: "ELP Capstone",
+    category: "politics-culture",
+    url: "professional_literacy.html",
+    date: "2026-08-09",
+    thumbnail: "Sole Intelligence Images/professional_literacy.png"
+  },
+  {
+    title: "ABFAS Pass Rates: What Applicants Can See",
+    description: "ABFAS publishes national pass rates by class, never by program. What the public charts measure, and where they stop short.",
+    kicker: "Transparency",
+    category: "politics-culture",
+    url: "board_pass_rates.html",
+    date: "2026-09-23",
+    thumbnail: "Sole Intelligence Images/board_pass_rates.png"
+  },
+  {
+    title: "When Will Medicare Decide?",
+    description: "A complete local coverage request has no firm deadline for a final decision — and the four dates CMS should publish for every one.",
+    kicker: "Coverage Policy",
+    category: "politics-culture",
+    url: "cms_delays.html",
+    date: "2026-09-23",
+    thumbnail: "Sole Intelligence Images/cms_delays.png"
+  },
 
   // ---- Student & Resident Education ----
   {

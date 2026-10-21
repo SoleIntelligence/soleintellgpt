@@ -28,11 +28,11 @@
       type="font/woff2"
       crossorigin
     />
-    <link rel="stylesheet" href="styles.css?v=20260916c" />
+    <link rel="stylesheet" href="styles.css?v=20261021c" />
     <script src="assets/vendor/gsap.min.js" defer></script>
     <script src="assets/vendor/ScrollTrigger.min.js" defer></script>
-    <script src="infographics.js" defer></script>
-    <script src="script.js?v=20260916a" defer></script>
+    <script src="infographics.js?v=20261021c" defer></script>
+    <script src="script.js?v=20261021b" defer></script>
   </head>
   <body class="about-page">
     <div id="top"></div>
@@ -150,6 +150,9 @@
       <section id="research" class="section research-section">
         <div class="container section-head" data-reveal>
           <div>
+            <p class="eyebrow section-index">
+              <span>01</span>Research
+            </p>
             <h2>A QUESTION.<br />THEN THE WORK.</h2>
             <p class="section-sub">
               Peer-reviewed work, cover features, and conference presentations
@@ -158,15 +161,81 @@
           </div>
         </div>
         <div class="container">
+          <article class="award-feature bezel" data-reveal>
+            <div class="bezel-core award-feature-grid">
+              <figure class="award-feature-media">
+                <img
+                  width="1600"
+                  height="1185"
+                  loading="lazy"
+                  src="assets/images/award-amcaim.webp"
+                  alt="Peter Sorensen receiving the AMCAIM Outstanding Research Award on stage at the American College of Artificial Intelligence and Medicine"
+                />
+                <span class="award-seal" aria-hidden="true">
+                  <svg viewBox="0 0 48 48" role="presentation">
+                    <circle
+                      cx="24"
+                      cy="19"
+                      r="11.5"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                    />
+                    <circle
+                      cx="24"
+                      cy="19"
+                      r="8"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="0.9"
+                      opacity=".55"
+                    />
+                    <path
+                      d="M24 13.4l1.9 3.9 4.3.6-3.1 3 .74 4.3-3.84-2-3.84 2 .74-4.3-3.1-3 4.3-.6z"
+                      fill="currentColor"
+                    />
+                    <path
+                      d="M17.5 29.2L14 43l10-4.6L34 43l-3.5-13.8"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </span>
+              </figure>
+              <div class="award-feature-copy">
+                <p class="card-kicker">Outstanding Research Award · 2026</p>
+                <h3>
+                  Recognized for the AI billing study by AMCAIM, the American
+                  College of Artificial Intelligence and Medicine
+                </h3>
+                <p>
+                  The College's Outstanding Research Award, presented in Chicago
+                  in October 2026 for work on applying large language models to
+                  medical billing — the administrative layer where AI can
+                  return real time to clinicians.
+                </p>
+                <ul class="award-meta">
+                  <li>
+                    <span>Awarded by</span>AMCAIM · American College of
+                    Artificial Intelligence and Medicine
+                  </li>
+                  <li><span>Presented</span>Chicago · October 2026</li>
+                  <li><span>Subject</span>AI billing study</li>
+                </ul>
+              </div>
+            </div>
+          </article>
           <div class="research-grid">
             <article class="content-card bezel" data-reveal>
               <div class="bezel-core">
                 <div class="content-card-media">
                   <img
-                    width="1306"
-                    height="516"
+                    width="900"
+                    height="356"
                     loading="lazy"
-                    src="Sole Intelligence Images/Martorell.jpg"
+                    src="assets/images/about/research-martorell.webp"
                     alt="Martorell ulcer publication visual"
                   />
                 </div>
@@ -192,10 +261,10 @@
               <div class="bezel-core">
                 <div class="content-card-media">
                   <img
-                    width="1208"
-                    height="1198"
+                    width="900"
+                    height="893"
                     loading="lazy"
-                    src="Sole Intelligence Images/PCFD.jpg"
+                    src="assets/images/about/research-pcfd.webp"
                     alt="Podiatry Today cover feature on progressive collapsing flatfoot deformity surgery"
                   />
                 </div>
@@ -224,22 +293,56 @@
               <div class="bezel-core">
                 <div class="content-card-media">
                   <img
-                    width="2018"
-                    height="1140"
+                    width="900"
+                    height="508"
                     loading="lazy"
-                    src="Sole Intelligence Images/1stmpjposter.png"
-                    alt="Conference poster: Staged Dynamization for Salvage of Recurrent 1st MTPJ Joint Nonunion, presented at APMA The National 2026"
+                    src="assets/images/about/research-1stmpj.webp"
+                    alt="Conference poster: Staged Dynamization for Salvage of Recurrent 1st MTPJ Joint Nonunion, winner at APMA The National 2026"
                   />
+                  <span class="award-ribbon">
+                    <span class="award-ribbon-band">
+                      <b
+                        ><svg
+                          viewBox="0 0 24 24"
+                          aria-hidden="true"
+                          focusable="false"
+                        >
+                          <circle
+                            cx="12"
+                            cy="9"
+                            r="6"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.8"
+                          />
+                          <path
+                            d="M12 6.2l1.1 2.2 2.5.36-1.8 1.74.43 2.47L12 11.8l-2.23 1.17.43-2.47-1.8-1.74 2.5-.36z"
+                            fill="currentColor"
+                          />
+                          <path
+                            d="M8.2 14.6L6 22l6-2.8L18 22l-2.2-7.4"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.8"
+                            stroke-linejoin="round"
+                          />
+                        </svg>Winner</b
+                      >
+                      <i>The National 2026</i>
+                    </span>
+                  </span>
                 </div>
                 <div class="content-card-body">
-                  <p class="card-kicker">Poster presentation</p>
+                  <p class="card-kicker">
+                    Poster presentation · <strong>Award winner</strong>
+                  </p>
                   <h3>
                     Staged Dynamization for Salvage of Recurrent 1st MTPJ
                     Nonunion
                   </h3>
                   <p>
                     A novel salvage technique using K-wires and teriparatide
-                    augmentation. Presented at APMA The National 2026.
+                    augmentation. Winner at APMA The National 2026.
                   </p>
                 </div>
               </div>
@@ -249,10 +352,10 @@
               <div class="bezel-core">
                 <div class="content-card-media">
                   <img
-                    width="2084"
-                    height="1174"
+                    width="900"
+                    height="507"
                     loading="lazy"
-                    src="Sole Intelligence Images/Calc Fx.jpg"
+                    src="assets/images/about/research-calc-fx.webp"
                     alt="Poster for bilateral calcaneal stress fractures case study"
                   />
                 </div>
@@ -271,10 +374,10 @@
               <div class="bezel-core">
                 <div class="content-card-media">
                   <img
-                    width="2016"
-                    height="1134"
+                    width="900"
+                    height="506"
                     loading="lazy"
-                    src="Sole Intelligence Images/Fish Skin.jpg"
+                    src="assets/images/about/research-fish-skin.webp"
                     alt="Poster for fish skin grafting in necrotizing fasciitis"
                   />
                 </div>
@@ -293,7 +396,7 @@
                     width="644"
                     height="834"
                     loading="lazy"
-                    src="Sole Intelligence Images/miles.jpg"
+                    src="assets/images/about/research-miles.webp"
                     alt="Peter presenting a limb salvage case study at the 2025 MILES conference"
                   />
                 </div>
@@ -309,10 +412,10 @@
               <div class="bezel-core">
                 <div class="content-card-media">
                   <img
-                    width="1820"
-                    height="1440"
+                    width="1200"
+                    height="949"
                     loading="lazy"
-                    src="Sole Intelligence Images/tumor.png"
+                    src="assets/images/about/research-tumor.webp"
                     alt="Peter Sorensen presenting his tibial nerve tumor excision and allograft reconstruction poster"
                     style="object-position: center top"
                   />
@@ -334,6 +437,12 @@
         <div class="container">
           <div class="honors-strip" data-reveal>
             <span class="honors-label">Honors</span>
+            <span class="badge badge-award"
+              >AMCAIM Outstanding Research Award, 2026</span
+            >
+            <span class="badge badge-award"
+              >Poster winner · APMA The National 2026</span
+            >
             <span class="badge">Alpha Eta Honor Society</span>
             <span class="badge">APMA Educational Foundation Scholarship</span>
           </div>
@@ -342,6 +451,9 @@
       <section id="advocacy" class="section advocacy-section">
         <div class="container section-head" data-reveal>
           <div>
+            <p class="eyebrow section-index">
+              <span>02</span>Advocacy
+            </p>
             <h2>A VOICE IN<br />THE ROOM.</h2>
           </div>
         </div>
@@ -409,10 +521,10 @@
             <div class="gallery-stack">
               <figure class="gallery-card" data-reveal>
                 <img
-                  width="5055"
-                  height="4661"
+                  width="1500"
+                  height="1383"
                   loading="lazy"
-                  src="Sole Intelligence Images/ToddYoung.jpg"
+                  src="assets/images/about/advocacy-todd-young.webp"
                   alt="Peter Sorensen meeting with Senator Todd Young and Dr. Patrick DeHeer"
                 />
                 <figcaption>
@@ -425,10 +537,10 @@
               </figure>
               <figure class="gallery-card" data-reveal style="--d: 0.06s">
                 <img
-                  width="5320"
-                  height="4763"
+                  width="1500"
+                  height="1343"
                   loading="lazy"
-                  src="Sole Intelligence Images/Lobbying.jpg"
+                  src="assets/images/about/advocacy-lobbying.webp"
                   alt="Peter Sorensen lobbying on Capitol Hill about Medicare physician fee schedule changes"
                 />
                 <figcaption>
@@ -442,10 +554,10 @@
               </figure>
               <figure class="gallery-card" data-reveal style="--d: 0.06s">
                 <img
-                  width="1176"
-                  height="880"
+                  width="900"
+                  height="673"
                   loading="lazy"
-                  src="Sole Intelligence Images/speaking.jpg"
+                  src="assets/images/about/advocacy-hod.webp"
                   alt="Peter Sorensen speaking at the 2026 APMA House of Delegates"
                 />
                 <figcaption>
@@ -456,10 +568,10 @@
               </figure>
               <figure class="gallery-card" data-reveal style="--d: 0.06s">
                 <img
-                  width="1002"
-                  height="906"
+                  width="900"
+                  height="814"
                   loading="lazy"
-                  src="Sole Intelligence Images/apma.jpg"
+                  src="assets/images/about/advocacy-apma.webp"
                   alt="Peter Sorensen at the APMA podium with Dr. Savannah Santiago"
                 />
                 <figcaption>
@@ -471,7 +583,7 @@
                   width="766"
                   height="1328"
                   loading="lazy"
-                  src="Sole Intelligence Images/ELP.jpg"
+                  src="assets/images/about/advocacy-elp.webp"
                   alt="APMA News quote from Peter Sorensen in the January February 2026 edition"
                 />
                 <figcaption>
@@ -486,10 +598,10 @@
               </figure>
               <figure class="gallery-card" data-reveal style="--d: 0.06s">
                 <img
-                  width="1076"
-                  height="810"
+                  width="900"
+                  height="678"
                   loading="lazy"
-                  src="Sole Intelligence Images/researchcoordinator.png"
+                  src="assets/images/about/advocacy-research-chief.webp"
                   alt="Spotlight graphic naming Peter Sorensen as Chief Research Coordinator"
                 />
                 <figcaption>
@@ -505,6 +617,9 @@
       <section id="speaking" class="section speaking-section">
         <div class="container section-head" data-reveal>
           <div>
+            <p class="eyebrow section-index">
+              <span>03</span>Speaking
+            </p>
             <h2>LET’S GET<br />PEOPLE THINKING.</h2>
           </div>
         </div>
@@ -543,7 +658,7 @@
                     width="536"
                     height="424"
                     loading="lazy"
-                    src="Sole Intelligence Images/IPMA.jpg"
+                    src="assets/images/about/speaking-ipma-2025.webp"
                     alt="Peter Sorensen speaking at the Indiana Podiatric Medical Association meeting"
                   />
                   <figcaption>
@@ -551,16 +666,22 @@
                     research.
                   </figcaption>
                 </figure>
-                <figure class="gallery-card" data-reveal style="--d: 0.06s">
+                <figure
+                  class="gallery-card gallery-card-wide"
+                  data-reveal
+                  style="--d: 0.06s"
+                >
                   <img
-                    width="506"
-                    height="572"
+                    width="1600"
+                    height="890"
                     loading="lazy"
-                    src="Sole Intelligence Images/award.jpg"
-                    alt="Resident faculty award at the 2025 MILES conference"
+                    src="assets/images/lecture-ipma-2026.webp"
+                    alt="Title slide: Actually Useful AI in Podiatry Practice, a brief annual update on practical AI for podiatrists, by Peter Sorensen, DPM, MHA"
                   />
                   <figcaption>
-                    Recognized as resident faculty at the 2025 MILES conference.
+                    <strong>Actually Useful AI in Podiatry Practice</strong> —
+                    the 2026 IPMA state meeting lecture, a yearly update on
+                    which AI tools have earned a place in practice.
                   </figcaption>
                 </figure>
               </div>
@@ -577,10 +698,10 @@
               aria-label="Watch Peter's Dean's Chat episode on YouTube"
             >
               <img
-                width="1718"
-                height="956"
+                width="1600"
+                height="890"
                 loading="lazy"
-                src="Sole Intelligence Images/deanschat.png"
+                src="assets/images/about/speaking-deans-chat.webp"
                 alt="Peter Sorensen featured as a guest on the Dean's Chat podcast for an AI update"
               />
             </a>
@@ -601,7 +722,7 @@
                 width="980"
                 height="1228"
                 loading="lazy"
-                src="Sole Intelligence Images/thenational.png"
+                src="assets/images/about/speaking-the-national.webp"
                 alt="Graphic announcing Peter Sorensen speaking at APMA The National 2026 in Nashville"
               />
               <figcaption>
@@ -621,7 +742,7 @@
                 width="1022"
                 height="1222"
                 loading="lazy"
-                src="Sole Intelligence Images/global.png"
+                src="assets/images/about/speaking-podiatry-decoded.webp"
                 alt="Podiatry Decoded graphic introducing Peter Sorensen as an international webinar speaker"
               />
               <figcaption>
@@ -639,6 +760,11 @@
               surgery.
             </p>
             <ul class="lecture-list">
+              <li>
+                <span class="lecture-title"
+                  >Actually Useful AI in Podiatry Practice</span
+                ><span class="lecture-meta">IPMA State Meeting · 2026</span>
+              </li>
               <li>
                 <span class="lecture-title"
                   >The Use of AI in Biomedical Research</span
@@ -699,6 +825,9 @@
       <section id="support" class="section support-section">
         <div class="container section-head" data-reveal>
           <div>
+            <p class="eyebrow section-index">
+              <span>04</span>Support
+            </p>
             <h2>HELP THE<br />NEXT GENERATION.</h2>
           </div>
         </div>
@@ -749,6 +878,9 @@
       <section id="contact" class="section contact-section">
         <div class="container section-head" data-reveal>
           <div>
+            <p class="eyebrow section-index">
+              <span>05</span>Contact
+            </p>
             <h2>LET’S CONNECT.</h2>
             <p class="section-sub">
               For speaking, sponsorship, collaboration, or general questions,
@@ -828,10 +960,10 @@
       <div class="footer-top container">
         <div class="footer-brand-panel">
           <img
-            src="Sole Intelligence Images/logogw.png"
+            src="assets/images/about/guidewire-logo.webp"
             alt="The GuideWire logo"
-            width="150"
-            height="150"
+            width="400"
+            height="400"
             loading="lazy"
           />
           <p>Practical AI for podiatry<br />students and residents.</p>

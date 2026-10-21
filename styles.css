@@ -2650,3 +2650,380 @@ html[data-theme="light"] .topic-panel {
   border-color: var(--accent);
   color: var(--accent);
 }
+
+/* ==========================================================================
+   About: awards and honors  (2026-10-20)
+   The Outstanding Research Award feature, the winner ribbon on an
+   award-winning card, and the 2026 IPMA lecture plate. About page only.
+   ========================================================================== */
+
+/* -- Outstanding Research Award feature ----------------------------------- */
+.award-feature {
+  margin-bottom: clamp(48px, 5.6vw, 84px);
+}
+.award-feature-grid {
+  display: grid;
+  grid-template-columns: 1.08fr 0.92fr;
+  gap: clamp(26px, 3.4vw, 56px);
+  align-items: center;
+}
+.award-feature-media {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  background: #0c171d;
+  border: 1px solid #22383f;
+}
+.award-feature-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1.35;
+  object-fit: cover;
+}
+.award-seal {
+  position: absolute;
+  inset: 16px 16px auto auto;
+  width: clamp(52px, 5vw, 66px);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  color: var(--accent-bright);
+  background: radial-gradient(circle at 50% 42%, #04080bd9, #04080b00 72%);
+  filter: drop-shadow(0 6px 16px #000000b3);
+}
+.award-seal svg {
+  width: 100%;
+  height: 100%;
+}
+.award-feature-copy .card-kicker {
+  color: var(--accent);
+}
+.award-feature-copy h3 {
+  font-family: var(--body);
+  font-size: clamp(21px, 2.1vw, 29px);
+  font-weight: 700;
+  line-height: 1.26;
+  letter-spacing: -0.015em;
+  margin-bottom: 18px;
+}
+.award-feature-copy > p {
+  font-size: 15px;
+  line-height: 1.72;
+  color: var(--muted);
+}
+.award-meta {
+  list-style: none;
+  margin: 26px 0 0;
+  padding: 20px 0 0;
+  display: grid;
+  gap: 11px;
+  border-top: 1px solid #2b4149;
+}
+.award-meta li {
+  display: grid;
+  grid-template-columns: 104px 1fr;
+  gap: 16px;
+  font-size: 13px;
+  line-height: 1.55;
+}
+.award-meta span {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  padding-top: 3px;
+}
+
+/* -- Winner ribbon on an award-winning card -------------------------------
+   Sized in container units against the card it sits on, so it reads the
+   same on a span-2 research card and on a phone. */
+.content-card-media {
+  position: relative;
+  container-type: inline-size;
+}
+.award-ribbon {
+  --ribbon: clamp(74px, 33cqw, 136px);
+  position: absolute;
+  inset: 0 0 auto auto;
+  width: var(--ribbon);
+  height: var(--ribbon);
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 2;
+}
+.award-ribbon-band {
+  position: absolute;
+  top: calc(var(--ribbon) * 0.2);
+  right: calc(var(--ribbon) * -0.26);
+  width: calc(var(--ribbon) * 1.52);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  padding: calc(var(--ribbon) * 0.055) 0;
+  transform: rotate(45deg);
+  text-align: center;
+  color: #04080b;
+  background: linear-gradient(135deg, #9ff6f0, #4fd6d1 46%, #1d8c89);
+  box-shadow:
+    0 10px 26px -10px #000000b3,
+    inset 0 1px 0 #ffffff59;
+}
+.award-ribbon-band svg {
+  width: clamp(9px, 8cqw, 14px);
+  height: auto;
+  flex: none;
+}
+.award-ribbon-band b {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.42em;
+  font-size: clamp(7.5px, 6.6cqw, 11px);
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+.award-ribbon-band i {
+  font-style: normal;
+  font-size: clamp(6px, 5cqw, 8.5px);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.78;
+  line-height: 1.1;
+}
+.content-card-body .card-kicker strong {
+  color: var(--accent-bright);
+  font-weight: 700;
+}
+
+/* -- Honors badges -------------------------------------------------------- */
+.honors-strip .badge-award {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 9px;
+  color: var(--accent-bright);
+}
+.honors-strip .badge-award::before {
+  content: "";
+  flex: none;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 3px #4fd6d129;
+  transform: translateY(-1px);
+}
+
+/* -- Wide lecture plate in the speaking gallery --------------------------- */
+/* Specific enough to beat .topic-gallery .gallery-card:nth-child(2), which
+   would otherwise narrow and right-align this plate. */
+.topic-gallery .media-pair .gallery-card-wide {
+  width: 86%;
+  margin-left: 0;
+}
+.topic-gallery .gallery-card-wide img {
+  border: 1px solid #22383f;
+}
+
+/* -- Responsive ----------------------------------------------------------- */
+@media (max-width: 1099px) {
+  .award-feature-grid {
+    grid-template-columns: 1fr;
+  }
+  .award-feature-media img {
+    aspect-ratio: auto;
+  }
+}
+@media (max-width: 899px) {
+  .topic-gallery .media-pair .gallery-card-wide {
+    width: 100%;
+  }
+}
+@media (max-width: 599px) {
+  .award-meta li {
+    grid-template-columns: 1fr;
+    gap: 3px;
+  }
+}
+
+/* ==========================================================================
+   About: editorial structure for the second half  (2026-10-20)
+   Numerals carry the rhythm — section indices, the advocacy pillars, the
+   lecture archive, and the ways to help all share one counter treatment,
+   so three large flat colour fields stop reading as walls of body copy.
+   All of it is driven by CSS counters, so the markup stays as authored.
+   ========================================================================== */
+
+.section-index {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 20px;
+  color: inherit;
+  opacity: 0.68;
+}
+.section-index span {
+  font-family: var(--display);
+  font-size: 15px;
+  letter-spacing: 0.04em;
+}
+.section-index::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  max-width: 120px;
+  background: currentColor;
+  opacity: 0.4;
+  transform: translateY(-3px);
+}
+.research-section .section-index {
+  color: var(--accent);
+}
+
+/* -- Advocacy: a lead statement, then numbered pillars -------------------- */
+.advocacy-copy > p:first-of-type {
+  font-size: clamp(19px, 1.6vw, 23px);
+  line-height: 1.45;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  margin-bottom: 22px;
+}
+.feature-list {
+  counter-reset: pillar;
+  gap: 0;
+  margin: 36px 0 34px;
+  border-top: 1px solid #1b6b68;
+}
+.feature-item {
+  counter-increment: pillar;
+  display: grid;
+  /* The numeral holds its own column beside the stacked heading and copy,
+     rather than letting the paragraph fall into the next grid row. */
+  grid-template-columns: auto 1fr;
+  column-gap: 16px;
+  align-items: start;
+  padding: 18px 0;
+  border-bottom: 1px solid #1b6b68;
+}
+.feature-item::before {
+  content: counter(pillar, decimal-leading-zero);
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  font-family: var(--display);
+  font-size: 30px;
+  line-height: 0.9;
+  opacity: 0.42;
+  font-variant-numeric: tabular-nums;
+}
+.feature-item h3 {
+  grid-column: 2;
+  grid-row: 1;
+  font-size: 19px;
+  margin-bottom: 4px;
+}
+.feature-item p {
+  grid-column: 2;
+  grid-row: 2;
+  font-size: 13.5px;
+  max-width: 42ch;
+  opacity: 0.85;
+}
+
+/* -- Speaking: the lectures as an archive index, not a wall of boxes ------ */
+.lecture-list {
+  counter-reset: lecture;
+  display: block;
+  grid-template-columns: none;
+  gap: 0;
+  background: none;
+  border: 0;
+  border-top: 1px solid var(--rule);
+}
+.lecture-list li {
+  counter-increment: lecture;
+  display: grid;
+  grid-template-columns: 46px 1fr auto;
+  align-items: baseline;
+  gap: 0 24px;
+  padding: 20px 4px;
+  background: none;
+  border-bottom: 1px solid var(--rule);
+  transition:
+    background 0.35s var(--ease),
+    padding-inline 0.35s var(--ease);
+}
+.lecture-list li::before {
+  content: counter(lecture, decimal-leading-zero);
+  font-family: var(--display);
+  font-size: 16px;
+  color: var(--surface-muted);
+  font-variant-numeric: tabular-nums;
+}
+.lecture-list .lecture-title {
+  font-size: clamp(17px, 1.5vw, 21px);
+  line-height: 1.32;
+  font-weight: 700;
+  letter-spacing: -0.012em;
+}
+.lecture-list .lecture-meta {
+  text-align: right;
+  white-space: nowrap;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+}
+@media (hover: hover) {
+  .lecture-list li:hover {
+    background: #0000000a;
+    padding-inline: 14px 4px;
+  }
+}
+
+/* -- Support: the same numerals on the ways to help ----------------------- */
+.support-card .topic-list {
+  counter-reset: help;
+  display: grid;
+  gap: 0;
+  border-top: 1px solid #2c8f8c;
+}
+.support-card .topic-list li {
+  counter-increment: help;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 16px;
+  align-items: baseline;
+  padding: 15px 0;
+  border-bottom: 1px solid #2c8f8c;
+  font-size: 15px;
+  line-height: 1.5;
+}
+.support-card .topic-list li::before {
+  content: counter(help, decimal-leading-zero);
+  font-family: var(--display);
+  font-size: 15px;
+  opacity: 0.5;
+  position: static;
+  color: inherit;
+  font-variant-numeric: tabular-nums;
+}
+
+/* -- Responsive ----------------------------------------------------------- */
+@media (max-width: 899px) {
+  .lecture-list li {
+    grid-template-columns: 34px 1fr;
+    gap: 0 16px;
+    padding: 16px 2px;
+  }
+  .lecture-list .lecture-meta {
+    grid-column: 2;
+    text-align: left;
+    white-space: normal;
+    margin-top: 6px;
+  }
+  .section-index::after {
+    max-width: 60px;
+  }
+}

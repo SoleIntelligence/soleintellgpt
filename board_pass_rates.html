@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ABFAS Pass Rates: What Applicants Can See</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0f1c2e;
+    --navy-2:#162536;
+    --ink:#0a121d;
+    --teal:#3c8f8a;
+    --teal-dim:#2c6b67;
+    --rust:#b8581f;
+    --paper:#f3efe6;
+    --paper-2:#e9e3d6;
+    --line:#c9c0ad;
+    --muted:#6f7c88;
+    --muted-pale:#9aa7b2;
+    --green:#4f8a5b;
+    --red:#a8412c;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Cormorant Garamond',Georgia,serif;
+    font-size:19px;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:880px;margin:0 auto;padding:0 26px 90px;}
+
+  /* ── MASTHEAD ── */
+  .masthead{
+    border-bottom:3px solid var(--ink);
+    padding:40px 0 16px;
+    margin-bottom:4px;
+  }
+  .kicker{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;letter-spacing:.34em;text-transform:uppercase;
+    color:var(--teal-dim);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;
+  }
+  .nameplate{
+    font-weight:700;
+    font-size:clamp(46px,9vw,84px);
+    line-height:.92;
+    letter-spacing:-.02em;
+    margin:14px 0 10px;
+  }
+  .subnameplate{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--muted);
+    border-top:1px solid var(--line);
+    padding-top:12px;
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
+  }
+  .byline{color:var(--rust);font-weight:600;}
+
+  /* ── DEK ── */
+  .dek{
+    font-size:25px;
+    line-height:1.32;
+    font-weight:500;
+    margin:30px 0 8px;
+    color:var(--ink);
+  }
+  .dek em{font-style:italic;color:var(--teal-dim);}
+  .standfirst{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12.5px;line-height:1.7;letter-spacing:.01em;
+    color:var(--muted);
+    border-left:3px solid var(--teal);
+    padding:4px 0 4px 16px;
+    margin:18px 0 0;
+  }
+
+  /* ── SECTIONS ── */
+  section{margin-top:54px;}
+  .sec-tag{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;letter-spacing:.28em;text-transform:uppercase;
+    color:var(--rust);
+    display:flex;align-items:center;gap:12px;
+    margin-bottom:14px;
+  }
+  .sec-tag::after{content:"";flex:1;height:1px;background:var(--line);}
+  h2{
+    font-weight:700;font-size:34px;line-height:1.06;letter-spacing:-.01em;
+    margin-bottom:14px;
+  }
+  h3{font-weight:600;font-size:23px;margin:24px 0 8px;}
+  p{margin-bottom:14px;}
+  p .lead-in{font-weight:600;}
+  a{color:var(--teal-dim);}
+
+  /* ── APPLICANT QUESTIONS ── */
+  .question{
+    border:1px solid var(--line);
+    border-top:3px solid var(--teal);
+    background:#fbf8f1;
+    padding:24px 26px 22px;
+    margin-bottom:18px;
+    position:relative;
+  }
+  .question .num{
+    position:absolute;top:-3px;right:0;
+    background:var(--teal);color:var(--paper);
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;letter-spacing:.2em;
+    padding:5px 12px;
+  }
+  .question h3{margin-top:0;color:var(--navy);}
+  .question .frame{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--muted);margin-bottom:12px;
+  }
+  .readout{
+    display:grid;grid-template-columns:1fr 1fr;gap:0;
+    border-top:1px solid var(--line);
+    margin-top:14px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11.5px;line-height:1.55;
+  }
+  .readout div{padding:11px 14px 11px 0;}
+  .readout div:first-child{border-right:1px solid var(--line);padding-right:18px;}
+  .readout div:last-child{padding-left:18px;}
+  .readout .lab{
+    display:block;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--rust);font-size:9.5px;margin-bottom:5px;
+  }
+  @media(max-width:560px){
+    .readout{grid-template-columns:1fr;}
+    .readout div:first-child{border-right:none;border-bottom:1px solid var(--line);padding-right:0;}
+    .readout div:last-child{padding-left:0;}
+  }
+
+  /* ── DATA PANEL ── */
+  .data{
+    background:var(--navy);
+    color:var(--paper);
+    padding:30px 30px 26px;
+    margin-top:8px;
+  }
+  .data .sec-tag{color:var(--teal);}
+  .data .sec-tag::after{background:rgba(255,255,255,.16);}
+  .data h2{color:var(--paper);}
+  .datagrid{
+    display:grid;grid-template-columns:repeat(2,1fr);
+    gap:1px;background:rgba(255,255,255,.13);
+    border:1px solid rgba(255,255,255,.13);
+    margin-top:20px;
+  }
+  .stat{background:var(--navy);padding:20px 18px;}
+  .stat .fig{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:40px;font-weight:600;color:var(--teal);
+    line-height:1;letter-spacing:-.02em;
+  }
+  .stat .fig small{font-size:18px;color:var(--muted-pale);}
+  .stat .cap{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10.5px;letter-spacing:.06em;line-height:1.5;
+    color:var(--muted-pale);margin-top:10px;
+  }
+  .data .note{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;line-height:1.7;color:var(--muted-pale);
+    margin-top:20px;border-top:1px solid rgba(255,255,255,.14);padding-top:16px;
+  }
+  @media(max-width:560px){.datagrid{grid-template-columns:1fr;}}
+
+  /* ── PULL ── */
+  .pull{
+    font-size:28px;line-height:1.28;font-weight:500;font-style:italic;
+    color:var(--navy);
+    border-top:2px solid var(--rust);border-bottom:2px solid var(--rust);
+    padding:22px 0;margin:34px 0;
+  }
+  .pull .src{
+    display:block;font-style:normal;font-family:'IBM Plex Mono',monospace;
+    font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--rust);margin-top:14px;
+  }
+
+  /* ── IRONY CALLOUT ── */
+  .irony{
+    border:2px solid var(--navy);
+    padding:0;margin-top:8px;
+    display:grid;grid-template-columns:auto 1fr;
+  }
+  .irony .spine{
+    background:var(--navy);color:var(--paper);
+    writing-mode:vertical-rl;text-orientation:mixed;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;letter-spacing:.28em;text-transform:uppercase;
+    padding:18px 10px;display:flex;align-items:center;justify-content:center;
+    transform:rotate(180deg);
+  }
+  .irony .body{padding:24px 26px;}
+  .irony h3{margin-top:0;}
+  @media(max-width:560px){
+    .irony{grid-template-columns:1fr;}
+    .irony .spine{writing-mode:horizontal-tb;transform:none;padding:9px 14px;justify-content:flex-start;}
+  }
+
+  /* ── HONEST READ MATRIX ── */
+  .matrix{border:1px solid var(--line);margin-top:18px;}
+  .matrix .row{
+    display:grid;grid-template-columns:1fr 1fr;
+    border-bottom:1px solid var(--line);
+  }
+  .matrix .row:last-child{border-bottom:none;}
+  .matrix .row > div{padding:16px 18px;}
+  .matrix .row > div:first-child{
+    border-right:1px solid var(--line);
+    background:#fbf8f1;
+  }
+  .matrix .hd{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+    margin-bottom:7px;display:block;
+  }
+  .matrix .hd.for{color:var(--green);}
+  .matrix .hd.against{color:var(--red);}
+  .matrix .row > div p{font-size:17px;line-height:1.42;margin:0;}
+  @media(max-width:560px){
+    .matrix .row{grid-template-columns:1fr;}
+    .matrix .row > div:first-child{border-right:none;border-bottom:1px solid var(--line);}
+  }
+
+  /* ── STRATEGIC READ ── */
+  .strat{background:var(--ink);color:var(--paper);padding:34px 30px 30px;margin-top:8px;}
+  .strat .sec-tag{color:var(--teal);}
+  .strat .sec-tag::after{background:rgba(255,255,255,.16);}
+  .strat h2{color:var(--paper);}
+  .strat p{color:#d8d2c4;}
+  .strat .lead-in{color:var(--teal);}
+  .strat .q{
+    font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.06em;
+    color:var(--teal);margin:22px 0 4px;
+  }
+
+  /* ── OPEN QUESTIONS ── */
+  .oq{list-style:none;counter-reset:oq;margin-top:16px;}
+  .oq li{
+    counter-increment:oq;
+    border-left:3px solid var(--teal);
+    padding:4px 0 16px 18px;margin-bottom:0;position:relative;
+    font-size:18px;line-height:1.45;
+  }
+  .oq li::before{
+    content:"Q" counter(oq);
+    font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;
+    color:var(--rust);display:block;margin-bottom:3px;
+  }
+
+  /* ── FOOTER ── */
+  .foot{
+    margin-top:64px;border-top:3px solid var(--ink);padding-top:16px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10.5px;letter-spacing:.08em;line-height:1.8;color:var(--muted);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
+  }
+  .foot .cc{color:var(--muted-pale);}
+  .sources{
+    font-family:'IBM Plex Mono',monospace;font-size:10.5px;line-height:1.85;
+    color:var(--muted);margin-top:26px;
+  }
+  .sources .sec-tag{margin-bottom:10px;}
+  .sources span{color:var(--teal-dim);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- MASTHEAD -->
+  <div class="masthead">
+    <div class="kicker">
+      <span>For residency applicants</span>
+      <span>Board outcome reporting</span>
+    </div>
+    <div class="nameplate">Board Pass Rates:<br>A Resident's Guide</div>
+    <div class="subnameplate">
+      <span>A look at ABFAS pass-rate reporting.</span>
+      <span class="byline">Peter Sorensen, DPM</span>
+    </div>
+  </div>
+
+  <p class="dek">ABFAS publishes national exam pass rates. Applicants could also benefit from a consistent way to understand outcomes at the programs they are considering.</p>
+  <p class="standfirst">For students comparing residencies, board outcomes are one useful question among many. Here is what the public ABFAS data show, where the limits are, and how program-level reporting could be done responsibly.</p>
+
+  <section>
+    <div class="sec-tag">Three questions for applicants</div>
+    <h2>Start with what each number measures</h2>
+    <p>A board pass rate needs context. Which exam? Which graduates? First attempt or eventual completion? Those details determine whether two numbers can be compared.</p>
+
+    <div class="question">
+      <span class="num">QUESTION 01</span>
+      <div class="frame">The certification pathway</div>
+      <h3>Qualification and certification happen at different times</h3>
+      <p>ABFAS qualification includes Part I examinations in Foot Surgery and, when applicable, Reconstructive Rearfoot/Ankle Surgery. Certification follows a separate Case Review process. A recent graduate's qualification result and a former graduate's certification result describe different points in that pathway.</p>
+      <div class="readout">
+        <div><span class="lab">Ask</span>Does the rate cover Part I qualification, Case Review, or eventual board certification?</div>
+        <div><span class="lab">Check</span>Which graduation years and examination attempts are included?</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <span class="num">QUESTION 02</span>
+      <div class="frame">The public data</div>
+      <h3>National results give context</h3>
+      <p>ABFAS's public pass-rate page shows results by residency graduation class for its Part I examinations and Case Review. The charts help readers see national patterns. They do not identify individual residency programs, so they cannot answer how graduates of a particular program performed.</p>
+      <div class="readout">
+        <div><span class="lab">Useful for</span>Understanding the national result for a defined exam and class year.</div>
+        <div><span class="lab">Limited for</span>Comparing the programs on an applicant's rank list.</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <span class="num">QUESTION 03</span>
+      <div class="frame">The program conversation</div>
+      <h3>Ask for a defined outcome, with context</h3>
+      <p>Applicants can ask programs how recent graduates progressed through qualification and certification, how many graduates are in the group, and what support residents receive for exam preparation. A useful answer names the denominator, the time period, and the exam. It also leaves room to discuss operative experience, teaching, mentorship, and graduate practice.</p>
+      <div class="readout">
+        <div><span class="lab">A fair question</span>"How do you track your graduates' board outcomes, and what have you changed in response?"</div>
+        <div><span class="lab">A fair reading</span>One percentage does not describe the full quality of a residency.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="data">
+    <div class="sec-tag">The current public report</div>
+    <h2>What is available today</h2>
+    <p style="color:#d8d2c4;">The ABFAS pass-rate page, labeled "as of August 2025," presents six charts: four for Part I qualification examinations and two for Part II Case Review. Results are grouped by residency graduation class.</p>
+    <div class="datagrid">
+      <div class="stat">
+        <div class="fig">6</div>
+        <div class="cap">Public charts covering Foot Surgery and Reconstructive Rearfoot/Ankle Surgery examination components.</div>
+      </div>
+      <div class="stat">
+        <div class="fig">By<br>class</div>
+        <div class="cap">Results are grouped by residency graduation year, giving readers a national view across classes.</div>
+      </div>
+      <div class="stat">
+        <div class="fig">2</div>
+        <div class="cap">Stages to keep separate: Part I board qualification and Part II Case Review for certification.</div>
+      </div>
+      <div class="stat">
+        <div class="fig">0</div>
+        <div class="cap">Individual residency programs identified in those public charts.</div>
+      </div>
+    </div>
+    <p class="note">READING NOTE &mdash; ABFAS says candidates take about four years on average to accumulate enough cases to enroll in Case Review. Recent classes therefore have less time to complete that step. Compare rates only after checking the exam, cohort, denominator, and time since graduation.</p>
+  </section>
+
+  <p class="pull">Applicants should be able to ask a clear question and receive a number they can interpret.<span class="src">The practical goal</span></p>
+
+  <section>
+    <div class="sec-tag">A useful distinction</div>
+    <div class="irony">
+      <div class="spine">ITE data</div>
+      <div class="body">
+        <h3>In-training results are related, but separate</h3>
+        <p>ABFAS says residency directors can use Podiatry Residency Resource (PRR) to compare their program's in-training examination (ITE) performance with other programs. That report can help programs assess resident learning.</p>
+        <p style="margin-bottom:0;">An ITE comparison is not a report of graduates' board qualification or certification outcomes. Any applicant-facing board outcome report would need its own definitions, review, and privacy safeguards but would be way more useful than what currently exists.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-tag">A reasonable next step</div>
+    <h2>How reporting could help</h2>
+    <p>I would support a conversation among programs, CPME, ABFAS, and applicants about a shared format for graduate outcomes with the intent to give students comparable information that is actually useful.</p>
+    <div class="matrix">
+      <div class="row">
+        <div><span class="hd for">Define the measure</span><p>Report qualification and certification separately. Name the exam, graduation years, numerator, denominator, and whether the rate is based on first attempts or eventual completion.</p></div>
+        <div><span class="hd against">Protect interpretation</span><p>Use multiple years where appropriate. Suppress or combine very small groups so readers cannot identify individuals or overread a few results.</p></div>
+      </div>
+      <div class="row">
+        <div><span class="hd for">Give program context</span><p>Let programs describe exam preparation and changes they have made when results suggest a need. This would just help raise the bar for everyone. Which imo we kinda need to do.</p></div>
+        <div><span class="hd against">Keep the full picture</span><p>Board outcomes belong alongside case experience, supervision, teaching, resident support, and graduates' practice paths. But a program that doesn't have consistent pass rates or doesn't act on low pass rates is not one I'd want to train at.</p></div>
+      </div>
+    </div>
+    <p style="margin-top:18px;">Increased transparency about board pass rates can only help raise the bar for the profession. A rising tide raises all ships, as they say.</p>
+  </section>
+
+  <div class="sources">
+    <div class="sec-tag" style="color:var(--rust);">Sources</div>
+    <span>ABFAS</span> &mdash; <a href="https://www.abfas.org/about-us/exam-pass-rates">Exam Pass Rates</a> (charts labeled August 2025); <a href="https://www.abfas.org/become-board-certified/pathway-to-certification/pathway-for-candidates-who-completed-residency-post-2020">Pathway to Certification</a>; <a href="https://www.abfas.org/residents/residency-programs">Residency Directors</a>; <a href="https://www.abfas.org/docs/default-source/abfas-documents/iteguide.pdf">In-training Examination Guide</a> (PRR comparison report).<br>
+    <span>ACGME</span> &mdash; <a href="https://www.acgme.org/about/acgme-frequently-asked-questions/">Frequently Asked Questions</a> (use of aggregate board pass rates in program evaluation).<br>
+    <span>Interpretation</span> &mdash; Recommendations for a shared reporting format are the author's proposal, not current ABFAS policy.
+  </div>
+
+  <!-- FOOTER -->
+  <div class="foot">
+    <span>BOARD OUTCOME REPORTING &middot; SOLEINTELL.COM</span>
+    <span class="cc">&copy; 2026 Peter Sorensen, DPM</span>
+  </div>
+
+</div>
+</body>
+</html>

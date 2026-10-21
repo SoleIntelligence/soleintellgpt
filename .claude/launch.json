@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "guidewire-static",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["/Users/peter/Desktop/SoleIntell Web/.claude/serve.py", "8787"],
+      "port": 8787
+    }
+  ]
+}

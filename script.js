@@ -235,13 +235,33 @@
           clearProps: "transform,opacity",
         },
       );
+      // Reveals start as the element enters the viewport and settle quickly,
+      // and fastScrollEnd jumps them to their end state when the page is
+      // scrolled hard, so artwork is never left sitting at zero opacity.
+      // The advocacy gallery has its own scroll-linked treatment further down.
+      // Running the generic reveal on those same figures put two gsap.from()
+      // tweens on one element: the first set opacity to 0 on render, which the
+      // second then captured as its END value, so its scrub ran 0.4 -> 0 and the
+      // photographs faded out as they came up the page.
+      const scrubbedCards = new Set($$(".gallery-stack .gallery-card"));
       $$("[data-reveal]").forEach((el) => {
+        if (scrubbedCards.has(el)) return;
         gsap.from(el, {
           y: 30,
           opacity: 0,
-          duration: 0.8,
+          duration: 0.55,
           ease: "power3.out",
-          scrollTrigger: { trigger: el, start: "top 94%", once: true },
+          scrollTrigger: {
+            trigger: el,
+            start: "top bottom",
+            once: true,
+            onEnter: (self) => {
+              // Past a brisk flick the fade cannot keep up, so show the
+              // content outright rather than part-way through it.
+              if (Math.abs(self.getVelocity()) > 1800)
+                self.animation?.progress(1);
+            },
+          },
           clearProps: "transform,opacity",
         });
       });
@@ -367,16 +387,18 @@
             },
           });
         });
+        // A lift rather than a fade: the photographs enter mostly solid and
+        // reach full strength while still low on the screen.
         $$(".gallery-stack .gallery-card").forEach((card, index) => {
           gsap.from(card, {
             y: index % 2 ? 45 : 20,
-            opacity: 0.4,
+            opacity: 0.65,
             ease: "none",
             scrollTrigger: {
               trigger: card,
-              start: "top 96%",
-              end: "top 65%",
-              scrub: 0.6,
+              start: "top 100%",
+              end: "top 78%",
+              scrub: 0.5,
             },
           });
         });
