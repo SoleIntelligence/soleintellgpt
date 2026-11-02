@@ -255,3 +255,53 @@ on order, holding it at 86% and left-aligned. Verified at 1440px: 628.6px of a 7
 - Catalog: 51 entries, 29 in politics-culture, no duplicate urls, every entry's target page exists.
 - The new card renders in position three with the right kicker, title, date and thumbnail, and
   clicking it lands on `professional_literacy.html`, which reports zero buttons and one script.
+
+## AI and podiatric education article (2026-11-02)
+
+### New page
+
+`aipodmed.html`, "AI is rewriting podiatric education", supplied by Peter with its cover image
+`Sole Intelligence Images/aipodmed.png` (2400x1260, the same artboard the page's `?thumb` mode
+renders). Catalogued under `ai-tutorials` with kicker "AI in Education" and date `2026-11-02`, so it
+leads that section. Added to `infographics.js`, `assets/thumbnails/manifest.js`, and the
+no-JavaScript fallback grid in `index.html` (AI Tutorials `data-card-index` renumbered, count 7 -> 8).
+Catalog total is now 52.
+
+Link and metadata fixes in the page itself:
+
+- `og:image`, `twitter:image` and the JSON-LD `image` pointed at
+  `guidewire_thumbnail-ai-podiatric-ed_v1.png`, which does not exist. They now use the absolute URL
+  `https://soleintell.com/Sole%20Intelligence%20Images/aipodmed.png`. Added `og:url`, a canonical
+  link and a JSON-LD `url` for `https://soleintell.com/aipodmed.html`, and removed the
+  "before publishing" comment that listed those steps.
+- The two Subscribe buttons used `petersorensendpm.substack.com/subscribe`, which 302s to the
+  Substack profile rather than a subscribe form. They now link to `https://substack.com/@petersorensendpm`
+  directly, the URL the rest of the site uses. The JSON-LD author URL matches.
+- The header "The Guidewire" brand link went to Substack; it now returns to `index.html`, like the
+  fellowship pages.
+
+### Thumbnail
+
+Resource cards in AI Tutorials render at 1.6:1 under `object-fit: cover`. The cover is 1.9:1, so a
+straight resize would crop the timing marks on the right. `assets/thumbnails/aipodmed.webp` is
+960x600: the full cover scaled to the width and padded top and bottom in the page's own paper
+colour (`#FBFAF6`), so nothing is cropped. 32 KB.
+
+### Cache versions
+
+`styles.css`, `script.js`, `infographics.js` and `manifest.js` bumped to `?v=20261102a` in
+`index.html`, and the three that `about.html` loads bumped to match.
+
+### Verification
+
+- All 28 hrefs in the article: footnotes `#r1`-`#r10` and `#sources` resolve; every external
+  source returns 200 except the SAGE DOI, which blocks curl with 403 but opens the correct
+  Glenn et al. article in a browser.
+- Homepage with JavaScript: the card renders first in AI Tutorials with the full cover visible,
+  search for "podiatric education" returns it alone, the AI filter reports 8, and clicking it opens
+  the article. No-JavaScript fallback shows the same card first with "8 resources".
+- Article: no console errors; the answer sheet, bubble grids, ID columns and 55-line network all
+  render; a footnote click scrolls to its source; the brand link returns home; no horizontal
+  overflow at 375px.
+- `.claude/serve.py` could not be started this session (macOS denied the preview process access
+  to the Desktop folder), so the checks ran against a temporary copy served from outside it.

@@ -500,5 +500,16 @@ window.INFOGRAPHICS = [
     url: "Dunning_krueger.html",
     date: "2026-09-09",
     thumbnail: "Sole Intelligence Images/Dunning_krueger.png"
+  },
+
+  // ---- AI Tutorials ----
+  {
+    title: "AI Is Rewriting Podiatric Education",
+    description: "AI can build clinical skill or wear it down, depending on how it's taught. Podiatry has almost no research on how DPM students learn with it, and a profession this small can figure it out first.",
+    kicker: "AI in Education",
+    category: "ai-tutorials",
+    url: "aipodmed.html",
+    date: "2026-11-02",
+    thumbnail: "Sole Intelligence Images/aipodmed.png"
   }
 ]

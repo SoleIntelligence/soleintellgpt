@@ -7,6 +7,7 @@ window.GUIDEWIRE_THUMBNAILS = {
   "Sole Intelligence Images/Lawful_access.png": "assets/thumbnails/Lawful_access.webp",
   "Sole Intelligence Images/acgme.png": "assets/thumbnails/acgme.webp",
   "Sole Intelligence Images/ai_ethics.png": "assets/thumbnails/ai_ethics.webp",
+  "Sole Intelligence Images/aipodmed.png": "assets/thumbnails/aipodmed.webp",
   "Sole Intelligence Images/ao.png": "assets/thumbnails/ao.webp",
   "Sole Intelligence Images/apma_history.png": "assets/thumbnails/apma_history.webp",
   "Sole Intelligence Images/appendix_s.png": "assets/thumbnails/appendix_s.webp",
